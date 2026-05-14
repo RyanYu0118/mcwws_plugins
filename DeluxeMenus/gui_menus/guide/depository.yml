@@ -1,0 +1,152 @@
+menu_title: '&l请选择仓库类型'
+open_command:
+  - menuud
+open_commands:
+size: 27
+# as always, only cool people can open this menu :)
+
+items:
+  'farmer':
+    material: iron_hoe
+    slot: 10
+    priority: 1
+    update: true
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    hide_attributes: true
+    display_name: '&b农民仓库'
+    lore:
+      - ''
+    view_requirement:
+      requirements:
+    left_click_commands:
+      - '[player] ud open farmer'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  'fishman':
+    material: fishing_rod
+    slot: 12
+    priority: 1
+    update: true
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    hide_attributes: true
+    display_name: '&b渔夫仓库'
+    lore:
+      - ''
+    view_requirement:
+      requirements:
+    left_click_commands:
+      - '[player] ud open fisherman'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  'logger':
+    material: spruce_sapling
+    slot: 13
+    priority: 1
+    update: true
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    hide_attributes: true
+    display_name: '伐木工仓库'
+    lore:
+      - ''
+    view_requirement:
+      requirements:
+    left_click_commands:
+      - '[player] ud open logger'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  'hunter':
+    material: iron_sword
+    slot: 14
+    priority: 1
+    update: true
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    hide_attributes: true
+    display_name: '&b猎人仓库'
+    lore:
+      - ''
+    view_requirement:
+      requirements:
+    left_click_commands:
+      - '[player] ud open hunter'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'      
+  'miner':
+    material: iron_pickaxe
+    slot: 16
+    priority: 1
+    update: true
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    hide_attributes: true
+    display_name: '&b矿工仓库'
+    lore:
+      - ''
+    view_requirement:
+      requirements:
+    left_click_commands:
+      - '[player] ud open miner'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'  
+  'sellall':
+    material: emerald
+    slot: 4
+    priority: 1
+    update: true
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    hide_attributes: true
+    display_name: '&b一键出售所有'
+    lore:
+      - ''
+    view_requirement:
+      requirements:
+    left_click_commands:
+      - '[player] ud sellAll'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'  
+  'back':
+    material: compass
+    slot: 22
+    priority: 1
+    update: true
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    hide_attributes: true
+    display_name: '&b返回主页'
+    lore:
+      - ''
+    view_requirement:
+      requirements:
+    left_click_commands:
+      - '[openguimenu] home'
+
+  'filler_item':
+    material: GRAY_STAINED_GLASS_PANE
+    slots:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 11
+      - 15
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 23
+      - 24
+      - 25
+      - 26
+      - 27
+    display_name: ' '

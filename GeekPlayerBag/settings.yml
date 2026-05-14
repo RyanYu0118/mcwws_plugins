@@ -1,0 +1,47 @@
+ConfigVersion: 1.0
+debug: false
+#
+# 数据库设置，选择你需要使用的数据储存方式，sqlite,mysql
+# 默认: sqlite
+data_storage:
+  use_type: sqlite
+  mysql:
+    host: '192.168.0.102'
+    port: 3306
+    database: 'server_bag'
+    username: 'root'
+    password: '123456'
+    params: '?autoReconnect=true&useSSL=false'
+  hikari_settings:
+    maximum_pool_size: 10
+    minimum_idle: 10
+    maximum_lifetime: 1800000
+    keepalive_time: 0
+    connection_timeout: 5000
+
+dataTask:
+  #是否启用定时保存
+  autoSave: true
+  # 每次任务间隔 (秒)
+  delay: 600
+
+# 背包页面限制配置
+# 完全权限控制
+bagpagesize:
+  defaultSize: 1
+  permGroup:
+      # 权限优先级 , 优先级越高越先识别
+    - priority: 1
+      # 识别的权限名称
+      perm: geekbag.page.player
+      # 权限选中后给予的背包页面数量（注意： 是页面数量，不是格子大小）
+      size: 2
+    - priority: 2
+      perm: geekbag.page.vip
+      size: 3
+    - priority: 3
+      perm: geekbag.page.svip
+      size: 6
+    - priority: 4
+      perm: geekbag.page.mvip
+      size: 8

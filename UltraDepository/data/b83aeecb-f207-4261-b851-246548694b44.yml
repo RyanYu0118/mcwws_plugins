@@ -1,0 +1,9 @@
+date: 20231115
+depositories:
+  hunter:
+    EGG:
+      amount: 1
+    PORKCHOP:
+      amount: 1
+    CHICKEN:
+      amount: 2

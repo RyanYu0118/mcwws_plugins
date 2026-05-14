@@ -1,0 +1,35 @@
+date: 20240414
+depositories:
+  farmer:
+    WHEAT_SEEDS:
+      amount: 1
+    POTATO:
+      amount: 11
+    SUGAR_CANE:
+      amount: 24
+    CARROT:
+      amount: 149
+  hunter:
+    ARROW:
+      amount: 1
+    RABBIT_HIDE:
+      amount: 2
+    PORKCHOP:
+      amount: 59
+    CHICKEN:
+      amount: 2
+    RABBIT:
+      amount: 2
+    BEEF:
+      amount: 1
+    BONE:
+      amount: 2
+    FEATHER:
+      amount: 2
+  miner:
+    DIAMOND:
+      amount: 1
+    COBBLESTONE:
+      amount: 112
+    COAL:
+      amount: 73

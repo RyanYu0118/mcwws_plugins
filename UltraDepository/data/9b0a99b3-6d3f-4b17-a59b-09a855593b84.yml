@@ -1,0 +1,44 @@
+date: 20250712
+depositories:
+  logger:
+    SPRUCE_LOG:
+      amount: 1
+  farmer:
+    WHEAT_SEEDS:
+      amount: 2
+    POTATO:
+      amount: 2
+    CARROT:
+      amount: 4
+  hunter:
+    ROTTEN_FLESH:
+      amount: 1026
+    ARROW:
+      amount: 129
+    GUNPOWDER:
+      amount: 13
+    SLIME_BALL:
+      amount: 104
+    SPIDER_EYE:
+      amount: 32
+    STRING:
+      amount: 60
+    ENDER_PEARL:
+      amount: 1
+    BONE:
+      amount: 40665
+  miner:
+    EMERALD:
+      amount: 3
+    REDSTONE:
+      amount: 5
+    DIAMOND:
+      amount: 2
+    COAL:
+      amount: 31850
+    GOLD_INGOT:
+      amount: 6
+    IRON_INGOT:
+      amount: 2
+    FLINT:
+      amount: 1

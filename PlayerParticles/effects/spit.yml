@@ -1,0 +1,16 @@
+# The name the effect will display as
+# Default: spit
+effect-name: spit
+
+# If the effect is enabled or not
+# Default: true
+enabled: true
+
+# Default: [LLAMA_SPAWN_EGG, PUMPKIN_SEEDS]
+gui-icon-material:
+  - LLAMA_SPAWN_EGG
+  - PUMPKIN_SEEDS
+
+# If true, this effect will be hidden when a player is in a WorldGuard region with the flag 'player-particles-limited' denied
+# Default: false
+hide-in-limited-region: false

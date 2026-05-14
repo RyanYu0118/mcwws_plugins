@@ -1,0 +1,56 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 127.0.0.1
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 1728927462329
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1728928575265
+  login: 1728928616897
+money: '99602303.732444'
+last-account-name: Ryan_yu__
+logoutlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -535.581302753743
+  y: 87.79706149433862
+  z: 2917.312438246751
+  yaw: -105.8341064453125
+  pitch: 41.249935150146484
+lastlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -511.5211474132206
+  y: 64.0
+  z: 202.92546355650725
+  yaw: 110.86337280273438
+  pitch: 18.541183471679688
+confirm-clear: true
+homes:
+  home:
+    world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+    world-name: world
+    x: -462.2385884700993
+    y: 64.0
+    z: 237.66864487398274
+    yaw: 7.415283203125
+    pitch: 31.490665435791016
+  ryan_yu__1:
+    world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+    world-name: world
+    x: -498.0265145681313
+    y: 64.0
+    z: 264.45115752579414
+    yaw: 58.265289306640625
+    pitch: 18.740665435791016

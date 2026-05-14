@@ -1,0 +1,13 @@
+variables:
+  remaining_lives1:
+    variable_type: PLAYER
+    value_type: INTEGER
+    initial_value: 3
+    limitations:
+      min_value: 0
+  event_whitelisted_players1:
+    variable_type: GLOBAL
+    value_type: LIST
+    initial_value:
+      - Ajneb
+      - KleinTada

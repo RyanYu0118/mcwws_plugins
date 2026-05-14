@@ -1,0 +1,8 @@
+#配置文件版本号 请勿修改
+version: 1
+
+#语言 默认为简体中文
+language: 'zh_cn'
+
+#检查更新 true为启用 false为禁用
+checkUpdate: true

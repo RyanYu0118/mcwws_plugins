@@ -1,0 +1,105 @@
+menu_title: '&l咩~'
+open_command:
+  - menu_sheep_blue
+open_commands:
+#  - '[sound] ENTITY_VILLAGER_AMBIENT 1 0.8'
+update_interval: 1
+inventory_type: hopper
+items:
+  '0':
+    material: writable_book
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 3
+    update: true
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b更改商品预设数量'
+    lore: 
+    - '&e当前您的预设数量：%objective_score_number%件'
+    left_click_commands:
+      - '[givepermission] commandprompter.*'
+      - '[givepermission] minecraft.command.scoreboard'
+      - '[givepermission] minecraft.command.gamerule'
+      - '[givepermission] minecraft.command.playsound'
+      - '[givepermission] minecraft.command.schedule'
+      - '[givepermission] luckperms.user.permission.unset'
+      #- '[player] ap use number'
+      - '[close]'
+      - '[player] scoreboard players set %player_name% number <&a请在聊天框中输入有效数字（取消请回复"x"）> <-exa gamerule sendCommandFeedback false> <-exa playsound ui.cartography_table.take_result player %player_name% ~ ~ ~ 1 1 1> <-exa menu_sheep_blue> <-exa schedule function economic_system:feedback 1s replace> <-exa lp user %player_name% permission unset minecraft.command.scoreboard> <-exa lp user %player_name% permission unset minecraft.command.gamerule> <-exa lp user %player_name% permission unset minecraft.command.playsound> <-exa lp user %player_name% permission unset minecraft.command.schedule> <-exa lp user %player_name% permission unset luckperms.user.permission.unset>'
+      - '[sound] entity_snow_golem_death 1 1'
+  '1':
+    material: blue_wool
+    #enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 1
+    update: true
+    priority: 1
+    hide_attributes: true
+    #display_name: '&b更改手持物品信息'
+    lore:
+      - ''
+      - '&e购买 ¥1.00/件'
+      - '&e回收 ¥0.80/件'
+      - ''
+      - '&a左键点击 &7| &f购买一件'
+      - '&a右键点击 &7| &f购买一组'
+      - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+      - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:blue_wool,strict%&f件该物品'
+      - '&e(点击右侧书与笔可更改预设数量)'
+      - ''
+      - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+      - '[takemoney] 1'
+      - '[console] execute run give %player_name% minecraft:blue_wool 1'
+      - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    right_click_commands:
+      - '[takemoney] 64'
+      - '[console] execute run give %player_name% minecraft:blue_wool 64'
+      - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_left_click_commands:
+      - '[takemoney] %objective_score_number%'
+      - '[console] execute run give %player_name% minecraft:blue_wool %objective_score_number%'
+      - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_right_click_commands:
+      - '[givemoney] %math_0.8*{checkitem_amount_mat:blue_wool}%'
+      - '[console] %checkitem_remove_mat:blue_wool,strict%'
+      - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:blue_wool,strict% > 0'
+      deny_commands:
+        - '[message] &c啊哦，你身上没这个物品捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'

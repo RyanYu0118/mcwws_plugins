@@ -1,0 +1,38 @@
+Config:
+  enable_turrets_only_when_owner_is_online: false
+  min_distance_between_turrets: 1
+  damage_holograms: true
+  information_holograms: true
+  new_version_reminder: true
+  per_turret_permissions: false
+  ally_protection: true
+  walls_better_check: false
+  turrets_require_ammunition: true
+  shoot_through_liquids: false
+  ignore_damage_to_invisible_players: true
+  turrets_global_check_time: 5
+  turret_limit_permissions:
+    enabled: true
+    default_limit: 1
+  protect_turrets_from_explosions: false
+  drop_turret_on_destroy: true
+  receive_turret_on_destroy: true
+  whitelist_ignore_case: true
+  blacklisted_worlds:
+  - minigames
+  - lobby
+  default_turret_options:
+    attack_monsters: true
+    attack_animals: false
+    attack_players: false
+  delete_turret_item:
+    id: REDSTONE_BLOCK
+    name: '&cDestroy Turret'
+    lore:
+    - '&7This action cannot be undone!'
+  turret_options_item:
+    id: CHEST
+    name: '&aTurret Options'
+  inventory_back_item:
+    id: ARROW
+    name: '&7Back'

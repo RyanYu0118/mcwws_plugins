@@ -1,0 +1,617 @@
+items:
+  angler_pottery_sherd:
+    initial-price: 50.0
+    support: 10.0
+    resistance: 250.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  archer_pottery_sherd:
+    initial-price: 50.0
+    support: 10.0
+    resistance: 250.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  arms_up_pottery_sherd:
+    initial-price: 50.0
+    support: 10.0
+    resistance: 250.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  blade_pottery_sherd:
+    initial-price: 70.0
+    support: 14.0
+    resistance: 350.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  brewer_pottery_sherd:
+    initial-price: 70.0
+    support: 14.0
+    resistance: 350.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  brush:
+    initial-price: 9.0
+    support: 1.8
+    resistance: 45.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  burn_pottery_sherd:
+    initial-price: 70.0
+    support: 14.0
+    resistance: 350.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  danger_pottery_sherd:
+    initial-price: 90.0
+    support: 18.0
+    resistance: 450.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  decorated_pot:
+    initial-price: 16.0
+    support: 3.2
+    resistance: 80.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  explorer_pottery_sherd:
+    initial-price: 50.0
+    support: 10.0
+    resistance: 250.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  flow_pottery_sherd:
+    initial-price: 70.0
+    support: 14.0
+    resistance: 350.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  friend_pottery_sherd:
+    initial-price: 90.0
+    support: 18.0
+    resistance: 450.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  guster_pottery_sherd:
+    initial-price: 70.0
+    support: 14.0
+    resistance: 350.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  heart_pottery_sherd:
+    initial-price: 90.0
+    support: 18.0
+    resistance: 450.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  heartbreak_pottery_sherd:
+    initial-price: 90.0
+    support: 18.0
+    resistance: 450.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  howl_pottery_sherd:
+    initial-price: 90.0
+    support: 18.0
+    resistance: 450.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  miner_pottery_sherd:
+    initial-price: 50.0
+    support: 10.0
+    resistance: 250.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  mourner_pottery_sherd:
+    initial-price: 90.0
+    support: 18.0
+    resistance: 450.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  plenty_pottery_sherd:
+    initial-price: 90.0
+    support: 18.0
+    resistance: 450.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  prize_pottery_sherd:
+    initial-price: 50.0
+    support: 10.0
+    resistance: 250.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  scrape_pottery_sherd:
+    initial-price: 70.0
+    support: 14.0
+    resistance: 350.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  sheaf_pottery_sherd:
+    initial-price: 90.0
+    support: 18.0
+    resistance: 450.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  shelter_pottery_sherd:
+    initial-price: 70.0
+    support: 14.0
+    resistance: 350.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  skull_pottery_sherd:
+    initial-price: 50.0
+    support: 10.0
+    resistance: 250.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  sniffer_egg:
+    initial-price: 400.0
+    support: 80.0
+    resistance: 2000.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  snort_pottery_sherd:
+    initial-price: 70.0
+    support: 14.0
+    resistance: 350.0
+    elasticity: 0.6
+    noise-intensity: 0.2
+    tax:
+      sell: 0.05
+  armor_stand:
+    initial-price: 8.0
+    support: 6.4
+    resistance: 9.6
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  chainmail_boots:
+    initial-price: 65.0
+    support: 52.0
+    resistance: 78.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  chainmail_chestplate:
+    initial-price: 120.0
+    support: 96.0
+    resistance: 144.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  chainmail_helmet:
+    initial-price: 70.0
+    support: 56.0
+    resistance: 84.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  chainmail_leggings:
+    initial-price: 105.0
+    support: 84.0
+    resistance: 126.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  copper_boots:
+    initial-price: 12.0
+    support: 9.6
+    resistance: 14.4
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  copper_chestplate:
+    initial-price: 1.0
+    support: 19.2
+    resistance: 28.8
+    elasticity: 1.0
+    noise-intensity: 1.0
+    tax:
+      sell: 0.05
+    alias: Copper chestplate
+    item-stack:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4671
+      id: minecraft:copper_chestplate
+      count: 1
+      schema_version: 1
+  copper_helmet:
+    initial-price: 15.0
+    support: 12.0
+    resistance: 18.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  copper_leggings:
+    initial-price: 21.0
+    support: 16.8
+    resistance: 25.2
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  diamond_boots:
+    initial-price: 1120.0
+    support: 896.0
+    resistance: 1344.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  diamond_chestplate:
+    initial-price: 2240.0
+    support: 1792.0
+    resistance: 2688.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  diamond_helmet:
+    initial-price: 1400.0
+    support: 1120.0
+    resistance: 1680.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  diamond_leggings:
+    initial-price: 1960.0
+    support: 1568.0
+    resistance: 2352.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  golden_boots:
+    initial-price: 240.0
+    support: 192.0
+    resistance: 288.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  golden_chestplate:
+    initial-price: 480.0
+    support: 384.0
+    resistance: 576.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  golden_helmet:
+    initial-price: 300.0
+    support: 240.0
+    resistance: 360.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  golden_leggings:
+    initial-price: 420.0
+    support: 336.0
+    resistance: 504.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  iron_boots:
+    initial-price: 60.0
+    support: 48.0
+    resistance: 72.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  iron_chestplate:
+    initial-price: 120.0
+    support: 96.0
+    resistance: 144.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  iron_helmet:
+    initial-price: 75.0
+    support: 60.0
+    resistance: 90.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  iron_leggings:
+    initial-price: 105.0
+    support: 84.0
+    resistance: 126.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  leather_boots:
+    initial-price: 32.0
+    support: 25.6
+    resistance: 38.4
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  leather_helmet:
+    initial-price: 40.0
+    support: 32.0
+    resistance: 48.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  leather_leggings:
+    initial-price: 56.0
+    support: 44.8
+    resistance: 67.2
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  leather_chestplate:
+    initial-price: 64.0
+    support: 51.2
+    resistance: 76.8
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  netherite_boots:
+    initial-price: 3340.0
+    support: 2672.0
+    resistance: 4008.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  netherite_chestplate:
+    initial-price: 4340.0
+    support: 3472.0
+    resistance: 5208.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  netherite_helmet:
+    initial-price: 3640.0
+    support: 2912.0
+    resistance: 4368.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  netherite_leggings:
+    initial-price: 4140.0
+    support: 3312.0
+    resistance: 4968.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  shield:
+    initial-price: 27.0
+    support: 21.6
+    resistance: 32.4
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  turtle_helmet:
+    initial-price: 150.0
+    support: 120.0
+    resistance: 180.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  copper_horse_armor:
+    initial-price: 90.0
+    support: 72.0
+    resistance: 108.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  diamond_horse_armor:
+    initial-price: 1000.0
+    support: 800.0
+    resistance: 1200.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  golden_horse_armor:
+    initial-price: 300.0
+    support: 240.0
+    resistance: 360.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  iron_horse_armor:
+    initial-price: 180.0
+    support: 144.0
+    resistance: 216.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  leather_horse_armor:
+    initial-price: 56.0
+    support: 44.8
+    resistance: 67.2
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  netherite_horse_armor:
+    initial-price: 3340.0
+    support: 2672.0
+    resistance: 4008.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  copper_nautilus_armor:
+    initial-price: 235.0
+    support: 188.0
+    resistance: 282.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  diamond_nautilus_armor:
+    initial-price: 2300.0
+    support: 1840.0
+    resistance: 2760.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  golden_nautilus_armor:
+    initial-price: 940.0
+    support: 752.0
+    resistance: 1128.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  iron_nautilus_armor:
+    initial-price: 470.0
+    support: 376.0
+    resistance: 564.0
+    elasticity: 0.3
+    noise-intensity: 0.1
+    tax:
+      sell: 0.05
+  netherite_nautilus_armor:
+    initial-price: 1.0
+    support: 3712.0
+    resistance: 5568.0
+    elasticity: 1.0
+    noise-intensity: 1.0
+    tax:
+      sell: 0.05
+    alias: Netherite nautilus armor
+    item-stack:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4671
+      id: minecraft:netherite_nautilus_armor
+      count: 1
+      schema_version: 1
+  stone_spear:
+    alias: Stone spear
+    initial-price: 1.0
+    elasticity: 1.0
+    noise-intensity: 1.0
+    item-stack:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4671
+      id: minecraft:stone_spear
+      count: 1
+      components:
+        minecraft:enchantments: '{"minecraft:sharpness":2}'
+      schema_version: 1
+  copper_chest:
+    alias: Copper chest
+    initial-price: 1.0
+    elasticity: 1.0
+    noise-intensity: 1.0
+    item-stack:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4671
+      id: minecraft:copper_chest
+      count: 1
+      schema_version: 1
+  dried_ghast:
+    alias: Dried ghast
+    initial-price: 1.0
+    elasticity: 1.0
+    noise-intensity: 1.0
+    item-stack:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4671
+      id: minecraft:dried_ghast
+      count: 1
+      schema_version: 1
+  firefly_bush:
+    alias: Firefly bush
+    initial-price: 1.0
+    elasticity: 1.0
+    noise-intensity: 1.0
+    item-stack:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4671
+      id: minecraft:firefly_bush
+      count: 1
+      schema_version: 1
+  pale_hanging_moss:
+    alias: Pale hanging moss
+    initial-price: 1.0
+    elasticity: 1.0
+    noise-intensity: 1.0
+    item-stack:
+      ==: org.bukkit.inventory.ItemStack
+      DataVersion: 4671
+      id: minecraft:pale_hanging_moss
+      count: 1
+      schema_version: 1
+

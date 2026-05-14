@@ -1,0 +1,15 @@
+date: 20230905
+depositories:
+  farmer:
+    WHEAT_SEEDS:
+      amount: 1
+  hunter:
+    ROTTEN_FLESH:
+      sold: 2
+    GUNPOWDER:
+      amount: 1
+  miner:
+    COBBLESTONE:
+      amount: 2
+    COAL:
+      amount: 3

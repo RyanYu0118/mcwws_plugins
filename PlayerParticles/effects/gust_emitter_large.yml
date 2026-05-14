@@ -1,0 +1,15 @@
+# The name the effect will display as
+# Default: gust_emitter_large
+effect-name: gust_emitter_large
+
+# If the effect is enabled or not
+# Default: true
+enabled: true
+
+# Default: [MACE]
+gui-icon-material:
+  - MACE
+
+# If true, this effect will be hidden when a player is in a WorldGuard region with the flag 'player-particles-limited' denied
+# Default: false
+hide-in-limited-region: false

@@ -1,0 +1,8 @@
+{
+    "enderDragon": true,
+    "wither": false,
+    "elderGuardian": false,
+    "warden": false,
+    "playerDeath": true,
+    "emptyServer": true
+}

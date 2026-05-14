@@ -1,0 +1,40 @@
+# Nachricht, wenn der Rucksack aus der Datenbank geladen wird (nach Spielerinteraktion)
+backpack-loading: "#eb0000Rucksack wird geladen..."
+# Nachricht, wenn der Rucksack geladen wurde
+backpack-loaded: "Der Rucksack wurde geladen"
+# Nachricht, wenn der Rucksack aktualisiert wird und der Spieler versucht, ihn zu öffnen
+backpack-updating: "Aktualisierung des Rucksacks läuft"
+# Nachricht, wenn der Rucksack nicht geladen werden konnte
+backpack-loading-error: "Problem beim Laden des Rucksacks aufgetreten"
+# Wenn ein Spieler versucht, einen Rucksack zu öffnen, der von einem anderen Spieler verwendet wird
+backpack-is-used-by-another-player: "&cDer Rucksack wird von einem anderen Spieler verwendet"
+
+# Nachricht, wenn der Administrator das Crafting ändert
+backpack-crafting-change: "&aDas Crafting des Rucksacks wurde geändert"
+# Nachricht, wenn ein Spieler versucht, das Crafting zu ändern, wenn es leer ist oder dasselbe wie zuvor ist
+backpack-crafting-cannot-change: "&cDas Crafting des Rucksacks kann nicht geändert werden, vielleicht ist es leer oder dasselbe wie zuvor"
+# Nachricht, wenn der Administrator die Crafting-Änderungen abbricht
+backpack-crafting-change-cancelled: "&cÄnderungen am Rucksack-Crafting wurden abgebrochen"
+
+# Nachricht nachdem der Rucksack durch die Rucksackansicht des Spielers hinzugefügt wurde
+# %player% Name des Rucksackbesitzers
+backpack-added-inventory: "&6Spieler-Rucksack hinzugefügt&8: &f%player% &6zu Ihrem Inventar"
+
+# Wenn ein Spieler keine Berechtigungen hat
+command-no-permissions: "&4Sie haben keine Berechtigung, diesen Befehl zu verwenden"
+# Wenn ein Spieler eine Abklingzeit hat
+cooldown-message: "#eb0000Sie müssen warten, bevor Sie es erneut verwenden können"
+# Wenn ein Spieler nicht berechtigt ist, einen Rucksack zu öffnen
+backpack-no-permission-use: "&4Sie haben keine Berechtigung, den Rucksack zu öffnen"
+# Wenn der Rucksack des Spielers (durch Befehl) wieder aufgeladen wird
+loading-in-progress: "&6Laden läuft... bitte warten Sie einen Moment"
+# Wenn die Rucksäcke der Spieler nicht geladen werden konnten
+players-backpack-not-loaded: "&cDie Rucksäcke der Spieler konnten nicht geladen werden"
+# Wenn der Spieler keinen Rucksack hat
+player-not-created-backpacks: "&7Dieser Spieler hat noch keine Rucksäcke erstellt"
+# Wenn der Spieler offline ist
+# %player% > Spielername
+player-is-offline: "&7Spieler&8: &f%player% &7ist offline"
+
+# Nachricht, wenn ein Spieler versucht, mehr als einen Rucksack zu haben (nur wenn die Option in der Konfiguration auf true gesetzt ist: Grenze-Rucksack-pro-Inventar)
+one-backpack-per-inventory: "&cSie können nur einen Rucksack tragen"

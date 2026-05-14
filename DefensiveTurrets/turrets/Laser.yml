@@ -1,0 +1,51 @@
+Turret:
+    name: "Laser Turret"
+    upgrades:
+    - "0;5-7;2;15;0.5"
+    - "800;9-13;1.75;17;1"
+    - "2500;16-22;1.5;20;1.5"
+    sound_1: BLOCK_FIRE_EXTINGUISH;1;2
+    block_1: REDSTONE_BLOCK
+    block_2: ORANGE_CONCRETE
+    head: "a92b9ec4-c771-4ce6-96a7-529a0244a35f;eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTJjMmY2ZmE3ZWM1MzA0MzVjNDMxNTcyOTM4YjlmZWI5NTljNDIyOThlNTU1NDM0MDI2M2M2NTI3MSJ9fX0="
+Block:
+    id: "REDSTONE_BLOCK"
+    name: "&aLaser Turret &6Block"
+    lore:
+    - "&7Medium speed turret that pushes the"
+    - "&7enemy on every hit."
+    - ""
+    - "&8» &7Damage: &a%min%&7-&a%max%"
+    - "&8» &7Cooldown: &a%cooldown% seconds"
+    - "&8» &7Range: &a%range% blocks"
+    - "&8» &7Push Power: &a%power% blocks"
+Upgrade:
+    id: "EMERALD"
+    name: "&aLaser Turret &eUpgrade"
+    lore:
+    - "&7Level: &a&l%current_level%&8 ➜ &a&l%next_level%"  
+    - "&7Damage: &a%current_min%&7-&a%current_max%&8 ➜ &a%next_min%&7-&a%next_max%"
+    - "&7Cooldown: &a%current_cooldown%(s)&8 ➜ &a%next_cooldown%(s)"
+    - "&7Range: &a%current_range% blocks&8 ➜ &a%next_range% blocks"
+    - "&7Push Power: &a%current_power% blocks&8 ➜ &a%next_power% blocks"
+    - ""
+    - "&7Price: &6%price%"
+    - ""
+    - "&8[Click to Upgrade]"  
+LastUpgrade:
+    id: "REDSTONE"
+    name: "&aLaser Turret &eUpgrade"
+    lore:
+    - "&7Level: &a&l%current_level%"  
+    - "&7Damage: &a%current_min%&7-&a%current_max%"
+    - "&7Cooldown: &a%current_cooldown%(s)"
+    - "&7Range: &a%current_range% blocks"
+    - "&7Push Power: &a%current_power% blocks"
+    - ""
+    - "&7No more Upgrades available" 
+Ammunition:
+    id: "MAGENTA_DYE"
+    name: "&6Laser Turret &7Ammunition"
+    lore:
+    - "&7Place this item in your turret inventory"
+    - "&7to start shooting." 

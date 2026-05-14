@@ -1,0 +1,194 @@
+# Advancements messages file
+
+# Advancements messages file
+prefix: '&6[&5自定义&d成就&6]&r'
+commands:
+  nosubcommand: '&c你需要输入子命令。使用 &e/ca help&c 查看所有可以使用的命令。'
+  help:
+    description: 使用本命令列出本插件的所有命令。
+    header: |-
+      &9---- &d自定义成就 帮助 &9----
+      &5鼠标指针悬停在命令上可以查看如何使用
+    content: '&9> &b{0}&8: &7{1}'
+    hover: |-
+      &5命令使用方法 &d{0}
+      &e&o点击运行该指令
+  checkprogress:
+    description: 使用该命令查看成就的进度
+    usage: /ca checkprogress <分支> <成就> [玩家]
+    header: '&6---- &9成就 进度 &6----'
+    user: '&d玩家: &5{0}'
+    tree: '&d分支: &5{0}'
+    advancement: '&d成就: &5{0}'
+    progress: '&3进度: &9{0}&8/&9{1}'
+    active: '&3是否进行: &9{0}'
+    completed: '&3是否完成: &9{0}'
+  invalidplayer: '&c你所需要查询的玩家当前未在线。'
+  invalidadvancement: '&c你输入的成就或分支不存在。'
+  invalid_usage: '&c你错误的使用了该指令，正确的使用方法: &7{0}'
+  invalid_type: '''{0}'' 必须是 {1}'
+  set:
+    usage: /ca set <active|progress|completed> <分支> <成就> <数值> [玩家]
+    response: '&a成功设置了 {0} 的成就 {1}.{2} 为 {3}'
+  reload:
+    desc: 重载插件的配置，成就，消息
+    usage: /ca reload
+    response: '&a配置，成就，消息成功重载'
+  activate:
+    desc: 查看指定分支下的某一成就是否在进行状态
+    usage: /ca activate <分支> <成就>
+    response:
+      activated: '&a这个成就早已经被激活了，祝你好运！'
+      notactivated: |
+        &c该成就处于未激活状态，你为满足一下激活需求：
+      requirement_not_met: |
+        &4> &c{0}
+  gui:
+    desc: 打开自定义成就GUI
+    usage: /ca gui
+  invalid: '&c这个子命令不存在，使用 &e/ca help &c查看所有可以使用的指令'
+  no-permission: '&c你没有所需要的权限执行该命令，所需权限: &8({0})'
+  grantimpossible:
+    description: /ca grantimpossible <玩家> <数量> <成就的数字ID>
+    not-a-number: '&c你输入的进度不是一个数字'
+    success: '&a成功给予 {0} 了 {1} 进度！'
+requirements:
+  advancement:
+    message: 你需要完成 {1} 成就分支下的 {0} 成就
+    name: 成就
+  permission:
+    name: 权限
+    message: 你需要 {0} 权限来进行本成就
+guis:
+  back:
+    name: '&6返回'
+    lore: '&e返回上一级菜单'
+  main:
+    title: '&5服务器特殊成就'
+    trees:
+      name: '&5&l成就分支'
+      lore: '&6> &e点击查看所有成就分支'
+    active:
+      name: '&a&l正在进行的成就'
+      lore: '&6> &e点击查看所有正在进行的成就'
+    completed:
+      name: '&2&l已完成成就'
+      lore: '&6> &e点击查看所有已完成成就'
+    available:
+      name: '&5&l可以进行的成就'
+      lore: '&6> &e点击查看所有可以进行的成就'
+  page:
+    next:
+      name: '&a下一页'
+      lore: '&2点击前往下一页'
+    previous:
+      name: '&a上一页'
+      lore: '&2点击前往上一页'
+    first:
+      name: '&7&m第一页'
+      lore: '&8你正在查看第一页'
+    last:
+      name: '&7&m最后一页'
+      lore: '&8你正在查看最后一页'
+  trees:
+    title: '&5成就分支 &7({0}/{1})'
+    advancements: '&6> &e点击预览成就'
+    invalid_tree: '&c你尝试打开的分支不存在！'
+  advancements:
+    options: '&6> &e点击预览你可以进行的成就操作'
+    title: '{0} &7({1}/{2})'
+  advancement_options:
+    title: '{0}'
+    activate:
+      name: '&a正在进行的成就'
+      lore: '&6> &e点击查看正在进行的成就'
+    activated:
+      name: '&7已激活'
+      lore: '&8这个成就早已经激活了'
+    requirements:
+      name: '&c需求'
+      lore: |-
+        &7你满足了 {0}/{1} 个要求
+        &6>&e 点击查看所有要求
+    completed:
+      name: '&2已完成'
+      lore: '&a你已经完成了这个成就！'
+    not_completed:
+      name: '&4未完成'
+      lore: '&c你还没有完成这个成就！'
+    progress:
+      name: '&6进度'
+      lore: '&e({3}%) &7{0}&8/&7{1} {2}'
+    activated_successfully:
+      name: '&2成功激活'
+      lore: '&a这个成就现在已被激活了，祝你好运！'
+    not_activated:
+      name: '&4成就未激活'
+      lore: '&c你没有满足 {0}/{1} 个要求来激活本成就'
+  requirements:
+    no_requirements:
+      name: '&4无需求'
+      lore: '&c这个成就不需要任何额外条件'
+    title: '{0} &7({1}/{2})'
+  active:
+    title: '&8激活的成就 &7({0}/{1})'
+    none:
+      name: '&4无激活成就'
+      lore: '&c你目前没有激活的成就'
+  completed:
+    title: '&8已完成的成就 &7({0}/{1})'
+    none:
+      name: '&4无完成成就'
+      lore: '&c你目前没有完成的成就'
+  available:
+    title: '&8可接受的成就 &7({0}/{1})'
+    none:
+      name: '&4无可接受的成就'
+      lore: '&c你目前没有可接受的成就'
+advancements:
+  types:
+    blockbreak:
+      unit: 方块破坏
+    join:
+      unit: 在服务器的时间
+    leave:
+      unit: 不在服务器的时间
+    chat:
+      unit: 发送的消息
+    blockplace:
+      unit: 防止方块
+    catchfish:
+      unit: 钓上鱼的数量
+    consume:
+      unit: 消耗物品的数量
+    statistic:
+      unit: 统计进展
+    xpchange:
+      unit: 经验值获得数量
+    xplevelchange:
+      unit: 等级数量
+  type:
+    damagetaken:
+      unit: 受到的伤害
+    damagedealt:
+      unit: 造成的伤害
+    killentity:
+      unit: 杀死的实体数量
+    shearsheep:
+      unit: 剪羊毛的羊数量
+    breedentity:
+      unit: 繁殖实体
+    executecommand:
+      unit: 执行的命令
+    blockstravelled:
+      unit: 以移动的方块
+    playtime:
+      unit: 游玩时间
+    craftitem:
+      unit: 制作物品
+    harvest:
+      unit: 收获的农作物
+    raidfinish:
+      unit: 村庄突袭次数
+    money:
+      unit: 获得的现金

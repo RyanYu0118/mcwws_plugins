@@ -1,0 +1,160 @@
+menu_title: '&l需要什么帮助？&k&l!'
+open_command:
+  - menuhome
+open_commands:
+  - '[sound] BLOCK_BEACON_ACTIVATE'
+  - '[message] &b欢迎使用服务器指南！'
+size: 54
+# as always, only cool people can open this menu :)
+open_requirement:
+  requirements:
+    example_1:
+      success_commands:
+        - "[message] &8[&bDeluxe&eMenus&8] &cYou have perms for this!"
+      deny_commands:
+        - "[message] &8[&bDeluxe&eMenus&8] &cYou don't have perms for this!"
+items:
+  'file':
+    material: head-%player_name%
+    slot: 4
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b>>> 个人档案 <<<'
+    lore:
+      - ''
+      - '&7Cooldown : &f3 Days'
+      - '&7Left Click to Redeem'
+    view_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%objective_score_Money% >= 10'
+    left_click_commands:
+      - '[player] kit example'
+      - '[close]'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  'sign_in':
+    material: BAMBOO_HANGING_SIGN
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 0
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&6>>> 每日签到 <<<'
+    lore:
+      - '&f点击此处完成签到'
+    left_click_commands:
+      - '[player] signin gui'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  'task':
+    material: TOTEM_OF_UNDYING
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 2
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&e>>> 每日任务 <<<'
+    lore:
+      - '&f点击此处领取/查看任务情况'
+    left_click_commands:
+      - '[player]'
+      - '[close]'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  'spawn_set':
+    material: NETHER_STAR
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 19
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b设置标记点'
+    lore:
+      - '&f将您当前的位置设为标记点 &c与重生点无关！'
+      - '&f点数：16点/次'
+    left_click_commands:
+      - '[player] spawn set'
+      - '[player] gamerule sendCommandFeedback false'
+      - '[player] schedule clear economic_system:feedback'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+      - '[player] scoreboard players remove @s Money 16'
+      - '[player] schedule function economic_system:feedback 1s'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%objective_score_Money% >= 16'
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  'spawn':
+    material: ENDER_EYE
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 20
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b传送至标记点'
+    lore:
+      - '&f点击传送至已设标记点'
+      - '&f点数：64点/次'
+    left_click_commands:
+      - '[player] spawn'
+      - '[player] gamerule sendCommandFeedback false'
+      - '[player] schedule clear economic_system:feedback'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+      - '[player] scoreboard players remove @s Money 64'
+      - '[player] schedule function economic_system:feedback 1s'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%objective_score_Money% >= 64'
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  'we':
+    material: WOODEN_AXE
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 22
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b创世神懒人工具'
+    lore:
+      - '&f点击选择想要传送的固定地点'
+      - '&f点数：0~100m 免费'
+      - '&f100~200m 16点/次'
+      - '&f200~500m 32点/次'
+      - '&f500~1000m 64点/次'
+      - '&f1000~5000m 128点/次'
+      - '&f5000m及以上 256点/次'
+      - '&f跨维度 256点/次'
+    left_click_commands:
+      - '[openguimenu] tp'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+  'filler_item':
+    material: GRAY_STAINED_GLASS_PANE
+    slots:
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 9
+    display_name: ' '

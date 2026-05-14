@@ -1,0 +1,48 @@
+menu_title: '&l需要什么帮助？'
+inventory_type: "HOPPER"
+open_command:
+  - menulore
+open_commands:
+  - '[sound] ENTITY_VILLAGER_AMBIENT 1 1.2'
+# as always, only cool people can open this menu :)
+items:
+  '1':
+    material: name_tag
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 0
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b更改手持物品信息'
+    lore:
+      - ''
+    left_click_commands:
+      - '[openguimenu] npc_lore2'
+      - '[sound] ENTITY_VILLAGER_CELEBRATE 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 8
+        not_air:
+          type: "!string equals"
+          input: "%player_item_in_hand%"
+          output: "AIR"
+        not_lore_contains_authorized_without_licence:
+          type: "!string equals"
+          input: "%checkitem_lorecontains:🔒已授权&7&kﷲ,inhand:main%%player_has_permission_server.licence.lore%"
+          output: "yesno"
+#        not_slimefun_items_without_licence:
+#          type: "!string equals"
+#          input: "%changeoutput_match_input:{checkitem_getinfo:mainhand_nbtstrings:PublicBukkitValues..slimefun:slimefun_item=?}_matcher:_ifmatch:F_else:T%%player_has_permission_server.licence.lore%"
+#          output: "Tno"
+      deny_commands:
+        - '[message] &c啊哦，打开失败捏......'
+        - '[message] &c可能原因如下：'
+        - '[message] &c1. 您的零钱不足；'
+        - '[message] &c2. 您的主手没有持有物品；'
+        - '[message] &c3. 您的主手持有服务器已授权的物品，且您未获得修改许可证。'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'

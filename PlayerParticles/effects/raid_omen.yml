@@ -1,0 +1,15 @@
+# The name the effect will display as
+# Default: raid_omen
+effect-name: raid_omen
+
+# If the effect is enabled or not
+# Default: true
+enabled: true
+
+# Default: [OMINOUS_BOTTLE]
+gui-icon-material:
+  - OMINOUS_BOTTLE
+
+# If true, this effect will be hidden when a player is in a WorldGuard region with the flag 'player-particles-limited' denied
+# Default: false
+hide-in-limited-region: false

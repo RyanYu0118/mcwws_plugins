@@ -1,0 +1,14 @@
+# ScriptEntityPlus v1.2.3 Config #
+
+
+## ===== 开发者的设置 ===== ##
+# 基本上，只有开发人员应该改变设置。
+# 请指定该选项的确切路径。
+# 这个函数将选项中要检索的坐标改写为实体的坐标。
+FilterOptions:
+- 'com.github.yuttyann.scriptblockplus.script.option.chat.Command'
+- 'com.github.yuttyann.scriptblockplus.script.option.chat.Console'
+- 'com.github.yuttyann.scriptblockplus.script.option.chat.BypassOP'
+- 'com.github.yuttyann.scriptblockplus.script.option.vault.BypassPerm'
+- 'com.github.yuttyann.scriptblockplus.script.option.vault.BypassGroup'
+- 'com.github.yuttyann.scriptblockplus.script.option.other.PlaySound'

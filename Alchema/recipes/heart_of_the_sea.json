@@ -1,0 +1,19 @@
+{
+    "experience": 8,
+    "result": {
+        "type": "alchema:item",
+        "item": "minecraft:heart_of_the_sea"
+    },
+    "ingredients": [
+        {
+            "type": "alchema:entity_essence",
+            "entity": "minecraft:dolphin",
+            "amount": 250
+        },
+        {
+            "type": "alchema:material",
+            "item": "minecraft:nautilus_shell",
+            "amount": 4
+        }
+    ]
+}

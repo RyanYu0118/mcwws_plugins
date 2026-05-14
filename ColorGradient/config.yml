@@ -1,0 +1,8 @@
+# Set language for plugin , you can create custom langue base on en-US.yml format
+locale: en-US
+
+# Max length of text
+maxLength: 30
+
+# Data will be cleared after amount of seconds
+clearTime: 30

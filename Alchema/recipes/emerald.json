@@ -1,0 +1,18 @@
+{
+    "experience": 4,
+    "result": {
+        "type": "alchema:item",
+        "item": "minecraft:emerald"
+    },
+    "ingredients": [
+        {
+            "type": "alchema:entity_essence",
+            "entity": "minecraft:villager",
+            "amount": 500
+        },
+        {
+            "type": "alchema:material",
+            "item": "minecraft:diamond"
+        }
+    ]
+}

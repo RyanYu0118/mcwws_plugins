@@ -1,0 +1,35 @@
+no-economy-plugin-found: "<red>未找到经济插件，正在关闭插件..."
+bag-clear-result:
+  single: "<green>玩家<gold>%target%</gold>的背包已成功清空。"
+  multiple: "<green>已成功清空<gold>%target%名玩家</gold>的背包。"
+bag-level-result:
+  single: "<green>玩家<gold>%target%</gold>的背包已成功设置为<gold>%level%级</gold>。"
+  multiple: "<green>已成功将<gold>%target%名玩家</gold>的背包设置为<gold>%level%级</gold>。"
+give-bag-result:
+  single: "<green>已成功向玩家<gold>%target%</gold>发放背包。"
+  multiple: "<green>已成功向<gold>%target%名玩家</gold>发放背包。"
+config-reloaded: "<green>配置文件已成功重载。"
+data-saved: "<green>数据已成功保存。"
+multiplier-set-result:
+  single: "<green>玩家<gold>%target%</gold>的出售倍率已成功设置为<gold>%multiplier%</gold>。"
+  multiple: "<green>已成功将<gold>%target%名玩家</gold>的出售倍率设置为<gold>%multiplier%</gold>。"
+sell-all:
+  something: "<green>已出售<gold>%amount%</gold>件物品，获得<gold>¥%cost%</gold>"
+  nothing: "<red>暂无物品可出售。</red>"
+sell-all-command-result:
+  single: "<green>已为玩家<gold>%target%</gold>出售<gold>%amount%</gold>件物品，获得<gold>%cost%</gold>$"
+  multiple: "<green>已为<gold>%target%名玩家</gold>出售<gold>%amount%</gold>件物品，获得<gold>%cost%</gold>$"
+help-message:
+  - "<gold>指令列表：</gold>"
+  - "<green>/bags reload</green> - <gold>重载插件配置文件</gold>"
+  - "<green>/bags save</green> - <gold>手动保存所有玩家数据</gold>"
+  - "<green>/bags clear <target></green> - <gold>清空指定玩家的背包</gold>"
+  - "<green>/bags level <target> <level></green> - <gold>设置指定玩家的背包等级</gold>"
+  - "<green>/bags give <target></green> - <gold>向指定玩家发放背包</gold>"
+  - "<green>/bags sell-all <target> <ignore-item-value></green> - <gold>出售指定玩家的所有物品</gold>"
+  - "<green>/bags multiplier <target> <multiplier></green> - <gold>设置指定玩家的物品出售倍率</gold>"
+  - "<green>/bags open <target></green> - <gold>打开指定玩家的背包界面</gold>"
+  - "<green>/bags help</green> - <gold>查看插件所有指令帮助</gold>"
+bag-upgrade:
+  success: "<green>背包升级成功！从<gold>%old%</gold>级升至<gold>%new%级</gold>，消耗<gold>%cost%</gold>$。"
+  fail: "<red>背包升级失败！资金不足，升级至<gold>%new%级</gold>还需<gold>%cost%</gold>$</red>"

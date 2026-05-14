@@ -1,0 +1,32 @@
+select:
+  title: "ISB » Select Scoreboard"
+  rows: 5
+  background:
+    material: BLACK_STAINED_GLASS_PANE
+  clear:
+    name: "&7&l» &cClear Selection"
+    material: BARRIER
+    lore:
+      - ""
+      - "&7Click to clear your current scoreboard selection."
+  info:
+    name: "&7&l» &eSelect a scoreboard"
+    material: PAINTING
+    lore:
+      - ""
+      - "&7Current selected Scoreboard: &6%current_scoreboard%"
+      - ""
+      - "&7Click on a scoreboard to select it."
+  scoreboard:
+    unselected:
+      name: "&7&l» &6%scoreboard%"
+      material: RED_STAINED_GLASS_PANE
+      lore:
+        - ""
+        - "&7&l» &eClick to select this scoreboard."
+    selected:
+      name: "&7&l» &6%scoreboard%"
+      material: LIME_STAINED_GLASS_PANE
+      lore:
+        - ""
+        - "&7&l» &aYou currently viewing this scoreboard."

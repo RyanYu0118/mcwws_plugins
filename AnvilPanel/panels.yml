@@ -1,0 +1,18 @@
+panels:
+- oath: 'true'
+  subtitle: '[0]'
+  name: number
+  text: '请输入有效数字'
+  title: '请输入有效数字'
+  free: 'false'
+  users: 'null'
+  command: gamerule sendCommandFeedback false;scoreboard players set @s number
+    [t];title @s title ["",{"text":"您已写下数字：","color":"gold"},{"score":{"name":"@s","objective":"number"},"color":"gold"}];playsound
+    ui.cartography_table.take_result player @s ~ ~ ~ 1 1 1;menuminer1;schedule function economic_system:feedback
+    1s
+  group: 'null'
+  itemSign: 'null'
+#    closing: true
+#    slot1: BARRIER
+#    slot2: BARRIER
+#    slot2text: ""

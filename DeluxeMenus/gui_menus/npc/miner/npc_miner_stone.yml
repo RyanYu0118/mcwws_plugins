@@ -1,0 +1,3572 @@
+menu_title: '&l需要购买什么物资？'
+open_command:
+  - menuminer1
+open_commands:
+  - '[sound] ENTITY_VILLAGER_AMBIENT 1 0.8'
+# as always, only cool people can open this menu :)
+update_interval: 1
+items:
+  '1':
+    material: smooth_quartz
+    #enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 0
+    update: true
+    priority: 1
+    hide_attributes: true
+    #display_name: '&b更改手持物品信息'
+    lore:
+      - ''
+      - '&e购买 ¥1.00/件'
+      - '&e回收 ¥0.80/件'
+      - ''
+      - '&a左键点击 &7| &f购买一件'
+      - '&a右键点击 &7| &f购买一组'
+      - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+      - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:smooth_quartz%&f件该物品'
+      - '&e(点击下方书与笔可更改预设数量)'
+      - ''
+      - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+      - '[takemoney] %objective_score_Warning%'
+      - '[console] execute run give %player_name% minecraft:smooth_quartz 1'
+      - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    right_click_commands:
+      - '[takemoney] 64'
+      - '[console] execute run give %player_name% minecraft:smooth_quartz 64'
+      - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_left_click_commands:
+      - '[takemoney] %objective_score_number%'
+      - '[console] execute run give %player_name% minecraft:smooth_quartz %objective_score_number%'
+      - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_right_click_commands:
+      - '[givemoney] %math_0.8*{checkitem_amount_mat:smooth_quartz}%'
+      - '[console] execute run clear %player_name% minecraft:smooth_quartz %checkitem_amount_mat:smooth_quartz%'
+      - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:smooth_quartz% > 0'
+      deny_commands:
+        - '[message] &c啊哦，你身上没这个物品捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '2':
+    material: smooth_quartz_stairs
+    #enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 1
+    update: true
+    priority: 1
+    update: true
+    hide_attributes: true
+    #display_name: '&b更改手持物品信息'
+    lore:
+      - ''
+      - '&e购买 ¥1.00/件'
+      - '&e回收 ¥0.80/件'
+      - ''
+      - '&a左键点击 &7| &f购买一件'
+      - '&a右键点击 &7| &f购买一组'
+      - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+      - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:smooth_quartz_stairs%&f件该物品'
+      - '&e(点击下方书与笔可更改预设数量)'
+      - ''
+      - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+      - '[takemoney] 1'
+      - '[console] execute run give %player_name% minecraft:smooth_quartz_stairs 1'
+      - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    right_click_commands:
+      - '[takemoney] 64'
+      - '[console] execute run give %player_name% minecraft:smooth_quartz_stairs 64'
+      - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: '%math_1*{objective_score_number}%'
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_left_click_commands:
+      - '[takemoney] %math_1*{objective_score_number}%'
+      - '[console] execute run give %player_name% minecraft:smooth_quartz_stairs %objective_score_number%'
+      - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_right_click_commands:
+      - '[givemoney] %math_0.8*{checkitem_amount_mat:smooth_quartz_stairs}%'
+      - '[console] execute run clear %player_name% minecraft:smooth_quartz_stairs %checkitem_amount_mat:smooth_quartz_stairs%'
+      - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:smooth_quartz_stairs% > 0'
+      deny_commands:
+        - '[message] &c啊哦，你身上没这个物品捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '3':
+    material: smooth_quartz_slab
+    #enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 2
+    update: true
+    priority: 1
+    update: true
+    hide_attributes: true
+    #display_name: '&b更改手持物品信息'
+    lore:
+      - ''
+      - '&e购买 ¥0.50/件'
+      - '&e回收 ¥0.40/件'
+      - ''
+      - '&a左键点击 &7| &f购买一件'
+      - '&a右键点击 &7| &f购买一组'
+      - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+      - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:smooth_quartz_slab%&f件该物品'
+      - '&e(点击下方书与笔可更改预设数量)'
+      - ''
+      - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+      - '[takemoney] 0.5'
+      - '[console] execute run give %player_name% minecraft:smooth_quartz_slab 1'
+      - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    right_click_commands:
+      - '[takemoney] 32'
+      - '[console] execute run give %player_name% minecraft:smooth_quartz_slab 64'
+      - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_left_click_commands:
+      - '[takemoney] %math_0.5*{objective_score_number}%'
+      - '[console] execute run give %player_name% minecraft:smooth_quartz_slab %objective_score_number%'
+      - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_right_click_commands:
+      - '[givemoney] %math_0.4*{checkitem_amount_mat:smooth_quartz_slab}%'
+      - '[console] execute run clear %player_name% minecraft:smooth_quartz_slab %checkitem_amount_mat:smooth_quartz_slab%'
+      - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:smooth_quartz_slab% > 0'
+      deny_commands:
+        - '[message] &c啊哦，你身上没这个物品捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '4':
+    material: quartz_block
+    #enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 3
+    update: true
+    priority: 1
+    update: true
+    hide_attributes: true
+    #display_name: '&b更改手持物品信息'
+    lore:
+      - ''
+      - '&e购买 ¥1.00/件'
+      - '&e回收 ¥0.80/件'
+      - ''
+      - '&a左键点击 &7| &f购买一件'
+      - '&a右键点击 &7| &f购买一组'
+      - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+      - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:quartz_block%&f件该物品'
+      - '&e(点击下方书与笔可更改预设数量)'
+      - ''
+      - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+      - '[takemoney] 1'
+      - '[console] execute run give %player_name% minecraft:quartz_block 1'
+      - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    right_click_commands:
+      - '[takemoney] 64'
+      - '[console] execute run give %player_name% minecraft:quartz_block 64'
+      - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_left_click_commands:
+      - '[takemoney] %objective_score_number%'
+      - '[console] execute run give %player_name% minecraft:quartz_block %objective_score_number%'
+      - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_right_click_commands:
+      - '[givemoney] %math_0.8*{checkitem_amount_mat:quartz_block}%'
+      - '[console] execute run clear %player_name% minecraft:quartz_block %checkitem_amount_mat:quartz_block%'
+      - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:quartz_block% > 0'
+      deny_commands:
+        - '[message] &c啊哦，你身上没这个物品捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '5':
+    material: chiseled_quartz_block
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 4
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥1.00/件'
+    - '&e回收 ¥0.80/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:chiseled_quartz_block%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 1'
+    - '[console] execute run give %player_name% minecraft:chiseled_quartz_block 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 64'
+    - '[console] execute run give %player_name% minecraft:chiseled_quartz_block 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %objective_score_number%'
+    - '[console] execute run give %player_name% minecraft:chiseled_quartz_block %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.8*{checkitem_amount_mat:chiseled_quartz_block}%'
+    - '[console] execute run clear %player_name% minecraft:chiseled_quartz_block %checkitem_amount_mat:chiseled_quartz_block%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:chiseled_quartz_block% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '6':
+    material: quartz_bricks
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 5
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥1.00/件'
+    - '&e回收 ¥0.80/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:quartz_bricks%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 1'
+    - '[console] execute run give %player_name% minecraft:quartz_bricks 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 64'
+    - '[console] execute run give %player_name% minecraft:quartz_bricks 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %objective_score_number%'
+    - '[console] execute run give %player_name% minecraft:quartz_bricks %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.8*{checkitem_amount_mat:quartz_bricks}%'
+    - '[console] execute run clear %player_name% minecraft:quartz_bricks %checkitem_amount_mat:quartz_bricks%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:quartz_bricks% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '7':
+    material: quartz_pillar
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 6
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥1.00/件'
+    - '&e回收 ¥0.80/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:quartz_pillar%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 1'
+    - '[console] execute run give %player_name% minecraft:quartz_pillar 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 64'
+    - '[console] execute run give %player_name% minecraft:quartz_pillar 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %objective_score_number%'
+    - '[console] execute run give %player_name% minecraft:quartz_pillar %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.8*{checkitem_amount_mat:quartz_pillar}%'
+    - '[console] execute run clear %player_name% minecraft:quartz_pillar %checkitem_amount_mat:quartz_pillar%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:quartz_pillar% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '8':
+    material: quartz_stairs
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 7
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥1.00/件'
+    - '&e回收 ¥0.80/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:quartz_stairs%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 1'
+    - '[console] execute run give %player_name% minecraft:quartz_stairs 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 64'
+    - '[console] execute run give %player_name% minecraft:quartz_stairs 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %objective_score_number%'
+    - '[console] execute run give %player_name% minecraft:quartz_stairs %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.8*{checkitem_amount_mat:quartz_stairs}%'
+    - '[console] execute run clear %player_name% minecraft:quartz_stairs %checkitem_amount_mat:quartz_stairs%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:quartz_stairs% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '9':
+    material: quartz_slab
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 8
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:quartz_slab%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:quartz_slab 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:quartz_slab 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:quartz_slab %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.8*{checkitem_amount_mat:quartz_slab}%'
+    - '[console] execute run clear %player_name% minecraft:quartz_slab %checkitem_amount_mat:quartz_slab%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:quartz_slab% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '10':
+    material: stone
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 9
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:stone%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:stone 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:stone 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:stone %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.4*{checkitem_amount_mat:stone}%'
+    - '[console] execute run clear %player_name% minecraft:stone %checkitem_amount_mat:stone%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:stone% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '11':
+    material: smooth_stone
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 10
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:smooth_stone%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:smooth_stone 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:smooth_stone 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:smooth_stone %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.4*{checkitem_amount_mat:smooth_stone}%'
+    - '[console] execute run clear %player_name% minecraft:smooth_stone %checkitem_amount_mat:smooth_stone%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:smooth_stone% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '12':
+    material: cobblestone
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 11
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:cobblestone%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:cobblestone 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:cobblestone 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:cobblestone %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.4*{checkitem_amount_mat:cobblestone}%'
+    - '[console] execute run clear %player_name% minecraft:cobblestone %checkitem_amount_mat:cobblestone%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:cobblestone% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '13':
+    material: mossy_cobblestone
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 12
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:mossy_cobblestone%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:mossy_cobblestone 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:mossy_cobblestone 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:mossy_cobblestone %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.4*{checkitem_amount_mat:mossy_cobblestone}%'
+    - '[console] execute run clear %player_name% minecraft:mossy_cobblestone %checkitem_amount_mat:mossy_cobblestone%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:mossy_cobblestone% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '14':
+    material: mossy_stone_bricks
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 13
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:mossy_stone_bricks%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:mossy_stone_bricks 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:mossy_stone_bricks 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:mossy_stone_bricks %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.4*{checkitem_amount_mat:mossy_stone_bricks}%'
+    - '[console] execute run clear %player_name% minecraft:mossy_stone_bricks %checkitem_amount_mat:mossy_stone_bricks%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:mossy_stone_bricks% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '15':
+    material: cracked_stone_bricks
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 14
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:cracked_stone_bricks%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:cracked_stone_bricks 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:cracked_stone_bricks 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:cracked_stone_bricks %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.4*{checkitem_amount_mat:cracked_stone_bricks}%'
+    - '[console] execute run clear %player_name% minecraft:cracked_stone_bricks %checkitem_amount_mat:cracked_stone_bricks%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:cracked_stone_bricks% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '16':
+    material: granite
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 15
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:granite%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:granite 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:granite 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:granite %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.4*{checkitem_amount_mat:granite}%'
+    - '[console] execute run clear %player_name% minecraft:granite %checkitem_amount_mat:granite%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:granite% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '17':
+    material: diorite
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 16
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:diorite%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:diorite 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:diorite 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:diorite %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.4*{checkitem_amount_mat:diorite}%'
+    - '[console] execute run clear %player_name% minecraft:diorite %checkitem_amount_mat:diorite%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:diorite% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '18':
+    material: andesite
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 17
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:andesite%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:andesite 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:andesite 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:andesite %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.4*{checkitem_amount_mat:andesite}%'
+    - '[console] execute run clear %player_name% minecraft:andesite %checkitem_amount_mat:andesite%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:andesite% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '19':
+    material: tuff
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 18
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.6/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:tuff%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:tuff 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:tuff 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:tuff %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:tuff}%'
+    - '[console] execute run clear %player_name% minecraft:tuff %checkitem_amount_mat:tuff%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:tuff% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '20':
+    material: calcite
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 19
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:calcite%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:calcite 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:calcite 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:calcite %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:calcite}%'
+    - '[console] execute run clear %player_name% minecraft:calcite %checkitem_amount_mat:calcite%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:calcite% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '21':
+    material: sandstone
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 20
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:sandstone%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:sandstone 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:sandstone 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:sandstone %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.4*{checkitem_amount_mat:sandstone}%'
+    - '[console] execute run clear %player_name% minecraft:sandstone %checkitem_amount_mat:sandstone%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:sandstone% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '22':
+    material: smooth_sandstone
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 21
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:smooth_sandstone%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:smooth_sandstone 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:smooth_sandstone 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:smooth_sandstone %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.4*{checkitem_amount_mat:smooth_sandstone}%'
+    - '[console] execute run clear %player_name% minecraft:smooth_sandstone %checkitem_amount_mat:smooth_sandstone%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:smooth_sandstone% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '23':
+    material: red_sandstone
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 22
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:red_sandstone%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:red_sandstone 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:red_sandstone 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:red_sandstone %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.4*{checkitem_amount_mat:red_sandstone}%'
+    - '[console] execute run clear %player_name% minecraft:red_sandstone %checkitem_amount_mat:red_sandstone%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:red_sandstone% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '24':
+    material: smooth_red_sandstone
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 23
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.50/件'
+    - '&e回收 ¥0.40/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:smooth_red_sandstone%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.5'
+    - '[console] execute run give %player_name% minecraft:smooth_red_sandstone 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.5
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32'
+    - '[console] execute run give %player_name% minecraft:smooth_red_sandstone 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.5*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:smooth_red_sandstone %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.5*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.4*{checkitem_amount_mat:smooth_red_sandstone}%'
+    - '[console] execute run clear %player_name% minecraft:smooth_red_sandstone %checkitem_amount_mat:smooth_red_sandstone%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:smooth_red_sandstone% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '25':
+    material: bricks
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 24
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:bricks%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:bricks 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:bricks 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:bricks %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:bricks}%'
+    - '[console] execute run clear %player_name% minecraft:bricks %checkitem_amount_mat:bricks%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:bricks% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '26':
+    material: dripstone_block
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 25
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:dripstone_block%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:dripstone_block 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:dripstone_block 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:dripstone_block %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:dripstone_block}%'
+    - '[console] execute run clear %player_name% minecraft:dripstone_block %checkitem_amount_mat:dripstone_block%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:dripstone_block% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '27':
+    material: deepslate
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 26
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:deepslate%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:deepslate 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:deepslate 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:deepslate %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:deepslate}%'
+    - '[console] execute run clear %player_name% minecraft:deepslate %checkitem_amount_mat:deepslate%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:deepslate% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '28':
+    material: cobbled_deepslate
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 27
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:cobbled_deepslate%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:cobbled_deepslate 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:cobbled_deepslate 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %objective_score_number%'
+    - '[console] execute run give %player_name% minecraft:cobbled_deepslate %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:cobbled_deepslate}%'
+    - '[console] execute run clear %player_name% minecraft:cobbled_deepslate %checkitem_amount_mat:cobbled_deepslate%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:cobbled_deepslate% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '29':
+    material: cracked_deepslate_bricks
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 28
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:cracked_deepslate_bricks%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:cracked_deepslate_bricks 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:cracked_deepslate_bricks 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:cracked_deepslate_bricks %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:cracked_deepslate_bricks}%'
+    - '[console] execute run clear %player_name% minecraft:cracked_deepslate_bricks %checkitem_amount_mat:cracked_deepslate_bricks%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:cracked_deepslate_bricks% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '30':
+    material: cracked_deepslate_tiles
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 29
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:cracked_deepslate_tiles%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:cracked_deepslate_tiles 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:cracked_deepslate_tiles 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:cracked_deepslate_tiles %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:cracked_deepslate_tiles}%'
+    - '[console] execute run clear %player_name% minecraft:cracked_deepslate_tiles %checkitem_amount_mat:cracked_deepslate_tiles%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:cracked_deepslate_tiles% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '31':
+    material: reinforced_deepslate
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 30
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥100.00/件'
+    - '&e回收 ¥60.00/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:reinforced_deepslate%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 100'
+    - '[console] execute run give %player_name% minecraft:reinforced_deepslate 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 100
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 6400'
+    - '[console] execute run give %player_name% minecraft:reinforced_deepslate 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 6400
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_100*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:reinforced_deepslate %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_100*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_60*{checkitem_amount_mat:reinforced_deepslate}%'
+    - '[console] execute run clear %player_name% minecraft:reinforced_deepslate %checkitem_amount_mat:reinforced_deepslate%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:reinforced_deepslate% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '32':
+    material: netherrack
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 31
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:netherrack%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:netherrack 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:netherrack 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:netherrack %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:netherrack}%'
+    - '[console] execute run clear %player_name% minecraft:netherrack %checkitem_amount_mat:netherrack%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:netherrack% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '33':
+    material: nether_bricks
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 32
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:nether_bricks%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:nether_bricks 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:nether_bricks 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:nether_bricks %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:nether_bricks}%'
+    - '[console] execute run clear %player_name% minecraft:nether_bricks %checkitem_amount_mat:nether_bricks%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:nether_bricks% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '34':
+    material: cracked_nether_bricks
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 33
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:cracked_nether_bricks%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:cracked_nether_bricks 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:cracked_nether_bricks 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:cracked_nether_bricks %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:cracked_nether_bricks}%'
+    - '[console] execute run clear %player_name% minecraft:cracked_nether_bricks %checkitem_amount_mat:cracked_nether_bricks%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:cracked_nether_bricks% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '35':
+    material: red_nether_bricks
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 34
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:red_nether_bricks%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:red_nether_bricks 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:red_nether_bricks 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:red_nether_bricks %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:red_nether_bricks}%'
+    - '[console] execute run clear %player_name% minecraft:red_nether_bricks %checkitem_amount_mat:red_nether_bricks%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:red_nether_bricks% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '36':
+    material: basalt
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 35
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:basalt%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:basalt 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:basalt 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:basalt %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:basalt}%'
+    - '[console] execute run clear %player_name% minecraft:basalt %checkitem_amount_mat:basalt%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:basalt% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '37':
+    material: smooth_basalt
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 36
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:smooth_basalt%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:smooth_basalt 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:smooth_basalt 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:smooth_basalt %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:smooth_basalt}%'
+    - '[console] execute run clear %player_name% minecraft:smooth_basalt %checkitem_amount_mat:smooth_basalt%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:smooth_basalt% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '38':
+    material: blackstone
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 37
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:blackstone%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:blackstone 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:blackstone 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:blackstone %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:blackstone}%'
+    - '[console] execute run clear %player_name% minecraft:blackstone %checkitem_amount_mat:blackstone%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:blackstone% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '39':
+    material: cracked_polished_blackstone_bricks
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 38
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥0.75/件'
+    - '&e回收 ¥0.60/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:cracked_polished_blackstone_bricks%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 0.75'
+    - '[console] execute run give %player_name% minecraft:cracked_polished_blackstone_bricks 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 0.75
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 48'
+    - '[console] execute run give %player_name% minecraft:cracked_polished_blackstone_bricks 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_0.75*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:cracked_polished_blackstone_bricks %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_0.75*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.6*{checkitem_amount_mat:cracked_polished_blackstone_bricks}%'
+    - '[console] execute run clear %player_name% minecraft:cracked_polished_blackstone_bricks %checkitem_amount_mat:cracked_polished_blackstone_bricks%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:cracked_polished_blackstone_bricks% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '40':
+    material: end_stone
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 42
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥1.00/件'
+    - '&e回收 ¥0.80/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:end_stone%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 1.00'
+    - '[console] execute run give %player_name% minecraft:end_stone 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1.00
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 64'
+    - '[console] execute run give %player_name% minecraft:end_stone 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_1.00*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:end_stone %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1.00*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.8*{checkitem_amount_mat:end_stone}%'
+    - '[console] execute run clear %player_name% minecraft:end_stone %checkitem_amount_mat:end_stone%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:end_stone% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '41':
+    material: purpur_block
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 43
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥1.00/件'
+    - '&e回收 ¥0.80/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:purpur_block%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 1.00'
+    - '[console] execute run give %player_name% minecraft:purpur_block 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1.00
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 64'
+    - '[console] execute run give %player_name% minecraft:purpur_block 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_1.00*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:purpur_block %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1.00*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.8*{checkitem_amount_mat:purpur_block}%'
+    - '[console] execute run clear %player_name% minecraft:purpur_block %checkitem_amount_mat:purpur_block%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:purpur_block% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '42':
+    material: prismarine
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 44
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥1.00/件'
+    - '&e回收 ¥0.80/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:prismarine%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 1.00'
+    - '[console] execute run give %player_name% minecraft:prismarine 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1.00
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 64'
+    - '[console] execute run give %player_name% minecraft:prismarine 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_1.00*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:prismarine %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1.00*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.8*{checkitem_amount_mat:prismarine}%'
+    - '[console] execute run clear %player_name% minecraft:prismarine %checkitem_amount_mat:prismarine%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:prismarine% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '43':
+    material: dark_prismarine
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 45
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥1.00/件'
+    - '&e回收 ¥0.80/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:dark_prismarine%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 1.00'
+    - '[console] execute run give %player_name% minecraft:dark_prismarine 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1.00
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 64'
+    - '[console] execute run give %player_name% minecraft:dark_prismarine 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_1.00*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:dark_prismarine %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1.00*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.8*{checkitem_amount_mat:dark_prismarine}%'
+    - '[console] execute run clear %player_name% minecraft:dark_prismarine %checkitem_amount_mat:dark_prismarine%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:dark_prismarine% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '44':
+    material: prismarine_bricks
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 46
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥1.00/件'
+    - '&e回收 ¥0.80/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:prismarine_bricks%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 1.00'
+    - '[console] execute run give %player_name% minecraft:prismarine_bricks 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1.00
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 64'
+    - '[console] execute run give %player_name% minecraft:prismarine_bricks 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_1.00*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:prismarine_bricks %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1.00*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_0.8*{checkitem_amount_mat:prismarine_bricks}%'
+    - '[console] execute run clear %player_name% minecraft:prismarine_bricks %checkitem_amount_mat:prismarine_bricks%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:prismarine_bricks% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '45':
+    material: obsidian
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 47
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥50.00/件'
+    - '&e回收 ¥40.00/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:obsidian%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 50.00'
+    - '[console] execute run give %player_name% minecraft:obsidian 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 50.00
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 3200'
+    - '[console] execute run give %player_name% minecraft:obsidian 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 3200
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_50.00*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:obsidian %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_50*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_40.0*{checkitem_amount_mat:obsidian}%'
+    - '[console] execute run clear %player_name% minecraft:obsidian %checkitem_amount_mat:obsidian%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:obsidian% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '46':
+    material: crying_obsidian
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 51
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥500.00/件'
+    - '&e回收 ¥400.00/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:crying_obsidian%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 500.00'
+    - '[console] execute run give %player_name% minecraft:crying_obsidian 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 500.00
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 32000'
+    - '[console] execute run give %player_name% minecraft:crying_obsidian 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32000
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_500.00*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:crying_obsidian %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_500*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_400.0*{checkitem_amount_mat:crying_obsidian}%'
+    - '[console] execute run clear %player_name% minecraft:crying_obsidian %checkitem_amount_mat:crying_obsidian%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:crying_obsidian% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '47':
+    material: bedrock
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 53
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥1000000.00/件'
+    - '&e回收 ¥800000.00/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:bedrock%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 1000000.00'
+    - '[console] execute run give %player_name% minecraft:bedrock 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1000000.00
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 64000000'
+    - '[console] execute run give %player_name% minecraft:bedrock 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64000000
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_1000000*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:bedrock %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1000000*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_800000.0*{checkitem_amount_mat:bedrock}%'
+    - '[console] execute run clear %player_name% minecraft:bedrock %checkitem_amount_mat:bedrock%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:bedrock% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  '48':
+    material: barrier
+    # enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 52
+    priority: 1
+    update: true
+    hide_attributes: true
+    # display_name: '&b更改手持物品信息'
+    lore:
+    - ''
+    - '&e购买 ¥1000.00/件'
+    - '&e回收 ¥800.00/件'
+    - ''
+    - '&a左键点击 &7| &f购买一件'
+    - '&a右键点击 &7| &f购买一组'
+    - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+    - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:barrier%&f件该物品'
+    - '&e(点击下方书与笔可更改预设数量)'
+    - ''
+    - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+    left_click_commands:
+    - '[takemoney] 1000.00'
+    - '[console] execute run give %player_name% minecraft:barrier 1'
+    - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1000.00
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    right_click_commands:
+    - '[takemoney] 64000'
+    - '[console] execute run give %player_name% minecraft:barrier 64'
+    - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64000
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_left_click_commands:
+    - '[takemoney] %math_1000.00*{objective_score_number}%'
+    - '[console] execute run give %player_name% minecraft:barrier %objective_score_number%'
+    - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_1000*{objective_score_number}% <= %vault_eco_balance%'
+      deny_commands:
+      - '[message] &c啊哦，你零钱不够捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[close]'
+    shift_right_click_commands:
+    - '[givemoney] %math_800.0*{checkitem_amount_mat:barrier}%'
+    - '[console] execute run clear %player_name% minecraft:barrier %checkitem_amount_mat:barrier%'
+    - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:barrier% > 0'
+      deny_commands:
+      - '[message] &c啊哦，你身上没这个物品捏......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  '0':
+    material: writable_book
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 49
+    update: true
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b更改商品预设数量'
+    lore: 
+    - '&e当前您的预设数量：%objective_score_number%件'
+    left_click_commands:
+      - '[givepermission] commandprompter.*'
+      - '[givepermission] minecraft.command.scoreboard'
+      - '[givepermission] minecraft.command.gamerule'
+      - '[givepermission] minecraft.command.playsound'
+      - '[givepermission] minecraft.command.schedule'
+      - '[givepermission] luckperms.user.permission.unset'
+      #- '[player] ap use number'
+      - '[close]'
+      - '[player] scoreboard players set %player_name% number <&a请10秒内在聊天框中输入有效数字（取消请回复"x"）> <-exa gamerule sendCommandFeedback false> <-exa playsound ui.cartography_table.take_result player %player_name% ~ ~ ~ 1 1 1> <-exa menuminer1> <-exa schedule function economic_system:feedback 1s replace> <-exa lp user %player_name% permission unset minecraft.command.scoreboard> <-exa lp user %player_name% permission unset minecraft.command.gamerule> <-exa lp user %player_name% permission unset minecraft.command.playsound> <-exa lp user %player_name% permission unset minecraft.command.schedule> <-exa lp user %player_name% permission unset luckperms.user.permission.unset>'
+      - '[sound] entity_snow_golem_death 1 1'
+      #- '[openguimenu] npc_miner_stone<delay=200>'
+      #- '[message] &c回复超时......<delay=200>'
+  '00':
+    material: gray_stained_glass_pane
+    hide_enchantments: true
+    slots: 
+      - 48
+      - 50
+      - 41
+      - 40
+      - 39
+    update: true
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: ' '
+
+# <-exa title %player_name% title ["",{"text":"您已写下数字：","color":"gold"},{"score":{"name":"%player_name%","objective":"number"},"color":"gold"}]>

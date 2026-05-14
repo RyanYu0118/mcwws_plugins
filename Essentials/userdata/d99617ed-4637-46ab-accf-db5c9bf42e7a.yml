@@ -1,0 +1,38 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 127.0.0.1
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 1693324660524
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1697040495138
+  login: 1697040350515
+money: '9222.0'
+last-account-name: Exile_Xing
+logoutlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -203.90481555580044
+  y: 74.0
+  z: -965.7626793477615
+  yaw: -72.02923583984375
+  pitch: 2.699985980987549
+lastlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -148.57640934132448
+  y: 76.5
+  z: 87.34908692765428
+  yaw: -75.30072021484375
+  pitch: 21.150279998779297

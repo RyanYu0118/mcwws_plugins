@@ -1,0 +1,30 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 127.0.0.1
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 0
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1717857632799
+  login: 1717855623423
+money: '8804.0'
+last-account-name: Newtonian_fluid
+logoutlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -444.76249998807907
+  y: 64.0
+  z: -44.457540382351276
+  yaw: 88.9793701171875
+  pitch: 28.501201629638672

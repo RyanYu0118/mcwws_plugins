@@ -1,0 +1,61 @@
+# Category Configuration
+# Customize display order, icons, and names
+#
+# slot: The inventory slot position (0-44 for a 54-slot GUI, -1 = hidden)
+# icon: Override the default icon (optional, must be a valid material name)
+# name: Override the default display name (optional)
+#
+# CUSTOM_1 through CUSTOM_20 are placeholder categories you can enable
+# by setting their slot to a valid position and customizing name/icon
+
+categories:
+  MIASC:
+    slot: 1
+  BLOSCKS:
+    slot: 12
+  REDSTONE:
+    slot: 32
+  TOOLS:
+    slot: 33
+  ARMOR:
+    slot: 38
+  FOOD:
+    slot: 39
+    icon: COOKED_BEEF
+    name: 食物
+  FARMING:
+    slot: 40
+  WOOD:
+    slot: 41
+  PERMISSIONS:
+    slot: 42
+  SERVER_SHOP:
+    slot: 43
+  PLAYER_SHOPS:
+    slot: 31
+  CUSTOM_1:
+    slot: -1
+  CUSTOM_2:
+    slot: -1
+  CUSTOM_3:
+    slot: -1
+  CUSTOM_4:
+    slot: -1
+  CUSTOM_5:
+    slot: -1
+  CUSTOM_6:
+    slot: -1
+  CUSTOM_7:
+    slot: -1
+  CUSTOM_8:
+    slot: -1
+  CUSTOM_9:
+    slot: -1
+  CUSTOM_10:
+    slot: -1
+  MISC:
+    slot: 0
+    icon: COMPASS
+    name: 所有物品
+  BLOCKS:
+    slot: 30

@@ -1,0 +1,47 @@
+Turret:
+    name: "Burst Turret"
+    upgrades:
+    - "0;1-1.5;0.75;10"
+    - "800;1.75-2.25;0.5;13"
+    - "2500;2.75-4;0.25;16"
+    sound_1: ENTITY_FIREWORK_ROCKET_BLAST;1;1.7
+    block_1: COAL_BLOCK
+    block_2: CYAN_CONCRETE
+    head: "2600b54a-ba40-73bb-9e60-f2c7ad301fa4;eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDc4YzFiZDliMzQwZmIzODdjMTNiOGI2ZDdhNzUxYzM4NDY2OTI2MmIyNWM2NGJkMjg1YzQ2MzBlZWY0ZmEifX19"
+Block:
+    id: "COAL_BLOCK"
+    name: "&aBurst Turret &6Block"
+    lore:
+    - "&7Fast speed turret with no extra abilities."
+    - ""
+    - "&8» &7Damage: &a%min%&7-&a%max%"
+    - "&8» &7Cooldown: &a%cooldown% seconds"
+    - "&8» &7Range: &a%range% blocks"
+Upgrade:
+    id: "EMERALD"
+    name: "&aBurst Turret &eUpgrade"
+    lore:
+    - "&7Level: &a&l%current_level%&8 ➜ &a&l%next_level%"  
+    - "&7Damage: &a%current_min%&7-&a%current_max%&8 ➜ &a%next_min%&7-&a%next_max%"
+    - "&7Cooldown: &a%current_cooldown%(s)&8 ➜ &a%next_cooldown%(s)"
+    - "&7Range: &a%current_range% blocks&8 ➜ &a%next_range% blocks"
+    - ""
+    - "&7Price: &6%price%"
+    - ""
+    - "&8[Click to Upgrade]"  
+LastUpgrade:
+    id: "REDSTONE"
+    name: "&aBurst Turret &eUpgrade"
+    lore:
+    - "&7Level: &a&l%current_level%"  
+    - "&7Damage: &a%current_min%&7-&a%current_max%"
+    - "&7Cooldown: &a%current_cooldown%(s)"
+    - "&7Range: &a%current_range% blocks"
+    - ""
+    - "&7No more Upgrades available" 
+Ammunition:
+    id: "GHAST_TEAR"
+    name: "&6Burst Turret &7Ammunition"
+    lore:
+    - "&7Place this item in your turret inventory"
+    - "&7to start shooting."  

@@ -1,0 +1,25 @@
+date: 20240221
+depositories:
+  farmer:
+    WHEAT_SEEDS:
+      amount: 2
+  hunter:
+    ROTTEN_FLESH:
+      amount: 2
+    SPIDER_EYE:
+      amount: 3
+    STRING:
+      amount: 2
+    BONE:
+      amount: 3
+  miner:
+    COBBLESTONE:
+      amount: 105
+    COAL:
+      amount: 15
+    GOLD_INGOT:
+      amount: 9
+    IRON_INGOT:
+      amount: 12
+    FLINT:
+      amount: 1

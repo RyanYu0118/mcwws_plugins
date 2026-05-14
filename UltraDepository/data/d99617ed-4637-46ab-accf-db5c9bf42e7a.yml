@@ -1,0 +1,32 @@
+date: 20230901
+depositories:
+  hunter:
+    ROTTEN_FLESH:
+      amount: 35
+    GUNPOWDER:
+      amount: 2
+    ARROW:
+      amount: 7
+    MAGMA_CREAM:
+      amount: 2
+    SPIDER_EYE:
+      amount: 2
+    GLOW_INK_SAC:
+      amount: 8
+    LEATHER:
+      amount: 1
+    BONE:
+      amount: 27
+  miner:
+    LAPIS_LAZULI:
+      amount: 23
+    DIAMOND:
+      amount: 8
+    COBBLESTONE:
+      amount: 21
+    COAL:
+      amount: 49
+    GLOWSTONE_DUST:
+      amount: 11
+    QUARTZ:
+      amount: 6

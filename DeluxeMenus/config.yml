@@ -1,0 +1,79 @@
+# DeluxeMenus 1.14.1-DEV-199 main configuration file
+#
+# A full wiki on how to use this plugin can be found at:
+# https://wiki.helpch.at/helpchat-plugins/deluxemenus
+
+use_admin_commands_in_menus_list: false
+menus_list_page_size: 10
+debug: HIGHEST
+check_updates: true
+gui_menus:
+  home:
+    file: guide/home.yml
+  options:
+    file: guide/options.yml
+  task:
+    file: guide/task.yml
+  depository:
+    file: guide/depository.yml
+  tp:
+    file: guide/tp.yml
+  we:
+    file: guide/we.yml
+  money:
+    file: guide/money.yml
+  npc_lore:
+    file: npc/lore/npc_lore.yml
+  npc_lore2:
+    file: npc/lore/npc_lore2.yml
+  npc_miner_stone:
+    file: npc/miner/npc_miner_stone.yml
+  func:
+    file: guide/func.yml
+  licence:
+    file: guide/licence.yml
+  tp_private:
+    file: guide/tp_private.yml
+  
+  
+  sheep_white:
+    file: npc/town/sheep/white.yml
+  sheep_orange:
+    file: npc/town/sheep/orange.yml
+  sheep_yellow:
+    file: npc/town/sheep/yellow.yml
+  sheep_lime:
+    file: npc/town/sheep/lime.yml
+  sheep_light_blue:
+    file: npc/town/sheep/light_blue.yml
+  sheep_red:
+    file: npc/town/sheep/red.yml
+  sheep_black:
+    file: npc/town/sheep/black.yml
+  sheep_brown:
+    file: npc/town/sheep/brown.yml
+  sheep_green:
+    file: npc/town/sheep/green.yml
+  sheep_blue:
+    file: npc/town/sheep/blue.yml
+  sheep_cyan:
+    file: npc/town/sheep/cyan.yml
+  sheep_magenta:
+    file: npc/town/sheep/magenta.yml
+  sheep_purple:
+    file: npc/town/sheep/purple.yml
+  sheep_light_gray:
+    file: npc/town/sheep/light_gray.yml
+  sheep_gray:
+    file: npc/town/sheep/gray.yml
+  sheep_pink:
+    file: npc/town/sheep/pink.yml
+  sheep_rainbow:
+    file: npc/town/sheep/rainbow.yml
+  
+  npc_florist:
+    file: npc/town/florist/florist.yml
+  npc_florist2:
+    file: npc/town/florist/florist_2.yml
+
+

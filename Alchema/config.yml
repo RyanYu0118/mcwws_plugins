@@ -1,0 +1,81 @@
+CheckForUpdates: true
+
+Metrics:
+  Enabled: true
+  AnonymousCustomRecipeTypes: false
+
+Cauldron:
+  ItemSearchInterval: 1
+  MillisecondsToHeatUp: 5000
+  EnforcePlayerDroppedItems: false
+  Entities:
+    Damage: true
+    MinEssenceOnDeath: 50
+    MaxEssenceOnDeath: 100
+  DeathMessages:
+    - "%s被炼药锅炖得稀烂。"
+    - "啊哈哈哈哈哈哈~，%s汤来喽~"
+  Sound:
+    AmbientBubbleVolume: 0.45
+    ItemSplashVolume: 1.0
+    SuccessfulCraftVolume: 0.5
+
+VialOfEssence:
+  MaximumEssence: 1000
+  FromEntities:
+    OnDeath:
+      BaseDropChance: 0.75
+      Min: 50
+      Max: 250
+      Blacklist: []
+    OnInteract:
+      Enabled: true
+      TimeoutSeconds: 300
+      Min: 10
+      Max: 25
+      Blacklist: []
+  Consumption:
+    TastelessThoughts:
+    - "清汤寡水的……我再也不喝了。"
+    - "真是浪费……我不应该喝这种东西。"
+    - "这玩意儿肯定有比喝它更好的用途……嗝……"
+  Recipe:
+    Enabled: true
+    Yield: 3
+    Shape:
+    - "   "
+    - "G G"
+    - " G "
+    Ingredients:
+      G:
+      - "minecraft:glass_pane"
+      - "minecraft:black_stained_glass_pane"
+      - "minecraft:blue_stained_glass_pane"
+      - "minecraft:brown_stained_glass_pane"
+      - "minecraft:cyan_stained_glass_pane"
+      - "minecraft:gray_stained_glass_pane"
+      - "minecraft:green_stained_glass_pane"
+      - "minecraft:light_blue_stained_glass_pane"
+      - "minecraft:light_gray_stained_glass_pane"
+      - "minecraft:lime_stained_glass_pane"
+      - "minecraft:magenta_stained_glass_pane"
+      - "minecraft:orange_stained_glass_pane"
+      - "minecraft:pink_stained_glass_pane"
+      - "minecraft:purple_stained_glass_pane"
+      - "minecraft:red_stained_glass_pane"
+      - "minecraft:white_stained_glass_pane"
+      - "minecraft:yellow_stained_glass_pane"
+  Item:
+    Empty:
+      Name: "&b基因之瓶"
+      Lore:
+      - "&7&o- 用于收集实体DNA"
+      - "&e半消耗性道具"
+      CustomModelData: 231028
+    Filled:
+      Name: "&b基因之瓶 &7(%entity%)"
+      Lore:
+      - "&7DNA含量: &f%quantity%/%max_quantity%"
+      - "&7&o- 可以用作熬制汤药的原材料"
+      - "&e半消耗性道具"
+      CustomModelData: 231029

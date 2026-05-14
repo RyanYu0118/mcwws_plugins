@@ -1,0 +1,85 @@
+example:
+  killothers:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false
+  eatpoison:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false
+  walker3:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false
+  breaktree:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false
+  walker2:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false
+  walker1:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false
+  makepoison:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false
+  requirementadvancement:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false
+  fakeblood:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false
+  walker:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false
+  welcome:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false
+  walker7:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false
+  walker5:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false
+  walker4:
+    progress: 0
+    active: false
+    completed: false
+    unlocked: false
+    announced: false

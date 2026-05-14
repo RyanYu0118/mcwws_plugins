@@ -1,0 +1,41 @@
+# Message when the backpack starts to be loaded from the database (after player interaction)
+backpack-loading: "#eb0000Backpack loading in progress..."
+# Message when the backpack has been loaded
+backpack-loaded: "The backpack was loaded"
+# Message when the backpack is updating and the player tries to open it
+backpack-updating: "Updating the backpack in progress"
+# Message when the backpack could not be loaded
+backpack-loading-error: "Problem encountered during backpack loading"
+# When a player tries to open a backpack, but it is being used by another player
+backpack-is-used-by-another-player: "&cThe backpack is used by another player"
+
+# Message when admin changes crafting
+backpack-crafting-change: "&aCrafting of the backpack has been changed"
+# Message when a player tries to change crafting when it is empty or the same as before
+backpack-crafting-cannot-change: "&cThe crafting of the backpack cannot be changed, perhaps it is empty or is the same"
+# Message when admin cancels crafting changes
+backpack-crafting-change-cancelled: "&cBackpack crafting changes cancelled"
+
+# Message after the backpack has been added by the player's backpack view
+# %player% Name of backpack owner
+backpack-added-inventory: "&6Added player's backpack&8: &f%player% &6to your inventory"
+
+# If a player has no permissions
+command-no-permissions: "&4You do not have the permissions to use this command"
+# When a player has a cooldown
+cooldown-message: "#eb0000You must wait before using it again"
+# When a player is not authorised to open a backpack
+backpack-no-permission-use: "&4You do not have the permissions to open the backpack"
+# When the player's backpack recharges (using the command)
+loading-in-progress: "&6Loading in progress... please wait a moment"
+# When players' backpacks could not be loaded
+players-backpack-not-loaded: "&cPlayer's backpacks could not be loaded"
+# When the player does not have any backpack
+player-not-created-backpacks: "&7This player has not created any backpacks yet"
+# When the player is offline
+# %player% > Player Name
+player-is-offline: "&7Player&8: &f%player% &7 is offline"
+
+# Message when a player tries to have more backpacks than one (only if option in config is set to true: limit-backpack-per-inventory)
+one-backpack-per-inventory: "&cYou can only carry one backpack"
+

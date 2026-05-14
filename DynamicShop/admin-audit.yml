@@ -1,0 +1,414 @@
+entries:
+- timestamp: 1778343438052
+  user: ryan_yu__
+  action: item_create
+  target: DIAMOND
+  details: basePrice=100.0, category=MISC
+- timestamp: 1778343116769
+  user: ryan_yu__
+  action: bulk_item_update
+  target: 64 items
+  details: '{disabled=true}'
+- timestamp: 1778343111142
+  user: ryan_yu__
+  action: bulk_item_update
+  target: 64 items
+  details: '{disabled=true}'
+- timestamp: 1778343106000
+  user: ryan_yu__
+  action: bulk_item_update
+  target: 37 items
+  details: '{disabled=true}'
+- timestamp: 1778343095807
+  user: ryan_yu__
+  action: bulk_item_update
+  target: 30 items
+  details: '{disabled=true}'
+- timestamp: 1778343083541
+  user: ryan_yu__
+  action: bulk_item_update
+  target: 38 items
+  details: '{disabled=true}'
+- timestamp: 1778343056198
+  user: ryan_yu__
+  action: bulk_item_update
+  target: 29 items
+  details: '{disabled=true}'
+- timestamp: 1778343039320
+  user: ryan_yu__
+  action: bulk_item_update
+  target: 146 items
+  details: '{disabled=true}'
+- timestamp: 1778343028453
+  user: ryan_yu__
+  action: bulk_item_update
+  target: 263 items
+  details: '{disabled=true}'
+- timestamp: 1778343006724
+  user: ryan_yu__
+  action: bulk_item_update
+  target: 143 items
+  details: '{disabled=true}'
+- timestamp: 1778342994372
+  user: ryan_yu__
+  action: bulk_item_update
+  target: 1 items
+  details: '{disabled=true}'
+- timestamp: 1778342985721
+  user: ryan_yu__
+  action: bulk_item_update
+  target: 1 items
+  details: '{disabled=true}'
+- timestamp: 1778342975348
+  user: ryan_yu__
+  action: shortage_reset
+  target: MANGROVE_TRAPDOOR
+  details: Shortage hours reset to 0
+- timestamp: 1778342974279
+  user: ryan_yu__
+  action: shortage_reset
+  target: MANGROVE_TRAPDOOR
+  details: Shortage hours reset to 0
+- timestamp: 1778342971769
+  user: ryan_yu__
+  action: shortage_reset
+  target: MANGROVE_TRAPDOOR
+  details: Shortage hours reset to 0
+- timestamp: 1778342345771
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778342319626
+  user: ryan_yu__
+  action: category_update
+  target: FOOD
+  details: Updated category layout/restock rules
+- timestamp: 1778342212212
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778342197115
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778342185078
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778342157872
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778342133767
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778342113017
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778342013066
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778341993012
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778341970611
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778341952273
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778341346063
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778341326860
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_1
+  details: Updated category layout/restock rules
+- timestamp: 1778341293520
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778341284274
+  user: ryan_yu__
+  action: category_update
+  target: MISC
+  details: Updated category layout/restock rules
+- timestamp: 1778340120024
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_4
+  details: Updated category layout/restock rules
+- timestamp: 1778340117477
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_4
+  details: Updated category layout/restock rules
+- timestamp: 1778340114861
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_3
+  details: Updated category layout/restock rules
+- timestamp: 1778340111563
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_2
+  details: Updated category layout/restock rules
+- timestamp: 1778340099717
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_1
+  details: Updated category layout/restock rules
+- timestamp: 1778340097024
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_6
+  details: Updated category layout/restock rules
+- timestamp: 1778340087274
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_6
+  details: Updated category layout/restock rules
+- timestamp: 1778340084724
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_8
+  details: Updated category layout/restock rules
+- timestamp: 1778340081918
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_9
+  details: Updated category layout/restock rules
+- timestamp: 1778340079070
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_9
+  details: Updated category layout/restock rules
+- timestamp: 1778340076221
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_7
+  details: Updated category layout/restock rules
+- timestamp: 1778340073364
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_5
+  details: Updated category layout/restock rules
+- timestamp: 1778340069520
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_5
+  details: Updated category layout/restock rules
+- timestamp: 1778340066919
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_10
+  details: Updated category layout/restock rules
+- timestamp: 1778340061624
+  user: ryan_yu__
+  action: category_update
+  target: CUSTOM_10
+  details: Updated category layout/restock rules
+- timestamp: 1778267348935
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=2000, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=0, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778267335661
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=2000, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=0, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778267005825
+  user: ryan_yu__
+  action: config_update
+  target: global
+  details: 'dynamicPricingEnabled=true, useStockCurve=true, useTimeInflation=true,
+    restrictBuyingAtZeroStock=true, logDynamicPricing=false, playerShopsEnabled=true,
+    webserverEnabled=true, webserverAdminEnabled=true, webserverCorsEnabled=true,
+    webserverForceUpdate=false, restockEnabled=true, crossServerEnabled=false, curveStrength=0.9,
+    maxStock=500, minPriceMultiplier=0.01, maxPriceMultiplier=20, negativeStockPercentPerItem=5,
+    hourlyIncreasePercent=2, shortageDecayPercentPerHour=2, sellTaxPercent=30, transactionCooldownMs=0,
+    maxListingsPerPlayer=27, webserverPort=7713, shopMenuSize=54, maxRecentTransactions=10000,
+    crossServerPort=5556, crossServerSaveInterval=600, webserverBind=0.0.0.0, webserverHostname=, '
+- timestamp: 1778266950864
+  user: ryan_yu__
+  action: bulk_item_update
+  target: 1 items
+  details: '{disabled=true}'
+- timestamp: 1778266735076
+  user: ryan_yu__
+  action: item_create
+  target: IRON_SPEAR
+  details: basePrice=10.0, category=MISC
+- timestamp: 1778266643742
+  user: ryan_yu__
+  action: config_update
+  target: global
+  details: 'dynamicPricingEnabled=true, useStockCurve=true, useTimeInflation=true,
+    restrictBuyingAtZeroStock=true, logDynamicPricing=false, playerShopsEnabled=true,
+    webserverEnabled=true, webserverAdminEnabled=true, webserverCorsEnabled=true,
+    webserverForceUpdate=false, restockEnabled=true, crossServerEnabled=false, curveStrength=0.9,
+    maxStock=500, minPriceMultiplier=0.01, maxPriceMultiplier=20, negativeStockPercentPerItem=5,
+    hourlyIncreasePercent=2, shortageDecayPercentPerHour=2, sellTaxPercent=30, transactionCooldownMs=0,
+    maxListingsPerPlayer=27, webserverPort=7713, shopMenuSize=54, maxRecentTransactions=10000,
+    crossServerPort=5556, crossServerSaveInterval=600, webserverBind=0.0.0.0, webserverHostname=, '
+- timestamp: 1778266638831
+  user: ryan_yu__
+  action: config_update
+  target: global
+  details: 'dynamicPricingEnabled=true, useStockCurve=true, useTimeInflation=true,
+    restrictBuyingAtZeroStock=true, logDynamicPricing=false, playerShopsEnabled=true,
+    webserverEnabled=true, webserverAdminEnabled=true, webserverCorsEnabled=true,
+    webserverForceUpdate=false, restockEnabled=false, crossServerEnabled=false, curveStrength=0.9,
+    maxStock=500, minPriceMultiplier=0.01, maxPriceMultiplier=20, negativeStockPercentPerItem=5,
+    hourlyIncreasePercent=2, shortageDecayPercentPerHour=2, sellTaxPercent=30, transactionCooldownMs=0,
+    maxListingsPerPlayer=27, webserverPort=7713, shopMenuSize=54, maxRecentTransactions=10000,
+    crossServerPort=5556, crossServerSaveInterval=600, webserverBind=0.0.0.0, webserverHostname=, '
+- timestamp: 1778266635254
+  user: ryan_yu__
+  action: config_update
+  target: global
+  details: 'dynamicPricingEnabled=true, useStockCurve=true, useTimeInflation=true,
+    restrictBuyingAtZeroStock=true, logDynamicPricing=false, playerShopsEnabled=true,
+    webserverEnabled=true, webserverAdminEnabled=true, webserverCorsEnabled=true,
+    webserverForceUpdate=false, restockEnabled=true, crossServerEnabled=false, curveStrength=0.9,
+    maxStock=500, minPriceMultiplier=0.01, maxPriceMultiplier=20, negativeStockPercentPerItem=5,
+    hourlyIncreasePercent=2, shortageDecayPercentPerHour=2, sellTaxPercent=30, transactionCooldownMs=0,
+    maxListingsPerPlayer=27, webserverPort=7713, shopMenuSize=54, maxRecentTransactions=10000,
+    crossServerPort=5556, crossServerSaveInterval=600, webserverBind=0.0.0.0, webserverHostname=, '
+- timestamp: 1778266104835
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_PRESSURE_PLATE
+  details: 'basePrice=1, stock=-1, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=1.4, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778265818882
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=500, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=0, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778265699041
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BUTTON
+  details: 'basePrice=0.5, stock=500, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=0, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778265615341
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BUTTON
+  details: 'basePrice=0.5, stock=10, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=-0.5, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778265266776
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=100000, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=0, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778265238497
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=100000, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=1, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778264739110
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=1, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=1, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778264722240
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=1, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=0, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778264705873
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=1, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=8, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778264632410
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=100000, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=8, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778264617160
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=100000, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=1, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778264587338
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=100000, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=0, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778264573138
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=100000, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=20000, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778263842795
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=100000, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=0.8, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778262253042
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=0, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=0.4, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778262203166
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=0, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=100000.3, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778262186306
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=0, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=0.3, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778262169330
+  user: ryan_yu__
+  action: item_update
+  target: ACACIA_BOAT
+  details: 'basePrice=5, stock=0, stockRate=5, maxStock=null, maxStockStorage=null,
+    shortageHours=10.3, buyDisabled=false, sellDisabled=false, disabled=false, '
+- timestamp: 1778261986530
+  user: Ryan_yu__
+  action: account_created
+  target: Ryan_yu__
+  details: Admin account registered via web

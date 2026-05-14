@@ -1,0 +1,75 @@
+# 背包系统配置文件 - 全汉化版
+items:
+  bag:
+    name: "<!italic>背包 <red>%current-level%</red>级" # 物品名称
+    description: # 物品描述
+      - "<!italic>背包内物品数：%items-sum%"
+      - "<!italic>背包容量：%current-capacity% 件物品"
+      - "<!italic>槽位数量：%current-slots%"
+    material: PLAYER_HEAD # 背包物品/图标材质
+    # 若材质为头颅，可设置Base64格式的头颅纹理
+    head-texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjkxYzdiZDA0MTZmNjhkNmU5YjU4NmU3ODE4Mjg2M2E0ZmQwNGY5MDI5YzgwNWY5MjFhMTdjNzAzZDUyZWRlMSJ9fX0="
+    # 若物品有自定义模型数据
+    custom-model-data: 0
+
+  upgrade:
+    name: "<!italic>升级 <red>从%current-level%级至%next-level%</red>级"
+    description:
+      - "<!italic>下一等级将解锁："
+      - "<!italic>背包容量：%current-capacity% >> %next-capacity% 件物品"
+      - "<!italic>槽位数量：%current-slots% >> %next-slots%"
+      - ""
+      - "<!italic>升级消耗：%next-cost%$"
+    material: MOSS_BLOCK
+    # 头颅纹理、自定义模型数据为非必填参数
+
+  sell-all:
+    name: "<!italic>出售全部物品"
+    material: BARRIER
+    glowing: true # 可为物品设置发光效果
+    # 描述为非必填项
+
+  next-page:
+    name: "<!italic>下一页"
+    material: PLAYER_HEAD
+    head-texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWM5YzY3YTlmMTY4NWNkMWRhNDNlODQxZmU3ZWJiMTdmNmFmNmVhMTJhN2UxZjI3MjJmNWU3ZjA4OThkYjlmMyJ9fX0="
+
+  previous-page:
+    name: "<!italic>上一页"
+    material: PLAYER_HEAD
+    head-texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWExZWYzOThhMTdmMWFmNzQ3NzAxNDUxN2Y3ZjE0MWQ4ODZkZjQxYTMyYzczOGNjOGE4M2ZiNTAyOTdiZDkyMSJ9fX0="
+
+  ignore-item-value-true:
+    name: "<!italic>全部出售 无例外"
+    material: RED_CANDLE
+    description:
+      - "<!italic>所有物品将被出售，不计物品自身价值"
+    glowing: true
+
+  ignore-item-value-false:
+    name: "<!italic>全部出售 含例外"
+    material: GREEN_CANDLE
+    description:
+      - "<!italic>出售时，无价值的物品将被自动忽略"
+
+  filler:
+    name: "<reset>"
+    material: RED_STAINED_GLASS_PANE
+
+levels:
+  1: # 等级（1 - 默认等级）
+    capacity: 20 # 背包容量，即物品最大携带数量
+    slots: 5 # 储物区可用槽位数量
+    cost: 0 # 升级至该等级的消耗
+  2:
+    capacity: 40
+    slots: 8
+    cost: 1000
+    commands: # 购买升级后执行的指令
+      - "xp add %player% 10 levels"
+  3:
+    capacity: 1000000 # 【疑似笔误】数值远低于1级，建议修改为60/80等合理值
+    slots: 450
+    cost: 5000
+  # 可继续添加后续等级配置
+  # ...

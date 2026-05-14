@@ -1,0 +1,282 @@
+# All languages are in the folder: localization, to add a language simply duplicate an already existing one and rename it
+language: chi
+
+
+# ADVANCE
+# After what time (in seconds) the backpack is not used, it is to be deleted from memory.
+backpacks-idle-cache-clear: 1800
+# After what time (in seconds) the player's backpack gui is not used, it is to be deleted from memory.
+player-backpacks-gui-idle-cache-clear: 120
+# Every how many seconds to be checked
+cache-clear-frequency: 10
+# https://colors-picker.com/hex-color-picker/
+# From this page you can take the color hex, of course you can from other pages.
+# You can also use regular colors e.g. &2
+Gui:
+  chose-crafting:
+    title: '#194d33Choose which backpack you want to change crafting'
+  edit-crafting:
+    # %crafting% is the name of the backpack
+    title: '#194d33You are changing the crafting %crafting%'
+  
+  # Colours available:
+  # White,
+  # Red,
+  # Orange,
+  # Pink,
+  # Yellow,
+  # Lime,
+  # Green,
+  # Light_Blue,
+  # Cyan,
+  # Blue,
+  # Magenta,
+  # Purple,
+  # Brown,
+  # Gray,
+  # Light_Gray,
+  # Black
+  #
+  # This is for the lower Blank Stained Glass Pane at the ex buttons:
+  # [BTN] [x] [x] [x] [x] [x] [x] [x] [BTN]
+  filling-color-buttons: Black
+  # Is it to glow
+  filling-color-buttons-glow: true
+  # colour of overfill slots
+  colour-overfill-slots: Black
+  # Is it to glow
+  colour-overfill-slots-glow: true
+  filling:
+    custom-model:
+      use: false
+      custom-model-id: 810001
+      material: MAP
+    button:
+      glow: true
+      color: Black
+  overfill:
+    custom-model:
+      use: false
+      custom-model-id: 810001
+      material: MAP
+    button:
+      glow: true
+      color: Black
+  page-next:
+    custom-model:
+      use: false
+      custom-model-id: 810003
+      material: MAP
+  page-previous:
+    custom-model:
+      use: false
+      custom-model-id: 810002
+      material: MAP
+
+# Time in milliseconds, 1 second = 1000 milliseconds
+backpack-cooldown: 0
+
+# Set to true if it should return items after canceling a crafting change
+return-items-on-close: true
+
+
+#  ██████╗░███████╗░██████╗░█████╗░██╗░░░██╗██████╗░░█████╗░███████╗██████╗░░█████╗░░█████╗░██╗░░██╗
+#  ██╔══██╗██╔════╝██╔════╝██╔══██╗██║░░░██║██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗██║░██╔╝
+#  ██████╔╝█████╗░░╚█████╗░██║░░██║██║░░░██║██████╔╝██║░░╚═╝█████╗░░██████╔╝███████║██║░░╚═╝█████═╝░
+#  ██╔══██╗██╔══╝░░░╚═══██╗██║░░██║██║░░░██║██╔══██╗██║░░██╗██╔══╝░░██╔═══╝░██╔══██║██║░░██╗██╔═██╗░
+#  ██║░░██║███████╗██████╔╝╚█████╔╝╚██████╔╝██║░░██║╚█████╔╝███████╗██║░░░░░██║░░██║╚█████╔╝██║░╚██╗
+#  ╚═╝░░╚═╝╚══════╝╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚═╝░╚════╝░╚══════╝╚═╝░░░░░╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝
+# Link to your resourcepack with your own backpacks
+# remember that customModelId corresponds to the id of the backpack
+# If you want to add a backpack model remember to add it to brown_dye.json in the server resourcepack
+
+# Example brown_dye.json:
+#    "parent": "minecraft:item/generated",
+#    "textures": {
+#        "layer0": "minecraft:item/brown_dye"
+#    },
+#    "overrides": [
+#        {
+#            "predicate": {
+#                "custom_model_data": 800001 <- Here is the id of the backpack you should set in config
+#            },
+#            "model": "item/backpack_tier_1" <- Your model here
+#        },
+#        {
+#            "predicate": {
+#                "custom_model_data": 800002 <- Here is the id of the backpack you should set in config
+#            },
+#            "model": "item/backpack_tier_2" <- Your model here
+#        },
+#        {
+#            "predicate": {
+#                "custom_model_data": 800003 <- Here is the id of the backpack you should set in config
+#            },
+#            "model": "item/backpack_tier_3" <- Your model here
+#        }
+#    ]
+# }
+
+# You can also download the resourcepack and change it: https://www.dropbox.com/scl/fo/kha2b9dqw1fiwnhnawlmf/h?dl=1&rlkey=jfslhpxfb3c937hhn5vhjcq1x
+#
+# If you have your own resourcepack then upload it
+# https://mc-packs.net/
+#
+# Download URL:
+resource-pack-url: https://download.mc-packs.net/pack/6998056b7754a0a2c71a61ba66f26908f6816194.zip
+# SHA-1 Hash:
+resource-pack-hash: 6998056b7754a0a2c71a61ba66f26908f6816194
+# If you are using server resourcepack set this to false
+# Just remember to add the texture and model of the backpack
+use-resource-pack: false
+
+# If the player does not accept the resourcepack, then if the value is on true it will be discarded
+force-resource-pack: false
+resource-pack-message:
+- '&l&8[&6To play you must accept the server resourcepack&l&8]'
+
+# If you change this backpacks will use players' heads instead of resourcepack
+use-skulls-backpack: false
+
+
+#  ██████╗░░█████╗░░█████╗░██╗░░██╗██████╗░░█████╗░░█████╗░██╗░░██╗░██████╗
+#  ██╔══██╗██╔══██╗██╔══██╗██║░██╔╝██╔══██╗██╔══██╗██╔══██╗██║░██╔╝██╔════╝
+#  ██████╦╝███████║██║░░╚═╝█████═╝░██████╔╝███████║██║░░╚═╝█████═╝░╚█████╗░
+#  ██╔══██╗██╔══██║██║░░██╗██╔═██╗░██╔═══╝░██╔══██║██║░░██╗██╔═██╗░░╚═══██╗
+#  ██████╦╝██║░░██║╚█████╔╝██║░╚██╗██║░░░░░██║░░██║╚█████╔╝██║░╚██╗██████╔╝
+#  ╚═════╝░╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚═════╝░
+# REMEMBER IF YOU CHANGE THE BACKPACK MATERIAL HERE YOU MUST ALSO CHANGE THE RESOURCEPACK
+backpack-material: BROWN_DYE
+
+# block the possibility of having more than 1 backpack in the inventory
+limit-backpack-per-inventory: false
+
+# Whether to require permissions for a player to use backpacks (different for each tier)
+permissions-to-use-backpack: false
+# Whether the craft of the backpack is to require the appropriate permission
+crafting-backpack-requires-permission: false
+backpack-tiers:
+  '1':
+    displayName: 我的扩展背包(%page%/%max_pages%)
+    backpack-skull-hash: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjliMThiMDI0NTNkYjFiYTI1NjRjMWY5Yzk2N2ZkYWE0ZjNmOGY5NWQ2OTcyNjVkNGJkZTY2MjBkNjhkZWVhYiJ9fX0=
+    permission-craft: backpackplus.craft.1
+    permission-use: backpackplus.craft.1
+    can-be-crafted: true
+    is-skull: false
+    id: 800001
+    size: 90
+    crafting:
+      '1': leather
+      '2': iron_ingot
+      '3': leather
+      '4': iron_ingot
+      '5': chest
+      '6': iron_ingot
+      '7': iron_block
+      '8': iron_ingot
+      '9': iron_block
+      pattern:
+      - '123'
+      - '456'
+      - '789'
+    type: DEFAULT
+    owner-only: false
+  '2':
+    displayName: 我的扩展背包(%page%/%max_pages%)
+    backpack-skull-hash: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGZhMDU2ZDdhZTMwMzYwNzZmYzJhYTE0MTk4Y2U1ZWVlMTUxMGEzMDlmNDMyNDU4MDEwYWMwM2ZjMDZkNGUwOCJ9fX0=
+    permission-craft: backpackplus.craft.2
+    permission-use: backpackplus.craft.2
+    can-be-crafted: true
+    is-skull: false
+    id: 800002
+    size: 180
+    crafting:
+      '1': leather
+      '2': gold_ingot
+      '3': leather
+      '4': gold_ingot
+      '5': chest
+      '6': gold_ingot
+      '7': gold_block
+      '8': gold_ingot
+      '9': gold_block
+  '3':
+    displayName: 我的扩展背包(%page%/%max_pages%)
+    backpack-skull-hash: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIwOWRmOGYzODc1Yjk1YzlkMDU3NzI4MTUyZjlmNDRlNTQwZmQ3YWY4MjVkZjQ0YjNkYjQxNTVjY2VlYzQyOSJ9fX0=
+    permission-craft: backpackplus.craft.3
+    permission-use: backpackplus.craft.3
+    can-be-crafted: true
+    is-skull: false
+    id: 800003
+    size: 540
+    crafting:
+      '1': leather
+      '2': diamond
+      '3': leather
+      '4': diamond
+      '5': chest
+      '6': diamond
+      '7': diamond_block
+      '8': diamond
+      '9': diamond_block
+
+blocked-materials: []
+blocked-items: []
+
+
+#  ██████╗░░█████╗░████████╗░█████╗░██████╗░░█████╗░░██████╗███████╗
+#  ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔════╝
+#  ██║░░██║███████║░░░██║░░░███████║██████╦╝███████║╚█████╗░█████╗░░
+#  ██║░░██║██╔══██║░░░██║░░░██╔══██║██╔══██╗██╔══██║░╚═══██╗██╔══╝░░
+#  ██████╔╝██║░░██║░░░██║░░░██║░░██║██████╦╝██║░░██║██████╔╝███████╗
+#  ╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝╚═════╝░╚══════╝
+Database:
+  # Possible use: MySQL | SQLite
+  type: SQLite
+  # Host to your database if you are using MYSQL
+  host: localhost
+  # Port to your database if you are using MYSQL
+  port: 3306
+  # Username (login) for your database if you are using MYSQL
+  username: root
+  # Your database password if you are using MYSQL
+  password: ''
+  # Database name if you are using MYSQL
+  database: backpack
+  mysql-settings:
+    # Verification of server's certificate.
+    # We would not recommend to set this option to false.
+    # Set this option to false at your own risk if and only if you know what you're doing
+    check-server-certificate: true
+    # Authorize client to retrieve RSA server public key.
+    # Advanced option, ignore if you don't know what it means.
+    allow-public-key-retrieval: true
+    # Connect to MySQL database over SSL
+    use-ssl: true
+  # HikariCP settings for MySQL
+  hikari-settings:
+    # The maximum connection lifetime in milliseconds
+    max-lifetime-ms: 1800000
+    # The maximum number of connections in the pool
+    max-pool-size: 20
+    # The minimum number of idle connections in the pool to maintain, set to -1 to ignore
+    min-idle: 2
+    # The idle timeout in millisecond, set to -1 to ignore
+    idle-timeout-ms: 600000
+    # The connection leak detection threshold in milliseconds, set to -1 to ignore
+    leak-detection-threshold-ms: 2000
+block-backpack-insert-containers: false
+blocked-containers:
+- HOPPER
+- CHEST
+- ENDER_CHEST
+- LOOM
+- SHULKER_BOX
+- BARREL
+- DISPENSER
+- DROPPER
+- CRAFTER
+play-song-when-item-moved-in-backpack: true
+keep-backpacks-after-death: false
+keep-backpacks-after-death-permission: backpackplus.keep.backpacks
+

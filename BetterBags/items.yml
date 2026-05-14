@@ -1,0 +1,8 @@
+# 背包内物品出售单价列表
+items:
+  DIRT: 1 # 售价1枚货币
+  COBBLESTONE: 25
+  DIAMOND_SWORD: 500
+  SAND: 1
+  # 可继续添加其他物品及售价
+  # ...

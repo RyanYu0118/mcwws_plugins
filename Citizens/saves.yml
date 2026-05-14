@@ -1,0 +1,1569 @@
+# Citizens NPC Storage
+last-created-npc-id: 27
+npc:
+  '1':
+    metadata:
+      cached-skin-uuid: 1dc8f163-ef90-46ff-94dd-32fdbe32b982
+      cached-skin-uuid-name: 9702649e-ed3f-4415-a257-81335fc57331
+      swim: false
+    name: '&a星巴克工作人员'
+    uuid: e599aee9-0249-49ac-8058-23b3767c5842
+    traits:
+      mounttrait:
+        mountedon: a4545b0b-d444-4a52-a854-1fd0a17a8ac8
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      shop:
+        rightClickShop: e599aee9-0249-49ac-8058-23b3767c5842
+      type: PLAYER
+      spawned: false
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      skintrait:
+        signature: NhMeHz1KmxyWkgb1bpBZJuvEJ9usBEMbh01uelFSLCjXKxvkMA9jZXI/MJfp/Fla0mdHtvsASw5ALMWJmb1ZZvNmbqA+ogUPsbm/PylvhPFpvjx7Y16msQm84H9YlLKKhEiUWUw+EBkdiLJQyIay0sYhzI1T3MstT6aKVAGHWOgBmuP30isP+gFpNbU6urQ0ned5Ym4SHSib/js9E5aobEf7SnzMAHtInSixDDFfZ8IXLePy+ouvTb1CkLl+pCazF3a2H/9/1u6N0h1HMFHmohwPsenRrNxMTl+EGrx8Zq2UphYabqu2T1ecEeCv1cqemCfEnrXnc5MzHXYUdEDrIcO6EvWX35OFThUFUTijAw2q+fwI0N3FmXC9dvJM3/H9uzSscyWmod+Zf8DQUybQcwIZfbb+Vy4nLxaeI9PTpN4l8vJX67kbF/5wNTopmHVYr2qNMXoWwritep5mFYaLBMzyPDTabdC5LdA3072+mwPV3x/MewUUyVngReG+osAraETvVx+92UhMX248eNSZuWsaMRM9edcHItrO48fBQHTgmM5hDl58FI/702ednTg9XLh3pB8zQxtDj2MT8ZuW1By8+Dleyn8LWgrc1CZ01xXog9bME3SxrbOZda1RHs2HciCRE/Bjv+i6H9eDgbivK33RoPd4c8aPQepkrf1NKAI=
+        skinName: 9702649e-ed3f-4415-a257-81335fc57331
+        textureRaw: ewogICJ0aW1lc3RhbXAiIDogMTY4OTA2MDY3NTg0MiwKICAicHJvZmlsZUlkIiA6ICI1ZWQ4OTJiN2UyZGU0ZjYyYjIyNmFjNjQwZDA0YmJiOSIsCiAgInByb2ZpbGVOYW1lIiA6ICJmcm9zdGVkc3Vuc2hpbmUiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTRmN2E0YzNkODdlYjE5NjQ5ZTI1NDM2NTY2YzFiN2JhOWQ1NWYyYmVkZDEzOWQ1MmY2ZmM5MTc2NWE3YTljZiIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9
+      skinlayers: {
+        }
+      location:
+        bodyYaw: 93.844284
+        x: -41.3521
+        y: 64.0
+        z: 49.4717
+        yaw: 109.62
+        pitch: -1.3161
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      waypoints:
+        linear: {
+          }
+        provider: linear
+      scoreboardtrait:
+        tags:
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,shop,skinlayers,skintrait,mounttrait,lookclose,equipment,type,inventory,waypoints,sittrait,location
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '2':
+    metadata:
+      cached-skin-uuid: e134fd02-18f0-46cb-9abc-773280fe766b
+      glowing-color: LIGHT_PURPLE
+      cached-skin-uuid-name: f8c99bf3-7fd8-4ffd-8b8e-e04a4e001b32
+      silent-sounds: false
+      ambient-sound: ambient.cave
+      protected: true
+      death-sound: ambient.cave
+      hurt-sound: ambient.cave
+      minecraft-ai: false
+    name: '&a[NPC] &b印刷部门'
+    uuid: f2cfd41d-8889-42cf-a3f1-5560e5a9d4ce
+    traits:
+      skintrait:
+        signature: lXU+V0Ck9p4buz7pX4dxzLd0zIWPgjkwrEQdGXWiWdnfEZjVKefk8K0fsY4wxZl/ap6wZI2uwZsNVRs+1qP2blQgWN6jV3sMjh8DSa9WmpmC2a+A4dauNBz4DNPaias/Zlcw3cog2T57WoT/1n5SuhnAAt6s17E4NGjpj9B0WkmAfwEqHQ5EntPxL9jNrMtKlaHmI3Jwgj+j1J6r14T/Ro6/Jzef4Cdplg8cpDln3wf0LXX8sHdQDvNg0KBuzSSP/y3XB3pktC71wvNKHuapvWU9QzdMXVhBNqoUfFiSzlyO8JpKqnLa60OGykAMP8xIV1vRNgNrFO/AmYo4mC2ZyeaVon/HpUPM8uJlTdtcv2BDcKECBWw2lQJzXJBShgiidkFUX2ueYsP9T/P+nkIWiRmmTBUcTno2/CCTJUkHVYcHO4py9QFyuV0fcZ+UQjyd9u9mqprQXADJS+FXr5UeYa0TshcL/NbLPZO4VtASK4GeqfsjizO5KBvpXfM1wGJb66WXK9oTHqbwbQd4Y3HJYGYdki4McNs53HdF6Akp9jkVMWrr3mqywBiTfAixP/uGzPNzFhRZnjYp4WQlFGV8uos8bDbUddprTZMo0Q1PEDldGyw57f8gh7rUuny3Ds/bJBtNdjoo8qY4Qu0y3rBscKcmNiGeX83GYwXv25/VBek=
+        skinName: f8c99bf3-7fd8-4ffd-8b8e-e04a4e001b32
+        textureRaw: ewogICJ0aW1lc3RhbXAiIDogMTY5MTM0Mzk2MTgyMSwKICAicHJvZmlsZUlkIiA6ICI1N2I0MTZlNjJjZGE0MTAzOTRiNzZkNmNkNDA3MjFiOSIsCiAgInByb2ZpbGVOYW1lIiA6ICJSME1CSUVTIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2FmYjcwZTc1YmUyYjBmMDY5NTRmNGUzZDA1YzM1ZDBjNzEwOWI0NzNlNWNkNzNiYzc4MWUyZDk4NjNmNmZjZGMiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ==
+      hologramtrait:
+        direction: BOTTOM_UP
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      gravity: {
+        }
+      type: PLAYER
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      commandtrait:
+        hideErrorMessages: true
+        commands:
+        - op: true
+          command: deluxemenu open npc_lore %player_name%
+          hand: RIGHT
+          player: true
+        - globalcooldown: 120
+          command: npc speak &r您好呀~请问需要什么帮助吗？
+          hand: RIGHT
+        - delay: 50
+          globalcooldown: 120
+          command: npc speak &r墙上的信息或许能帮到你哦~
+          hand: RIGHT
+        - op: true
+          delay: 50
+          globalcooldown: 120
+          command: gamerule sendCommandFeedback false
+          hand: RIGHT
+          player: true
+        - op: true
+          delay: 50
+          globalcooldown: 120
+          command: playsound minecraft:entity.villager.trade player @a[name=%player_name%]
+            ~ ~ ~ 1 1.2 1
+          hand: RIGHT
+          player: true
+        - delay: 50
+          globalcooldown: 120
+          command: npc speak &r与商品/道具类的物品命名时务必遵循文本规范哦~
+          hand: RIGHT
+      location:
+        bodyYaw: -162.68906
+        x: -465.6697
+        y: 65.0
+        z: 220.6424
+        yaw: -162.6891
+        pitch: -5.8344
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      skinlayers: {
+        }
+      equipment:
+        hand:
+          type_key: book
+          amount: 1
+          type_namespace: minecraft
+          type: book
+      inventory:
+      - amount: 1
+        type: book
+      text:
+        text:
+        - Hi, I'm <npc>!
+      scoreboardtrait:
+        tags:
+        - CITIZENS_NPC
+      attributetrait:
+        attributes:
+          minecraft:waypoint_transmit_range: 0.0
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,shop,skinlayers,skintrait,mounttrait,lookclose,equipment,type,inventory,attributetrait,hologramtrait,gravity,location,text
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '3':
+    metadata:
+      glowing: false
+      cached-skin-uuid-name: 3b811ed9-3121-45d3-9a0a-236c15e697fb
+      silent-sounds: false
+      nameplate-visible: 'true'
+    name: '&a[NPC] &k&7石匠'
+    uuid: e1901202-9b77-41bf-8eba-19e9d0c26680
+    traits:
+      equipment:
+        hand:
+          type_key: stone_pickaxe
+          amount: 1
+          type_namespace: minecraft
+          type: stone_pickaxe
+        offhand:
+          type_key: lantern
+          amount: 1
+      type: PLAYER
+      skintrait:
+        signature: ZrDb0haRhEBcRPJdUIZxx7NqT6ldasCzCsLKFRL7GqAgr6HpoAzFiwd1oOK/oUBKCyOMkCe8YoWjRGQHY2ZQedKgky3PJejf20hSs8Mm+ERyjjqyORzwE9VyZcVMMAybzevdnlgVM9iAFjSgjWfkkFku5VabtEbDjPxMQtI/NbWifwTxfYSXu/uJ3XfrRp6kX/vd/Oiz86isdYacRksWau+0RocQf671GjpjHPpKSQjlVrMaealEGQofAhmaL4AjOCKnANNIkr7sSKdy1fMfhVkqzp4HtfYy1NeAafiwOQ2j1a5p4dZS8o/T9uLuTT8mOaybqoX0LFkCVaLIbsC3b09XESZVo99/gBtQ/CpYtmYtbsj0IRb1GiWBQrfr7W787sTWWN2w7939e6m9NdgIY0Y7NhAPdrduJCvjwN9On8Mc36F6CHdJ20QVTcXKdbVuPUrHlmEiAgvpFi/FsSTKFleJp8aM9m4GQbg6uknNsg0QJM2UxWDcmPR4/eBeI9WaTUNZIjyI4vCVJ6aDGLJhsBsQ8fY8gqf5MZ+00jrqgvlqz6OXUYcG5BveM4oMCC+wQR0fNL7/tRgCg28yR8Yk8XpIbyqVGFffxwUU6ReOcPrpHy67A1INFXGS3/JqpSbtjdn/wYyNO4gx2MuRJc0tQB0s8LjU4DBsN6WqNfccYRA=
+        skinName: 3b811ed9-3121-45d3-9a0a-236c15e697fb
+        textureRaw: ewogICJ0aW1lc3RhbXAiIDogMTY4NzkyNzU2Mzk3OSwKICAicHJvZmlsZUlkIiA6ICI0YjBhOTI4NDY2NDY0NmRlYjY5NDJiZTIzZTlhMWQyZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJJc2FhY0FsdCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS8yMzVhMTJhMmE5MzQ2NjMyZjA2NzZmY2RjYWZlZWZiOTAzYmY5NGRlNjAzMjYwODU2MWU3YThiMGFlMWI1NWU3IgogICAgfQogIH0KfQ==
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      inventory:
+        '40':
+          type: lantern
+          amount: 1
+        '0':
+          amount: 1
+          type: stone_pickaxe
+      location:
+        bodyYaw: 39.982742
+        x: -183.4521
+        y: 77.0
+        z: -964.502
+        yaw: 39.9827
+        pitch: -5.0613
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      gravity: {
+        }
+      commandtrait:
+        hideErrorMessages: true
+        commands:
+        - op: true
+          command: deluxemenu open npc_miner_stone %player_name%
+          hand: RIGHT
+          player: true
+        - globalcooldown: 120
+          command: npc speak &r您好！请问需要采购物资吗？
+          hand: RIGHT
+        - delay: 50
+          globalcooldown: 120
+          command: npc speak &r我这里有各种各样的石材和石制品！
+          hand: RIGHT
+        - op: true
+          delay: 50
+          globalcooldown: 120
+          command: gamerule sendCommandFeedback false
+          hand: RIGHT
+          player: true
+        - op: true
+          delay: 50
+          globalcooldown: 120
+          command: playsound minecraft:entity.villager.trade player @a[name=%player_name%]
+            ~ ~ ~ 1 0.8 1
+          hand: RIGHT
+          player: true
+        - delay: 50
+          globalcooldown: 120
+          command: npc speak &r需求量大的话建议放在背包里面！
+          hand: RIGHT
+      text:
+        text:
+        - Hi, I'm <npc>!
+      skinlayers: {
+        }
+      scoreboardtrait:
+        tags:
+        - CITIZENS_NPC
+      attributetrait:
+        attributes:
+          minecraft:waypoint_transmit_range: 0.0
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,shop,skinlayers,skintrait,mounttrait,lookclose,equipment,type,inventory,attributetrait,gravity,location,text
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '4':
+    name: '&a[NPC] &f矿区探险家'
+    uuid: b1a58a87-579b-4cee-91e7-ab8577cf5c19
+    traits:
+      location:
+        bodyYaw: -10.6729965
+        x: -212.5125
+        y: 83.0
+        z: -939.4988
+        yaw: -10.673
+        pitch: 3.8448
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      type: PLAYER
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      skintrait:
+        signature: dKBDaXBK++OaZElX1IH20t39A7TnZwPC7/V7WcvJSHIy0ww3D0lujXsMu1faOuQonmt50yuo+ORfn3WWUY1y54rhYJzwnDypGjoTpTUzswmNsOSq9WQg6bWe1Yeoilr8pFKo0+oTLyUzFgdOlShHFQZyySvDrTDPraHtrimqA8lmV1yw8y3rhywvdYQmXV7FurICdueIRY5aytl+DHWQlZ3gZUdRdvcHTUzQuizCXUKO8tATQLzJhrjGO1vR17renTpLpjHVqWQam0ube+wg+CBmPbti9UDFvblVizFQ/ZnCud0SOsdHu/88nNH1CIKq39DwdjT39dQrtGAUVZVo0PvVsG6+kUHDs35ZEhm9ufxLeRKpHQ8ETQJw1kONrIU/trPeQN6ytcoPo06LDFxlzU1Us6UtXMr+T2/hcx8jU6yGDGSl38nUd8GzH2quRciMQ55rbagrfEsTb3adcOelIOcNjRtjFlcPTRps5UuU30LkDI3zr7iwigmTZcJ9ifhR/6YUsFmxkocvWGLtoDyZTHOauIdPHVOzsGtk3KA1tHznn83dLh2OhnJAgYhMaTIhntsFguqiSwW+ivanuHSX4NEQ70Pq7KGMEcHYraF19GVDku5EKG+f682TV8pbsaBK3shrMuWnui0l2FhDWl1NjGQ3ZkQ2dOQfdCSaKk1Tjvo=
+        skinName: 01f8a1c8-2588-4193-a756-0d3294ef84b6
+        textureRaw: ewogICJ0aW1lc3RhbXAiIDogMTY5MzA3NTE4MjQyMywKICAicHJvZmlsZUlkIiA6ICJkZGVkNTZlMWVmOGI0MGZlOGFkMTYyOTIwZjdhZWNkYSIsCiAgInByb2ZpbGVOYW1lIiA6ICJEaXNjb3JkQXBwIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzJhMmE0YTU2ZTZjMTNlN2Y3Yjk2MGY3ODc5NzdjZDY1ZmY3MTIwYjIxMDhmMGFmMWNkZjYzYjQ0ZGM4YzdkZWYiCiAgICB9CiAgfQp9
+      gravity: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      text:
+        delay: 0
+        range: 3.0
+        text:
+        - '&e[1/6]&r进入矿区，你会分不清白天和黑夜！'
+        - '&e[2/6]&r时刻警惕在安全区域内走动！除非你胆子足够大，你可以深入探索......'
+        - '&e[3/6]&r安全区域内不刷怪，你也不会受到任何伤害！'
+        - '&e[4/6]&r听说矿区里面有好多资源！'
+        - '&e[5/6]&r采矿者不出意外的话还在里面辛苦地工作吧......？'
+        - '&e[6/6]&r你可以向采矿者购买到许多廉价而且珍贵的物资！'
+      commandtrait:
+        hideErrorMessages: true
+        commands:
+        - op: true
+          command: gamerule sendCommandFeedback false
+          hand: RIGHT
+          player: true
+        - op: true
+          command: playsound minecraft:entity.villager.trade player @a[name=%player_name%]
+            ~ ~ ~ 1 0.8 1
+          hand: RIGHT
+          player: true
+      skinlayers: {
+        }
+      scoreboardtrait:
+        tags:
+        - CITIZENS_NPC
+      attributetrait:
+        attributes:
+          minecraft:waypoint_transmit_range: 0.0
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,skinlayers,skintrait,mounttrait,lookclose,equipment,type,inventory,attributetrait,gravity,location,text
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+    metadata:
+      silent-sounds: false
+      cached-skin-uuid-name: 01f8a1c8-2588-4193-a756-0d3294ef84b6
+  '5':
+    metadata:
+      flyable: true
+      protected: true
+      glowing-color: RED
+      nameplate-visible: hover
+    name: item_unbreakable_pickaxe
+    uuid: c866cd43-97b4-41cb-83da-8647a3dec219
+    traits:
+      lookclose:
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      location:
+        bodyYaw: 70.46706
+        x: -209.5191
+        y: 75.0
+        z: -965.5216
+        yaw: 70.4671
+        pitch: 90.0
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      hologramtrait:
+        direction: BOTTOM_UP
+      skintrait: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      armorstandtrait:
+        body:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        head:
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        leftArm:
+          x: -0.17453292519943295
+          y: 0.0
+          z: -0.17453292519943295
+        leftLeg:
+          x: -0.017453292519943295
+          y: 0.0
+          z: -0.017453292519943295
+        rightArm:
+          x: -0.2617993877991494
+          y: 0.0
+          z: 0.17453292519943295
+        rightLeg:
+          x: 0.017453292519943295
+          y: 0.0
+          z: 0.017453292519943295
+        small: true
+      type: INTERACTION
+      gravity:
+        enabled: true
+      text:
+        text:
+        - Hi, I'm <npc>!
+      age:
+        age: -24000
+      foxtrait:
+        sleeping: true
+      equipment:
+        hand:
+          type_key: disc_fragment_5
+          amount: 1
+          type_namespace: minecraft
+          type: disc_fragment_5
+          editable_components:
+            display_name: §x§C§A§4§B§E§0永恒碎片
+            edited: false
+            lore: §x§D§9§A§2§E§2- 它能将任意物品获得无限耐久！<br>§e消耗性道具
+          meta: rO0ABXNyABpvcmcuYnVra2l0LnV0aWwuaW8uV3JhcHBlcvJQR+zxEm8FAgABTAADbWFwdAAPTGphdmEvdXRpbC9NYXA7eHBzcgA1Y29tLmdvb2dsZS5jb21tb24uY29sbGVjdC5JbW11dGFibGVNYXAkU2VyaWFsaXplZEZvcm0AAAAAAAAAAAIAAkwABGtleXN0ABJMamF2YS9sYW5nL09iamVjdDtMAAZ2YWx1ZXNxAH4ABHhwdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhwAAAABnQAAj09dAAJbWV0YS10eXBldAAMZGlzcGxheS1uYW1ldAAEbG9yZXQACGVuY2hhbnRzdAAJSXRlbUZsYWdzdXEAfgAGAAAABnQACEl0ZW1NZXRhdAAKVU5TUEVDSUZJQ3QAOHsidGV4dCI6IuawuOaBkueijueJhyIsImNvbG9yIjoiI0NBNEJFMCIsIml0YWxpYyI6ZmFsc2V9c3IAE2phdmEudXRpbC5BcnJheUxpc3R4gdIdmcdhnQMAAUkABHNpemV4cAAAAAJ3BAAAAAJ0AEl7InRleHQiOiItIOWug+iDveWwhuS7u+aEj+eJqeWTgeiOt+W+l+aXoOmZkOiAkOS5he+8gSIsImNvbG9yIjoiI0Q5QTJFMiJ9dAA6eyJ0ZXh0Ijoi5raI6ICX5oCn6YGT5YW3IiwiY29sb3IiOiJ5ZWxsb3ciLCJpdGFsaWMiOmZhbHNlfXhzcgA3Y29tLmdvb2dsZS5jb21tb24uY29sbGVjdC5JbW11dGFibGVCaU1hcCRTZXJpYWxpemVkRm9ybQAAAAAAAAAAAgAAeHEAfgADdXEAfgAGAAAAAXQAF21pbmVjcmFmdDphcXVhX2FmZmluaXR5dXEAfgAGAAAAAXNyABFqYXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAAAAABc3EAfgASAAAAAncEAAAAAnQADUhJREVfRU5DSEFOVFN0ABdISURFX0FERElUSU9OQUxfVE9PTFRJUHg=
+      horsemodifiers: {
+        }
+      beetrait: {
+        }
+      scoreboardtrait:
+        tags:
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,skintrait,mounttrait,lookclose,equipment,anchors,type,inventory,horsemodifiers,beetrait,hologramtrait,foxtrait,gravity,location,text,armorstandtrait,age
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '22':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&#664327[NPC]'
+    uuid: 8a32a5e1-2368-4b50-bca6-8c08a508b30f
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: BROWN
+      location:
+        bodyYaw: -156.83652
+        x: -445.5222
+        y: 99.0
+        z: -486.5301
+        yaw: -156.8365
+        pitch: 16.8295
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: BROWN
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_brown
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_2
+        - in.checked
+        - in.eid_5
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '21':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&2[NPC]'
+    uuid: aa4e2635-8dc2-4d6c-a34a-b326efc7323c
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: GREEN
+      location:
+        bodyYaw: -177.15097
+        x: -441.3451
+        y: 99.0
+        z: -486.9891
+        yaw: -177.151
+        pitch: 18.9279
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: GREEN
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_green
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_0
+        - in.eid_3
+        - in.eid_4
+        - in.checked
+        - in.eid_10
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '20':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&#1825B5[NPC]'
+    uuid: 7377815a-0e31-41e9-ace1-e82095ea1d0d
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: BLUE
+      location:
+        bodyYaw: 132.67056
+        x: -437.4868
+        y: 99.0
+        z: -486.473
+        yaw: 132.6706
+        pitch: 18.4767
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: BLUE
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_blue
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_2
+        - in.eid_3
+        - in.eid_4
+        - in.checked
+        - in.eid_8
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '19':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&#0092A6[NPC]'
+    uuid: 1809ba7e-628f-44a7-be87-a94c4d760dff
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: CYAN
+      location:
+        bodyYaw: -132.5849
+        x: -433.5457
+        y: 99.0
+        z: -486.4848
+        yaw: -132.5849
+        pitch: 18.3072
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: CYAN
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_cyan
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_0
+        - in.eid_4
+        - in.checked
+        - in.eid_8
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '18':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&#A349A4[NPC]'
+    uuid: 39cc80db-edc7-4353-852a-4f60ffe0cad8
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: MAGENTA
+      location:
+        bodyYaw: -147.73676
+        x: -425.5029
+        y: 99.0
+        z: -486.4966
+        yaw: -147.7368
+        pitch: 17.205
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: MAGENTA
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_magenta
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_4
+        - in.checked
+        - in.eid_5
+        - in.eid_6
+        - in.eid_8
+        - in.eid_9
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '17':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&#8C2196[NPC]'
+    uuid: ba3ca1f2-80fd-4340-ab14-e0e93142b183
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: PURPLE
+      location:
+        bodyYaw: -168.92743
+        x: -421.5488
+        y: 99.0
+        z: -487.6352
+        yaw: -168.9274
+        pitch: 18.4538
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: PURPLE
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_purple
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_2
+        - in.checked
+        - in.eid_5
+        - in.eid_10
+        - in.eid_6
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '16':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&7[NPC]'
+    uuid: 061427d6-961a-4b12-9bc3-56bc5f69ecf1
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: LIGHT_GRAY
+      location:
+        bodyYaw: 131.20247
+        x: -417.5152
+        y: 99.0
+        z: -486.5659
+        yaw: 131.2025
+        pitch: 18.8021
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: LIGHT_GRAY
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_light_gray
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_2
+        - in.eid_3
+        - in.eid_4
+        - in.checked
+        - in.eid_6
+        - in.eid_7
+        - in.eid_9
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '15':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&#555555[NPC]'
+    uuid: 3fe13885-e973-4ffe-bf6e-b3863784424a
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: GRAY
+      location:
+        bodyYaw: -164.36646
+        x: -413.4942
+        y: 99.0
+        z: -486.4422
+        yaw: -164.3665
+        pitch: 14.2137
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: GRAY
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_gray
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_1
+        - in.eid_2
+        - in.eid_4
+        - in.checked
+        - in.eid_5
+        - in.eid_6
+        - in.eid_7
+        - in.eid_9
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '14':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&#333333[NPC]'
+    uuid: 523c7cb3-2f05-4eae-8087-ef01dc8313f7
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: BLACK
+      location:
+        bodyYaw: -163.02058
+        x: -413.476
+        y: 95.0
+        z: -488.469
+        yaw: -163.0206
+        pitch: -1.6625
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: BLACK
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_black
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_0
+        - in.eid_1
+        - in.eid_2
+        - in.eid_4
+        - in.checked
+        - in.eid_8
+        - in.eid_9
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,targetable,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '13':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&c[NPC]'
+    uuid: 944e193d-dee4-499d-b78e-c47e65d1aa90
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: RED
+      location:
+        bodyYaw: -145.81586
+        x: -417.5124
+        y: 95.0
+        z: -488.6074
+        yaw: -145.8159
+        pitch: -1.5756
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: RED
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_red
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_0
+        - in.eid_3
+        - in.eid_4
+        - in.checked
+        - in.eid_10
+        - in.eid_6
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '12':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&b[NPC]'
+    uuid: 21f48d57-3e29-462a-b293-ce00dff0a435
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: LIGHT_BLUE
+      location:
+        bodyYaw: -147.66943
+        x: -421.5153
+        y: 95.0
+        z: -488.4551
+        yaw: -147.6694
+        pitch: -1.9688
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: LIGHT_BLUE
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_light_blue
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_1
+        - in.eid_3
+        - in.checked
+        - in.eid_7
+        - in.eid_8
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '11':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&a[NPC]'
+    uuid: 80ad8b46-bda5-46a7-9a48-f51ae9e3482c
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: LIME
+      location:
+        bodyYaw: -136.2983
+        x: -425.4958
+        y: 95.0
+        z: -488.4561
+        yaw: -136.2983
+        pitch: -1.6113
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: LIME
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_lime
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_1
+        - in.eid_2
+        - in.eid_3
+        - in.eid_4
+        - in.checked
+        - in.eid_5
+        - in.eid_6
+        - in.eid_7
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '10':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&#FFAEC9[NPC]'
+    uuid: f487df14-4c3f-4c7b-a185-7c98da7e7798
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: PINK
+      location:
+        bodyYaw: -150.06221
+        x: -445.4528
+        y: 95.0
+        z: -488.6174
+        yaw: -150.0622
+        pitch: -1.9269
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: PINK
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_pink
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_0
+        - in.eid_3
+        - in.checked
+        - in.eid_6
+        - in.eid_8
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '9':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&e[NPC]'
+    uuid: d4ea8f16-6475-4e01-93fb-29a6f051913a
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: YELLOW
+      location:
+        bodyYaw: -169.62747
+        x: -441.4878
+        y: 95.0
+        z: -488.4374
+        yaw: -169.6275
+        pitch: -2.1068
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: YELLOW
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_yellow
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_0
+        - in.eid_2
+        - in.eid_3
+        - in.eid_4
+        - in.checked
+        - in.eid_5
+        - in.eid_6
+        - in.eid_9
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '8':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&#FFFFFF[NPC]'
+    uuid: 4128cfe2-97f8-456e-be7e-8a6b86f8eff7
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: WHITE
+      location:
+        bodyYaw: 120.482544
+        x: -433.5216
+        y: 95.0
+        z: -488.5202
+        yaw: 120.4825
+        pitch: -1.7225
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait: {
+        }
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_white
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_0
+        - in.eid_1
+        - in.eid_3
+        - in.checked
+        - in.eid_5
+        - in.eid_8
+        - in.eid_9
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '6':
+    metadata:
+      flyable: false
+      swim: false
+      minecraft-ai: false
+    name: '&#FF7F27[NPC]'
+    uuid: 91d03ef3-e755-4c92-a942-4cd3c9a55571
+    traits:
+      gravity: {
+        }
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: SHEEP
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      age: {
+        }
+      hologramtrait:
+        direction: BOTTOM_UP
+      woolcolor: ORANGE
+      location:
+        bodyYaw: 148.31842
+        x: -437.4777
+        y: 95.0
+        z: -488.4502
+        yaw: 148.3184
+        pitch: -2.1001
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait:
+        color: ORANGE
+      commandtrait:
+        commands:
+        - op: true
+          command: dm open sheep_orange
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_0
+        - in.eid_4
+        - in.checked
+        - in.eid_6
+        - in.eid_9
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,mounttrait,lookclose,type,hologramtrait,woolcolor,gravity,location,age,sheeptrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '24':
+    metadata:
+      collidable: false
+      nameplate-visible: hover
+      keep-chunk-loaded: false
+      swim: true
+      minecraft-ai: false
+    name: jeb_
+    uuid: d9a922fe-c465-4646-8f17-b7fde7486c5c
+    traits:
+      age: {
+        }
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      type: SHEEP
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      skintrait: {
+        }
+      woolcolor: WHITE
+      hologramtrait:
+        direction: BOTTOM_UP
+        lines:
+        - renderer:
+            seeThrough: false
+            interpolationDelay: 0
+            shadowed: true
+            interpolationDuration: 0
+            billboard: CENTER
+          margin:
+            top: 0.0
+            bottom: 0.0
+          text: '&c[&#fe5d3eN&#fe7b3fP&#fe993fC&#feb73f]&#fed53fR&#fef33fa&#e9fe3fi&#cbfe3fn&#adfe3fb&#8ffe3fo&#71fe3fw
+            &#53fe3fS&#3ff349h&#3fd567e&#3fb785e&#3f99a3p &#3f7bc1彩&#3f5ddf虹&9羊'
+      gravity: {
+        }
+      location:
+        bodyYaw: 270.00204
+        x: -415.5072
+        y: 95.0
+        z: -496.5
+        yaw: 270.0019
+        pitch: 0.8089
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      sheeptrait: {
+        }
+      mounttrait:
+        mountedon: 231d3fec-c71b-4c62-9a51-e3b339105400
+      waypoints:
+        linear:
+          points:
+          - location:
+              worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+              x: -412.0
+              y: 95.0
+              z: -497.0
+              pitch: 0.0
+              yaw: 0.0
+          - location:
+              worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+              x: -446.0
+              y: 95.0
+              z: -497.0
+              pitch: 0.0
+              yaw: 0.0
+        provider: linear
+      commandtrait:
+        hideErrorMessages: true
+        commands:
+        - command: execute as @e[type=sheep,sort=nearest,limit=1,name=jeb_] at @s
+            run tp @s ~ ~5 ~
+          hand: LEFT
+        - command: execute as @e[type=sheep,sort=nearest,limit=1,name=jeb_] at @s
+            run particle minecraft:firework ~ ~ ~ 0.01 0.01 0.01 0.1 10 force
+          hand: LEFT
+        - command: execute as @e[type=sheep,sort=nearest,limit=1,name=jeb_] at @s
+            run particle minecraft:firework ~ ~ ~ 0.01 0.01 0.01 0.1 10
+          hand: LEFT
+        - command: execute as @e[type=sheep,sort=nearest,limit=1,name=jeb_] at @s
+            run effect give @s minecraft:slow_falling infinite
+          hand: LEFT
+        - delay: 10
+          command: execute as @e[type=sheep,sort=nearest,limit=1,name=jeb_] at @s
+            run particle minecraft:firework ~ ~ ~ 0.01 0.01 0.01 0.1 10 force
+          hand: LEFT
+        - command: execute as @e[type=sheep,sort=nearest,limit=1,name=jeb_] at @s
+            run playsound minecraft:item.firecharge.use ambient @p ~ ~ ~ 1 1 1
+          hand: LEFT
+        - op: true
+          command: dm open sheep_rainbow
+          hand: RIGHT
+          player: true
+      scoreboardtrait:
+        tags:
+        - in.eid_1
+        - in.eid_4
+        - in.checked
+        - in.eid_5
+        - in.eid_7
+        - in.eid_9
+        - CITIZENS_NPC
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,skintrait,mounttrait,lookclose,equipment,type,inventory,waypoints,targetable,sittrait,hologramtrait,woolcolor,gravity,location,age,sheeptrait,chunktickettrait
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '25':
+    name: '&d[NPC] 花艺师'
+    uuid: e380b167-fc09-4ab0-a45b-654507838b98
+    traits:
+      location:
+        bodyYaw: -90.74203
+        x: -494.3407
+        y: 92.0
+        z: -482.0284
+        yaw: -90.742
+        pitch: 0.0
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      lookclose:
+        range: 3.0
+        enabled: true
+        randomPitchRange:
+        - 1.7
+        - 1.9
+        randomYawRange:
+        - 0.0
+        - 360.0
+      skintrait:
+        signature: InEKHwobTuKQnXZwzloRtk15kqwMmbWDGbBQy3IJReKxSpzin0RWivrbb3na8LjAhhUmnnIKIcjbQ7AtNgI/aNW+MyZH8+xnchz4WTyTeGKCjZ3lhficPGG2mQ0CiWCcM2PfO3deGJr8PxdMzehLrdNxczLSMdrztRgA3BzEJBFbXJ0m9ts9ghd4UbrcAq8jQ4q6Y29PJ2EokR0YRJO2zZCBhVnuHX9KvVBR+HfcVXWbxtlmcPIPcymkEHeG/ucGxbqZNFKWucn/3kFr50zC5y2JXsNdURio1KZCNP+zsBZdTm+022zApeomuY0UcDCp+HTdL4LsoHNfoWUe//YLVWqmshnVUCL/WE/IXPJXnG3WMk+A8NUfav1WFe9Q/lHPTqx4n/UMkP1feTKmVx50xN6OMWuFjHiZInX7RMK8MyQCDQEw5LIqlZj9nW6F5TTYjPMOErlF5WJ7XolZgLEZ/oDa8mDEdFZwPVe8PhBgVz1BoGMbVTGA5mmvB51mkksM7XPvzoPmVCYWGS0sVF926uqE9iOW5NS8NMIxWfdtJl6HywSzvPJqK5kmtlxC5ieo43cnyDARQ63+3EvAOht5+F/Om26537cP6U+djSpN2z/AmackFeonwNp3dh/8D/7ynaRt1sP0cpyhTLkO+a6lEYFXajLylpVhF7rMmNdL2AM=
+        skinName: 79b8b978-bb8b-47da-9b20-d7999a93ac6e
+        textureRaw: ewogICJ0aW1lc3RhbXAiIDogMTY5OTg1Nzc2NjY5OSwKICAicHJvZmlsZUlkIiA6ICIzNjIxZWY1NjUzZWU0MGM3YTcxNGE1Nzk2YjllYjJjMiIsCiAgInByb2ZpbGVOYW1lIiA6ICJBbm5uZWtrayIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9jNjdjMDVkYTFhY2VkMDkyZDhhMzA2ZThjYTkwN2U3YTViMjZmNzdjNTIyMDAzYWU5MDliOGFhYWEyY2U3Zjc0IiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=
+      gravity: {
+        }
+      type: PLAYER
+      commandtrait:
+        commands:
+        - op: true
+          command: deluxemenu open npc_florist %player_name%
+          hand: RIGHT
+          player: true
+        - globalcooldown: 120
+          command: npc speak &r走过路过不要错过哟~
+          hand: RIGHT
+        - delay: 50
+          globalcooldown: 120
+          command: npc speak &r各种奇花异草看过来哦！
+          hand: RIGHT
+        - op: true
+          delay: 50
+          globalcooldown: 120
+          command: gamerule sendCommandFeedback false
+          hand: RIGHT
+          player: true
+        - op: true
+          delay: 50
+          globalcooldown: 120
+          command: playsound minecraft:entity.villager.trade player @a[name=%player_name%]
+            ~ ~ ~ 1 2 1
+          hand: RIGHT
+          player: true
+        - delay: 50
+          globalcooldown: 120
+          command: npc speak &r记得买一束鲜花送给你喜欢的人哦~
+          hand: RIGHT
+      scoreboardtrait:
+        tags:
+        - CITIZENS_NPC
+      attributetrait:
+        attributes:
+          minecraft:waypoint_transmit_range: 0.0
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,skinlayers,skintrait,mounttrait,lookclose,equipment,type,inventory,attributetrait,gravity,location
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+    metadata:
+      cached-skin-uuid-name: 79b8b978-bb8b-47da-9b20-d7999a93ac6e
+      activation-range: 3
+  '27':
+    metadata:
+      cached-skin-uuid-name: cf5b393b-5a0b-4bff-b9b4-6106d52f1686
+    name: '&e[NPC] 麦当劳工作人员'
+    uuid: 89a2b251-7c3a-4459-81fa-f42a4535a6d4
+    traits:
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: PLAYER
+      skintrait:
+        signature: JNBV7hQQlZv+YgKQrXLBTtPtkO1MABQ84oRXzGcg7GPIkKgCCcp/F3lzaPRiN4SIamO01sH9XYsZEQGi/djhWFHqSoRbPyBOmnsJGVtoN4qJsn/FkiTGngDBwSpNfhbUSescrgkc8ljCxGrgVL7msSR3oCVfvEh2dUA5iy01c+LQfAbK33xCjnlxpC677CRB6sNtKgl/+DaPuXAUuslPj5RFi9bIHGDgyiyP8slpmgoQUqbRX0kVs/4tjJTp28ApAV2WAJRMXYOlykKm6Zxa0/LXjHrauxZX+hBk0L9i+v4kvrRA/cTnx7/lZobugv7Rd4Lgc/ukmXRhcc0HGfr9iwwNZfOSWD0Qc9ChYa4kIXAnUPhu54zjGEbzfuQ6pTMAihdzTmhj4s7YPo8WYvpgmu7snlgRo7UwSwGB9WyC6p8qvpp2MPOa9N+HTlE54ehnft/M9yBhIyjHmGiGV63vVc2e4UurXxGIRah+GKwbWDln0l4a5b0tO9WBW4GF81cJ3F/YdhDfXuSGB9ect3lNCZZQeJr8Bfi20xdaXpO4IFP4PpDM0EI35mKy0j1mfBOWFCnoNYDNltObireCAhYpLPJttMHMy22dFCi9ZuWQ2tmRunaRNUjpy+YFGOfQP36bKfF9oVgbO9aZpnS3JhUhCLTbFUOyRrMkmxj2at0Db98=
+        skinName: cf5b393b-5a0b-4bff-b9b4-6106d52f1686
+        textureRaw: ewogICJ0aW1lc3RhbXAiIDogMTYyNzU4OTkyNTc1MiwKICAicHJvZmlsZUlkIiA6ICJkMGI4MjE1OThmMTE0NzI1ODBmNmNiZTliOGUxYmU3MCIsCiAgInByb2ZpbGVOYW1lIiA6ICJqYmFydHl5IiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzNmY2NmYjViMjUwODc0NDY2NjhjYWU3NjdhZmViMTAxY2Q5OTUzOTVmM2Y0MWM4ZTMwNDZiMWVkNjI5MjAwY2MiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ==
+      location:
+        bodyYaw: -56.728935
+        x: -535.5159
+        y: 64.0
+        z: 193.7
+        yaw: -56.7289
+        pitch: -4.0752
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      gravity: {
+        }
+      scoreboardtrait:
+        tags:
+        - CITIZENS_NPC
+      attributetrait:
+        attributes:
+          minecraft:waypoint_transmit_range: 0.0
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,skinlayers,mounttrait,skintrait,lookclose,equipment,type,inventory,attributetrait,gravity,location
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false
+  '26':
+    metadata:
+      cached-skin-uuid-name: 55e25eac-f92c-4f0d-b5df-e78e34e700b1
+    name: '&e[NPC] 麦当劳工作人员'
+    uuid: a40fabce-da5e-46fa-80e1-8faf86101e89
+    traits:
+      hologramtrait:
+        direction: BOTTOM_UP
+      lookclose:
+        enabled: true
+        randomPitchRange:
+        - 0.0
+        - 0.0
+        randomYawRange:
+        - 0.0
+        - 360.0
+      owner:
+        uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+      type: PLAYER
+      skintrait:
+        signature: PoA++CXsOEIC1IoPjtqyt4+k6cEvVYqOcjaRwFdVTy8idbM0Cyr5d/+pbdcRAkmtsQFtcpgzBI4ng6ThLJoA7GsWBmf/9QK3Tp9s4hMaAKPP2e1gzFr8h5C9C1/ZkLAHYOkeeIfS/eWiznlzrZuCsA33FuXGnJZCIxjXdAY4kMVzxg6OQdLgY8awGqYlfXVDrtq9WwgiIS35uujWUs6S30RZSXcbTkaQfcquu/m4ItVo9JsOcMcyK48iQIbGmenR2jkKVNlRa0HCzsgbfsPVGyjq3ZglrFZPY1KrQbWpYN7fpPXAH58atbsKggXWVVTcf04yWdAa2Xs31Sx+Bii9WuLsJmFUHWzkUeNLuE7XnZDRyuTHYKosH1tirA7zWWwKA5/3xstSMd7/9Z6D6B0JelVgzhOnJ37EfrKviYvq9LDPPlB3Q6aTNoUvtoZFXbO8qcB5UIruvS4T6ecZqix2m8OnNjb+aIHoOWzdgfxufTA+660mX/NwYPhAIZJemL/aoZmatrUQqTRjqbTDrWw0zxEUhLtzD2jGPpaJUupT8yBSy6H4DLAhKi5X2pWlii+q8jIq9Qyj4k3c+BmE/x0vHKdo+5W9P40VcSX+ggn6xoxt5geR/JWLPBF/S35CTGOuhZmu4MDqRsvveq1/QsIYSN/llk/fmDHPo+fwPFeiWo4=
+        skinName: 55e25eac-f92c-4f0d-b5df-e78e34e700b1
+        textureRaw: ewogICJ0aW1lc3RhbXAiIDogMTY1NTQyMDU2MDI5NywKICAicHJvZmlsZUlkIiA6ICJiMjdjMjlkZWZiNWU0OTEyYjFlYmQ5NDVkMmI2NzE0YSIsCiAgInByb2ZpbGVOYW1lIiA6ICJIRUtUMCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9iNDQxOTFjODFiNGJkYjNjZGUxZDIyNzgzZmQ2YTU2NDM5OGZiZGFiOWY5MmZjNTMwMzE2MDBmNDBkMjFjOWQ3IgogICAgfQogIH0KfQ==
+      location:
+        bodyYaw: -39.237076
+        x: -544.5237
+        y: 64.0
+        z: 193.7
+        yaw: -39.2371
+        pitch: -5.2032
+        worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
+      gravity: {
+        }
+      scoreboardtrait:
+        tags:
+        - CITIZENS_NPC
+      attributetrait:
+        attributes:
+          minecraft:waypoint_transmit_range: 0.0
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,skinlayers,skintrait,mounttrait,lookclose,equipment,type,inventory,attributetrait,hologramtrait,gravity,location
+    navigator:
+      speedmodifier: 1.0
+      avoidwater: false
+      usedefaultstuckaction: false

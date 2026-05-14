@@ -1,0 +1,201 @@
+# DynamicShop 消息配置文件
+# 支持使用 & 符号的颜色代码（例如 &a = 绿色，&c = 红色）
+# 支持使用 {占位符名称} 的占位符
+
+messages:
+  # 大多数消息前显示的前缀
+  prefix: "&6&lDynamicShop &7» "
+
+  # 通用消息
+  no-permission: "&c你没有权限执行该操作。"
+  reloaded: "&a插件配置已成功重载！"
+  invalid-number: "&c提供的数字无效。"
+
+  # 购买消息
+  purchase-success: "&a你以 &e{price} &a购买了 &e{item}&a！"
+  purchase-failed: "&c购买失败，请重试。"
+  not-enough-money: "&c你的钱不够！需要 &e{price}"
+  cannot-purchase: "&c该物品无法购买。"
+  out-of-stock: "&c该物品已缺货！"
+
+  # 出售消息
+  sold-item: "&a你以 &e{price} &a出售了 &e{item}&a！"
+  cannot-sell: "&c该物品无法出售。"
+  no-item-to-sell: "&c你没有可出售的 &e{item}&c。"
+  cannot-sell-damaged: "&c你不能出售已损坏的物品。"
+
+  # 分类消息
+  category-opened: "&a已打开分类：&e{category}"
+  category-empty: "&c该分类下没有可购买的物品。"
+  unknown-category: "&c未知分类：&e{category}"
+  list-categories: "&7有效分类："
+  cannot-access-special-category: "&c你不能直接访问此分类。"
+
+  # 分类 GUI 描述
+  category-lore-items: "&7物品数量：&a{count}"
+  category-lore-click-to-browse: "&e点击浏览！"
+  category-lore-no-items: "&c无可用物品"
+
+  # GUI 通用消息
+  gui-category-title: "&8&l商店分类"
+  gui-nav-previous: "&e上一页"
+  gui-nav-previous-lore: "&7点击返回"
+  gui-nav-previous-none: "&c没有上一页"
+  gui-nav-next: "&e下一页"
+  gui-nav-next-lore: "&7点击前进"
+  gui-nav-next-none: "&c没有下一页"
+  gui-nav-back: "&c&l返回分类"
+  gui-nav-back-lore: "&7返回分类选择"
+  gui-nav-search: "&b&l搜索物品"
+  gui-nav-search-lore: "&7打开搜索菜单"
+  gui-nav-page: "&e第 &f{page} &7/ &f{max} 页"
+  gui-nav-page-lore: "&7物品总数：&e{total}"
+  gui-nav-filter: "&6筛选选项"
+  gui-nav-filter-hidden: "&a当前：&f隐藏缺货"
+  gui-nav-filter-shown: "&c当前：&f显示全部"
+  gui-nav-filter-lore: "&7点击切换"
+
+  # 搜索消息
+  search-no-results: "&c未找到匹配搜索的物品。"
+  search-gui-title: "&8搜索结果：&f{count}"
+  search-gui-back-name: "&c&l返回分类"
+  search-gui-back-lore: "&7返回主菜单"
+  search-lore-buy: "&a购买价：&f{price}"
+  search-lore-sell: "&c出售价：&f{price}"
+  search-lore-stock: "&7库存：&f{stock}"
+  search-lore-stock-negative: "&c库存：{stock}（负库存）"
+  search-lore-out-of-stock: "&e缺货"
+  search-lore-buy-1: "&e左键点击：&7购买 1 个"
+  search-lore-buy-64: "&eShift+左键：&7购买 64 个"
+  search-lore-sell-1: "&c右键点击：&7出售 1 个"
+  search-lore-sell-64: "&cShift+右键：&7出售 64 个"
+  search-message-no-item-sell: "&c你没有 &f{item} &c可以出售！"
+
+  # 特殊商店消息（权限和服务器商店）
+  special-permission-success: "&a已授予权限：&e{permission}"
+  special-permission-failed: "&c授予权限失败，请联系管理员。"
+  special-permission-already-owned: "&c你已经拥有此权限。"
+
+  special-server-item-success: "&a你获得了：&e{identifier}"
+  special-server-item-failed: "&c发放物品失败，请联系管理员。"
+
+  unknown-special-item: "&c未知的特殊商店物品类型。"
+  cannot-sell-special-item: "&c你不能出售特殊物品！"
+
+  # 背包消息
+  inventory-full: "&c你的背包已满！"
+  item-added: "&a已向你的背包添加 &e{amount} 个 {item}&a。"
+
+  # 商店交易消息
+  bought-item: "&a购买了 &e{amount} 个 {item}&a，花费 &e{price}&a！"
+  sold-item-success: "&a出售了 &e{amount} 个 {item}&a，获得 &e{price}"
+  not-enough-items: "&c你没有可出售的 &e{item}&c！"
+  not-enough-money-need: "&c钱不够！需要 &e{price}"
+  search-enter-term: "&c请输入搜索词！"
+  transaction-cooldown: "&c请等待 &e{time} 秒 &c后再进行下一次交易。"
+
+  # 背包内物品描述（当商店打开时显示在玩家背包物品上）
+  lore-buy-price: "&7购买：&e{price}"
+  lore-sell-price: "&7出售：&e{price}"
+  lore-stock: "&7库存：&a{stock}"
+  lore-stock-negative: "&7库存：&c{stock}"
+  lore-out-of-stock: "&c&l缺货"
+  lore-click-to-sell-1: "&a右键点击出售 1 个"
+  lore-shift-click-to-sell-64: "&aShift+右键点击出售 64 个"
+
+  # 商店 GUI 物品描述（显示在商店菜单的物品上）
+  shop-lore-buy-price: "&7购买价格：&e{price}"
+  shop-lore-sell-price: "&7出售价格：&e{price}"
+  shop-lore-price-increase: "&7价格上涨：&c+{percent}%（&c缺货时每小时上涨 2%&7）"
+  shop-lore-low-stock: "&e低库存警告！"
+  shop-lore-left-click-buy: "&b左键点击：&7购买 1 个"
+  shop-lore-shift-left-click-buy: "&bShift+左键：&7购买 64 个"
+  shop-lore-right-click-sell: "&b右键点击：&7出售 1 个"
+  shop-lore-shift-right-click-sell: "&bShift+右键：&7出售 64 个"
+  shop-lore-left-click-buy-arrow: "&b左键点击 → 购买 1 个"
+  shop-lore-shift-left-click-buy-arrow: "&bShift+左键 → 购买 64 个"
+  shop-lore-right-click-sell-arrow: "&b右键点击 → 出售 1 个"
+  shop-lore-shift-right-click-sell-arrow: "&bShift+右键 → 出售 64 个"
+  shop-lore-price-increase-note: "&7（缺货时每小时上涨 2%）"
+  shop-lore-low-stock-emphasis: "&e&l库存紧张！"
+
+  # 管理员消息
+  admin-item-added: "&a已将 &e{item} &a添加到分类 &e{category} &a，价格为 &e${price}"
+  admin-item-removed: "&a已从商店移除 &e{item}&a。"
+  admin-permission-added: "&a已添加权限商店物品：&e{permission} &7（${price}）"
+  admin-server-shop-added: "&a已添加服务器商店物品：&e{identifier} &7（${price}）"
+  admin-must-hold-item: "&c你必须手持一个物品。"
+  admin-unknown-category: "&c未知分类：&e{category}"
+  admin-list-categories: "&7有效分类："
+  admin-price-negative: "&c价格必须大于或等于 0。"
+
+  # 管理员命令帮助说明
+  admin-help-header: "&e&lDynamicShop 管理员命令："
+  admin-help-reload: "&7/shopadmin reload"
+  admin-help-add-item: "&7/shopadmin add item <价格>"
+  admin-help-add-perm: "&7/shopadmin add perm <价格> <权限节点>"
+  admin-help-add-server-shop: "&7/shopadmin add server-shop <价格> <标识符>"
+
+  admin-add-usage-header: "&e用法："
+  admin-usage-add-item: "&c用法：/shopadmin add item <价格>"
+  admin-usage-add-perm: "&c用法：/shopadmin add perm <价格> <权限节点>"
+  admin-usage-add-server-shop: "&c用法：/shopadmin add server-shop <价格> <标识符>"
+
+  # 玩家商店消息
+  playershop-listed: "&a✓ &7已上架 &f{item} &7x{amount} &7，价格 &a${price}"
+  playershop-listed-success: "&7现在其他玩家可以从你的商店购买此物品了！"
+  playershop-reclaimed: "&a✓ &7已取回 &f{item} &7x{amount}"
+  playershop-purchased: "&a✓ &7已购买 &f{item} &7x{amount} &7，花费 &a${price}"
+  playershop-sold-notification: "&a✓ &7你的 &f{item} &7x{amount} &7已被 &e{buyer} &7购买，获得 &a${price}"
+  playershop-max-listings: "&c✗ &7你已达到最大上架数量 &c{max}&7！"
+  playershop-remove-items-first: "&7请先从你的商店中移除一些物品。"
+  playershop-shop-empty: "&7你的商店现在是空的。"
+  playershop-other-shop-empty: "&7该商店现在是空的。"
+  playershop-hold-item: "&c✗ &7请在手中持有要上架的物品！"
+  playershop-invalid-price: "&c✗ &7无效的价格！用法：&e/shop sell <价格>"
+  playershop-price-example: "&7示例：&e/shop sell 100"
+  playershop-price-must-be-positive: "&c✗ &7价格必须大于 0！"
+  playershop-no-permission-sell: "&c✗ &7你没有权限出售物品！"
+  playershop-listing-failed: "&c✗ &7上架物品失败！"
+  playershop-not-enough-money: "&c✗ &7你需要 &c${price} &7才能购买此物品！"
+  playershop-not-enough-space: "&c✗ &7背包空间不足！"
+  
+  # 库存限制消息
+  shop-stock-limited: "&c库存有限！你只买到了 &e{stock} &c个物品。"
+
+  # 基岩版/物品操作 GUI
+  item-action-title: "&8购买 / 出售"
+  item-action-buy-1: "&a&l购买 ×1"
+  item-action-buy-64: "&a&l购买 ×64"
+  item-action-sell-1: "&c&l出售 ×1"
+  item-action-sell-64: "&c&l出售 ×64"
+  item-action-back: "&7&l← 返回"
+
+# ================================================================
+# 翻译指南
+# ================================================================
+# 要将此文件翻译为其他语言：
+# 1. 翻译冒号后面的文本（保持 {占位符} 不变）
+# 2. 保留颜色代码（&a、&c 等）或根据需要修改
+# 3. 不要修改消息键（冒号前面的内容）
+#
+# 示例西班牙语翻译：
+# purchase-success: "&aCompraste &e{item} &apor &e{price}&a!"
+# ================================================================
+
+# ================================================================
+# 颜色代码参考
+# ================================================================
+# &0 = 黑色          &8 = 深灰色
+# &1 = 深蓝色        &9 = 蓝色
+# &2 = 深绿色        &a = 绿色
+# &3 = 深青色        &b = 青色
+# &4 = 深红色        &c = 红色
+# &5 = 深紫色        &d = 浅紫色
+# &6 = 金色          &e = 黄色
+# &7 = 灰色          &f = 白色
+#
+# &l = 粗体          &o = 斜体
+# &n = 下划线        &m = 删除线
+# &k = 乱码          &r = 重置
+# ================================================================

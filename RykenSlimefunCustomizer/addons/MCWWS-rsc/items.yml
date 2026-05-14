@@ -1,0 +1,40 @@
+MCWWS_KETCHUP:
+  item_group: MCWWS_MERCHANDISE
+  recipe_type: MCWWS_MERCHANDISE
+  placeable: false
+  script: MCWWS_KETCHUP
+  item:
+    name: "§x§F§8§3§1§2§F🥫 番茄酱"
+    material_type: saveditem
+    material: MCWWS_KETCHUP
+    lore:
+    - §e
+    - §a🍗 单次回复 §b2 §a饥饿值
+    - §a🍗 与§a§n特定食物/饮品§a搭配额外恢复 §b1 §a饥饿值 §8📘🔍
+    - §a☕ 增加 §b3 §a饱和度
+    - §x§E§0§6§6§A§2🫧 赋予/消除 §x§E§0§6§6§D§F§n状态效果§r §8📘🔍
+    - §x§D§D§9§3§5§2🧪 剩余 §x§B§F§D§D§5§232§8/32 §x§D§D§9§3§5§2次使用
+    - §e
+    - §7🔒 已授权§7§kﷲ
+    - §c🚫🫳 不可放置§c§kﷲ
+    - §c🚫📚 不可堆叠§c§kﷲ
+    - §e消耗性商品
+
+MCWWS_CHIPS:
+  item_group: MCWWS_MERCHANDISE
+  recipe_type: MCWWS_MERCHANDISE
+  placeable: false
+  script: MCWWS_CHIPS
+  item:
+    name: "§e🍟 薯条"
+    material_type: saveditem
+    material: MCWWS_CHIPS
+    lore:
+    - §e
+    - §a🍗 回复 §b5 §a饥饿值
+    - §a☕ 增加 §b6 §a饱和度
+    - §x§D§5§C§B§4§5🧂 使用蘸料 §e番茄酱 §x§D§5§C§B§4§5额外回复 §b2 §x§D§5§C§B§4§5饥饿值 §8📘🔍
+    - §e
+    - §7🔒 已授权§7§kﷲ
+    - §c🚫🫳 不可放置§c§kﷲ
+    - §e消耗性商品

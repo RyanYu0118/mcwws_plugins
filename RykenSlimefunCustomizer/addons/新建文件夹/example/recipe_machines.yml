@@ -1,0 +1,47 @@
+# RykenSlimeCustomizer Wiki: https://rsc.hiworldmc.com/#/file/recipe_machines
+RSC_EXAMPLE_RECIPE_MACHINE:
+  item_group: rsc_example_sub_group
+  item:
+    name: "&e示例配方机器"
+    material: beacon
+  recipe_type: ENHANCED_CRAFTING_TABLE
+  recipe:
+    1:
+      material_type: slimefun
+      material: RSC_EXAMPLE_RECIPED_ITEM_5
+    2:
+      material_type: slimefun
+      material: RSC_EXAMPLE_RECIPED_ITEM_6
+  capacity: 1000
+  input: [10, 11]
+  output: [15, 16]
+  energyPerCraft: 100
+  speed: 2
+  recipes:
+    example:
+      seconds: 10
+      input:
+        1:
+          material_type: slimefun
+          material: RSC_EXAMPLE_RECIPED_ITEM_5
+        #可添加更多输入物品
+      output:
+        1:
+          material_type: slimefun
+          material: RSC_EXAMPLE_RECIPED_ITEM_6
+    example_2:
+      seconds: 5
+      input:
+        1:
+          material_type: slimefun
+          material: RSC_EXAMPLE_RECIPED_ITEM_6
+      chooseOne: true
+      output:
+        1:
+          chance: 10
+          material_type: slimefun
+          material: RSC_EXAMPLE_MACHINE
+        2:
+          chance: 15
+          material_type: slimefun
+          material: RSC_EXAMPLE_RECIPED_ITEM_5

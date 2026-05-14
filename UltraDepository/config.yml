@@ -1,0 +1,113 @@
+# UltraDepository - 瓒呯骇浠撳簱鎻掍欢锛屾敮鎸佽瀹氫笉鍚岀墿鍝佺殑瀛樺偍浠撳簱銆�
+# 椤圭洰鍦板潃: https://github.com/CarmJos/UltraDepository
+# 涓嬭浇鍦板潃: https://github.com/CarmJos/UltraDepository/releases
+
+version: 1.3.9
+
+debug: false
+
+# 缁熻鏁版嵁璁惧畾
+# 璇ラ�夐」鐢ㄤ簬甯姪寮�鍙戣�呯粺璁℃彃浠剁増鏈笌浣跨敤鎯呭喌锛屼笖缁濅笉浼氬奖鍝嶆�ц兘涓庝娇鐢ㄤ綋楠屻��
+# 褰撶劧锛屾偍涔熷彲浠ラ�夋嫨鍦ㄨ繖閲屽叧闂紝鎴栧湪plugins/bStats涓嬬殑閰嶇疆鏂囦欢涓叧闂��
+metrics: true
+
+# 妫�鏌ユ洿鏂拌瀹�
+# 璇ラ�夐」鐢ㄤ簬鎻掍欢鍒ゆ柇鏄惁瑕佹鏌ユ洿鏂帮紝鑻ユ偍涓嶅笇鏈涙彃浠舵鏌ユ洿鏂板苟鎻愮ず鎮紝鍙互閫夋嫨鍏抽棴銆�
+# 妫�鏌ユ洿鏂颁负寮傛鎿嶄綔锛岀粷涓嶄細褰卞搷鎬ц兘涓庝娇鐢ㄤ綋楠屻��
+check-update: true
+
+# 瀛樺偍鐩稿叧閰嶇疆
+# 娉ㄦ剰锛氬瓨鍌ㄩ厤缃笉浼氶�氳繃閲嶈浇鎸囦护鐢熸晥锛屽鏈変慨鏀硅閲嶆柊鍚姩鏈嶅姟鍣ㄣ��
+storage:
+  
+  # 瀛樺偍鏂瑰紡锛屽彲閫� [ yaml | json | mysql(鎺ㄨ崘) ]
+  method: yaml
+  
+  # 閫夋嫨 yaml/json 瀛樺偍鏂瑰紡鏃剁殑瀛樺偍璺緞
+  # 榛樿涓虹浉瀵硅矾寰勶紝鐩稿浜庢彃浠剁敓鎴愮殑閰嶇疆鏂囦欢澶逛笅鐨勮矾寰�
+  # 鏀寔缁濆璺緞锛屽 鈥�/var/data/ud/"(linux) 鎴� "D:\data\ud\"(windows)
+  # 浣跨敤缁濆璺緞鏃惰娉ㄦ剰鏉冮檺闂
+  file-path: data
+  
+  # 閫夋嫨 database 瀛樺偍鏂瑰紡鏃剁殑鏁版嵁搴撻厤缃�
+  mysql:
+    # 鏁版嵁搴撻┍鍔ㄨ矾寰�
+    driver: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/<db-name>
+    table: ud_data
+    username: username
+    password: password
+
+
+# 鐜╁鏀堕泦閰嶇疆
+# 鐢ㄤ簬鍐冲畾鐜╁鍦ㄥ摢浜涙儏鍐典笅鐨勭墿鍝佷細鑷姩鏀惧叆鑳屽寘
+collect:
+  pickup: true
+  kill: true
+  break: true
+
+
+sounds:
+  collect: ENTITY_EXPERIENCE_ORB_PICKUP:0.5
+  takeout: ENTITY_HORSE_ARMOR:0.5
+  sell-success: ENTITY_VILLAGER_CELEBRATE
+  sell-fail: ENTITY_VILLAGER_NO
+  gui-click: UI_BUTTON_CLICK
+
+# 閫氱敤閰嶇疆
+general:
+  
+  # 閽堝鍙嚭鍞墿鍝佺殑棰濆浠嬬粛
+  # 灏嗘坊鍔犲埌鑳屽寘鐣岄潰鍐呯殑鐗╁搧涓婏紝閬垮厤閲嶅閰嶇疆
+  additional-lore:
+    available-for-sale:
+    - ' '
+    - '&f仓库内数量 &a%(amount)'
+    - '&f该物品单价 &a%(price)'
+    - '&f今日可出售 &a%(remain)&8/%(limit)'
+    # 鍙嚭鍞墿鍝佺殑浠嬬粛
+    not-for-sale:
+    - ' '
+    - '&f仓库内数量 &a%(amount)'
+  # 閽堝涓嶅彲鍑哄敭鐨勭墿鍝佺殑棰濆浠嬬粛
+  # (褰� 鏈畨瑁呯粡娴庢彃浠� 鎴� 姣忔棩鍙敭鍑烘暟閲�<=0 鎴� 鍗曚环<=0 鏃跺垽鏂负涓嶅彲鍑哄敭)
+  
+  
+  # 鎻愮ず鐜╁鐐瑰嚮琛屼负鐨勪粙缁�
+  # 灏嗘坊鍔犲埌鑳屽寘鐣岄潰鍐呯殑鐗╁搧涓婏紝閬垮厤閲嶅閰嶇疆
+  click-lore:
+    available-for-sale:
+    - ' '
+    - '&a&l左键点击 &8| &f按量售出该物品'
+    - '&a&l右键点击 &8| &f取出一组该物品'
+    not-for-sale:
+    - ' '
+    - '&a&l右键点击 &8| &f取出一组该物品'
+  # 閽堝涓嶅彲鍑哄敭鐨勭墿鍝佺殑棰濆浠嬬粛
+  # (褰� 鏈畨瑁呯粡娴庢彃浠� 鎴� 姣忔棩鍙敭鍑烘暟閲�<=0 鎴� 鍗曚环<=0 鏃跺垽鏂负涓嶅彲鍑哄敭)
+  
+  # 鍞嚭鐣岄潰鐨勯厤缃�
+  sell-gui:
+    title: '&8出售 %(item_name)'
+    items:
+      add:
+        type: GREEN_STAINED_GLASS_PANE
+        name: '&a增加 %(amount) 个'
+      remove:
+        type: RED_STAINED_GLASS_PANE
+        name: '&c减少 %(amount) 个'
+      confirm:
+        type: EMERALD
+        name: '&a确认售出'
+        lore:
+        - ' '
+        - '&7您将售出 &r%(item_name) &8x &f%(amount)'
+        - '&7共计获得 &e%(money) &7元作为回报。'
+        - ' '
+        - '&a&l点击确认售出'
+      cancel:
+        type: REDSTONE
+        name: '&c取消售出'
+        lore:
+        - ' '
+        - '&c&l点击取消售出'

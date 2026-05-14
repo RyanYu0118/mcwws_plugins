@@ -1,0 +1,38 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 127.0.0.1
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 0
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1693153815506
+  login: 1693147899804
+money: '18294.0'
+last-account-name: STicK_1k
+logoutlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -709.1372174799993
+  y: 76.07135709076123
+  z: 1363.3408532251772
+  yaw: -61.6982421875
+  pitch: 90.0
+lastlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: 754.8533210539221
+  y: 89.3490843250921
+  z: -359.69242956104637
+  yaw: 36.109375
+  pitch: 23.752878189086914

@@ -1,0 +1,76 @@
+# Plugin developed by GFelberg
+
+# Thanks for downloading my plugin. For more plugins, don't forget to look my updates!
+# If you find any bugs or ideas to the plugin, pm me at spigot.
+
+# Placeholders
+
+# %back_prefix% : Gets the Back prefix
+# %back_delaytime% : Gets the remaining time for use the Back Command, if cooldown is enabled.
+# %back_cost% : Gets the teleport cost
+# %back_withdraw% : Gets the money taken from the player account
+
+# Configuration 1.0
+# This configuration will display the Back Messages
+Back:
+  Prefix: "&b[&eBack&b]&r"
+  Message: "%back_prefix% &eVous avez été téléporté à votre dernière position"
+  Failed: "%back_prefix% &cVotre téléportation a échoué. Aucune position trouvée!"
+  NoPermission: "%back_prefix% &cVous n'avez pas la permission d'exécuter cette commande!"
+  Reload: "%back_prefix% &aPlugin rechargé avec succès!"
+
+# Configuration 1.1
+# This configuration will display the Help Page Messages
+Help:
+  Page: "&eAffiche cette page"
+  Back: "&eTéléporte à votre dernière position"
+  Backlist: "&eListe tous les mondes bloqués"
+  Reload: "&eRecharge le plugin"
+
+# Configuration 1.2
+# This configuration will display the Cooldown Messages
+
+# If the player has "back.bypass" permission, the player will be able to use the command even with the cooldown enabled.
+Cooldown:
+  Enable: false
+  Time: 10
+  Message: "%back_prefix% &cVous devez attendre &b%back_delaytime% &csecondes avant d'utiliser cette commande!"
+
+# Configuration 1.3
+# This configuration will display the ClickOption System (Only for Server Versions equal or above 1.16)
+ClickOption:
+  Enable: false
+  Messages:
+    - ""
+    - "%back_prefix% #FF5555[Cliquez ici pour l'emplacement de la mort]"
+    - ""
+
+# Configuration 1.4
+# This configuration will display the WorldBlacklist Messages
+
+# If a player dies and use the command, the player will be blocked if the world which he died is
+# in the list below. The command will only works if he dies inside an allowed world.
+WorldBlacklist:
+  Enable: false
+  DisabledMessage: "%back_prefix% &cLa liste des mondes est désactivée dans la configuration!"
+  BlockedWorld: "%back_prefix% &cVous êtes mort dans un monde où cette commande est bloquée par un administrateur!"
+  NoWorlds: "%back_prefix% &cAucun monde trouvé dans la liste!"
+  Title: "&bMondes Bloqués"
+  Worlds:
+    - 'world1'
+    - 'world2'
+    - 'world3'
+
+# Configuration 1.5
+# This configuration will display the Vault Messages
+
+# You must have the Vault and an Economy Plugin to works. If you don't have one of them, the default
+# method will be applied.
+
+# If the player has "back.bypass.economy" permission, the player will be able to use the command
+# without withdraw money if the Vault is enabled.
+Vault:
+  Enable: false
+  TeleportCost: 10
+  Withdraw: "&e$%back_withdraw% &bont été retirés de votre compte"
+  NoMoney: "&cVous avez besoin de $%back_cost% pour vous téléporter!"

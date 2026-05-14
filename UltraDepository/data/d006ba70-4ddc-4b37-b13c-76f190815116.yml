@@ -1,0 +1,95 @@
+date: 20260428
+depositories:
+  logger:
+    SPRUCE_LOG:
+      amount: 13166
+    SALMON:
+      amount: 11
+    COD:
+      amount: 298
+    SPRUCE_SAPLING:
+      amount: 209
+    PUFFERFISH:
+      amount: 3
+  farmer:
+    VINE:
+      amount: 1
+    WHEAT_SEEDS:
+      amount: 294
+    POTATO:
+      amount: 6
+    BAMBOO:
+      amount: 2
+    SWEET_BERRIES:
+      amount: 74
+    CACTUS:
+      amount: 2
+    SUGAR_CANE:
+      amount: 10
+    CHORUS_FRUIT:
+      amount: 55
+    CARROT:
+      amount: 37
+    WHEAT:
+      amount: 20
+    KELP:
+      amount: 494
+  hunter:
+    ROTTEN_FLESH:
+      amount: 1864
+    EGG:
+      amount: 19
+    MAGMA_CREAM:
+      amount: 17
+    PORKCHOP:
+      amount: 5
+    SPIDER_EYE:
+      amount: 208
+    ENDER_PEARL:
+      amount: 10
+    FEATHER:
+      amount: 56
+    INK_SAC:
+      amount: 39
+    ARROW:
+      amount: 749
+    GUNPOWDER:
+      amount: 409
+    CHICKEN:
+      amount: 10
+    SLIME_BALL:
+      amount: 91
+    STRING:
+      amount: 544
+    LEATHER:
+      amount: 542
+    RABBIT:
+      amount: 8
+    BONE:
+      amount: 730
+    BEEF:
+      amount: 19
+    MUTTON:
+      amount: 29
+  fisherman:
+    TROPICAL_FISH:
+      amount: 2
+  miner:
+    IRON_ORE:
+      amount: 64
+    REDSTONE:
+      amount: 260
+    DIAMOND:
+      amount: 62
+    IRON_INGOT:
+      amount: 2
+    COBBLESTONE:
+      amount: 193
+    FLINT:
+      amount: 33
+    COAL:
+      amount: 6611
+    GLOWSTONE_DUST:
+      amount: 64
+    GOLD_INGOT:
+      amount: 33

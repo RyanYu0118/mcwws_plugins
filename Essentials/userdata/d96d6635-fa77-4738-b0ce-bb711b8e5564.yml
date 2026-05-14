@@ -1,0 +1,38 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 127.0.0.1
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 1693922532862
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1693923454940
+  login: 1693920275951
+money: '30.0'
+last-account-name: Leo_the_martian
+lastlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -539.6999999880791
+  y: 94.0
+  z: -1099.300000011921
+  yaw: -13.865180015563965
+  pitch: 23.81233024597168
+logoutlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -622.6376448662153
+  y: 73.0
+  z: -1476.1083762383473
+  yaw: 170.79901123046875
+  pitch: 56.73896408081055

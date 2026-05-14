@@ -1,0 +1,1121 @@
+Messages:
+  1:
+    LeaveMessage: 您已离开 %residence.
+    EnterMessage: 欢迎 %player 来到 %residence！该领地所有者为 %owner.
+  2:
+    LeaveMessage: Now leaving %residence.
+    EnterMessage: Welcome %player to %residence, owned by %owner.
+  3:
+    LeaveMessage: Now leaving %residence.
+    EnterMessage: Welcome %player to %residence, owned by %owner..{sound_ENTITY_ALLAY_HURT-1-1}.
+  4:
+    LeaveMessage: 您已离开 %residence.
+    EnterMessage: 欢迎来到试验区！
+Flags:
+  1:
+    container: true
+    ignite: true
+    move: true
+    trade: true
+    shear: true
+    mobkilling: true
+    build: false
+    use: true
+    destroy: true
+    vehicledestroy: true
+    leash: true
+    animalkilling: true
+  2:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+  3:
+    container: true
+    ignite: true
+    move: true
+    trade: true
+    shear: true
+    mobkilling: true
+    build: true
+    use: true
+    destroy: true
+    vehicledestroy: true
+    leash: true
+    animalkilling: true
+  4:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    build: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+  5:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    monsters: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    place: true
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+  6:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    monsters: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+  7:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    monsters: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    build: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+  8:
+    container: true
+    ignite: false
+    door: true
+    use: true
+    craft: true
+    sun: true
+    animalkilling: false
+    button: true
+    hook: false
+    explode: false
+    vehicledestroy: false
+    trample: false
+    place: true
+    wspeed2: true
+    table: true
+    shear: false
+    firespread: false
+    destroy: true
+    monsters: false
+    pvp: false
+    pressure: true
+    build: true
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+  9:
+    container: false
+    bed: true
+    ignite: true
+    door: true
+    use: true
+    anvil: true
+    craft: true
+    animalkilling: false
+    hook: false
+    falldamage: false
+    explode: false
+    copper: false
+    vehicledestroy: true
+    shoot: true
+    place: true
+    animals: false
+    nmonsters: true
+    table: true
+    wspeed2: true
+    brush: true
+    chorustp: true
+    move: true
+    shear: true
+    nanimals: false
+    firespread: false
+    night: true
+    destroy: true
+    anvilbreak: false
+    monsters: false
+    pvp: true
+    pressure: true
+    brew: true
+    feed: false
+    fly: true
+    trade: true
+    beacon: true
+    mobkilling: true
+    dragongrief: true
+    sanimals: true
+    anchor: true
+    tnt: true
+    leash: true
+    pistonprotection: true
+    tp: true
+    creeper: false
+  10:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    monsters: false
+    pvp: false
+    animalkilling: false
+    iceform: false
+    hook: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+  11:
+    container: true
+    ignite: false
+    door: true
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    monsters: false
+    pvp: false
+    pressure: true
+    animalkilling: false
+    hook: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    place: true
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+    wspeed2: true
+  12:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    monsters: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    mobkilling: true
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+    wspeed2: true
+  13:
+    container: true
+    ignite: false
+    waterflow: true
+    use: false
+    sun: true
+    animalkilling: false
+    hook: false
+    explode: false
+    cmonsters: false
+    vehicledestroy: false
+    place: false
+    nmonsters: false
+    table: true
+    wspeed2: true
+    shear: false
+    firespread: false
+    destroy: true
+    monsters: false
+    pvp: false
+    pressure: true
+    build: true
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+  14:
+    container: true
+    ignite: false
+    door: true
+    damage: false
+    shear: false
+    firespread: false
+    use: true
+    destroy: true
+    pvp: false
+    animalkilling: false
+    dryup: true
+    hook: false
+    build: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    place: true
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+    table: true
+    wspeed2: true
+  15:
+    container: true
+    bed: true
+    ignite: false
+    safezone: true
+    egg: false
+    use: true
+    craft: true
+    icemelt: false
+    healing: true
+    hook: false
+    explode: false
+    cake: false
+    snowtrail: false
+    vehicledestroy: false
+    shoot: false
+    animals: false
+    wspeed2: true
+    flow: false
+    rain: false
+    chorustp: true
+    grow: true
+    mobitemdrop: true
+    firespread: false
+    night: false
+    destroy: false
+    monsters: false
+    pvp: false
+    pressure: false
+    lever: true
+    brew: true
+    nomobs: true
+    feed: true
+    beacon: false
+    canimals: false
+    sanimals: false
+    diode: false
+    tnt: false
+    snowball: true
+    pistonprotection: true
+    creeper: false
+    note: true
+    damage: false
+    anvil: true
+    jump3: true
+    riding: true
+    animalkilling: false
+    hotfloor: false
+    button: true
+    iceform: false
+    falldamage: false
+    cmonsters: false
+    place: true
+    commandblock: true
+    shear: false
+    anvilbreak: false
+    command: true
+    spread: false
+    dye: false
+    mobkilling: true
+    build: false
+    chat: true
+    flowerpot: true
+    anchor: false
+    leash: false
+    tp: true
+    smonsters: false
+  16:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+    wspeed2: true
+  17:
+    container: true
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    craft: true
+    destroy: true
+    monsters: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    place: true
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+    wspeed2: true
+    table: true
+  18:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    monsters: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    place: true
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+    wspeed2: true
+  19:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    night: true
+    destroy: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    build: true
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+  20:
+    container: false
+    ignite: false
+    door: true
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    monsters: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+  21:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    place: true
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+    wspeed2: true
+  22:
+    container: true
+    ignite: false
+    note: true
+    shear: true
+    firespread: false
+    use: false
+    destroy: true
+    pvp: false
+    animalkilling: false
+    hook: false
+    build: true
+    explode: false
+    vehicledestroy: false
+    place: true
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+    wspeed2: true
+  23:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: true
+    jump3: true
+    destroy: true
+    pvp: false
+    lever: true
+    sun: true
+    animalkilling: false
+    button: true
+    hook: false
+    explode: false
+    vehicledestroy: false
+    place: true
+    tnt: true
+    leash: false
+    pistonprotection: true
+    tp: true
+    wspeed2: true
+    creeper: false
+  24:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    decay: false
+    monsters: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    build: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    animals: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    day: true
+    creeper: false
+Residences:
+  '111':
+    TPLoc: -1285.0:63.0:-1114.0:0.0:0.0
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        b83aeecb-f207-4261-b851-246548694b44: 1
+      AreaFlags: 2
+      OwnerUUID: b83aeecb-f207-4261-b851-246548694b44
+      OwnerLastKnownName: Polaris0v0
+    CreatedOn: 1668595244445
+    Areas:
+      main: -1285:63:-1114:-1285:63:-1114
+  auto_crop_base:
+    TPLoc: -244.51:70.0:118.52:13.95:-179.14
+    Messages: 2
+    BlockSellPrice: 0.25
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719134144744
+    Areas:
+      main: -292:68:81:-239:172:119
+  cottage_in_wild:
+    TPLoc: 1595.5:64.0:7974.5:0.0:0.0
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 5
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1660707355288
+    Areas:
+      main: 1578:64:7954:1611:87:7993
+  deepflat:
+    TPLoc: 720.5:63.0:745.5:0.0:0.0
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        4f6bcced-a7be-4b4a-bd23-bcd54f3e4956: 1
+      AreaFlags: 6
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1604721826724
+    Areas:
+      main: 687:4:721:752:175:768
+  dungeons_1:
+    Messages: 2
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719135035486
+    Areas:
+      main: -68:-47:-85:92:57:97
+  earth_engine_1:
+    TPLoc: -1334.5:154.0:215.5:0.0:0.0
+    Messages: 2
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 7
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1718877282066
+    Areas:
+      main: -1555:63:-5:-1115:182:434
+  emerald_farm:
+    TPLoc: -1433.5:237.0:-421.5:0.0:0.0
+    Messages: 2
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719066936510
+    Areas:
+      main: -1447:64:-432:-1421:239:-413
+  farmland:
+    TPLoc: -211.5:64.0:-252.49:2.85:-179.68
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 8
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1663601147532
+    Areas:
+      main: -288:63:-510:-156:110:-225
+  floating_city:
+    TPLoc: 806.46:237.0:5733.57:-5.25:-179.4
+    Messages: 2
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 7
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1721121306594
+    Areas:
+      main: 569:116:5495:1044:275:5974
+  ghast_farm_o:
+    Messages: 2
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719066636908
+    Areas:
+      main: -58:178:-2102:-49:184:-2090
+  guardian_farm_o:
+    TPLoc: -237.0:167.0:1614.81:61.65:-179.4
+    Messages: 2
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719124359328
+    Areas:
+      main: -270:0:1586:-211:171:1645
+  halloween_island:
+    TPLoc: -323.49:66.0:2595.01:1.65:-89.42
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 9
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1666001074818
+    Areas:
+      main: -624:-64:2432:-113:319:2943
+  hotel_on_snowy_mountain_1:
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 10
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1692276677082
+    Areas:
+      main: -888:247:-331:-872:276:-288
+  industrial_base_o:
+    TPLoc: -417.5:65.0:-24.5:0.0:0.0
+    Messages: 2
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719067176003
+    Areas:
+      main: -469:57:-104:-368:110:54
+  items_storage_and_exchange_centre:
+    TPLoc: -204.49:70.0:196.51:3.15:-179.7
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 11
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1662034471911
+    Areas:
+      main: -223:40:171:-145:281:287
+  japanese_zephyre_cottage:
+    TPLoc: -350.5:68.0:357.5:0.0:0.0
+    Messages: 2
+    BlockSellPrice: 0.25
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719133280504
+    Areas:
+      main: -363:63:348:-339:71:365
+  lake_bank:
+    TPLoc: -445.02:66.0:169.36:-2.41:180.07
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        4f6bcced-a7be-4b4a-bd23-bcd54f3e4956: 1
+      AreaFlags: 12
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1605274721805
+    Areas:
+      main: -486:63:87:-392:150:198
+  library_garden:
+    TPLoc: -464.48:65.0:219.47:34.95:0.82
+    Messages: 3
+    BlockSellPrice: 0.3
+    StoredMoney: 2.0
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 13
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1700121225258
+    Areas:
+      main: -517:63:203:-409:127:345
+  macdonalds_qimeng:
+    Messages: 2
+    BlockSellPrice: 0.25
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719132766625
+    Areas:
+      main: -548:63:177:-514:75:198
+  medieval_city:
+    TPLoc: -504.5:90.0:-526.5:-2.7:90.44
+    Messages: 2
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 14
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719065338382
+    Areas:
+      main: -1225:-62:-922:-368:228:-360
+  minecraft_mansion:
+    TPLoc: -37.03:64.06:11.13:0.9:0.72
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 15
+      OwnerUUID: 00000000-0000-0000-0000-000000000000
+      OwnerLastKnownName: Server_Land
+    CreatedOn: 1604718617319
+    Areas:
+      main: -64:63:-64:64:247:64
+  minecraft_university:
+    TPLoc: -152.0:66.0:352.49:-1.95:-1.95
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 16
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1662206902483
+    Areas:
+      main: -327:65:352:169:257:929
+  mining_area:
+    TPLoc: -207.5:83.0:-932.52:1.2:-164.4
+    Messages: 1
+    BlockSellPrice: 0.3
+    Subzones:
+      hole:
+        Messages: 2
+        Subzones:
+          '1':
+            Messages: 2
+            Permissions:
+              PlayerFlags:
+                d006ba70-4ddc-4b37-b13c-76f190815116: 3
+              AreaFlags: 4
+              OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+              OwnerLastKnownName: Ryan_yu__
+            CreatedOn: 1720344695816
+            Areas:
+              '1': -193:79:-953:-191:82:-950
+        Permissions:
+          PlayerFlags:
+            d006ba70-4ddc-4b37-b13c-76f190815116: 3
+          AreaFlags: 4
+          OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+          OwnerLastKnownName: Ryan_yu__
+        CreatedOn: 1720344562874
+        Areas:
+          hole: -193:79:-953:-191:82:-950
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1694017257452
+    Areas:
+      main: -229:56:-1030:-164:130:-932
+  misakas_house:
+    TPLoc: -236.22:74.06:51.36:15.6:-136.05
+    Messages: 2
+    BlockSellPrice: 0.25
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719147955457
+    Areas:
+      main: -246:63:47:-219:91:66
+  original_house:
+    TPLoc: -216.53:70.06:129.45:6.15:-178.8
+    Messages: 2
+    BlockSellPrice: 0.25
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: 00000000-0000-0000-0000-000000000000
+      OwnerLastKnownName: Server_Land
+    CreatedOn: 1719133950702
+    Areas:
+      main: -219:69:113:-204:74:131
+  pixel_centre:
+    TPLoc: -335.0:64.0:172.46:-1.95:-0.21
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 2
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1662043973060
+    Areas:
+      '1': -371:55:171:-325:148:256
+      main: -371:55:170:-325:148:256
+  plant_processing_and_dye_technology_base:
+    TPLoc: -157.52:66.0:147.47:0.75:89.1
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 17
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1662033679863
+    Areas:
+      main: -195:65:71:-145:127:163
+  qimeng_concert_hall:
+    TPLoc: -270.56:68.06:186.45:-4.05:51.3
+    Messages: 2
+    BlockSellPrice: 0.25
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719133490301
+    Areas:
+      main: -314:67:177:-270:91:212
+  shopping_mall:
+    TPLoc: -217.99:65.0:-127.46:-1.65:179.4
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 18
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1668670901177
+    Areas:
+      main: -304:0:-224:-147:319:-34
+  siheyuan:
+    TPLoc: 110.5:67.0:1303.5:0.0:0.0
+    Messages: 2
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        b83aeecb-f207-4261-b851-246548694b44: 3
+      AreaFlags: 19
+      OwnerUUID: b83aeecb-f207-4261-b851-246548694b44
+      OwnerLastKnownName: Polaris0v0
+    CreatedOn: 1700153938750
+    Areas:
+      main: 44:66:1255:175:86:1350
+  sky_city:
+    TPLoc: 1228.5:216.0:5733.5:0.0:0.0
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 20
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1661660831863
+    Areas:
+      main: 1173:117:5678:1283:232:5788
+  slime_farm:
+    TPLoc: 142.78:-48.0:-1938.15:2.1:-45.85
+    Messages: 2
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719063938164
+    Areas:
+      main: 139:-64:-1941:196:-48:-1900
+  squid_farm:
+    TPLoc: -1107.52:-53.0:-154.5:2.1:-178.5
+    Messages: 2
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719124065209
+    Areas:
+      main: -1150:-54:-206:-1099:62:-150
+  stable_qimeng:
+    TPLoc: -192.51:63.94:45.5:-3.15:90.0
+    Messages: 2
+    BlockSellPrice: 0.25
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719134233834
+    Areas:
+      main: -206:63:37:-186:92:54
+  technology_mansion:
+    TPLoc: -405.0:65.0:355.51:-1.35:-0.0
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 21
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1662084334277
+    Areas:
+      main: -473:64:349:-391:222:431
+  tp_old:
+    TPLoc: -230.5:69.1:145.5:0.0:0.0
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        4f6bcced-a7be-4b4a-bd23-bcd54f3e4956: 1
+      AreaFlags: 2
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1582114167169
+    Areas:
+      main: -230:69:144:-230:69:144
+  tree_farm:
+    TPLoc: -211.49:74.0:-526.55:-2.7:179.87
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 22
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1694014159720
+    Areas:
+      main: -287:74:-901:-136:127:-514
+  tree_house:
+    TPLoc: -318.53:64.0:236.51:2.7:-90.75
+    Messages: 2
+    BlockSellPrice: 0.25
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719133676217
+    Areas:
+      main: -324:63:220:-277:107:253
+  trial_area:
+    TPLoc: 504.87:67.0:225.94:-0.9:90.14
+    Messages: 4
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 23
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1662462191681
+    Areas:
+      main: 416:-64:0:573:319:414
+  xmas_island:
+    Messages: 2
+    BlockSellPrice: 0.3
+    Subzones:
+      lobby:
+        Messages: 2
+        Permissions:
+          PlayerFlags:
+            d006ba70-4ddc-4b37-b13c-76f190815116: 3
+          AreaFlags: 24
+          OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+          OwnerLastKnownName: Ryan_yu__
+        CreatedOn: 1733837335942
+        Areas:
+          lobby: -1886:-63:2563:-1563:62:2888
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 3
+      AreaFlags: 4
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1733837228680
+    Areas:
+      main: -2576:-64:2400:-1393:319:3471

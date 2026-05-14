@@ -1,0 +1,49 @@
+spawns:
+  default:
+    world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+    world-name: world
+    x: -511.5211474132206
+    y: 64.0
+    z: 202.92546355650725
+    yaw: 111.76335906982422
+    pitch: 21.841176986694336
+  ryan_yu__:
+    world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+    world-name: world
+    x: -510.02065070746994
+    y: 64.0
+    z: 203.01393263077648
+    yaw: 94.51336669921875
+    pitch: 7.591171741485596
+  help:
+    world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+    world-name: world
+    x: -510.02065070746994
+    y: 64.0
+    z: 203.01393263077648
+    yaw: 94.51336669921875
+    pitch: 7.591171741485596
+  '?':
+    world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+    world-name: world
+    x: -510.02065070746994
+    y: 64.0
+    z: 203.01393263077648
+    yaw: 94.51336669921875
+    pitch: 7.591171741485596
+  '1':
+    world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+    world-name: world
+    x: -510.5
+    y: 64.0
+    z: 203.5
+    yaw: 94.51336669921875
+    pitch: 7.591171741485596
+  '2':
+    world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+    world-name: world
+    x: -515.9850674596778
+    y: 64.0
+    z: 196.61769877696432
+    yaw: 94.51336669921875
+    pitch: 7.591171741485596

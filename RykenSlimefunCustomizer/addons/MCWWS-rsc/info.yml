@@ -1,0 +1,8 @@
+id: MCWWS-rsc
+name: "流浪世界服务器×Slimefun联动定制附属"
+depends: []
+pluginDepends: []
+version: "mcwws-1.0.0"
+description: "流浪世界服务器×Slimefun联动定制附属"
+authors: ["Ryan Yu"]
+repo: https://github.com/RyanYu2004/MCWWS-rsc

@@ -1,0 +1,37 @@
+date: 20240201
+depositories:
+  farmer:
+    SWEET_BERRIES:
+      sold: 2
+    PUMPKIN:
+      sold: 4
+    CARROT:
+      sold: 275
+  hunter:
+    ROTTEN_FLESH:
+      sold: 74
+      amount: 11
+    ARROW:
+      sold: 6
+      amount: 25
+    GUNPOWDER:
+      sold: 13
+      amount: 6
+    SPIDER_EYE:
+      sold: 2
+      amount: 1
+    ENDER_PEARL:
+      sold: 4
+    STRING:
+      sold: 15
+    BONE:
+      sold: 15
+  miner:
+    IRON_INGOT:
+      amount: 126
+    DIAMOND:
+      amount: 47
+    COBBLESTONE:
+      sold: 36
+    GOLD_INGOT:
+      amount: 83

@@ -1,0 +1,37 @@
+# 背包是否自动拾取玩家捡起的所有物品？
+auto-picking: true # 布尔值(true/false)
+
+# 若开启自动拾取，背包是否仅拾取items.yml中配置的物品？
+pickup-only-sellable: true # 布尔值(true/false)
+
+# 玩家是否可手动将物品放入背包？
+player-put-ability: true # 布尔值(true/false)
+
+# 玩家是否可从背包中取出物品？
+player-get-ability: true # 布尔值(true/false)
+
+# 玩家是否可在物品栏中移动背包物品本身？
+# * 设为false = 可点击物品栏中的背包打开其储物界面
+bag-move-ability: true # 布尔值(true/false)
+
+# 背包的默认槽位（若禁止移动背包，其将一直固定在此槽位）
+bag-slot: 4 # 0-8 - 快捷栏槽位 /
+            # 9-35 - 物品栏槽位
+
+# 是否为背包添加「出售全部物品」的功能按钮？
+sell-all: false # 布尔值(true/false)
+
+# 数据自动保存的时间间隔（单位：秒）
+save-interval: 600 # 整数类型 / 设为-1则关闭自动保存
+
+# 玩家背包的检测刷新间隔（单位：秒）
+update-interval: -1 # 整数类型 / 设为-1则关闭检测刷新
+
+# 玩家复活后是否自动发放背包？
+should-give-bag-on-respawn: false # 布尔值(true/false)
+
+# 玩家进入服务器后是否自动发放背包？
+should-give-bag-on-join: false # 布尔值(true/false)
+
+# 背包储物界面的标题
+bag-inventory-label: "玩家背包 %player% - %current-level%级"

@@ -1,0 +1,40 @@
+# 当背包开始从数据库加载时的消息（玩家交互后）
+backpack-loading: "#eb0000正在加载背包..."
+# 背包加载完成时的消息
+backpack-loaded: "背包已加载"
+# 当背包正在更新且玩家尝试打开时的消息
+backpack-updating: "正在更新背包"
+# 在加载背包时遇到问题时的消息
+backpack-loading-error: "加载背包时遇到问题"
+# 当玩家尝试打开一个被其他玩家使用的背包时
+backpack-is-used-by-another-player: "&c背包被其他玩家使用"
+
+# 管理员更改制作时的消息
+backpack-crafting-change: "&a背包的制作已更改"
+# 当玩家尝试在背包为空或与以前相同的情况下更改制作时的消息
+backpack-crafting-cannot-change: "&c无法更改背包的制作，可能为空或与以前相同"
+# 管理员取消制作更改时的消息
+backpack-crafting-change-cancelled: "&c背包的制作更改已取消"
+
+# 玩家背包视图中添加背包后的消息
+# %player% 背包所有者的名称
+backpack-added-inventory: "&6已添加玩家的背包&8: &f%player% &6到您的库存"
+
+# 如果玩家没有权限时的消息
+command-no-permissions: "&4您没有权限使用此命令"
+# 当玩家有冷却时间时的消息
+cooldown-message: "#eb0000在再次使用之前您必须等待"
+# 当玩家无权打开背包时的消息
+backpack-no-permission-use: "&4您没有权限打开背包"
+# 使用命令时玩家的背包重新充能时的消息
+loading-in-progress: "&6正在加载中，请稍等片刻"
+# 无法加载玩家背包时的消息
+players-backpack-not-loaded: "&c无法加载玩家的背包"
+# 玩家没有任何背包时的消息
+player-not-created-backpacks: "&7此玩家尚未创建任何背包"
+# 当玩家离线时的消息
+# %player% > 玩家名称
+player-is-offline: "&7玩家&8: &f%player% &7离线"
+
+# 当玩家尝试拥有多个背包时的消息（仅当配置中的选项设置为true：限制-每库存-一个背包时）
+one-backpack-per-inventory: "&c您只能携带一个背包"

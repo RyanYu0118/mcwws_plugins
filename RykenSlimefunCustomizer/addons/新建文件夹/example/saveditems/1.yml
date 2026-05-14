@@ -1,0 +1,18 @@
+item:
+  ==: org.bukkit.inventory.ItemStack
+  v: 3953
+  type: WOODEN_SHOVEL
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    tool:
+      ==: Tool
+      default-mining-speed: 1.0
+      damage-per-block: 1
+      rules:
+      - ==: ToolRule
+        blocks:
+        - minecraft:player_head
+        speed: 3.0
+        correct-for-drops: true
+    Damage: 1

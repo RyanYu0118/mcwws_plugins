@@ -1,0 +1,38 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 127.0.0.1
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 0
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1726324222620
+  login: 1726318965476
+money: '7191.0'
+last-account-name: Dawn_8573
+logoutlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -436.38226138573594
+  y: 62.0
+  z: 156.0588285442963
+  yaw: -135.43661499023438
+  pitch: 18.241153717041016
+lastlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -2577.300000011921
+  y: 6.0
+  z: -2397.539271929609
+  yaw: 71.8363037109375
+  pitch: 46.35006332397461

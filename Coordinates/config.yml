@@ -1,0 +1,28 @@
+#Coordinates
+#Version: 2.2
+#Made by: johntheskeleton | Plugin_Developer
+
+#If set to true, players will have coords enabled when they join the server. (Does not need the coords.use permission).
+Enable On Join: false
+
+# Set these true to where you want the information to be displayed!
+ActionBar: true
+BossBar: false
+
+# Messages when they execute the command "/coords"
+Enabled Message:
+  - '&r'
+  - '&aYou have &2&nenabled&r &athe coords!'
+  - '&r'
+  
+Disabled Message:
+  - '&r'
+  - '&cYou have &4&ndisabled&r &cthe coords!'
+  - '&r'
+
+No Permission:
+  - '&cYou do not have permission!'
+
+#This is the message that will appear above the hotbar and/or bossbar.
+# Avaliable place holders: %X%, %Y%, %Z%, %UPPER_CASE_FACING%, %LOWER_CASE_FACING%, %FACING%, %FACING_ABBREVIATION%, %YAW%, %PITCH%, %BIOME% %UPPER_CASE_BIOME%, %LOWER_CASE_BIOME%, %SERVER_TIME% 
+Format: '&3X&7: %X%     &3Y&7: %Y%     &3Z&7: %Z%     &3Facing&7: %UPPER_CASE_FACING%'

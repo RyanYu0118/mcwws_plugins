@@ -1,0 +1,56 @@
+slimefun:
+  oil:
+    enabled: true
+  nether_ice:
+    enabled: true
+  uranium:
+    enabled: true
+  salt:
+    enabled: true
+litexpansion:
+  thorium:
+    enabled: true
+infinityexpansion:
+  ender_essence:
+    enabled: true
+slimefunwarfare:
+  arsenic:
+    enabled: true
+  mozanite:
+    enabled: true
+dracfun:
+  dracfun_draconium_ore:
+    enabled: true
+slimefunorechunks:
+  iron_ore_chunk:
+    enabled: true
+  gold_ore_chunk:
+    enabled: true
+  copper_ore_chunk:
+    enabled: true
+  tin_ore_chunk:
+    enabled: true
+  silver_ore_chunk:
+    enabled: true
+  aluminum_ore_chunk:
+    enabled: true
+  lead_ore_chunk:
+    enabled: true
+  zinc_ore_chunk:
+    enabled: true
+  magnesium_ore_chunk:
+    enabled: true
+  nickel_ore_chunk:
+    enabled: true
+  cobalt_ore_chunk:
+    enabled: true
+rykenslimefuncustomizer:
+  haiman_star_dust:
+    enabled: true
+  derule_bug:
+    enabled: true
+  rsc_example_geo_resource:
+    enabled: true
+dynatech:
+  stardust_meteor:
+    enabled: true

@@ -1,0 +1,18 @@
+{
+    "result": {
+        "type": "alchema:item",
+        "item": "minecraft:glow_berries",
+        "amount": 4
+    },
+    "ingredients": [
+        {
+            "type": "alchema:material",
+            "item": "minecraft:sweet_berries",
+            "amount": 4
+        },
+        {
+            "type": "alchema:material",
+            "item": "minecraft:glowstone_dust"
+        }
+    ]
+}

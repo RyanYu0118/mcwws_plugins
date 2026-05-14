@@ -1,0 +1,26 @@
+#插件前缀
+prefix: '[ItemCommands]'
+#lore信息
+lores:
+  #代号只是一个分割用的，不要重复
+  test1:
+    lore:
+      - '§a右键获得帮助'
+      - '§e非消耗性道具'
+    #是否为消耗品 true为消失 false为不消失
+    remove: false
+    #达到多少个这样同类数量才执行命令
+    number: 1
+    #命令类型 可选console/normal/op  console控制台 normal正常执行 op为op命令
+    cmdtype: 'normal'
+    #command
+    commands: "menuhome"
+    #命令冷却单位秒 10为10秒 -1则无冷却
+    cooldown: -1
+    #是否开启随机指令 默认关 开启后默认执行随机下面指令 不执行上面原先命令
+    isRandom: false
+    #随机指令
+    randomsCommand:
+      - 'op:give %player_name% 1 64'
+      - 'normal:give @s <-p>'
+  #代号只是一个分割用的，不要重复

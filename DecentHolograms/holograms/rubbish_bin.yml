@@ -1,0 +1,14 @@
+location: world:-468.525:66.033:220.650
+enabled: true
+display-range: 48
+update-range: 48
+update-interval: 20
+facing: 0.0
+down-origin: false
+pages:
+- lines:
+  - content: '&3垃圾箱'
+    height: 0.3
+  - content: '&c请谨慎放置！'
+    height: 0.3
+  actions: {}

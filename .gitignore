@@ -1,0 +1,5 @@
+# Ignore oversized plugin support files that are not suitable for GitHub
+ScreenInMC/Chromium/bin/win64/libcef.dll
+ScreenInMC/Temp/jcef.tar.gz
+ScreenInMC/Temp/
+ScreenInMC/Chromium/

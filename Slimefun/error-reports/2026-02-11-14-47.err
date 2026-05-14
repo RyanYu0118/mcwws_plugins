@@ -1,0 +1,232 @@
+
+Error Generated: 2026-02-11-14-47
+
+Java Environment:
+  Operating System: Windows 11
+  Java Version: 25.0.2
+
+Server Software: Paper
+  Build: 1.21.11-100-4873e3f (MC: 1.21.11)
+  Minecraft v1.21.11-R0.1-SNAPSHOT
+
+Slimefun Environment:
+  Slimefun v5a3e26c-Beta
+  Caused by: SlimyBees vBuild 1 zh-CN(SlimefunGuguProject) (git 810abc0)
+
+Installed Addons (46)
+  + SlimyTreeTaps Build 2 zh-CN(ybw0014) (git 8a58b9f)
+  + GuizhanLibPlugin Build 62 (git aad97af)
+  + LiteXpansion Build 35 (git 47857d1)
+  + ExoticGarden Build 17 (git 2a33c6d)
+  + InfinityExpansion Build 16 (git 850718f)
+  + DynaTech Build 83 (git 2e31d18)
+  + TranscEndence Build 11 (git 2352ccc)
+  + SlimefunWarfare Build 12 (git 7f210c5)
+  + SlimyRepair Build 1 (git 790c41c)
+  + PotionExpansion Build 2 (git 81d4862)
+  + DracFun 2.0.2
+  + SoulJars Build 10 (git 3bc8cab)
+  + SlimeGlue Build 26 (git 435fd15)
+  + SlimefunLuckyBlocks Build 4 (git 3ff0e5a)
+  + SlimyBees Build 1 zh-CN(SlimefunGuguProject) (git 810abc0)
+  + HotbarPets Build 3 zh-CN(ybw0014) (git 92415a4)
+  + EcoPower Build 1 zh-CN(ybw0014) (git eca8ab1)
+  + AlchimiaVitae Build 9 (git 95fc682)
+  + Cultivation Build 16 (git efc77ed)
+  + Gastronomicon Build 8 (git 363b8ef)
+  + DyedBackpacks Build 3 (git d4e0e45)
+  + GeneticChickengineering Build 8 (git a6cd374)
+  + FluffyMachines Build 39 (git edf8c9b)
+  + ColoredEnderChests Build 4 (git c99f079)
+  + FlowerPower Build 7 (git b4b9f0b)
+  + SlimeTinker Build 57 (git 41be204)
+  + PrivateStorage Build 1 zh-CN(ybw0014) (git 7205ea3)
+  + MobCapturer Build 24 (git dc047fd)
+  + ExtraHeads Build 6 (git 91961af)
+  + SFCalc Build 6 (git 3441e14)
+  + ElectricSpawners Build 5 (git 6fa0de2)
+  + Supreme Build 23 (git 98df1c4)
+  + BedrockTechnology Build 41 zh-CN(CTimet) (git 5dccd8e)
+  + ExtraGear Build 2 zh-CN(ybw0014) (git ff13031)
+  + Bump Build 43 (git 8952c73)
+  - FNAmplifications Build 14 (git d5faa38)
+  + SlimefunOreChunks Build 1 zh-CN(ybw0014) (git 67879ed)
+  + FoxyMachines Build 32 (git e4a6ba7)
+  + ExtraTools Build 6 (git 204b2a5)
+  + Residence 5.1.7.6
+  + WorldEditSlimefun 15
+  - SlimeVoid 1.0
+  + SaneCrafting 0.1
+  + RykenSlimefunCustomizer b122 (git cba8ef9)
+  + CreativeManager 1.35.21-11
+  + MyFirstAddon Build 1 zh-CN(SlimefunGuguProject) (git 82208d8)
+
+Installed Plugins (126):
+  + LuckPerms 5.4.158
+  + Vault 1.7.3-b131
+  + PlaceholderAPI 2.11.7
+  + WorldEdit 7.4.0+7381-3decaf0
+  + Slimefun 5a3e26c-Beta
+  + SlimyTreeTaps Build 2 zh-CN(ybw0014) (git 8a58b9f)
+  + GuizhanLibPlugin Build 62 (git aad97af)
+  + LiteXpansion Build 35 (git 47857d1)
+  + ExoticGarden Build 17 (git 2a33c6d)
+  + InfinityExpansion Build 16 (git 850718f)
+  + ProtocolLib 5.4.0-SNAPSHOT-753
+  + WorldGuard 7.0.13+82fdc65
+  + DynaTech Build 83 (git 2e31d18)
+  - Citizens 2.0.39-SNAPSHOT (build 3851)
+  + BKCommonLib 1.21.11-v1
+  + TranscEndence Build 11 (git 2352ccc)
+  + SlimefunWarfare Build 12 (git 7f210c5)
+  - Denizen 1.3.0-SNAPSHOT (build 1804-REL)
+  + Essentials 2.21.2
+  + CMILib 1.5.8.6
+  - NBTAPI 2.15.1
+  + Train_Carts 1.21.11-v2
+  - ScriptBlockPlus 2.3.3
+  + SlimyRepair Build 1 (git 790c41c)
+  + PotionExpansion Build 2 (git 81d4862)
+  + DracFun 2.0.2
+  + SoulJars Build 10 (git 3bc8cab)
+  + SlimeGlue Build 26 (git 435fd15)
+  + SlimefunLuckyBlocks Build 4 (git 3ff0e5a)
+  + SlimyBees Build 1 zh-CN(SlimefunGuguProject) (git 810abc0)
+  + HotbarPets Build 3 zh-CN(ybw0014) (git 92415a4)
+  + EcoPower Build 1 zh-CN(ybw0014) (git eca8ab1)
+  + AlchimiaVitae Build 9 (git 95fc682)
+  + Cultivation Build 16 (git efc77ed)
+  + Gastronomicon Build 8 (git 363b8ef)
+  + DyedBackpacks Build 3 (git d4e0e45)
+  + ItemEdit 3.7.0
+  + GeneticChickengineering Build 8 (git a6cd374)
+  + FluffyMachines Build 39 (git edf8c9b)
+  + ColoredEnderChests Build 4 (git c99f079)
+  + FlowerPower Build 7 (git b4b9f0b)
+  + SlimeTinker Build 57 (git 41be204)
+  + PrivateStorage Build 1 zh-CN(ybw0014) (git 7205ea3)
+  + MobCapturer Build 24 (git dc047fd)
+  + ExtraHeads Build 6 (git 91961af)
+  + SFCalc Build 6 (git 3441e14)
+  + ElectricSpawners Build 5 (git 6fa0de2)
+  + Supreme Build 23 (git 98df1c4)
+  + BedrockTechnology Build 41 zh-CN(CTimet) (git 5dccd8e)
+  + ExtraGear Build 2 zh-CN(ybw0014) (git ff13031)
+  + Bump Build 43 (git 8952c73)
+  - FNAmplifications Build 14 (git d5faa38)
+  + SlimefunOreChunks Build 1 zh-CN(ybw0014) (git 67879ed)
+  + FoxyMachines Build 32 (git e4a6ba7)
+  + ExtraTools Build 6 (git 204b2a5)
+  + FoliaCompatibleAPI 1.2.0
+  + GriefPrevention 16.18.4
+  + floodgate 2.2.4-SNAPSHOT (b116-0e3163c)
+  + Residence 5.1.7.6
+  + CommandAPI 11.1.0
+  - Sentinel 2.9.2-SNAPSHOT (build 528)
+  + WolfyUtilities 4.19.0.0
+  + ZMusic 2.10.3
+  + WorldEditSUI 1.7.4
+  + WorldEditSlimefun 15
+  - Webizen 0.2.6
+  + VeinMiner 2.2.6
+  + UltraDepository 1.3.9
+  + UltimateFood 1.1.4
+  + UltimateTimber 4.4.0
+  + TCCoasters 1.21.11-v1
+  - Stopwatch 1.0.6
+  - SlimeVoid 1.0
+  + SimpleTimer 1.5.2
+  + SetSpawn 5.5
+  - ScriptEntityPlus 1.2.3
+  + ScreenInMC 2.0
+  + SaneCrafting 0.1
+  + RykenSlimefunCustomizer b122 (git cba8ef9)
+  + Rtag 1.5.10
+  + RandomBlockPlacement 1.2.0
+  + PluginUpdater 1.0.11
+  + PluginPortal 3.0.7
+  + PlayerParticles 8.11
+  + ParticleNativeAPI 4.5.1
+  + One_day ${project.version}
+  + Nascraft 1.9.2
+  + MultitoolPlus 1.5.16
+  + Timer 134
+  - MoreBagPro 1.2.9
+  + LiteSignIn 1.8.9.0
+  + ItemNBTEdit 1.2.3
+  + ItemCommand 1.3.2
+  + InventoryRollbackPlus 1.7.9
+  + InfiniteScoreboard 1.3.0
+  + ILoreEdit 2.7.1
+  + HeadDB 2.2
+  + GSit 3.2.0
+  + Geyser-Spigot 2.9.2-SNAPSHOT
+  + FlyWithFood 2.0.7
+  - fakeplayer 0.3.19
+  + EssentialsSpawn 2.21.1-dev+13-be3e641
+  + EssentialsGeoIP 2.21.1-dev+13-be3e641
+  + EssentialsChat 2.21.1-dev+13-be3e641
+  - Depenizen 2.1.1 (build 878)
+  + DeluxeMenus 1.14.1-DEV-199
+  + DecentHolograms 2.9.9
+  + CustomCrafting 4.19.0
+  + CurveBuilding unspecified
+  + CreeperConfetti 1.4
+  + CreativeManager 1.35.21-11
+  + CommandTimer 8.8.0
+  + CommandPrompter 2.16.0
+  + ColorGradient 0.0.5-b1
+  + ColoredAnvils 2.0.0
+  + CitizensGUI 1.12
+  + ChestSort 14.2.0
+  + MyFirstAddon Build 1 zh-CN(SlimefunGuguProject) (git 82208d8)
+  + BlueMap 5.15
+  + BetterBags 1.2.1
+  + BankPlus 6.4
+  + BanItem 3.7
+  - BackpackPlus 1.5.6-beta
+  + Back 1.8.6
+  + AnvilPanel ${project.version}
+  + ajLeaderboards 2.10.1
+
+方块信息:
+  世界: world
+  X: -371
+  Y: 92
+  Z: -37
+  方块类型: STRIPPED_CRIMSON_STEM
+  方块数据: org.bukkit.craftbukkit.block.impl.CraftRotatedPillar
+  状态: org.bukkit.craftbukkit.block.CraftBlockState
+
+Ticker 信息:
+  类型: 异步
+
+Slimefun 数据:
+  ID: INDUSTRIAL_BEE_HIVE
+  数据加载状态: true
+  物品栏: true
+  数据: 
+
+Stacktrace:
+
+java.lang.IllegalStateException: Asynchronous entity add!
+	at org.spigotmc.AsyncCatcher.catchOp(AsyncCatcher.java:10)
+	at net.minecraft.server.level.ServerLevel.addEntity(ServerLevel.java:1602)
+	at net.minecraft.server.level.ServerLevel.addFreshEntity(ServerLevel.java:1550)
+	at org.bukkit.craftbukkit.CraftWorld.dropItem(CraftWorld.java:657)
+	at org.bukkit.craftbukkit.CraftWorld.dropItemNaturally(CraftWorld.java:670)
+	at org.bukkit.World.dropItemNaturally(World.java:708)
+	at SlimyBees-Build 1 zh-CN(SlimefunGuguProject) (git 810abc0).jar//cz.martinbrom.slimybees.items.machines.BeeHive.addOutputs(BeeHive.java:263)
+	at SlimyBees-Build 1 zh-CN(SlimefunGuguProject) (git 810abc0).jar//cz.martinbrom.slimybees.items.machines.BeeHive.tick(BeeHive.java:122)
+	at SlimyBees-Build 1 zh-CN(SlimefunGuguProject) (git 810abc0).jar//cz.martinbrom.slimybees.core.machine.AbstractTickingContainer$4.tick(AbstractTickingContainer.java:95)
+	at Slimefun-3419f04-Beta.jar//me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker.tick(BlockTicker.java:74)
+	at Slimefun-3419f04-Beta.jar//io.github.thebusybiscuit.slimefun4.implementation.tasks.TickerTask.tickBlock(TickerTask.java:238)
+	at Slimefun-3419f04-Beta.jar//io.github.thebusybiscuit.slimefun4.implementation.tasks.TickerTask.tickLocation(TickerTask.java:179)
+	at Slimefun-3419f04-Beta.jar//io.github.thebusybiscuit.slimefun4.implementation.tasks.TickerTask.tickChunk(TickerTask.java:138)
+	at Slimefun-3419f04-Beta.jar//io.github.thebusybiscuit.slimefun4.implementation.tasks.TickerTask.run(TickerTask.java:107)
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78)
+	at org.bukkit.craftbukkit.scheduler.CraftAsyncTask.run(CraftAsyncTask.java:57)
+	at com.destroystokyo.paper.ServerSchedulerReportingWrapper.run(ServerSchedulerReportingWrapper.java:22)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)

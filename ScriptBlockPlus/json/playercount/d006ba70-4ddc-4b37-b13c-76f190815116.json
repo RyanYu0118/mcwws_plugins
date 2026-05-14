@@ -1,0 +1,17 @@
+[
+  {
+    "scriptkey": "INTERACT",
+    "blockcoords": "world,-279,91,2652",
+    "amount": 55
+  },
+  {
+    "scriptkey": "INTERACT",
+    "blockcoords": "world,-2008,51,2782",
+    "amount": 10
+  },
+  {
+    "scriptkey": "INTERACT",
+    "blockcoords": "world,-463,66,220",
+    "amount": 248
+  }
+]

@@ -1,0 +1,52 @@
+Turret:
+    name: "Siege Turret"
+    upgrades:
+    - "0;4-9;3;8;1.5"
+    - "800;8-15;2.5;11;2.5"
+    - "2500;13-20;2;14;3.5"
+    sound_1: ENTITY_CREEPER_DEATH;1;0.3
+    sound_2: ENTITY_GENERIC_EXPLODE;1;0.4
+    block_1: IRON_BLOCK
+    block_2: TERRACOTTA
+    head: "461ca7d7-026d-4f51-9337-bf1d40a01cf9;eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTM0ZDhiZGU5ODU3ZDg3MmU1MjEyNGQ5OTgyMTU0Y2YzZDI4Yjc3MDJmYmFjZDE5ODMzYzUxMWZlNmMxY2RmNSJ9fX0="
+Block:
+    id: "IRON_BLOCK"
+    name: "&aSiege Turret &6Block"
+    lore:
+    - "&7Slow speed turret that damages multiple"
+    - "&7enemies on every hit."
+    - ""
+    - "&8» &7Damage: &a%min%&7-&a%max%"
+    - "&8» &7Cooldown: &a%cooldown% seconds"
+    - "&8» &7Range: &a%range% blocks"
+    - "&8» &7Radius: &a%radius% blocks"
+Upgrade:
+    id: "EMERALD"
+    name: "&aSiege Turret &eUpgrade"
+    lore:
+    - "&7Level: &a&l%current_level%&8 ➜ &a&l%next_level%"  
+    - "&7Damage: &a%current_min%&7-&a%current_max%&8 ➜ &a%next_min%&7-&a%next_max%"
+    - "&7Cooldown: &a%current_cooldown%(s)&8 ➜ &a%next_cooldown%(s)"
+    - "&7Range: &a%current_range% blocks&8 ➜ &a%next_range% blocks"
+    - "&7Radius: &a%current_radius% blocks&8 ➜ &a%next_radius% blocks"
+    - ""
+    - "&7Price: &6%price%"
+    - ""
+    - "&8[Click to Upgrade]"  
+LastUpgrade:
+    id: "REDSTONE"
+    name: "&aSiege Turret &eUpgrade"
+    lore:
+    - "&7Level: &a&l%current_level%"  
+    - "&7Damage: &a%current_min%&7-&a%current_max%"
+    - "&7Cooldown: &a%current_cooldown%(s)"
+    - "&7Range: &a%current_range% blocks"
+    - "&7Radius: &a%current_radius% blocks"
+    - ""
+    - "&7No more Upgrades available" 
+Ammunition:
+    id: "GUNPOWDER"
+    name: "&6Siege Turret &7Ammunition"
+    lore:
+    - "&7Place this item in your turret inventory"
+    - "&7to start shooting." 

@@ -1,0 +1,354 @@
+# Nascraft config.yml - 1.9.3-PRE
+
+# Language file to use. Available: en_US es_ES it_IT de_DE pt_BR
+language: 'zh_CN'
+
+database:
+  # Available types: SQLite
+  type: 'SQLite'
+
+  # How many days should logs of trades last in the database?
+  # With the option 60, all trades older than 60 days will be automatically removed.
+  # Use -1 to disable (Keep all trades logged).
+  days-until-history-removed: 60
+
+currencies:
+  # Currency to be used by default by all items.
+  # It will also be the default price for things like discord inventory expansions etc.
+  default-currency: 'vault'
+
+  suppliers:
+
+    # Vault has to be installed!
+    vault:
+      format: '<gradient:#f09947:#feed81>[AMOUNT]$</gradient>'
+      not-enough: "<gradient:#FB6363:#C4B3FD>✘ You don't have enough money to buy that!</gradient>"
+      decimal-positions: 3
+      top-limit: 9999999
+      low-limit: 0.005
+
+    #################################################################
+    #  TO ADD OTHER CURRENCIES PLACEHOLDEDRAPI HAS TO BE INSTALLED  #
+    #################################################################
+
+    # !!! Keep in mind that both commands and placeholder have to work even if the player
+    # !!! is offline if you plan to use the discord extension!
+
+    # Example of another kind of currency:
+    player-points:
+      deposit-cmd: 'playerpoints:p give [USER-NAME] [AMOUNT]'
+      withdraw-cmd: 'playerpoints:p take [USER-NAME] [AMOUNT]'
+      balance-placeholder: '%playerpoints_points%'
+      not-enough: "<gradient:#FB6363:#C4B3FD>✘ You don't have enough points to buy that!</gradient>"
+      format: '<gradient:#ba24ff:#e8d1ff>[AMOUNT]p</gradient>'
+      decimal-positions: 0
+      top-limit: 9999
+      low-limit: 10
+
+    # Add your own supplier! Create as many as you want.
+
+price-options:
+  # With noise enabled, prices will vary over time in a pseudo-random manner.
+  noise:
+    enabled: true
+    # Change the default intensity of the noise with this factor.
+    default-intensity: 1
+    # Global multiplier
+    intensity-multiplier: 1
+    # Time in seconds to apply noise. By default, 60 seconds, so each 60 seconds prices will change randomly.
+    time: 60
+  # The default elasticity applies to all items unless otherwise explicitly stated at items.yml.
+  default-elasticity: 1
+  # Global multiplier - Take into account that this variable will change the shape of all
+  # price curves, changing the price instantly for all current items.
+  elasticity-multiplier: 1
+
+market-control:
+
+  # If market is closed players won't be able to buy/sell.
+  closed: false
+  
+  # Although taxation gets applied for buying and selling actions separately, the total tax paid is the same regardless of how it is split
+  # The spread is determined by the deviation in both actions. In the default case, it is 6% for selling and 4% for buying, resulting in a total spread of 10%.
+
+  # To avoid strengthening the underground economy, try to keep the taxation as low as possible.
+  # Heavy taxation can encourage players to trade with each other directly, bypassing intermediaries,
+  # and reducing the amount of money collected from taxes and making the market less efficient.
+  #
+  # This value will be applied by default if no other tax is explicitly stated on the item at items.yml
+  taxation:
+    sell: 0.06 # 6% taxation when players sell items.
+    buy: 0.04 # 4% taxation when players buy items.
+
+    # Choose whether to take into account the taxes in price fluctuations.
+    # Example: If an item has a tax when buying of a 100%, when you buy an item with this option
+    # activated, the item goes in price as if you bought 1 + 1 * 100% = 2 items.
+    take-into-account-taxes: false
+
+  # Do players need the permission "nascraft.market" to operate directly with commands?
+  market-permission: true
+
+commands:
+  nascraft:
+    enabled: true
+    alias: 'nas'
+  market:
+    enabled: true
+    alias: 'shop'
+  portfolio:
+    enabled: true
+    alias: 'p'
+  link:
+    enabled: true
+    alias: 'nlink'
+  discord:
+    enabled: true
+    alias: 'dis'
+  alerts:
+    enabled: true
+    alias: 'nalerts'
+  setalerts:
+    enabled: true
+    alias: 'nsetalert'
+  givesellwand:
+    enabled: true
+    alias: 'givesw'
+  worth:
+    enabled: true
+    alias: 'price'
+  sellall:
+    enabled: true
+    alias: 'nsellall'
+  sellhand:
+    enabled: true
+    alias: 'nsellhand'
+  sell-menu:
+    enabled: true
+    sell-upon-closed: false
+    alias: 'sell'
+    size: 45
+    help:
+      enabled: true
+      slot: 4
+      texture: 'bc8ea1f51f253ff5142ca11ae45193a4ad8c3ab5e9c6eec8ba7a4fcb7bac40'
+    filler:
+      material: 'black_stained_glass_pane'
+    sell-button:
+      slot: 40
+      material: 'yellow_stained_glass_pane'
+    close-button:
+      enabled: true
+      slot: 8
+      material: 'red_stained_glass_pane'
+  web:
+    enabled: false
+    password-suggestions: 3
+    arguments:
+      register: 'register'
+      remove: 'remove'
+    alias: 'remote'
+
+portfolio:
+  # Default size of portfolios.
+  default-size: 5
+
+  storage-limit: 999
+  # Formula to calculate the price of then next slot. slot_price_factor * #slot + slot_price_base = price
+  # For example, to buy the slot nº6 the price will be (1000 * 6) + 10000 = 16000$
+  slot-price-factor: 1000
+  slot-price-base: 10000
+  in-game-gui:
+    fillers:
+      material: 'black_stained_glass_pane'
+    locked:
+      material: 'gray_stained_glass_pane'
+
+  # Players can use items in their portfolio as collateral for loans.
+  # They can only take loans denominated in the default currency.
+  loans:
+    enabled: true
+    # In absolute terms, how large can the loan be.
+    max-size: 999999
+    # Minimum size of a loan.
+    min-size: 100
+    # Apply an additional security margin on top of taxes and value decay.
+    security-margin: 0.1
+    # Margin checking period in seconds
+    margin-checking-period: 20
+    # Interest to be charged for the loan
+    # Charged every day.
+    # In case of default (Players who doesn't have enough money to pay the interest)
+    # enough items will be sold from their portfolio to be able to pay.
+    interest-rate:
+      # At which hour of the day should the interest be charged. 24-hour format.
+      when: '12:00'
+      # Percentage of the total debt to pay in interests daily (In this example 0.5%)
+      percentage: 0.005
+      # Minimum amount to charge as interest.
+      minimum: 1
+    # Display the bigger portfolios of the server.
+    top:
+      # in minutes.
+      update-frequency: 1
+
+limit-orders:
+  enabled: true
+  # Maximum number of limit orders a player can have active simultaneously.
+  max-per-player: 9
+  # Maximum size of an order
+  order-max-size: 999
+  # In seconds
+  checking-period: 10
+
+  durations:
+    1:
+      # In days
+      duration: 3
+      display: '3 days'
+      fee: 0.01
+      min-fee: 1
+    2:
+      duration: 30
+      display: '30 days'
+      fee: 0.03
+      min-fee: 3
+    3:
+      duration: 90
+      display: '90 days'
+      fee: 0.06
+      min-fee: 6
+
+# Use with caution.
+discord-bot:
+  enabled: false
+  token: 'TOKEN-ID'
+  # Role requiered to execute admin commands through discord.
+  # Current commands: /stop, /resume, /seeinv [ID], /seebal [ID]
+  admin-role-id: 'ADMIN-ROLE-ID'
+  # You can select a channel to send information of each transaction when executed.
+  # You will most likely want to make the channel private, but it's optional.
+  log-trades:
+    enabled: false
+    channel: 'LOGS-TEXTCHANNEL-ID'
+
+  # Menu to let users sell/buy items
+  # !! FEATURE IN BETA !!
+  main-menu:
+    enabled: false
+    # Available methods: NATIVE, DISCORDSRV (DISCORDSRV IS NOT WORKING CURRENTLY)
+    link-method: 'NATIVE'
+    # This channel should be only used by the bot. Every message in it will be removed.
+    channel: 'MAINMENU-TEXTCHANNEL-ID'
+    # Discord taxes:
+    taxation:
+      override: true
+      # By default, we apply a reduced tax to persuade users to operate through discord.
+      buy: 0.04
+      sell: 0.05
+    options:
+      # Time in seconds between each update of the message.
+      update-time: 60
+      # Button to access to the discord wiki.
+      wiki:
+        enabled: true
+      # Both in-game commands and discord command/button.
+      alerts:
+        enabled: true
+        # Time in days for alerts to expire.
+        expiration: 10
+      # Graphs of individual items (1 day, 1 month, 1 year, all)
+      detailed-graphs:
+        enabled: true
+      # Access with the button to the personal log of trades.
+      personal-log:
+        enabled: true
+      # Quick selection bar with the items of the main menu
+      selection-bar:
+        enabled: true
+      # Button to generate a graph with the evolution of the CPI inside advanced options
+      cpi:
+        enabled: true
+      cpi-comparison:
+        enabled: true
+      flows:
+        enabled: true
+
+sell-wands:
+  enabled: true
+  wands:
+    # ID - Just the identifier.
+    basic:
+      material: 'stick'
+      # Recommended site to follow the format: https://webui.advntr.dev/
+      display-name: '<b><gradient:#19e312:#a3e300>BASIC WAND</gradient></b>'
+      lore:
+        - '<b><gradient:#00eeff:#2e69ff>⏵ RIGHT CLICK</gradient></b> <color:#517d58>to estimate value.</color>'
+        - '<b><gradient:#ff383b:#ff2403>⏵ LEFT CLICK</gradient></b> <color:#517d58>a container to</color>'
+        - '<color:#517d58>sell all its content to the market!</color>'
+        - ' '
+        - '<color:#517d58>Uses left:</color> <b><color:#a3e300>[USES]</color></b>'
+      # Maximum uses of the wand. Alternatively you can place a limit on
+      # the quantity of the sells. See "MILLONAIRE WAND".
+      # If you don't set any of these, the wand can be used without limits. (See "PERMANENT WAND").
+      uses: 10
+      # Permission to use this specific wand. If not defined, no permission will be required.
+      permission: 'nascraft.wand.basic'
+
+    permanent:
+      material: 'blaze_rod'
+      enchanted: true
+      display-name: '<b><gradient:#e74cf5:#f51d41>PERMANENT WAND</gradient></b>'
+      lore:
+        - '<b><gradient:#00eeff:#2e69ff>⏵ RIGHT CLICK</gradient></b> <color:#8077ba>to estimate value.</color>'
+        - '<b><gradient:#ff383b:#ff2403>⏵ LEFT CLICK</gradient></b> <color:#8077ba>a container to</color>'
+        - '<color:#8077ba>sell all its content to the market</color>'
+        - '<color:#8077ba>for <b><color:#ff2403>50%</color></b> of its value.</color>'
+        - '<i><color:#343d66>⌛ 5 minutes of cooldown between uses.</color></i>'
+        - ' '
+        - '<b><gradient:#f51d41:#e74cf5>UNLIMITED USES</gradient><b>'
+      multiplier: 0.5
+      # Limit the currencies with which this wand works.
+      currencies:
+        - 'vault'
+      # Set a minimum cooldown between uses in seconds.
+      cooldown: 300 # 300/60 = 5 min of cooldown.
+      permission: 'nascraft.wand.advanced'
+
+    millionaire:
+      material: 'blaze_rod'
+      enchanted: true
+      display-name: '<b><gradient:#F57E00:#EFF551>MILLIONARIE WAND</gradient></b>'
+      lore:
+        - '<b><gradient:#ff383b:#ff2403>⏵ LEFT CLICK</gradient></b> <color:#85784D>to estimate value.</color>'
+        - '<b><gradient:#00eeff:#2e69ff>⏵ RIGHT CLICK</gradient></b> <color:#85784D>a container to</color>'
+        - '<color:#85784d>sell all its content to the market</color>'
+        - '<color:#85784d>for <color:#EFF551>150%</color> its value.</color>'
+        - ' '
+        - '<color:#85784d>Left to sell:</color> <b>[PROFIT-LEFT]</b>'
+      currencies:
+        - 'vault'
+      # With this wand you can sell a maximum of 1.000.000$ (Including the multiplier) worth of items.
+      max-profit: 1000000
+      multiplier: 1.5
+      permission: 'nascraft.wand.millonaire'
+      # Change which click will be used to each action. Use 'none' to disable.
+      # By default: sell: left estimate: right
+      sell: 'right'
+      estimate: 'left'
+
+# BETA: Self-hosted website with information and charts.
+web:
+  license: 'LICENSE'
+  pass-length: 5
+  enabled: true # Set to true to enable the web server
+  port: 1001    # The port the web server will run on
+
+# Verify whether the AdvancedGUI's layout is present, and if it is not, place it in the layout folder of AdvancedGUI.
+auto-resources-injection: true
+
+# Experimental feature. USE WITH CAUTION
+ignored-keys:
+  #- 'Day'
+
+# Cooldown between button uses of the AdvancedGUI layout, in seconds.
+layout-cooldown: 1

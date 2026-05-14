@@ -1,0 +1,38 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 192.168.1.5
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 1752307509129
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1752308894735
+  login: 1752303299318
+money: '202994.4'
+last-account-name: Killerblack_ljs
+logoutlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -343.7950354485129
+  y: 64.0
+  z: 259.30000001192093
+  yaw: -172.63720703125
+  pitch: 58.04998779296875
+lastlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -1069.139845971686
+  y: 79.54467692467168
+  z: -732.4344760092614
+  yaw: -77.23751831054688
+  pitch: 11.700013160705566

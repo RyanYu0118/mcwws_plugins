@@ -1,0 +1,132 @@
+menu_title: '&l首页▶许可证'
+update_interval: 1
+open_command:
+  - menulicence
+#open_commands:
+#  - '[sound] BLOCK_BEACON_ACTIVATE'
+#  - '[message] &b欢迎使用服务器指南！'
+size: 9
+# as always, only cool people can open this menu :)
+items:
+  'lore':
+    material: name_tag
+    enchantments:
+      - ARROW_DAMAGE;1
+    slot: 0
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    display_name: '&b已授权物品修改许可证'
+    lore:
+      - ''
+      - '&e非管理员成员持有此证时方可修改已授权物品的信息。'
+      - ''
+      - '&a左键点击 &7| &f向服主申请获得此许可证'
+      - '&b右键点击 &7| &f打开临时许可证（仅服主）'
+      - '&bShift+左键点击 &7| &f打开许可证（仅服主）'
+      - '&bShift+右键点击 &7| &f关闭许可证（仅服主）'
+      - ''
+      - '&7(当前状态：%changeoutput_match_input:{player_has_permission_server.licence.lore}_matcher:no_ifmatch:&c未获得_else:&a已获得%&7)'
+    left_click_commands:
+      - '[givepermission] essentials.mail.*'
+      - '[player] email send Ryan_yu__ &a我已向您申请获得 &b已授权物品修改许可证&a，望批准。                                                                ——%player_name%'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[takepermission] essentials.mail.*'
+    shift_right_click_commands:
+      - '[player] lp user <-p 你要&4撤销&r谁的许可证？> permission set server.licence.lore false <-exa dm open licence>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+    shift_left_click_commands:
+      - '[player] lp user <-p 你要&2给予&r谁许可证？> permission set server.licence.lore true <-exa dm open licence>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+    right_click_commands:
+      - '[player] lp user <-p 你要&2给予&r谁临时许可证？> permission settemp server.licence.lore true <&e请在聊天框中输入生效时长。> <-exa dm open licence>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+    shift_left_click_requirement:
+      requirements:
+        op:
+          type: "string equals"
+          input: "%player_name%"
+          output: "Ryan_yu__"
+      deny_commands:
+        - '[message] &c啊哦，你不是服主捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        op:
+          type: "string equals"
+          input: "%player_name%"
+          output: "Ryan_yu__"
+      deny_commands:
+        - '[message] &c啊哦，你不是服主捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+    right_click_requirement:
+      requirements:
+        op:
+          type: "string equals"
+          input: "%player_name%"
+          output: "Ryan_yu__"
+      deny_commands:
+        - '[message] &c啊哦，你不是服主捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  'stock':
+    material: chest_minecart
+    enchantments:
+      - ARROW_DAMAGE;1
+    slot: 2
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    display_name: '&b进货许可证'
+    lore:
+      - ''
+      - '&e非管理员成员持有此证时方可向服务器添加待授权物品。'
+      - ''
+      - '&a左键点击 &7| &f向服主申请获得此许可证'
+      - '&b右键点击 &7| &f打开临时许可证（仅服主）'
+      - '&bShift+左键点击 &7| &f打开许可证（仅服主）'
+      - '&bShift+右键点击 &7| &f关闭许可证（仅服主）'
+      - ''
+      - '&7(当前状态：%changeoutput_match_input:{player_has_permission_server.licence.stock}_matcher:no_ifmatch:&c未获得_else:&a已获得%&7)'
+    left_click_commands:
+      - '[givepermission] essentials.mail.*'
+      - '[player] email send Ryan_yu__ &a我已向您申请获得 &b进货许可证&a，望批准。                                                                ——%player_name%'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[takepermission] essentials.mail.*'
+    shift_right_click_commands:
+      - '[player] lp user <-p 你要&4撤销&r谁的许可证？> permission set server.licence.stock false <-exa dm open licence>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+    shift_left_click_commands:
+      - '[player] lp user <-p 你要&2给予&r谁许可证？> permission set server.licence.stock true <-exa dm open licence>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+    right_click_commands:
+      - '[player] lp user <-p 你要&2给予&r谁临时许可证？> permission settemp server.licence.stock true <&e请在聊天框中输入生效时长。> <-exa dm open licence>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+    shift_left_click_requirement:
+      requirements:
+        op:
+          type: "string equals"
+          input: "%player_name%"
+          output: "Ryan_yu__"
+      deny_commands:
+        - '[message] &c啊哦，你不是服主捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        op:
+          type: "string equals"
+          input: "%player_name%"
+          output: "Ryan_yu__"
+      deny_commands:
+        - '[message] &c啊哦，你不是服主捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+    right_click_requirement:
+      requirements:
+        op:
+          type: "string equals"
+          input: "%player_name%"
+          output: "Ryan_yu__"
+      deny_commands:
+        - '[message] &c啊哦，你不是服主捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'

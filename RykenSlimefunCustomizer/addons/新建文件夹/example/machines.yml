@@ -1,0 +1,115 @@
+# RykenSlimeCustomizer Wiki: https://rsc.hiworldmc.com/#/file/machine
+RSC_EXAMPLE_MACHINE:
+  item_group: rsc_example_sub_group
+  item:
+    name: "&b示例机器"
+    material: furnace
+  recipe_type: ENHANCED_CRAFTING_TABLE
+  recipe:
+    1:
+      material_type: slimefun
+      material: RSC_EXAMPLE_RADIATION_ITEM_1
+  input: [9, 10, 11, 12, 13, 14, 15, 16, 17]
+  output: [31]
+  script: example_machine
+  work: 0
+RSC_EXAMPLE_MACHINE_ENERGY:
+  item_group: rsc_example_sub_group
+  item:
+    name: "&b示例能源机器"
+    material: smoker
+    lore:
+    - '&e机器tick（如用电）在脚本中完成'
+    - '&escript: example_machine_energy'
+  recipe_type: ENHANCED_CRAFTING_TABLE
+  energy:
+    capacity: 100000
+    totalTicks: 10
+    type: NONE
+  recipe:
+    1:
+      material_type: slimefun
+      material: RSC_EXAMPLE_MACHINE
+  input: []
+  output: []
+  script: example_machine_energy
+RSC_EXAMPLE_CAPACITOR_ENERGY:
+  item_group: rsc_example_sub_group
+  item:
+    name: "&b示例能源电容"
+    material: lantern
+    lore:
+    - '&e机器tick在脚本中完成'
+    - '&escript: example_capacitor_energy'
+  recipe_type: ENHANCED_CRAFTING_TABLE
+  energy:
+    capacity: 100000
+    totalTicks: 10
+    type: CAPACITOR
+  recipe:
+    1:
+      material_type: slimefun
+      material: RSC_EXAMPLE_MACHINE_ENERGY
+  input: []
+  output: []
+  script: example_capacitor_energy
+RSC_EXAMPLE_CONSUMER_ENERGY:
+  item_group: rsc_example_sub_group
+  item:
+    name: "&b示例能源用电器"
+    material: lantern
+    lore:
+    - '&e机器tick在脚本中完成'
+    - '&escript: example_consumer_energy'
+  recipe_type: ENHANCED_CRAFTING_TABLE
+  energy:
+    capacity: 100000
+    totalTicks: 10
+    type: CONSUMER
+  recipe:
+    1:
+      material_type: slimefun
+      material: RSC_EXAMPLE_CAPACITOR_ENERGY
+  input: []
+  output: []
+  script: example_consumer_energy
+RSC_EXAMPLE_GENERATOR_ENERGY:
+  item_group: rsc_example_sub_group
+  item:
+    name: "&b示例能源发电机"
+    material: lantern
+    lore:
+    - '&e机器tick在脚本中完成'
+    - '&escript: example_generator_energy'
+  recipe_type: ENHANCED_CRAFTING_TABLE
+  energy:
+    capacity: 100000
+    totalTicks: 10
+    type: GENERATOR
+  recipe:
+    1:
+      material_type: slimefun
+      material: RSC_EXAMPLE_CONSUMER_ENERGY
+  input: []
+  output: []
+  script: example_generator_energy
+RSC_EXAMPLE_CONNECTOR_ENERGY:
+  item_group: rsc_example_sub_group
+  item:
+    name: "&b示例能源连接器"
+    material: lantern
+    lore:
+    - '&e机器tick在脚本中完成'
+    - '&escript: example_connector_energy'
+  recipe_type: ENHANCED_CRAFTING_TABLE
+  energy:
+    capacity: 100000
+    totalTicks: 10
+    type: CONNECTOR
+  recipe:
+    1:
+      material_type: slimefun
+      material: RSC_EXAMPLE_GENERATOR_ENERGY
+  input: []
+  output: []
+  script: example_connector_energy

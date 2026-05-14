@@ -1,0 +1,17 @@
+{
+    "result": {
+        "type": "alchema:item",
+        "item": "minecraft:iron_ore"
+    },
+    "ingredients": [
+        {
+            "type": "alchema:material",
+            "item": "minecraft:stone"
+        },
+        {
+            "type": "alchema:material",
+            "item": "minecraft:iron_ingot",
+            "amount": 2
+        }
+    ]
+}

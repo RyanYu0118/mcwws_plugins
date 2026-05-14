@@ -1,0 +1,196 @@
+# 物品ID 用英文单引号括起来 内容随意 不要重复 不要包含 . 和空格
+guide:
+  
+  # 匹配物品显示名 可选 支持变量 没有此项则不限物品显示名
+  name: §b服务器指南
+  
+  # 匹配物品Lore 可选 支持变量 没有此项则不限物品Lore
+  lore:
+  - §a右键获得帮助
+  - §e非消耗性道具
+  
+  # 是否精确匹配物品Lore 可选 没有此项默认为true 表示需要Lore完全一致 false表示不管实际物品有多少行Lore, 只要含有配置里存在的行即可
+  # 例如在配置中设置:
+  # lore:
+  # - 'AA'
+  # - 'CC'
+  # 实际物品:
+  # - 'AA'
+  # - 'BB'
+  # - 'CC'
+  # 如果使用精确匹配(true) 会认为这个物品不符合条件 因为不完全一致
+  # 如果使用包含匹配(false) 会认为这个物品符合条件 因为包含AA和CC
+  lore-exact: false
+  
+  # 匹配物品类型 可选 没有此项则不限物品类型 (虽然name,lore,type都是可选的,但至少要提供一个)
+  # 如果你不知道某个物品的类型是什么 可以使用 /ic type 命令查看手持物品的类型
+  type: COMPASS
+  # 运算符两边必须有空格, !(单目运算符)除外
+  # 字符串比较示例
+  # - 's:{player} != notch, §c你的名字是notch 不能使用此物品!'
+  # - 's:{player} != NOTCH, §c你的名字是NOTCH 不能使用此物品!'
+  # - 's:{player} !== notch, §c别以为换了大小写我就不认识你了 你还是不能使用此物品!'
+  # 数值比较示例(因为用到了PAPI变量, 所以需要安装PAPI并启用Player扩展才能正常执行)
+  # - 'd:%player_level% >= 30, §6等级达到30级才能使用此物品!'
+  # 直接逻辑值示例(因为用到了PAPI变量, 所以需要安装PAPI并启用Player扩展才能正常执行)
+  # %player_is_flying% 会返回yes(飞行)或no(未飞行) 由于使用了!运算符进行取反 所以飞行时不能使用 去掉!就是飞行时才能使用了
+  # - '!%player_is_flying%, §e由于你正在飞行 不能使用此物品。'
+
+    # 触发方式 可同时选择多种触发方式 一行一种 可选 默认为right
+  # 支持的触发方式有: left(左键点击), right(右键点击), held(手持时), inv_left(物品栏内左键点击), inv_right(物品栏内右键点击)
+  trigger:
+  - right
+  
+  # 物品使用后执行的动作 一行一个动作 支持变量 可选 没有此项则不执行任何动作
+  # 可选的动作有: cmd, op, console, tell, chat, sound, sound-all, broadcast, give-money, give-points,
+  #  title, title-all, action-bar, action-bar-all, server 不指定默认为cmd
+  # 格式为 动作: 值 (动作后面需要紧跟一个英文冒号 否则无法识别出正确动作会默认为整行都是cmd动作的值)
+  action:
+  - 'op: dm open home'
+  # console = 让控制台执行命令
+  # - 'console: say hi {player}'
+  # tell = 给使用物品的玩家发送消息
+  # - 'tell: hi {player}'
+  # chat = 让使用物品的玩家发送聊天消息
+  # - 'chat: 我使用了§6示例物品'
+  # sound = 给使用物品的玩家播放指定音效
+  # - 'sound: ENTITY_EXPERIENCE_ORB_PICKUP'
+  # sound-all = 给全服玩家播放指定音效
+  # - 'sound-all: ENTITY_EXPERIENCE_ORB_PICKUP'
+  # broadcast = 给全服玩家发送消息(公告)
+  # - 'broadcast: {player}使用了§6示例物品'
+  # give-money = 给予使用物品的玩家指定数量的钱 只能为正整数 使用此功能需要安装Vault以及支持Vault的经济插件
+  # - 'give-money: 10'
+  # give-points = 给予使用物品的玩家指定数量的点券 只能为正整数 使用此功能需要安装PlayerPoints插件
+  # - 'give-points: 10'
+  # title = 给使用物品的玩家发送Title消息 格式 标题,副标题,显示时间(秒) 注意 逗号为英文逗号 1.10及以下版本会无视显示时间 1.8以下版本不支持此动作
+  # - 'title: HiHiHi,没人看得到我 因为会被覆盖,10'
+  # title-all = 给全服玩家发送Title消息 格式同上 注意 新的Title会覆盖没显示完的Title 所以这条Title会覆盖掉上面那一条
+  # - 'title-all: Hi,{player}使用了§6示例物品,10'
+  # action-bar = 给使用物品的玩家发送ActionBar消息 1.8及以下版本不支持此动作 并且使用此动作需要使用Spigot或其衍生服务端 如Paper
+  # - 'action-bar: hi 没人看得到我'
+  # action-bar-all = 给全服玩家发送ActionBar消息 注意 新的ActionBar会覆盖没显示完的ActionBar 所以这条ActionBar会覆盖掉上面那一条
+  # - 'action-bar-all: {player}使用了§6示例物品'
+  # server = 让使用物品的玩家切换到指定的BC子服 如果你不知道这是什么 那么你不需要此功能
+  # - 'server: login'
+
+    # 使用物品需要花费的钱 可选 支持变量 不能为负数
+  # price: 10
+
+    # 使用物品需要花费的点券 可选 支持变量 不能为负数
+  # points: 10
+
+    # 使用物品需要花费的经验等级 可选 支持变量 不能为负数
+  # levels: 10
+
+    # 使用物品需要的权限 可选 支持变量
+  # permission: '示例权限'
+
+    # 使用物品会消耗的数量 可选 支持变量 不能为负数 物品数量不足不能使用 提供0或没有此项则不消耗物品
+  required-amount: 0
+  
+  # 冷却时间 单位秒 可选 支持变量 不能为负数 如果设置了冷却时间 表示使用此物品后必须等待指定的时间后才能再次使用此物品(冷却时间每个物品ID单独计算)
+  cooldown: 0
+
+
+
+
+guide2:
+  name: §b服务器指南
+  lore:
+  - §a右键获得帮助
+  - §e非消耗性道具
+  lore-exact: false
+  type: COMPASS
+  trigger:
+  - left
+  action:
+  - 'op: slimefun open_guide'
+guide3:
+  name: §b服务器指南
+  lore:
+  - §a右键获得帮助
+  - §e非消耗性道具
+  lore-exact: false
+  type: COMPASS
+  trigger:
+  - inv_right
+  action:
+  - 'cmd: slimefun cheat'
+
+
+# 商品：麦当劳
+47450薯条1:
+  type: PLAYER_HEAD
+  name: §e薯条
+  lore:
+  - §e
+  - §a🍗 恢复 §b3 §a饱食度
+  - §a🧂 使用蘸料 §b番茄酱 §a额外恢复 §b1 §a饱食度 §8📘🔍
+  - §e
+  - §7🔒 已授权§7§kﷲ
+  - §c🚫🫳 不可放置§c§kﷲ
+  - §e消耗性商品
+  lore-exact: true
+  trigger:
+  - right
+  action:
+  - 'console: effect give %player_name% minecraft:saturation 1 5 true'
+  - 'sound: ENTITY_GENERIC_EAT'
+  required-amount: 1
+  condition:
+  - 'd:%player_food_level% < 20, '
+
+76番茄酱1:
+  type: PLAYER_HEAD
+  name: §e番茄酱
+  lore:
+  - §e
+  - §a🍗 与§a§n特定食物/饮品§a搭配额外恢复 §b1 §a饱食度 §8📘🔍
+  - §x§E§0§6§6§A§2🫧 赋予/消除 §x§E§0§6§6§D§F§n状态效果§r §8📘🔍%changeoutput_match_input:{objective_score_mcwws.data.selecteditem.remain}_matcher:1_ifmatch:yes_else:%
+  - §e
+  - §7🔒 已授权§7§kﷲ
+  - §c🚫🫳 不可放置§c§kﷲ
+  - §c🚫📚 不可堆叠§c§kﷲ
+  - §e消耗性商品
+  lore-exact: false
+  trigger:
+  - right
+  action:
+  - 'console: minecraft:scoreboard players remove %player_name% mcwws.data.selecteditem.remain 1'
+  - 'action-bar: §x§D§D§9§3§5§2🧪 剩余 §x§B§F§D§D§5§2%math_0:round_{checkitem_getinfo:mainhand_nbtints:CustomServerValues..Remain=0}-1%§8/32 §x§D§D§9§3§5§2次使用'
+  - 'sound: ITEM_HONEY_BOTTLE_DRINK'
+  - 'console: minecraft:item replace entity %player_name% weapon.mainhand with minecraft:player_head{CustomServerValues: {Authorized_name: "番茄酱", Remain: %math_0:round_{checkitem_getinfo:mainhand_nbtints:CustomServerValues..Remain=0}-1%, Effect_saturation_amplifier: 1}, SkullOwner: {Id: [I; -1379669389, 1531072490, -1573434766, -1255286997], Properties: {textures: [{Value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzBiOGI1ODg5ZWUxYzYzODhkYzZjMmM1ZGJkNzBiNjk4NGFlZmU1NDMxOWEwOTVlNjRkYjc2MzgwOTdiODIxIn19fQ=="}]}}, display: {Lore: [%unicode_27%{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"yellow","text":""}],"text":""}%unicode_27%, %unicode_27%{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"green","text":"🍗 与"},{"bold":false,"italic":false,"underlined":true,"strikethrough":false,"obfuscated":false,"color":"green","text":"特定食物/饮品"},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"green","text":"搭配额外恢复 "},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"aqua","text":"1 "},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"green","text":"饱食度 "},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"dark_gray","text":"📘🔍"}],"text":""}%unicode_27%, %unicode_27%{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"#E066A2","text":"🫧 赋予/消除 "},{"bold":false,"italic":false,"underlined":true,"strikethrough":false,"obfuscated":false,"color":"#E066DF","text":"状态效果"},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"text":" "},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"dark_gray","text":"📘🔍"}],"text":""}%unicode_27%, %unicode_27%{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"#DD9352","text":"🧪 剩余 "},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"#BFDD52","text":"%math_0:round_{checkitem_getinfo:mainhand_nbtints:CustomServerValues..Remain=0}-1%"},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"dark_gray","text":"/32 "},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"#DD9352","text":"次使用"}],"text":""}%unicode_27%, %unicode_27%{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"yellow","text":""}],"text":""}%unicode_27%, %unicode_27%{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"gray","text":"🔒 已授权"},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":true,"color":"gray","text":"ﷲ"}],"text":""}%unicode_27%, %unicode_27%{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"red","text":"🚫🫳 不可放置"},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":true,"color":"red","text":"ﷲ"}],"text":""}%unicode_27%, %unicode_27%{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"yellow","text":"消耗性商品"}],"text":""}%unicode_27%], Name: %unicode_27%{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"yellow","text":"番茄酱"}],"text":""}%unicode_27%}} 1'
+  - 'console: effect give %player_name% minecraft:saturation 1 %math_0:round_(2+{checkitem_getinfo:offhand_nbtints:CustomServerValues..Effect_saturation_amplifier=0})% true'
+  - 'console: %checkitem_remove_mat:player_head,amt:1,inslot:offhand%'
+  - 'sound: ENTITY_GENERIC_EAT'
+  condition:
+  - 's:1 == %checkitem_amount_inhand:main{unicode_2C}nameequals:&e番茄酱{unicode_2C}lorecontains:ﷲ%, §c一次只能用一罐番茄酱哦！'
+  - 'd:1 < %checkitem_getinfo:mainhand_nbtints:CustomServerValues..Remain=0%, '
+  - 's:yes == %changeoutput_contains_input:{checkitem_getinfo:offhand_nbtstrings:CustomServerValues..Collocation=s}_matcher:[番茄酱]_ifmatch:yes_else:no%, '
+  - 'd:%player_food_level% < 20, '
+
+76番茄酱2:
+  type: PLAYER_HEAD
+  name: §e番茄酱
+  lore:
+  - §e
+  - §a🍗 与§a§n特定食物/饮品§a搭配额外恢复 §b1 §a饱食度 §8📘🔍
+  - §x§E§0§6§6§A§2🫧 赋予/消除 §x§E§0§6§6§D§F§n状态效果§r §8📘🔍
+  - §x§D§D§9§3§5§2🧪 剩余 §x§B§F§D§D§5§21§8/32 §x§D§D§9§3§5§2次使用
+  - §e
+  - §7🔒 已授权§7§kﷲ
+  - §c🚫🫳 不可放置§c§kﷲ
+  - §c🚫📚 不可堆叠§c§kﷲ
+  - §e消耗性商品
+  lore-exact: true
+  trigger:
+  - right
+  action:
+  - 'action-bar: §x§D§D§9§3§5§2🧪 已用完'
+  - 'sound: ITEM_HONEY_BOTTLE_DRINK'
+  - 'console: minecraft:item replace entity %player_name% weapon.mainhand with minecraft:air'
+  condition:
+  - 's:1 == %checkitem_amount_inhand:main{unicode_2C}nameequals:&e番茄酱{unicode_2C}lorecontains:ﷲ%, §c一次只能用一罐番茄酱哦！'
+  - 's:yes == %changeoutput_contains_input:{checkitem_getinfo:offhand_nbtstrings:CustomServerValues..Collocation=s}_matcher:[番茄酱]_ifmatch:yes_else:no%, '
+  - 'd:%player_food_level% < 20, '

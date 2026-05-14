@@ -1,0 +1,53 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 127.0.0.1
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 1776665369805
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1776670962650
+  login: 1776670012127
+money: '105964.467'
+last-account-name: Misaka52065
+logoutlocation:
+  world: 407ccbed-2f74-4524-be27-8b4371eedfa8
+  world-name: world
+  x: -274.6229498286521
+  y: 51.0
+  z: -176.36874326398976
+  yaw: 161.5249786376953
+  pitch: 9.752589225769043
+mail:
+- legacy: false
+  read: false
+  message: 指南针》我的仓库》农民仓库里面可以换钱或者取货的
+  sender-name: Ryan_yu__
+  sender-uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+  timestamp: 1700141498335
+  expire: 0
+- legacy: false
+  read: false
+  message: '1'
+  sender-name: Ryan_yu__
+  sender-uuid: d006ba70-4ddc-4b37-b13c-76f190815116
+  timestamp: 1700140711436
+  expire: 0
+lastlocation:
+  world: 407ccbed-2f74-4524-be27-8b4371eedfa8
+  world-name: world
+  x: -469.69208691750936
+  y: 133.16938729548983
+  z: 1348.8094801942175
+  yaw: -11.6776123046875
+  pitch: 9.092616081237793

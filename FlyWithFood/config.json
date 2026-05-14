@@ -1,0 +1,102 @@
+{
+  "Cost": 4,
+  "Disable": 6,
+  "CheckSeconds": 1,
+  "ConfigVersion": 6,
+  "CostMode": "Money",
+  "Language": "Chinese",
+  "CheckSaturation": true,
+  "Languages": {
+    "RawMsg": {
+      "Enable": true,
+      "On": "&b[飞行]&a你已经成功开启飞行！请注意你的%mode%",
+      "Off": "&b[飞行]&a你已经关闭飞行！",
+      "CannotEnable": "&b[飞行]&c%mode%不足，无法开启飞行!",
+      "CannotFly": "&b[飞行]&c你的%mode%不足，已经自动关闭飞行",
+      "HasEffect": "&9你无法在拥有饱和效果的情况下飞行"
+    },
+    "TitleMsg": {
+      "Enable": true,
+      "On": "&b[飞行]\\n&a你已经成功开启飞行！请注意你的%mode%",
+      "Off": "&b[飞行]\\n&a你已经关闭飞行！",
+      "CannotEnable": "&b[飞行]\\n&c%mode%不足，无法开启飞行!",
+      "CannotFly": "&b[飞行]\\n&c你的%mode%不足，已经自动关闭飞行",
+      "HasEffect": "&9你无法在拥有饱和效果的情况下飞行"
+    },
+    "ActionMsg": {
+      "Enable": false,
+      "On": "&a你已经成功开启飞行！请注意你的%mode%",
+      "Off": "&a你已经关闭飞行！",
+      "CannotEnable": "&c%mode%不足，无法开启飞行!",
+      "CannotFly": "&c你的%mode%不足，已经自动关闭飞行",
+      "HasEffect": "&9你无法在拥有饱和效果的情况下飞行"
+    },
+    "HelpMsgList": {
+      "Start": [
+        "&e你可以执行 &a/fly &e, &a/fwf &e或 &a/flywithfood &e来使用本插件",
+        "&9你目前可用的命令: "
+      ],
+      "Fly": [
+        "&a%command% &b<on|off|toggle> &f- &e为你自己开启或关闭飞行"
+      ],
+      "Other": [
+        "&a%command% &b<on|off|toggle> <在线玩家> &f- &e为指定玩家开启或关闭飞行"
+      ],
+      "Admin": [
+        "&a%command% &breload &f- &e重载配置",
+        "&d以下为权限列表: ",
+        "&afly.fly &f- &e允许玩家开启或关闭飞行",
+        "&afly.nocost &f- &e允许玩家飞行时不消耗点数",
+        "&afly.other &f- &e允许玩家开启或关闭他人的飞行",
+        "&afly.admin &f- &e可收到权限列表",
+        "&afly.groups.&2%GroupName% &f- &e将玩家归于配置文件的组内，%GroupName%为组名.如fly.groups.Group1，则将玩家归于Group1组"
+      ],
+      "End": []
+    },
+    "NoPermission": "&c你没有权限",
+    "DisableInThisWorld": "&c这个世界不允许使用这个命令",
+    "PlayerOnly": "&c该命令仅允许玩家执行",
+    "PlayerNotOnline": "&c玩家不存在",
+    "Modes": {
+      "ExpLevel": "经验等级",
+      "Food": "饥饿值",
+      "ExpPoint": "经验值",
+      "Money": "游戏币"
+    }
+  },
+  "FunctionsWhitelist": {
+    "Enable": false,
+    "Worlds": [
+      "world",
+      "world_nether",
+      "world_the_end",
+      "spawnworld"
+    ]
+  },
+  "NoCostWhitelist": {
+    "Enable": false,
+    "Worlds": [
+      "world",
+      "world_nether",
+      "world_the_end",
+      "spawnworld"
+    ]
+  },
+  "Groups": {
+    "Group1": {
+      "Cost": 2,
+      "Disable": 6,
+      "CostMode": "Food"
+    },
+    "Group2": {
+      "Cost": 1,
+      "Disable": 4,
+      "CostMode": "ExpLevel"
+    },
+    "Players_3": {
+      "Cost": 1,
+      "Disable": 4,
+      "CostMode": "ExpPoint"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+# _____       __ _       _ _         _____                    _                         _
+# |_   _|     / _(_)     (_) |       /  ___|                  | |                       | |
+# | | _ __ | |_ _ _ __  _| |_ ___  \ `--.  ___ ___  _ __ ___| |__   ___   __ _ _ __ __| |
+# | || '_ \|  _| | '_ \| | __/ _ \  `--. \/ __/ _ \| '__/ _ \ '_ \ / _ \ / _` | '__/ _` |
+# _| || | | | | | | | | | | ||  __/ /\__/ / (_| (_) | | |  __/ |_) | (_) | (_| | | | (_| |
+# \___/_| |_|_| |_|_| |_|_|\__\___| \____/ \___\___/|_|  \___|_.__/ \___/ \__,_|_|  \__,_|
+# 
+# Created by Infinite Plugins
+
+# General Messages
+messages:
+  prefix: '&8[&2InfiniteScoreboard&8]'
+# Command Messages
+command:
+  no-permission: '&cYou do not have permission to do that.'
+  toggle-on: '&7You turned your scoreboard &aon&7!'
+  toggle-off: '&7You turned your scoreboard &coff&7!'

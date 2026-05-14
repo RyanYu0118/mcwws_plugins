@@ -1,0 +1,107 @@
+Messages:
+  1:
+    LeaveMessage: Now leaving %residence.
+    EnterMessage: Welcome %player to %residence, owned by %owner.
+Flags:
+  1:
+    container: true
+    ignite: true
+    move: true
+    trade: true
+    shear: true
+    mobkilling: true
+    build: true
+    use: true
+    destroy: true
+    vehicledestroy: true
+    leash: true
+    animalkilling: true
+  2:
+    container: false
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    build: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+  3:
+    container: true
+    ignite: false
+    shear: false
+    firespread: false
+    use: false
+    destroy: false
+    pvp: false
+    animalkilling: false
+    hook: false
+    build: false
+    explode: false
+    vehicledestroy: false
+    tnt: false
+    leash: false
+    pistonprotection: true
+    tp: true
+    creeper: false
+Residences:
+  ghast_farm_n:
+    TPLoc: -32.5:139.1:-243.5:0.0:0.0
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 2
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719066804907
+    Areas:
+      main: -32:127:-288:18:139:-238
+  guardian_farm_n:
+    TPLoc: -30.53:128.0:197.49:10.2:-1.96
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 3
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719124482702
+    Areas:
+      main: -52:127:197:-25:180:205
+  industrial_base_n:
+    TPLoc: -47.5:130.0:-15.5:0.0:0.0
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 3
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719067264428
+    Areas:
+      main: -52:127:-20:-45:138:-13
+  wither_skeleton_farm:
+    TPLoc: 358.53:28.5:110.71:-8.25:179.7
+    Messages: 1
+    BlockSellPrice: 0.3
+    Permissions:
+      PlayerFlags:
+        d006ba70-4ddc-4b37-b13c-76f190815116: 1
+      AreaFlags: 3
+      OwnerUUID: d006ba70-4ddc-4b37-b13c-76f190815116
+      OwnerLastKnownName: Ryan_yu__
+    CreatedOn: 1719066510607
+    Areas:
+      main: 327:15:83:394:65:131

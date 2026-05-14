@@ -1,0 +1,13 @@
+#关键词
+words:
+  - 'fuck'
+#是否可以发送 true可以发送 false不可发送
+sendout:
+  fuck: false
+#检测到关键词后执行的指令(不要加'/') 支持papi
+commands:
+  fuck: 
+    - 'say [player]'
+#检测到关键词后发送的消息  支持papi
+messages: 
+  fuck: '&2%player_name%,&c不可以说脏话哦！'

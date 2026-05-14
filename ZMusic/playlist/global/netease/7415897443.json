@@ -1,0 +1,84 @@
+{
+  "name": "MCWWS-Halloween",
+  "songs": 13,
+  "list": [
+    {
+      "id": "1363829374",
+      "name": "Two Fixed Points",
+      "singer": "Jerry Lacey",
+      "time": 109
+    },
+    {
+      "id": "1449430030",
+      "name": "Castle Fairy",
+      "singer": "Etienne Roussel",
+      "time": 102
+    },
+    {
+      "id": "22726033",
+      "name": "Overture",
+      "singer": "まめこ",
+      "time": 43
+    },
+    {
+      "id": "1464843057",
+      "name": "万圣节-The Halloween",
+      "singer": "猎豹游戏-Cheetah Mobile Games",
+      "time": 120
+    },
+    {
+      "id": "570337076",
+      "name": "诡异的沉默",
+      "singer": "橙光音乐",
+      "time": 62
+    },
+    {
+      "id": "27804225",
+      "name": "Dangerous Zone (Opening Title)",
+      "singer": "吴俊城",
+      "time": 89
+    },
+    {
+      "id": "1859609971",
+      "name": "Hogwarts",
+      "singer": "Legion Beats",
+      "time": 118
+    },
+    {
+      "id": "1486496",
+      "name": "Hedwig\u0027s Theme",
+      "singer": "John Williams",
+      "time": 309
+    },
+    {
+      "id": "1938273",
+      "name": "Elsinore Revisited",
+      "singer": "Sean Lennon",
+      "time": 150
+    },
+    {
+      "id": "1302685128",
+      "name": "Halloween Theme (From \"Halloween\")",
+      "singer": "Blackround Philharmonic Orchestra",
+      "time": 206
+    },
+    {
+      "id": "17677739",
+      "name": "Veil of Darkness",
+      "singer": "Nox Arcana",
+      "time": 115
+    },
+    {
+      "id": "1161515",
+      "name": "Main Titles",
+      "singer": "Charlie Clouser",
+      "time": 176
+    },
+    {
+      "id": "21071300",
+      "name": "Dance of the Sugar Plum Fairy",
+      "singer": "London Symphony",
+      "time": 136
+    }
+  ]
+}

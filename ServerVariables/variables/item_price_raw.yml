@@ -1,0 +1,13 @@
+variables:
+  r:
+    variable_type: PLAYER
+    value_type: INTEGER
+    initial_value: 3
+    limitations:
+      min_value: 0
+  e:
+    variable_type: GLOBAL
+    value_type: LIST
+    initial_value:
+      - Ajneb
+      - KleinTada

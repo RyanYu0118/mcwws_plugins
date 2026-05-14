@@ -1,0 +1,49 @@
+# Plugin developed by GFelberg
+
+# Thanks for downloading my plugin. For more plugins, don't forget to look my updates!
+# If you find any bugs or ideas to the plugin, pm me at spigot.
+
+# THIS IS A LANGUAGE TEMPLATE FILE FOR TRANSLATIONS. DO NOT USE FOR REAL CONFIGURATION
+
+# %back_prefix% : Gets the Back prefix
+# %back_delaytime% : Gets the remaining time for use the Back Command, if cooldown is enabled.
+# %back_cost% : Gets the teleport cost
+# %back_withdraw% : Gets the money taken from the player account
+
+# Back Messages
+Back:
+  Prefix: "&b[&eBack&b]&r"
+  Message: "%back_prefix% &eYou have been teleported to your last location"
+  Failed: "%back_prefix% &cYour teleport has been failed. No location found!"
+  NoPermission: "%back_prefix% &cYou don't have permission to perform this command!"
+  Reload: "%back_prefix% &aPlugin reloaded successfully!"
+
+# Page Messages
+Help:
+  Page: "&eShows this page"
+  Back: "&eTeleports to your last location"
+  Backlist: "&eList all Blocked Worlds"
+  Reload: "&eReloads the Plugin"
+
+# Cooldown Messages
+Cooldown:
+  Message: "%back_prefix% &cYou must wait &b%back_delaytime% &cseconds to use the command!"
+
+# Click Option Messages
+ClickOption:
+  Messages:
+    - ""
+    - "%back_prefix% #FF5555[Click here to Death Location]"
+    - ""
+
+# WorldBlacklist Messages
+WorldBlacklist:
+  DisabledMessage: "%back_prefix% &cThe world list is disabled in the configuration!"
+  BlockedWorld: "%back_prefix% &cYou died in a world which this command is blocked by an Admin!"
+  NoWorlds: "%back_prefix% &cNo Worlds were found in the list!"
+  Title: "&bBlocked Worlds"
+
+# Vault Messages
+Vault:
+  Withdraw: "&e$%back_withdraw% &bwere taken from your account"
+  NoMoney: "&cYou need $%back_cost% to teleport!"

@@ -1,0 +1,31 @@
+date: 20230827
+depositories:
+  farmer:
+    POTATO:
+      sold: 76
+    BAMBOO:
+      sold: 1384
+    BEETROOT_SEEDS:
+      sold: 1
+    WHEAT_SEEDS:
+      amount: 1
+    POISONOUS_POTATO:
+      sold: 2
+  hunter:
+    ROTTEN_FLESH:
+      amount: 3
+    EGG:
+      sold: 1
+      amount: 2
+    PORKCHOP:
+      sold: 2
+    SPIDER_EYE:
+      amount: 1
+    ARROW:
+      sold: 1
+    STRING:
+      sold: 1
+      amount: 2
+  miner:
+    COBBLESTONE:
+      amount: 250

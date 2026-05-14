@@ -1,0 +1,13 @@
+{
+    "freezeWorld": false,
+    "announceSeed": true,
+    "announceLocation": true,
+    "announceBack": true,
+    "specOnDeath": true,
+    "specOnJoin": false,
+    "punishmentSetting": {
+        "active": false,
+        "type": "BAN"
+    },
+    "syncWithChallenge": true
+}

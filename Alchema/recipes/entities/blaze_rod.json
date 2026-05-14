@@ -1,0 +1,18 @@
+{
+    "experience": 3,
+    "result": {
+        "type": "alchema:item",
+        "item": "minecraft:blaze_rod"
+    },
+    "ingredients": [
+        {
+            "type": "alchema:entity_essence",
+            "entity": "minecraft:blaze",
+            "amount": 50
+        },
+        {
+            "type": "alchema:material",
+            "item": "minecraft:stick"
+        }
+    ]
+}

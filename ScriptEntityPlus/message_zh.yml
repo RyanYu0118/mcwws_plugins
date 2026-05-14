@@ -1,0 +1,38 @@
+# ScriptEntityPlus v1.2.3 Message #
+# Author: yuttyann44581
+# 本配置源语言为日本语，可能存在翻译不准确的地方
+
+
+# &(code) : 可以使用彩色代码
+
+## ===== ScriptConnection ===== ##
+# 沒有佔位符
+ScriptConnection:
+  - '&a该工具支持对实体的脚本操作。'
+  - '&d---------- [ 主手 ] ----------'
+  - '&6左键点击: &e更改工具模式。'
+  - '&6右键点击: &e在实体上设置脚本。'
+  - '&6Shift+左键点击: &e选择指定的脚本。'
+  - '&6Shift+右键点击: &e删除实体的脚本。'
+  - '&d---------- [ 副手 ] ----------'
+  - '&6右键点击: &e显示实体中设置的脚本。'
+  - '&6Shift+右键点击: &e显示实体设置。'
+
+# |~ \n : 改行
+
+## ===== Messages ===== ##
+# 沒有佔位符
+InvincibleTextMessage: '&b此设置禁用对实体的损坏。'
+ProjectileTextMessage: '&b这是通过弹丸执行脚本的设置。'
+
+# %name%  : 设置名称
+# %value% : 设定值
+SettingValueMessage: '&a设置"&b&l%name%&r&a"的值已更改为"&e%value%&a"。'
+SettingViewMessage: '&d此设置"&b&l%name%&r&d"的值是"&e%value%&d"。'
+
+# %scriptkey% : 脚本键
+ScriptSelectMessage: '&a指定了脚本"%scriptkey%"。'
+
+# %entitytype% : 实体种类
+ScriptSettingEntityMessage: '&a我已经在实体"%entitytype%"上设置了一个脚本。'
+ScriptRemoveEntityMessage: '&c删除了实体"%entitytype%"的脚本。'

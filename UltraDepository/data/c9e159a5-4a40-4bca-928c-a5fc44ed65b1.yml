@@ -1,0 +1,66 @@
+date: 20240620
+depositories:
+  farmer:
+    WHEAT_SEEDS:
+      amount: 182
+    BAMBOO:
+      amount: 39
+    SWEET_BERRIES:
+      amount: 7
+    CHORUS_FRUIT:
+      amount: 31
+    PUMPKIN:
+      amount: 192
+    KELP:
+      amount: 746
+  hunter:
+    ROTTEN_FLESH:
+      amount: 48
+    INK_SAC:
+      amount: 149
+    ARROW:
+      amount: 59
+    BLAZE_ROD:
+      amount: 123
+    MAGMA_CREAM:
+      amount: 13
+    SLIME_BALL:
+      amount: 235
+    GHAST_TEAR:
+      amount: 7
+    SPIDER_EYE:
+      amount: 45
+    ENDER_PEARL:
+      amount: 44
+    STRING:
+      amount: 252
+    BONE:
+      amount: 616
+  fisherman:
+    SALMON:
+      amount: 7
+    COD:
+      amount: 64
+  miner:
+    IRON_ORE:
+      amount: 1
+    EMERALD:
+      amount: 222
+    LAPIS_LAZULI:
+      amount: 15
+    REDSTONE:
+      amount: 5
+    DIAMOND:
+      amount: 37
+    COBBLESTONE:
+      amount: 4459
+    FLINT:
+      amount: 1
+    COAL:
+      amount: 191
+    GOLD_ORE:
+      amount: 18
+    GOLD_INGOT:
+      amount: 5
+    CLAY_BALL:
+      amount: 131

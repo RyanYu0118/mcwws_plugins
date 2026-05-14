@@ -1,0 +1,188 @@
+================================
+System Information
+================================
+
+Java: Microsoft 17.0.5 (https://www.microsoft.com)
+Operating System: Windows 11 10.0 (amd64)
+Available Processors: 16
+Free Memory: 2329 MB
+Max Memory: 4028 MB
+Total Memory: 4028 MB
+System Load Average: -1.0
+Java Uptime: 10 minutes
+Startup: Input Arguments: 
+Virtual Machine: 
+	Name: OpenJDK 64-Bit Server VM
+	Vendor: Microsoft
+	Version: Microsoft
+Specification: 
+	Name: Java Virtual Machine Specification
+	Vendor: Oracle Corporation
+	Version: 17
+Class Loader: 
+	Loaded Class Count: 37639
+	Total Loaded Class Count: 37700
+	Unloaded Class Count: 61
+Garbage Collectors: 
+	G1 Young Generation: 
+		Collection Count: 183
+		Collection Time: 2339ms
+	G1 Old Generation: 
+		Collection Count: 0
+		Collection Time: 0ms
+Threads: 
+	#2 Reference Handler: RUNNABLE
+	#3 Finalizer: WAITING
+	#4 Signal Dispatcher: RUNNABLE
+	#5 Attach Listener: RUNNABLE
+	#21 Notification Thread: RUNNABLE
+	#22 Common-Cleaner: TIMED_WAITING
+	#24 DestroyJavaVM: RUNNABLE
+	#28 JNA Cleaner: WAITING
+	#29 Timer hack thread: TIMED_WAITING
+	#30 Yggdrasil Key Fetcher: TIMED_WAITING
+	#33 Worker-Main-1: WAITING
+	#34 Worker-Main-2: WAITING
+	#36 Worker-Main-4: WAITING
+	#38 Worker-Main-6: WAITING
+	#42 Worker-Main-10: WAITING
+	#44 Worker-Main-12: WAITING
+	#45 Worker-Main-13: WAITING
+	#46 Worker-Main-14: WAITING
+	#51 Java2D Disposer: WAITING
+	#53 AWT-Windows: RUNNABLE
+	#56 AWT-Shutdown: WAITING
+	#55 AWT-EventQueue-0: WAITING
+	#58 TimerQueue: TIMED_WAITING
+	#57 Thread-2: WAITING
+	#48 Server thread: RUNNABLE
+	#61 TerminalConsoleWriter: WAITING
+	#63 Spigot Watchdog Thread: TIMED_WAITING
+	#64 Netty Server IO #0: RUNNABLE
+	#65 TConfigWatcherService-1: TIMED_WAITING
+	#66 ForkJoinPool.commonPool-worker-1: WAITING
+	#67 ForkJoinPool.commonPool-worker-2: WAITING
+	#68 ForkJoinPool.commonPool-worker-3: WAITING
+	#69 ForkJoinPool.commonPool-worker-4: WAITING
+	#73 ForkJoinPool.commonPool-worker-8: WAITING
+	#76 ForkJoinPool.commonPool-worker-11: TIMED_WAITING
+	#77 ForkJoinPool.commonPool-worker-12: WAITING
+	#80 ForkJoinPool.commonPool-worker-15: WAITING
+	#85 TConfigWatcherService-1: TIMED_WAITING
+	#86 FileSystemWatchService: RUNNABLE
+	#87 FileSystemWatchService: RUNNABLE
+	#88 luckperms-worker-0: WAITING
+	#89 luckperms-worker-1: WAITING
+	#90 luckperms-worker-2: WAITING
+	#91 luckperms-worker-3: WAITING
+	#92 luckperms-worker-4: WAITING
+	#93 luckperms-worker-5: WAITING
+	#94 luckperms-worker-6: WAITING
+	#95 luckperms-worker-7: WAITING
+	#96 luckperms-worker-8: TIMED_WAITING
+	#97 luckperms-worker-9: WAITING
+	#98 luckperms-scheduler: TIMED_WAITING
+	#99 WorldEdit Session Manager: TIMED_WAITING
+	#100 HttpClient-1-SelectorManager: RUNNABLE
+	#101 FileSystemWatchService: RUNNABLE
+	#102 luckperms-worker-10: WAITING
+	#105 MVStore background writer nio:D:/Games/Minecraft/服务器/1.20.1/plugins/LuckPerms/luckperms-h2.mv.db: TIMED_WAITING
+	#111 Timer-0: TIMED_WAITING
+	#112 bStats-Metrics: TIMED_WAITING
+	#118 bStats-Metrics: TIMED_WAITING
+	#120 bStats-Metrics: TIMED_WAITING
+	#124 bStats-Metrics: TIMED_WAITING
+	#125 bStats-Metrics: TIMED_WAITING
+	#126 bStats-Metrics: TIMED_WAITING
+	#127 mysql-cj-abandoned-connection-cleanup: TIMED_WAITING
+	#128 LiteSignIn-Pool: TIMED_WAITING
+	#129 bStats-Metrics: TIMED_WAITING
+	#130 pool-22-thread-1: TIMED_WAITING
+	#131 bStats-Metrics: TIMED_WAITING
+	#132 bStats-Metrics: TIMED_WAITING
+	#134 bStats-Metrics: TIMED_WAITING
+	#135 GeekPlayerBag-SQLITE housekeeper: TIMED_WAITING
+	#137 Timer-1: TIMED_WAITING
+	#139 bStats-Metrics: TIMED_WAITING
+	#141 bStats-Metrics: TIMED_WAITING
+	#142 Thread-14: RUNNABLE
+	#143 Thread-15: TIMED_WAITING
+	#144 Thread-16: TIMED_WAITING
+	#148 Timer-2: TIMED_WAITING
+	#161 bStats-Metrics: TIMED_WAITING
+	#163 Thread-18: TIMED_WAITING
+	#171 bStats-Metrics: TIMED_WAITING
+	#220 IO-Worker-26: TIMED_WAITING
+	#221 IO-Worker-27: TIMED_WAITING
+	#222 Netty Server IO #1: RUNNABLE
+	#223 Netty Server IO #2: RUNNABLE
+	#227 ForkJoinPool-3-worker-1: TIMED_WAITING
+	#228 Worker-Main-28: WAITING
+	#233 Worker-Main-33: WAITING
+	#234 Worker-Main-34: WAITING
+	#230 Worker-Main-30: TIMED_WAITING
+	#235 Craft Scheduler Thread - 27: TIMED_WAITING
+	#236 Craft Scheduler Thread - 28: TIMED_WAITING
+	#232 Worker-Main-32: WAITING
+	#229 Worker-Main-29: TIMED_WAITING
+	#231 Worker-Main-31: WAITING
+	#237 Craft Scheduler Thread - 29: TIMED_WAITING
+	#238 pool-21-thread-1: WAITING
+	#239 Craft Scheduler Thread - 30: TIMED_WAITING
+	#240 IO-Worker-35: TIMED_WAITING
+	#241 IO-Worker-36: TIMED_WAITING
+	#244 Async Chat Thread - #0: TIMED_WAITING
+
+================================
+WorldEdit Configuration
+================================
+
+Configuration: 
+	noOpPermissions: false
+	unsupportedVersionEditing: false
+	profile: false
+	traceUnflushedSessions: false
+	disallowedBlocks: [minecraft:yellow_bed, minecraft:lever, minecraft:redstone_torch, minecraft:tnt, minecraft:moving_piston, minecraft:gray_bed, minecraft:light_blue_bed, minecraft:acacia_sapling, minecraft:cyan_bed, minecraft:comparator, minecraft:grass, minecraft:torch, minecraft:oak_button, minecraft:black_bed, minecraft:sunflower, minecraft:fire, minecraft:magenta_bed, minecraft:melon_stem, minecraft:oak_sapling, minecraft:spruce_sapling, minecraft:powered_rail, minecraft:carrots, minecraft:poppy, minecraft:jungle_button, minecraft:red_bed, minecraft:jungle_sapling, minecraft:brown_bed, minecraft:rail, minecraft:birch_sapling, minecraft:dead_bush, minecraft:acacia_button, minecraft:lime_bed, minecraft:bedrock, minecraft:wheat, minecraft:green_bed, minecraft:rose_bush, minecraft:redstone_wire, minecraft:stone_button, minecraft:beetroots, minecraft:blue_bed, minecraft:sugar_cane, minecraft:red_mushroom, minecraft:orange_bed, minecraft:repeater, minecraft:dark_oak_sapling, minecraft:pumpkin_stem, minecraft:detector_rail, minecraft:piston_head, minecraft:birch_button, minecraft:dark_oak_button, minecraft:spruce_button, minecraft:redstone_wall_torch, minecraft:pink_bed, minecraft:potatoes, minecraft:purple_bed, minecraft:brown_mushroom, minecraft:cactus, minecraft:light_gray_bed, minecraft:dandelion, minecraft:white_bed]
+	defaultChangeLimit: -1
+	maxChangeLimit: -1
+	defaultVerticalHeight: 256
+	defaultMaxPolygonalPoints: -1
+	maxPolygonalPoints: 20
+	defaultMaxPolyhedronPoints: -1
+	maxPolyhedronPoints: 20
+	shellSaveType: null
+	snapshotsConfigured: false
+	snapshotRepo: null
+	snapshotDatabase: null
+	maxRadius: -1
+	maxSuperPickaxeSize: 5
+	maxBrushRadius: 128
+	logCommands: false
+	logFile: worldedit.log
+	logFormat: [%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS %4$s]: %5$s%6$s%n
+	registerHelp: true
+	wandItem: minecraft:flint
+	superPickaxeDrop: true
+	superPickaxeManyDrop: false
+	useInventory: false
+	useInventoryOverride: true
+	useInventoryCreativeOverride: false
+	navigationUseGlass: true
+	navigationWand: minecraft:feather
+	navigationWandMaxDistance: 100
+	scriptTimeout: 3000
+	calculationTimeout: 100
+	maxCalculationTimeout: 300
+	allowedDataCycleBlocks: []
+	saveDir: schematics
+	scriptsDir: craftscripts
+	showHelpInfo: true
+	butcherDefaultRadius: -1
+	butcherMaxRadius: -1
+	allowSymlinks: false
+	serverSideCUI: true
+	extendedYLimit: false
+	commandBlockSupport: false
+	defaultLocaleName: default
+	defaultLocale: zh_CN
+

@@ -1,0 +1,53 @@
+# Permission would be "infinite.scoreboard.scoreboard.admin"
+# Permission would be "infinite.scoreboard.scoreboard.admin"
+# Permission would be "infinite.scoreboard.scoreboard.admin"
+# Permission would be "infinite.scoreboard.scoreboard.admin"
+permission: admin
+# The higher is the number -> higher priority
+# The higher is the number -> higher priority
+# The higher is the number -> higher priority
+# The higher is the number -> higher priority
+priority: 1
+# Scoreboard will only work in world below.
+# Scoreboard will only work in world below.
+# Scoreboard will only work in world below.
+# Scoreboard will only work in world below.
+worlds:
+- example_1
+- example_2
+scoreboard:
+  # Don't forget to increase the interval for better performance!
+  # Don't forget to increase the interval for better performance!
+  # Don't forget to increase the interval for better performance!
+  # Don't forget to increase the interval for better performance!
+  title:
+    interval: 2
+    lines:
+    - '&2&lI&a&lnf&f&liniteScoreBoard'
+    - '&2&lInf&a&lin&f&liteScoreBoard'
+    - '&2&lInfin&a&lit&f&leScoreBoard'
+    - '&2&lInfinit&a&leS&f&lcoreBoard'
+    - '&2&lInfiniteS&a&lco&f&lreBoard'
+    - '&2&lInfiniteSco&a&lre&f&lBoard'
+    - '&2&lInfiniteScore&a&lBo&f&lard'
+    - '&2&lInfiniteScoreBo&a&lar&f&ld'
+    - '&2&lInfiniteScoreBoar&a&ld'
+    - '&2&lInfiniteScoreBoard'
+    - '&2&lInfiniteScoreBoard'
+    - '&2&lInfiniteScoreBoard'
+  line-1:
+    interval: 100
+    lines:
+    - '&fPlayer: %player_name%'
+  line-2:
+    interval: 1000
+    lines:
+    - '&eAdmin scoreboard'
+  line-4:
+    interval: 1000
+    lines:
+    - ''
+  line-5:
+    interval: 1000
+    lines:
+    - '&4Infinite&1Plugins'

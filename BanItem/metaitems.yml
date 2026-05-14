@@ -1,0 +1,48 @@
+# +———————————————————————————————————————————————————+ #
+# |——————————     BANITEM CONFIGURATION     ——————————| #
+# |——————————————————      v3.0      —————————————————| #
+# +———————————————————————————————————————————————————+ #
+# |                   Documentation:                  | #
+# |             https://banitem.andross.fr/           | #
+# +———————————————————————————————————————————————————+ #
+# For any bugs/suggestions: Andross#5254
+# +——————————————————————————————————————————————————————————————————————————————————————————————+
+# This file is used to save the meta items (items with its metadata).
+# I highly suggest you to NOT modify this file manually, it may broke the item.
+
+'1':
+  ==: org.bukkit.inventory.ItemStack
+  v: 3465
+  type: LIGHT
+  amount: 61
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: '{"extra":[{"text":"无注释示例"}],"text":""}'
+    lore:
+    - '{"extra":[{"text":"3333333"}],"text":""}'
+    custom-model-data: 1
+unplaceable:
+  ==: org.bukkit.inventory.ItemStack
+  v: 3465
+  type: PLAYER_HEAD
+  amount: 40
+  meta:
+    ==: ItemMeta
+    meta-type: SKULL
+    display-name: '{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"yellow","text":"薯条"}],"text":""}'
+    lore:
+    - '{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"yellow","text":""}],"text":""}'
+    - '{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"green","text":"恢复
+      "},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"aqua","text":"6
+      "},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"green","text":"饱食度"}],"text":""}'
+    - '{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"yellow","text":""}],"text":""}'
+    - '{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"gray","text":"🔒已授权"},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":true,"color":"gray","text":"ﷲ"}],"text":""}'
+    - '{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"red","text":"🚫🫳不可放置"},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":true,"color":"red","text":"ﷲ"}],"text":""}'
+    - '{"extra":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"color":"yellow","text":"消耗性商品"}],"text":""}'
+    skull-owner:
+      ==: PlayerProfile
+      uniqueId: ddb9dd96-2821-405f-a7c5-736c952fcfa9
+      properties:
+      - name: textures
+        value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmE4MmUxMWQ1YTY0YzZkNjUzZjNhMWM1M2M5NDIwYTE1MzgxOGU2N2RiZDhlOTM0NDJjMzVjNjI3ZTBjNjMxIn19fQ==

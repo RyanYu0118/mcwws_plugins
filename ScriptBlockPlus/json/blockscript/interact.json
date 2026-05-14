@@ -1,0 +1,30 @@
+[
+  {
+    "blockcoords": "world,-2008,51,2782",
+    "author": [
+      "d006ba70-4ddc-4b37-b13c-76f190815116"
+    ],
+    "script": [
+      "@bypass zm play 163 The Wandering Earth II International Trailer"
+    ],
+    "lastedit": "2024/12/17 01:29:05"
+  },
+  {
+    "blockcoords": "world,-279,91,2652",
+    "author": [
+      "d006ba70-4ddc-4b37-b13c-76f190815116"
+    ],
+    "script": [],
+    "lastedit": "2023/11/01 14:45:59"
+  },
+  {
+    "blockcoords": "world,-463,66,220",
+    "author": [
+      "d006ba70-4ddc-4b37-b13c-76f190815116"
+    ],
+    "script": [
+      "[@console lp user %player_name% permission set minecraft.command.give true] [@command give %player_name% minecraft:player_head{display:{Name:\u0027{\"text\":\"\u003c1. 请在聊天框输入中文名\u003e\",\"italic\":false}\u0027},SkullOwner:{Id:[I;\u003c2. 请在聊天框输入玩家Id值\u003e],Properties:{textures:[{Value:\"\u003c3. 请在聊天框输入Value值\u003e\"}]}}} 1 \u003c-exac lp user %player_name% permission unset minecraft.command.give\u003e] [@if %player_has_permission_server.licence.stock% \u003d\u003d yes 啊哦，你没有获得进货许可证捏......]"
+    ],
+    "lastedit": "2024/03/02 22:22:50"
+  }
+]

@@ -1,0 +1,11 @@
+general:
+  prefix: '&8[&b仓库&8]'
+notanumber: '&c这个仓库不存在!'
+reloaded: '&a插件已重载!'
+vaultzero: '&c你想打开一个不存在的仓库吗？'
+iconchanged: '&a成功设置 &b%vault_number%号仓库&a 的图标为 &b%item%'
+namechanged: '&a成功设置 &b%vault_number%号仓库&a 的名字为 &b%vault_name%'
+vaultopenalready: '&c这个仓库正在被使用中!'
+player-offline: '&c玩家 &b%player%&c 当前不在线。'
+pv:
+  no-permission: '&c你没有权限打开该仓库。'

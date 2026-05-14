@@ -1,0 +1,518 @@
+menu_title: '&l功能商店'
+open_command:
+  - menufunc
+update_interval: 1
+size: 54
+items:
+#1 一键整理背包/物品栏/箱子
+  'chestsort':
+    material: barrel
+    slot: 0
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b▶ 一键整理背包/物品栏/箱子'
+    lore:
+      - ''
+      - '&a&o- 自动整理、分类和堆叠背包/物品栏/箱子中的物品'
+      - '&a&o- 专业治疗强迫症'
+      - ''
+      - '%changeoutput_equals_input:{luckperms_has_permission_chestsort.*}_matcher:yes_ifmatch:&e当前剩余时长：&a{luckperms_expiry_time_chestsort.*}_else:&7未激活%%changeoutput_equals_input:{luckperms_has_permission_chestsort.*}{luckperms_expiry_time_chestsort.*}_matcher:yes_ifmatch:&a∞_else:%'
+      - '%changeoutput_equals_input:{luckperms_has_permission_chestsort.*}{luckperms_expiry_time_chestsort.*}_matcher:yes_ifmatch:_else:&e请在下方选择生效时长 {animations_<flash>↓</flash>}%'
+  'chestsort_choice1':
+    material: lime_dye
+    enchantments:
+      - ARROW_DAMAGE;1
+    slot: 9
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "!string equals"
+          input: "%luckperms_expiry_time_chestsort.*%%luckperms_has_permission_chestsort.*%"
+          output: "yes"
+          #意思是检测不到永久性的该权限就会显示此物品
+    display_name: '&a▶ 两小时'
+    lore:
+      - '&c注：此操作会覆盖当前比购买时长小的剩余有效时长'
+      - '&c   当购买时长小于剩余有效时长时将不起任何作用！'
+      - '&e¥60/次'
+    left_click_commands:
+      - '[console] lp user %player_name% permission settemp chestsort.* true 2h replace'
+      - '[takemoney] 60'
+      - '[sound] entity_experience_orb_pickup 1 0.5'
+      - '[refresh]<delay=10>'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 60
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[refresh]<delay=10>'
+  'chestsort_choice2':
+    material: pink_dye
+    enchantments:
+      - ARROW_DAMAGE;1
+    slot: 18
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "!string equals"
+          input: "%luckperms_expiry_time_chestsort.*%%luckperms_has_permission_chestsort.*%" 
+          output: "yes"
+          #意思是检测不到永久性的该权限就会显示此物品
+    display_name: '&d▶ 一周'
+    lore:
+      - '&c注：此操作会覆盖当前比购买时长小的剩余有效时长'
+      - '&c   当购买时长小于剩余有效时长时将不起任何作用！'
+      - '&e¥1200/次'
+    left_click_commands:
+      - '[console] lp user %player_name% permission settemp chestsort.* true 1w replace'
+      - '[takemoney] 1200'
+      - '[sound] entity_experience_orb_pickup 1 1'
+      - '[refresh]<delay=10>'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 1200
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[refresh]<delay=10>'
+  'chestsort_choice3':
+    material: light_blue_dye
+    enchantments:
+      - ARROW_DAMAGE;1
+    slot: 27
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "!string equals"
+          input: "%luckperms_expiry_time_chestsort.*%%luckperms_has_permission_chestsort.*%"
+          output: "yes"
+          #意思是检测不到永久性的该权限就会显示此物品
+    display_name: '&b▶ 无限时长'
+    lore:
+      - '&c注：此操作会覆盖当前比购买时长小的剩余有效时长'
+      - '&c   当购买时长小于剩余有效时长时将不起任何作用！'
+      - ''
+      - '&e解锁条件：'
+      - '&7- 完成成就“...”'
+      - '&7- ...'
+      - '&e¥10,0000'
+    left_click_commands:
+      #- '[console] lp user %player_name% permission settemp chestsort.* true 2h replace'
+      #- '[takemoney] 1200'
+      - '[sound] entity_experience_orb_pickup 1 2'
+      - '[refresh]<delay=10>'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has permission
+          permission: dsads.asd
+      deny_commands:
+        - '[message] &c啊哦，你没有满足解锁条件捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[refresh]<delay=10>'
+  'chestsort_state_1':
+    material: yellow_stained_glass_pane
+    slot: 36
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "!string equals"
+          input: "%luckperms_expiry_time_chestsort.*%"
+          output: ""
+    display_name: '&e✔ 生效中%animations_<flash>●</flash>%'
+  'chestsort_state_2':
+    material: lime_stained_glass_pane
+    slot: 36
+    priority: 2
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "string equals"
+          input: "%luckperms_expiry_time_chestsort.*%%luckperms_has_permission_chestsort.*%"
+          output: "yes"
+    display_name: '&a∞ 永久有效'
+#2 超大容量背包扩展
+  'bag':
+    material: bundle
+    slot: 1
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b▶ 超大容量背包扩展'
+    lore:
+      - ''
+      - '&a&o- 顾名思义'
+      - '&a&o- 对建筑党极其友好'
+      - ''
+      - '%changeoutput_equals_input:{luckperms_has_permission_geekbag.vip.gui}_matcher:yes_ifmatch:&e当前剩余时长：&a{luckperms_expiry_time_geekbag.vip.gui}_else:&7未激活%%changeoutput_equals_input:{luckperms_has_permission_geekbag.vip.gui}{luckperms_expiry_time_geekbag.vip.gui}_matcher:yes_ifmatch:&a∞_else:%'
+      - '%changeoutput_equals_input:{luckperms_has_permission_geekbag.vip.gui}{luckperms_expiry_time_geekbag.vip.gui}_matcher:yes_ifmatch:_else:&e请在下方选择生效时长 {animations_<flash>↓</flash>}%'
+  'bag_choice1':
+    material: lime_dye
+    enchantments:
+      - ARROW_DAMAGE;1
+    slot: 10
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "!string equals"
+          input: "%luckperms_expiry_time_geekbag.vip.gui%%luckperms_has_permission_geekbag.vip.gui%"
+          output: "yes"
+          #意思是检测不到永久性的该权限就会显示此物品
+    display_name: '&a▶ 两小时'
+    lore:
+      - '&c注：此操作会覆盖当前比购买时长小的剩余有效时长'
+      - '&c   当购买时长小于剩余有效时长时将不起任何作用！'
+      - '&e¥120/次'
+    left_click_commands:
+      - '[console] lp user %player_name% permission settemp geekbag.vip.gui true 2h replace'
+      - '[takemoney] 120'
+      - '[sound] entity_experience_orb_pickup 1 0.5'
+      - '[refresh]<delay=10>'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 120
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[refresh]<delay=10>'
+  'bag_choice2':
+    material: pink_dye
+    enchantments:
+      - ARROW_DAMAGE;1
+    slot: 19
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "!string equals"
+          input: "%luckperms_expiry_time_geekbag.vip.gui%%luckperms_has_permission_geekbag.vip.gui%" 
+          output: "yes"
+          #意思是检测不到永久性的该权限就会显示此物品
+    display_name: '&d▶ 一周'
+    lore:
+      - '&c注：此操作会覆盖当前比购买时长小的剩余有效时长'
+      - '&c   当购买时长小于剩余有效时长时将不起任何作用！'
+      - '&e¥2400/次'
+    left_click_commands:
+      - '[console] lp user %player_name% permission settemp geekbag.vip.gui true 1w replace'
+      - '[takemoney] 2400'
+      - '[sound] entity_experience_orb_pickup 1 1'
+      - '[refresh]<delay=10>'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 2400
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[refresh]<delay=10>'
+  'bag_choice3':
+    material: light_blue_dye
+    enchantments:
+      - ARROW_DAMAGE;1
+    slot: 28
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "!string equals"
+          input: "%luckperms_expiry_time_geekbag.vip.gui%%luckperms_has_permission_geekbag.vip.gui%"
+          output: "yes"
+          #意思是检测不到永久性的该权限就会显示此物品
+    display_name: '&b▶ 无限时长'
+    lore:
+      - '&c注：此操作会覆盖当前比购买时长小的剩余有效时长'
+      - '&c   当购买时长小于剩余有效时长时将不起任何作用！'
+      - ''
+      - '&e解锁条件：'
+      - '&7- 完成成就“...”'
+      - '&7- ...'
+      - '&e¥20,0000'
+    left_click_commands:
+      #- '[console] lp user %player_name% permission settemp geekbag.vip.gui true 2h replace'
+      #- '[takemoney] 2400'
+      - '[sound] entity_experience_orb_pickup 1 2'
+      - '[refresh]<delay=10>'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has permission
+          permission: dsads.asd
+      deny_commands:
+        - '[message] &c啊哦，你没有满足解锁条件捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[refresh]<delay=10>'
+  'bag_state_1':
+    material: yellow_stained_glass_pane
+    slot: 37
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "!string equals"
+          input: "%luckperms_expiry_time_geekbag.vip.gui%"
+          output: ""
+    display_name: '&e✔ 生效中%animations_<flash>●</flash>%'
+  'bag_state_2':
+    material: lime_stained_glass_pane
+    slot: 37
+    priority: 2
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "string equals"
+          input: "%luckperms_expiry_time_geekbag.vip.gui%%luckperms_has_permission_geekbag.vip.gui%"
+          output: "yes"
+    display_name: '&a∞ 永久有效'
+#3 自动化收集与出售仓库
+  'ultradepository':
+    material: chest
+    slot: 2
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b▶ 自动化收集与出售仓库'
+    lore:
+      - ''
+      - '&a&o- 让一些经济原料产生价值'
+      - '&a&o- 对生存党极其友好'
+      - ''
+      - '%changeoutput_equals_input:{luckperms_has_permission_ultradepository.*}_matcher:yes_ifmatch:&e当前剩余时长：&a{luckperms_expiry_time_ultradepository.*}_else:&7未激活%%changeoutput_equals_input:{luckperms_has_permission_ultradepository.*}{luckperms_expiry_time_ultradepository.*}_matcher:yes_ifmatch:&a∞_else:%'
+      - '%changeoutput_equals_input:{luckperms_has_permission_ultradepository.*}{luckperms_expiry_time_ultradepository.*}_matcher:yes_ifmatch:_else:&e请在下方选择生效时长 {animations_<flash>↓</flash>}%'
+  'ultradepository_choice1':
+    material: lime_dye
+    enchantments:
+      - ARROW_DAMAGE;1
+    slot: 11
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "!string equals"
+          input: "%luckperms_expiry_time_ultradepository.*%%luckperms_has_permission_ultradepository.*%"
+          output: "yes"
+          #意思是检测不到永久性的该权限就会显示此物品
+    display_name: '&a▶ 两小时'
+    lore:
+      - '&c注：此操作会覆盖当前比购买时长小的剩余有效时长'
+      - '&c   当购买时长小于剩余有效时长时将不起任何作用！'
+      - '&e¥120/次'
+    left_click_commands:
+      - '[console] lp user %player_name% permission settemp ultradepository.* true 2h replace'
+      - '[console] lp user %player_name% permission set ultradepository.silent false'
+      - '[takemoney] 120'
+      - '[sound] entity_experience_orb_pickup 1 0.5'
+      - '[refresh]<delay=10>'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 120
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[refresh]<delay=10>'
+  'ultradepository_choice2':
+    material: pink_dye
+    enchantments:
+      - ARROW_DAMAGE;1
+    slot: 20
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "!string equals"
+          input: "%luckperms_expiry_time_ultradepository.*%%luckperms_has_permission_ultradepository.*%" 
+          output: "yes"
+          #意思是检测不到永久性的该权限就会显示此物品
+    display_name: '&d▶ 一周'
+    lore:
+      - '&c注：此操作会覆盖当前比购买时长小的剩余有效时长'
+      - '&c   当购买时长小于剩余有效时长时将不起任何作用！'
+      - '&e¥2400/次'
+    left_click_commands:
+      - '[console] lp user %player_name% permission settemp ultradepository.* true 1w replace'
+      - '[console] lp user %player_name% permission set ultradepository.silent false'
+      - '[takemoney] 2400'
+      - '[sound] entity_experience_orb_pickup 1 1'
+      - '[refresh]<delay=10>'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 2400
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[refresh]<delay=10>'
+  'ultradepository_choice3':
+    material: light_blue_dye
+    enchantments:
+      - ARROW_DAMAGE;1
+    slot: 29
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "!string equals"
+          input: "%luckperms_expiry_time_ultradepository.*%%luckperms_has_permission_ultradepository.*%"
+          output: "yes"
+          #意思是检测不到永久性的该权限就会显示此物品
+    display_name: '&b▶ 无限时长'
+    lore:
+      - '&c注：此操作会覆盖当前比购买时长小的剩余有效时长'
+      - '&c   当购买时长小于剩余有效时长时将不起任何作用！'
+      - ''
+      - '&e解锁条件：'
+      - '&7- 完成成就“...”'
+      - '&7- ...'
+      - '&e¥20,0000'
+    left_click_commands:
+      #- '[console] lp user %player_name% permission settemp ultradepository.* true 2h replace'
+      #- '[console] lp user %player_name% permission set ultradepository.silent false'
+      #- '[takemoney] 2400'
+      - '[sound] entity_experience_orb_pickup 1 2'
+      - '[refresh]<delay=10>'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has permission
+          permission: dsads.asd
+      deny_commands:
+        - '[message] &c啊哦，你没有满足解锁条件捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[refresh]<delay=10>'
+  'ultradepository_state_1':
+    material: yellow_stained_glass_pane
+    slot: 38
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "!string equals"
+          input: "%luckperms_expiry_time_ultradepository.*%"
+          output: ""
+    display_name: '&e✔ 生效中%animations_<flash>●</flash>%'
+  'ultradepository_state_2':
+    material: lime_stained_glass_pane
+    slot: 38
+    priority: 2
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    view_requirement:
+      requirements:
+        a:
+          type: "string equals"
+          input: "%luckperms_expiry_time_ultradepository.*%%luckperms_has_permission_ultradepository.*%"
+          output: "yes"
+    display_name: '&a∞ 永久有效'
+
+
+
+
+#
+  'filler_item_no':
+    material: gray_stained_glass_pane
+    slots:
+      - 36-44
+    priority: 3
+    display_name: '&7❌ 未生效'
+  'filler_item_inf':
+    material: purple_dye
+    slots:
+      - 9-35
+    priority: 3
+    display_name: '&7🚫 您无需选择'
+#
+  'last_page':
+    material: barrier
+    slot: 47
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    display_name: '&f◀ 上一页'
+    left_click_commands:
+      - '[message] &c啊哦，这已经是第一页了......'
+      - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+      - '[refresh]<delay=10>'
+  'next_page':
+    material: feather
+    slot: 51
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    display_name: '&f下一页 ▶'
+    left_click_commands:
+      - '[openguimenu] func2'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  'home':
+    material: compass
+    enchantments:
+      - ARROW_DAMAGE;1
+    slot: 49
+    priority: 1
+    update: true
+    hide_attributes: true
+    hide_enchantments: true
+    display_name: '&f🧭 返回'
+    left_click_commands:
+      - '[openguimenu] home'

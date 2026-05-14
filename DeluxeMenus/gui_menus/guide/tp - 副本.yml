@@ -1,0 +1,455 @@
+menu_title: '&l| 主世界   &7&l| 下界     | 末地'
+open_command:
+  - menutp
+open_commands:
+
+size: 54
+# as always, only cool people can open this menu :)
+items:
+  'last page':
+    material: BLACK_STAINED_GLASS_PANE
+    model_data: 2200009
+    slot: 47
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&7上一页'
+  'next page':
+    material: LIME_STAINED_GLASS_PANE
+    model_data: 2200009
+    slot: 51
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&a下一页'
+  'back':
+    material: COMPASS
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 49
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b返回主页'
+    left_click_commands:
+      - '[openguimenu] home'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  '1':
+    material: dark_oak_wood
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 0
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&eMinecraft Mansion'
+    lore:
+      - '&a服务器行政大厦'
+      - ''
+      - '&7MCWWS-A000'
+    left_click_commands:
+      - '[player] res tp minecraft_mansion'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '2':
+    material: furnace
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 1
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&bISEC (Items Storage and Exchange Centre)'
+    lore:
+      - '&a物品存储与交换中心'
+    left_click_commands:
+      - '[player] res tp items_storage_and_exchange_centre'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '3':
+    material: gold_block
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 2
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&bLake Bank'
+    lore:
+      - '&a湖·银行'
+    left_click_commands:
+      - '[player] res tp lake_bank'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '4':
+    material: green_dye
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 3
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&bPlant-processing-and-dye-technology Base'
+    lore:
+      - '&a植物加工与染料工艺基地'
+    left_click_commands:
+      - '[player] res tp plant_processing_and_dye_technology_base'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '5':
+    material: beacon
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 4
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&bShopping Mall'
+    lore:
+      - '&a商业广场'
+    left_click_commands:
+      - '[player] res tp shopping_mall'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '6':
+    material: white_stained_glass
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 5
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&bPixel Centre'
+    lore:
+      - '&aPixel商业中心'
+    left_click_commands:
+      - '[player] res tp pixel_centre'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '7':
+    material: cyan_stained_glass
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 6
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&bTechnology Mansion'
+    lore:
+      - '&a科技大厦'
+    left_click_commands:
+      - '[player] res tp technology_mansion'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '8':
+    material: bricks
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 7
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&bMinecraft University'
+    lore:
+      - '&aMC大学'
+    left_click_commands:
+      - '[player] res tp minecraft_university'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '9':
+    material: farmland
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 9
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&bFarmland'
+    lore:
+      - '&a农业区'
+    left_click_commands:
+      - '[player] res tp farmland'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '10':
+    material: tnt
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 12
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&bTrial Area'
+    lore:
+      - '&a试验田 &C注意危险！'
+    left_click_commands:
+      - '[player] res tp trial_area'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '11':
+    material: jack_o_lantern
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 18
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&bHall&k~&rween Isl&k~&rnd&k'
+    lore:
+      - '&a万&k~&r&a圣节岛&k~'
+    left_click_commands:
+      - '[player] res tp halloween_island'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '12':
+    material: elytra
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 27
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&bSky City'
+    lore:
+      - '&a天空之城'
+    left_click_commands:
+      - '[player] res tp sky_city'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '13':
+    material: dark_oak_sapling
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 28
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&bCottage In Wild'
+    lore:
+      - '&a远郊别墅'
+    left_click_commands:
+      - '[player] res tp cottage_in_wild'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '14':
+    material: cherry_sapling
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 10
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&bTree Farm'
+    lore:
+      - '&a树场'
+    left_click_commands:
+      - '[player] res tp tree_farm'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '15':
+    material: iron_pickaxe
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 11
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&eMining Area'
+    lore:
+      - '&a矿区'
+    left_click_commands:
+      - '[player] res tp mining_area'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '16':
+    material: book
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 8
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&eLibrary Garden'
+    lore:
+      - '&a图书馆花园'
+    left_click_commands:
+      - '[player] res tp library_garden'
+      - '[takemoney] 32'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 32
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'

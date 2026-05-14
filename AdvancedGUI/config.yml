@@ -1,0 +1,43 @@
+# Whether players can't see each other when standing in front of a wall GUI.
+HidePlayers: false
+
+# The map icon used as a cursor for handheld GUIs
+# For 1.13+ values range from 0 to 26 and correspond to these icons: (left to right)
+# https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/72/Map_icons.png
+# For 1.11 - 1.12 only the first 10 icons are available (0-9)
+# For 1.8 - 1.10 the values my be different
+CursorIcon: 0
+# A value between 0 and 15 indicating how much the icon is rotated
+CursorRotation: 7
+# An offset to indicate where the actual tip of the cursor icon is
+CursorOffset:
+  X: 4
+  Y: 8
+
+# Enabling this option will ensure that all Wall GUIs have the proper maps with valid map-IDs in their
+# itemframes when the server starts. (Can be useful for dynamic map loading on cloud servers)
+# Do NOT use this if you don't know what you are doing
+ReframeOnStart: false
+
+# When placing a GUI map-IDs get generated in the world. When this option is enabled the world is
+# automatically saved when a new GUI gets placed so that the map-IDs are not lost on server crash.
+# You might want to disable this when placing a lot of GUIs while there are players on your server
+# to prevent lag.
+InstantWoldSave: true
+
+# The port on which the web socket for the live-sync feature from the web editor is started.
+# You can try to change this if you host does not allow you to use the default one.
+SyncSocketPort: 27757
+
+# In older MC versions (1.8 - 1.10) there is a bug where maps stop working after a player dies,
+# changes worlds or changes servers (on bungee networks). This bug is not caused by AdvancedGUI.
+# This option enables a workaround for this bug.
+FreezeFix:
+  # Values: "auto", "off", "on"
+  enabled: "auto"
+  # Set to true if you use bungee (you will also require the bungee bridge for this fix)
+  bungee: false
+
+# This setting can be enabled to fix the "AWTError: Assistive Technology not found" error
+# This error should not occur on most systems but if it does you can try to enable this option
+DisableAssistiveTechnologies: false

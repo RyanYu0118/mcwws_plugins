@@ -1,0 +1,68 @@
+{
+  // 配置文件版本(请勿修改)
+  "version": 11,
+  // 是否字段检查更新
+  "check-update": true,
+  // 插件提示信息显示前缀
+  "prefix": "",
+  // 是否开启调试模式
+  "debug": false,
+  // API设置
+  "api": {
+    // 网易云音乐API地址
+    //
+    // 使用开源项目NeteaseCloudMusicApi
+    // 推荐自行部署，需Node.js环境
+    // 地址: https://github.com/Binaryify/NeteaseCloudMusicApi
+    "netease": "https://zm.armoe.cn/"
+  },
+  // 是否关注作者的网易云音乐账号
+  "netease-follow": true,
+  // ZMusic VIP 设置
+  "vip": {
+    // 授权账号
+    "account": "13636570149",
+    // 授权密钥
+    "secret": "yuyuQWEL,,,..."
+  },
+  // 点歌设置
+  "music": {
+    // 点歌扣除的金币(设置为0则不扣除)
+    // 拥有zmusic.bypass的玩家无视扣除
+    "money": 10,
+    // 点歌的冷却时间(设置为0则无冷却)
+    // 拥有zmusic.bypass的玩家无视冷却
+    "cooldown": 5
+  },
+  // 歌词设置
+  "lyric": {
+    // 是否启用歌词
+    "enable": true,
+    // 是否显示歌词翻译
+    "showLyricTr": true,
+    // 歌词颜色
+    "color": "&b",
+    // 以下为显示方式设置，可同时启用
+    // 是否使用BossBar显示歌词(不支持1.8及以下)
+    "bossBar": true,
+    // 是否使用ActionBar显示歌词
+    "actionBar": false,
+    // 是否使用Title显示歌词
+    "subTitle": false,
+    // 是否使用聊天信息显示歌词
+    "chatMessage": false,
+    // Hud 设置(仅支持1.12及以上)
+    "hud": {
+      // 是否启用Hud
+      "enable": false,
+      // 信息的X坐标
+      "infoX": 2,
+      // 信息的Y坐标
+      "infoY": 12,
+      // 歌词的X坐标
+      "lyricX": 2,
+      // 歌词的Y坐标
+      "lyricY": 72
+    }
+  }
+}

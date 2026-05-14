@@ -1,0 +1,15 @@
+# The name the effect will display as
+# Default: block_marker
+effect-name: block_marker
+
+# If the effect is enabled or not
+# Default: true
+enabled: true
+
+# Default: [LIGHT]
+gui-icon-material:
+  - LIGHT
+
+# If true, this effect will be hidden when a player is in a WorldGuard region with the flag 'player-particles-limited' denied
+# Default: false
+hide-in-limited-region: false

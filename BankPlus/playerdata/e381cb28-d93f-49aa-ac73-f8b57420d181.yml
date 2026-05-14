@@ -1,0 +1,7 @@
+name: Song_zi
+banks:
+  bank:
+    level: 1
+    money: '0.00'
+    debt: '0.00'
+    interest: '0.00'

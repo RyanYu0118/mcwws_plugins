@@ -1,0 +1,51 @@
+Turret:
+    name: "Healing Turret"
+    upgrades:
+    - "0;2-4;6;5;2"
+    - "800;3-5;5.5;6;3"
+    - "2500;4-6;5;7;4"
+    sound_1: ENTITY_STRAY_DEATH;1;2
+    block_1: LAPIS_BLOCK
+    block_2: BLUE_CONCRETE
+    head: "a9ec9c7c-43c0-4131-b104-826c111a18d7;eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTY3OTkxOGU1MmYzZjhmMmNhYmJiZWFjNmE5NzY4MWYyZjhhYTEwYzBiMmU4MTg1OTI4ODVhNGEwZTlkMjI3In19fQ=="
+Block:
+    id: "LAPIS_BLOCK"
+    name: "&aHealing Turret &6Block"
+    lore:
+    - "&7Slow speed turret that heals"
+    - "&7multiple allies."
+    - ""
+    - "&8» &7Heal: &a%min%&7-&a%max%"
+    - "&8» &7Cooldown: &a%cooldown% seconds"
+    - "&8» &7Range: &a%range% blocks"
+    - "&8» &7Maximum Targets: &a%targets%"
+Upgrade:
+    id: "EMERALD"
+    name: "&aHealing Turret &eUpgrade"
+    lore:
+    - "&7Level: &a&l%current_level%&8 ➜ &a&l%next_level%"  
+    - "&7Heal: &a%current_min%&7-&a%current_max%&8 ➜ &a%next_min%&7-&a%next_max%"
+    - "&7Cooldown: &a%current_cooldown%(s)&8 ➜ &a%next_cooldown%(s)"
+    - "&7Range: &a%current_range% blocks&8 ➜ &a%next_range% blocks"
+    - "&7Maximum Targets: &a%current_targets% &8 ➜ &a%next_targets%"
+    - ""
+    - "&7Price: &6%price%"
+    - ""
+    - "&8[Click to Upgrade]"  
+LastUpgrade:
+    id: "REDSTONE"
+    name: "&aHealing Turret &eUpgrade"
+    lore:
+    - "&7Level: &a&l%current_level%"  
+    - "&7Heal: &a%current_min%&7-&a%current_max%"
+    - "&7Cooldown: &a%current_cooldown%(s)"
+    - "&7Range: &a%current_range% blocks"
+    - "&7Maximum Targets: &a%current_targets%"
+    - ""
+    - "&7No more Upgrades available" 
+Ammunition:
+    id: "PRISMARINE_CRYSTALS"
+    name: "&6Healing Turret &7Ammunition"
+    lore:
+    - "&7Place this item in your turret inventory"
+    - "&7to start shooting." 

@@ -1,0 +1,49 @@
+# The higher is the number -> higher priority
+# The higher is the number -> higher priority
+# The higher is the number -> higher priority
+# The higher is the number -> higher priority
+# The higher is the number -> higher priority
+# The higher is the number -> higher priority
+# The higher is the number -> higher priority
+# The higher is the number -> higher priority
+priority: 1
+# Scoreboard will only work in world below.
+# Scoreboard will only work in world below.
+# Scoreboard will only work in world below.
+# Scoreboard will only work in world below.
+# Scoreboard will only work in world below.
+# Scoreboard will only work in world below.
+# Scoreboard will only work in world below.
+# Scoreboard will only work in world below.
+worlds:
+- example_1
+- example_2
+scoreboard:
+  # Don't forget to increase the interval for better performance!
+  # Don't forget to increase the interval for better performance!
+  # Don't forget to increase the interval for better performance!
+  # Don't forget to increase the interval for better performance!
+  # Don't forget to increase the interval for better performance!
+  # Don't forget to increase the interval for better performance!
+  # Don't forget to increase the interval for better performance!
+  # Don't forget to increase the interval for better performance!
+  title:
+    interval: 2
+    lines:
+    - 经济系统
+  line-1:
+    interval: 100
+    lines:
+    - '&fPlayer: %player_name%'
+  line-3:
+    interval: 1000
+    lines:
+    - 职业
+  line-4:
+    interval: 1000
+    lines:
+    - ''
+  line-5:
+    interval: 1000
+    lines:
+    - '&4Infinite&1Plugins'

@@ -1,0 +1,4 @@
+cost: 0
+decay: true
+decay-time: 120
+grace-period: 10

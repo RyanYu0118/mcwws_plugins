@@ -1,0 +1,15 @@
+# The name the effect will display as
+# Default: campfire_signal_smoke
+effect-name: campfire_signal_smoke
+
+# If the effect is enabled or not
+# Default: true
+enabled: true
+
+# Default: [REDSTONE_TORCH]
+gui-icon-material:
+  - REDSTONE_TORCH
+
+# If true, this effect will be hidden when a player is in a WorldGuard region with the flag 'player-particles-limited' denied
+# Default: false
+hide-in-limited-region: false

@@ -1,0 +1,110 @@
+# #Plugin configuration
+tag: '&r[&cCreativeManager&r] '
+lang: en_EN
+log: true
+save-interval: 300
+save-log: true
+send-player-messages: true
+antispam-tick: 5
+stop-inv-close-on-gmchange: false
+send-admin-update-message: true
+# # Protection module
+protections:
+  container: true # Bypass : creativemanager.bypass.container
+  spawn: true # Bypass : creativemanager.bypass.spawner
+  drop: true # Bypass : creativemanager.bypass.drop
+  pickup: true # Bypass : creativemanager.bypass.pickup
+  build: false # Bypass : creativemanager.bypass.build
+  entity: true # Bypass : creativemanager.bypass.entity
+  pvp: true # Bypass : creativemanager.bypass.hit.player
+  pve: true # Bypass : creativemanager.bypass.hit.monster
+  lore: true # Bypass : creativemanager.bypass.lore
+  loot: true
+  spawn-build: true
+  throw: true
+  commands: true
+  useblock: true
+  blockcopy: true
+  gui: false
+  custom-nbt: false
+  armor: false
+  build-container: true # Bypass : creativemanager.bypass.build-container
+  remove-effects: false
+  plugins:
+    citizens: true
+    chestshop: true
+    slimefun: true
+  itemsadder: true
+# # Multi inventory
+inventory:
+  adventure: true # Bypass : cm.bypass.inventory
+  creative: true # Bypass : cm.bypass.inventory
+  spectator: true # Bypass : cm.bypass.inventory
+stop-inventory-save: false # Use it at your own risk, this option fully disable the inventory save system.
+stop-inventory-save-perm: false # Use it at your own risk, this option fully disable the inventory save system for player with permission : creativemanager.bypass.inventory-save
+# # List
+list:
+  mode:
+    place: blacklist
+    use: blacklist
+    get: blacklist
+    break: blacklist
+    commands: blacklist
+    useblock: blacklist
+  place: # Bypass : creativemanager.bypass.blacklist.place
+    - air
+  use: # Bypass : creativemanager.bypass.blacklist.use
+    - air
+  get: # Bypass : creativemanager.bypass.blacklist.get
+    - spawner
+  break:
+  - air
+  commands:
+  - somecommandtoblacklist optionnaly with some argument
+  useblock:
+  - CRAFTING_TABLE
+  nbt-whitelist:
+  - down
+  - east
+  - north
+  - south
+  - up
+  - west
+creative_armor:
+  helmet:
+    name: '&6Creative Helmet'
+    lore:
+    - '&7This creative Helmet is bind to your Gamemode !'
+    material: BEDROCK
+    model-data: 0
+    items-adder: ''
+  chestplate:
+    name: '&6Creative Chestplate'
+    lore:
+    - '&7This &6Creative Chestplate&7 is bind to your Gamemode !'
+    material: LEATHER_CHESTPLATE
+    leather-color:
+      red: 255
+      green: 255
+      blue: 255
+    model-data: 0
+    items-adder: ''
+  leggings:
+    name: '&6Creative Leggings'
+    lore:
+    - '&7This &6Creative Leggings&7 is bind to your Gamemode !'
+    material: CHAINMAIL_LEGGINGS
+    model-data: 0
+    items-adder: ''
+  boots:
+    name: '&6Creative Boots'
+    lore:
+    - '&7This &6Creative Boots&7 is bind to your Gamemode !'
+    material: CHAINMAIL_BOOTS
+    model-data: 0
+    items-adder: ''
+# # Lore settings
+creative-lore:
+- '&5Creative {ITEM}'
+- '&7Generate by {PLAYER}'
+- '&7{UUID}'

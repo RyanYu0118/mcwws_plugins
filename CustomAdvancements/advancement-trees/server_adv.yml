@@ -1,0 +1,296 @@
+# 示例成就分支、成就 
+# 幽灵Cronus_ 2023.1.14 汉化
+options:
+  auto_active: true
+  rewards:
+    command:
+      type: consolecommand
+      value: broadcast 恭喜%player_name%完成了服务器的所有成就！
+  display_name: 服务器成就
+  description: '&e服务器专属成就呦'
+  item: GOLD_BLOCK
+  gui_location: auto
+  minecraft-gui-display: true
+  minecraft-gui-background: "textures/block/anvil.png"
+advancements:
+  requirementadvancement:
+    type: BlockBreak
+    value: air
+    amount: 1
+    rewards:
+      message:
+        type: message
+        value: '&6破坏了50个方块！！！'
+      command:
+        type: consolecommand
+        value: give %player% golden_apple 1
+    requirements:
+      #advancement:
+       # type: advancement
+       # value: example.welcome
+    display:
+      name: 汗牛塞屋
+      item: BUNDLE
+      description: 背包腾不了一点出来
+      gui_location: '1:0'
+      guiLocation: auto
+      unit: 破坏方块
+      minecraft-gui-frame: "CHALLENGE"
+      minecraft-toast: true
+      minecraft-chat-announce: true
+  breaktree:
+    type: BlockBreak
+    value: OAK_LOG,ACACIA_LOG,SPRUCE_LOG
+    amount: 10
+    rewards:
+      message:
+        type: message
+        value: '&2你完成了破坏树木的成就'
+    display:
+      name: breaktree
+      item: CHEST
+      gui_location: auto
+      unit: 破坏树木方块
+      minecraft-gui-frame: "GOAL"
+  welcome:
+    type: chat
+    value: 欢迎
+    amount: 10
+    rewards:
+      message:
+        type: message
+        value: '&2你已经完成了欢迎玩家的成就'
+    display:
+      name: 欢迎玩家
+      guiLocation: auto
+      item: SUNFLOWER
+      gui_location: auto
+      unit: 玩家数量
+  eatpoison:
+    type: Consume
+    value: PUFFERFISH,SPIDER_EYE
+    amount: 2
+    rewards:
+      message:
+        type: message
+        value: '&6你吃了不少毒物，干得好！幸运的是，我已经治疗了你！'
+      command:
+        type: consolecommand
+        value: heal %player%
+    display:
+      name: 食用毒物
+      item: PUFFERFISH
+      gui_location: auto
+      unit: 食用数量
+  walker:
+    type: blockstravelled
+    value: ignored
+    amount: 500
+    rewards:
+      message:
+        type: message
+        value: '&6哦，你的脚很疼吧，我来治疗你'
+      command:
+        type: consolecommand
+        value: heal %player%
+    display:
+      name: 步行者
+      item: LEATHER_BOOTS
+      description: "走很多路！\n - %customadvancements_progress_percentage_example.walker%% 已完成！"
+      gui_location: auto
+      unit: 走过方块
+      minecraft-gui-frame: "CHALLENGE"
+      minecraft-toast: true
+      minecraft-chat-announce: true
+  walker1:
+    type: blockstravelled
+    value: ignored
+    amount: 10
+    requirements:
+      advancement:
+        type: advancement
+        value: example.walker
+    rewards:
+      message:
+        type: message
+        value: '&6哦，你的脚很疼吧，我来治疗你'
+      command:
+        type: consolecommand
+        value: heal %player%
+    display:
+      name: 步行者 I
+      item: CHAINMAIL_BOOTS
+      gui_location: auto
+      unit: 走过方块
+      minecraft-gui-frame: "CHALLENGE"
+      minecraft-toast: true
+      minecraft-chat-announce: true
+  walker2:
+    type: blockstravelled
+    value: ignored
+    amount: 15
+    requirements:
+      advancement:
+        type: advancement
+        value: example.walker1
+    rewards:
+      message:
+        type: message
+        value: '&6哦，你的脚很疼吧，我来治疗你'
+      command:
+        type: consolecommand
+        value: heal %player%
+    display:
+      name: 步行者 II
+      item: GOLDEN_BOOTS
+      gui_location: auto
+      unit: 走过方块
+      minecraft-gui-frame: "CHALLENGE"
+      minecraft-toast: true
+      minecraft-chat-announce: true
+  walker3:
+    type: blockstravelled
+    value: ignored
+    amount: 25
+    requirements:
+      advancement:
+        type: advancement
+        value: example.walker2
+    rewards:
+      message:
+        type: message
+        value: '&6哦，你的脚很疼吧，我来治疗你'
+      command:
+        type: consolecommand
+        value: heal %player%
+    display:
+      name: 步行者 III
+      item: DIAMOND_BOOTS
+      gui_location: auto
+      unit: 走过方块
+      minecraft-gui-frame: "CHALLENGE"
+      minecraft-toast: true
+      minecraft-chat-announce: true
+  walker4:
+    type: blockstravelled
+    value: ignored
+    amount: 25
+    requirements:
+      advancement:
+        type: advancement
+        value: example.walker3
+    rewards:
+      message:
+        type: message
+        value: '&6哦，你的脚很疼吧，我来治疗你'
+      command:
+        type: consolecommand
+        value: give %player% apple 1
+    display:
+      name: 步行者 IV
+      item: DIAMOND_BOOTS
+      gui_location: auto
+      unit: 走过方块
+      minecraft-gui-frame: "TASK"
+      minecraft-toast: true
+      minecraft-chat-announce: true
+  walker5:
+    type: blockstravelled
+    value: ignored
+    amount: 25
+    requirements:
+      advancement:
+        type: advancement
+        value: example.walker4
+    rewards:
+      message:
+        type: message
+        value: '&6哦，你的脚很疼吧，我来治疗你'
+      command:
+        type: consolecommand
+        value: give %player% apple 1
+    display:
+      name: 步行者 V
+      item: DIAMOND_BOOTS
+      gui_location: auto
+      unit: 走过方块
+      minecraft-gui-frame: "GOAL"
+      minecraft-toast: true
+      minecraft-chat-announce: true
+  walker7:
+    type: blockstravelled
+    value: ignored
+    amount: 25
+    requirements:
+      advancement:
+        type: advancement
+        value: example.walker1
+    rewards:
+      message:
+        type: message
+        value: '&6哦，你的脚很疼吧，我来治疗你'
+      command:
+        type: consolecommand
+        value: give %player% apple 1
+    display:
+      name: 步行者 V
+      item: DIAMOND_BOOTS
+      gui_location: auto
+      unit: 走过方块
+      minecraft-gui-frame: "CHALLENGE"
+      minecraft-toast: true
+      minecraft-chat-announce: true
+  makepoison:
+    type: craftitem
+    value: potion
+    amount: 1
+    requirements:
+      advancement:
+        type: advancement
+        value: example.eatpoison
+    rewards:
+      command:
+        type: consolecommand
+        value: eco give %player% 1000
+        display:
+    display:
+      name: 制作药水
+      item: POTION
+      gui_location: auto
+      unit: 制作药水
+  killothers:
+    type: killentity
+    value: PLAYER
+    amount: 5
+    requirements:
+      advancement:
+        type: advancement
+        value: example.eatpoison
+    rewards:
+      command:
+        type: consolecommand
+        value: eco give %player% 1000
+        display:
+    display:
+      name: 击杀玩家
+      item: IRON_SWORD
+      gui_location: auto
+      unit: 已击杀
+  fakeblood:
+    type: shearsheep
+    value: RED
+    amount: 15
+    requirements:
+      advancement:
+        type: advancement
+        value: example.killothers
+    rewards:
+      command:
+        type: consolecommand
+        value: eco give %player% 1000
+        display:
+    display:
+      name: 收集假的血块
+      item: RED_WOOL
+      gui_location: auto
+      unit: 红色的羊剪下羊毛

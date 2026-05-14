@@ -1,0 +1,16 @@
+{
+    "result": {
+        "type": "alchema:item",
+        "item": "minecraft:beetroot"
+    },
+    "ingredients": [
+        {
+            "type": "alchema:material",
+            "item": "minecraft:beetroot_seeds"
+        },
+        {
+            "type": "alchema:material",
+            "item": "minecraft:bone_meal"
+        }
+    ]
+}

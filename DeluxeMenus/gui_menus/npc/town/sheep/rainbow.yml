@@ -1,0 +1,120 @@
+menu_title: '&l咩~'
+open_command:
+  - menu_sheep_rainbow
+open_commands:
+#  - '[sound] ENTITY_VILLAGER_AMBIENT 1 0.8'
+update_interval: 1
+inventory_type: hopper
+items:
+  '0':
+    material: writable_book
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 3
+    update: true
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b更改商品预设数量'
+    lore: 
+    - '&e当前您的预设数量：%objective_score_number%件'
+    left_click_commands:
+      - '[givepermission] commandprompter.*'
+      - '[givepermission] minecraft.command.scoreboard'
+      - '[givepermission] minecraft.command.gamerule'
+      - '[givepermission] minecraft.command.playsound'
+      - '[givepermission] minecraft.command.schedule'
+      - '[givepermission] luckperms.user.permission.unset'
+      #- '[player] ap use number'
+      - '[close]'
+      - '[player] scoreboard players set %player_name% number <&a请在聊天框中输入有效数字（取消请回复"x"）> <-exa gamerule sendCommandFeedback false> <-exa playsound ui.cartography_table.take_result player %player_name% ~ ~ ~ 1 1 1> <-exa menu_sheep_rainbow> <-exa schedule function economic_system:feedback 1s replace> <-exa lp user %player_name% permission unset minecraft.command.scoreboard> <-exa lp user %player_name% permission unset minecraft.command.gamerule> <-exa lp user %player_name% permission unset minecraft.command.playsound> <-exa lp user %player_name% permission unset minecraft.command.schedule> <-exa lp user %player_name% permission unset luckperms.user.permission.unset>'
+      - '[sound] entity_snow_golem_death 1 1'
+  '1':
+    material: white_wool
+    #enchantments:
+    #  - ARROW_DAMAGE;1
+    hide_enchantments: true
+    model_data: 2200425
+    slot: 1
+    update: true
+    priority: 1
+    hide_attributes: true
+    display_name: '&5彩虹羊毛'
+    lore:
+      - ''
+      - '&d轮番展现彩虹的颜色!'
+      - '&7(粘液科技Slimefun联合出品)'
+      - ''
+      - '&e购买 ¥2048.00/件'
+      - '&e回收 ¥1638.40/件'
+      - ''
+      - '&a左键点击 &7| &f购买一件'
+      - '&a右键点击 &7| &f购买一组'
+      - '&aShift+左键点击 &7| &f购买自定义件数（&3%objective_score_number%&f件）'
+      - '&bShift+右键点击 &7| &f一键回收您身上&3%checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL%&f件该物品'
+      - '&e(点击右侧书与笔可更改预设数量)'
+      - ''
+      - '&6当前您的零钱为：¥%vault_eco_balance_2dp%'
+      - '&c注：此类物品获得时不支持溢出，请确保您的背包'
+      - '&c    有足够空间容纳此物品！'
+    left_click_commands:
+      - '[takemoney] 2048'
+      - '[console] slimefun give %player_name% RAINBOW_WOOL 1'
+      - '[sound] entity_item_pickup 1 1.2'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 2048
+        empty:
+          type: javascript
+          expression: '%player_empty_slots%*64+(%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:0},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:1},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:2},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:3},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:4},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:5},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:6},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:7},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:8},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:9},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:10},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:11},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:12},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:13},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:14},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:15},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:16},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:17},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:18},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:19},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:20},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:21},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:22},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:23},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:24},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:25},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:26},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:27},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:28},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:29},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:30},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:31},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:32},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:33},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:34},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:35},1)%)*64-%checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL% >= 1'
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够，或背包装不下了捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    right_click_commands:
+      - '[takemoney] 131072'
+      - '[console] slimefun give %player_name% RAINBOW_WOOL 64'
+      - '[sound] entity_item_pickup 1 1.2'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 131072
+        empty:
+          type: javascript
+          expression: '%player_empty_slots%*64+(%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:0},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:1},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:2},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:3},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:4},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:5},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:6},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:7},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:8},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:9},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:10},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:11},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:12},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:13},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:14},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:15},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:16},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:17},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:18},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:19},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:20},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:21},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:22},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:23},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:24},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:25},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:26},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:27},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:28},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:29},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:30},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:31},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:32},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:33},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:34},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:35},1)%)*64-%checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL% >= 64'
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够，或背包装不下了捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_left_click_commands:
+      - '[takemoney] %objective_score_number%'
+      - '[console] slimefun give %player_name% RAINBOW_WOOL %objective_score_number%'
+      - '[sound] entity_item_pickup 1 1.2'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%math_2048*{objective_score_number}% <= %vault_eco_balance%'
+        empty:
+          type: javascript
+          expression: '%player_empty_slots%*64+(%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:0},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:1},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:2},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:3},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:4},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:5},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:6},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:7},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:8},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:9},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:10},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:11},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:12},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:13},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:14},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:15},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:16},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:17},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:18},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:19},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:20},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:21},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:22},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:23},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:24},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:25},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:26},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:27},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:28},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:29},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:30},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:31},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:32},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:33},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:34},1)%+%math_min({checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL,inslot:35},1)%)*64-%checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL% >= %objective_score_number%'
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够，或背包装不下了捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_right_click_commands:
+      - '[givemoney] %math_0.8*2048*{checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL}%'
+      - '[console] %checkitem_remove_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL%'
+      - '[sound] block_grindstone_use 1 0.1'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: javascript
+          expression: '%checkitem_amount_mat:white_wool,nbtstrings:PublicBukkitValues..slimefun:slimefun_item=RAINBOW_WOOL% > 0'
+      deny_commands:
+        - '[message] &c啊哦，你身上没这个物品捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'

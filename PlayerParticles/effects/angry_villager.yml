@@ -1,0 +1,15 @@
+# The name the effect will display as
+# Default: angry_villager
+effect-name: angry_villager
+
+# If the effect is enabled or not
+# Default: true
+enabled: true
+
+# Default: [IRON_DOOR]
+gui-icon-material:
+  - IRON_DOOR
+
+# If true, this effect will be hidden when a player is in a WorldGuard region with the flag 'player-particles-limited' denied
+# Default: false
+hide-in-limited-region: false

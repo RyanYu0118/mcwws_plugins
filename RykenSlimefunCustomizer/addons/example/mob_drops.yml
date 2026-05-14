@@ -1,0 +1,8 @@
+# RykenSlimeCustomizer Wiki: https://rsc.hiworldmc.com/#/file/mob_drops
+RSC_EXAMPLE_MOB_DROP:
+  item_group: rsc_example_sub_group
+  entity: BAT
+  chance: 60
+  item:
+    name: "&a示例生物掉落物品"
+    material: leather

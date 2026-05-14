@@ -1,0 +1,7 @@
+name: DFjingying
+banks:
+  bank:
+    level: 1
+    money: '500.00'
+    debt: '0.00'
+    interest: '0.00'

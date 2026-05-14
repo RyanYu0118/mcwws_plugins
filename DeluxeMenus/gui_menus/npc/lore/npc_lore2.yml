@@ -1,0 +1,363 @@
+menu_title: '&l更改手持物品信息'
+open_command:
+  - menulore2
+open_commands:
+  - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+size: 27
+# as always, only cool people can open this menu :)
+items:
+  '1':
+    material: NETHER_STAR
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 0
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b增加一行Lore描述至最后一行'
+    lore:
+      - '&7¥8/次'
+      - ''
+    left_click_commands:
+      - '[player] lore add <-ds &e请在聊天框中填写内容，若取消，请回复"x"> <-exa economy take %player_name% 8> <-exa playsound minecraft:ui.cartography_table.take_result ambient %player_name% ~ ~ ~ 1 1 1>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 8
+        not_air:
+          type: "!string equals"
+          input: "%player_item_in_hand%"
+          output: "AIR"
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够，或者手里空空捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '2':
+    material: gunpowder
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 1
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b更改某行Lore描述'
+    lore:
+      - '&e注意：只能更改已添加的行号，并用正整数表示。'
+      - '&7¥8/次'
+      - ''
+    left_click_commands:
+      - '[player] lore set <-a 想更改哪一行？> <-ds &e请在聊天框中填写内容，若取消，请回复"x"> <-exa economy take %player_name% 8> <-exa playsound minecraft:ui.cartography_table.take_result ambient %player_name% ~ ~ ~ 1 1 1>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 8
+        not_air:
+          type: "!string equals"
+          input: "%player_item_in_hand%"
+          output: "AIR"
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够，或者手里空空捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '3':
+    material: arrow
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 2
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b在某行前面插入一行Lore描述'
+    lore:
+      - '&e注意：只能更改已添加的行号，并用正整数表示。'
+      - '&7¥8/次'
+      - ''
+    left_click_commands:
+      - '[player] lore ins <-a 想插入在哪一行前面？> <-ds &e请在聊天框中填写内容，若取消，请回复"x"> <-exa economy take %player_name% 8> <-exa playsound minecraft:ui.cartography_table.take_result ambient %player_name% ~ ~ ~ 1 1 1>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 8
+        not_air:
+          type: "!string equals"
+          input: "%player_item_in_hand%"
+          output: "AIR"
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够，或者手里空空捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '4':
+    material: redstone
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 3
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&c删除某一行Lore描述'
+    lore:
+      - '&e注意：只能更改已添加的行号，并用正整数表示。'
+      - '&7¥8/次'
+      - ''
+    left_click_commands:
+      - '[player] lore del <-a 想删除哪一行？> <-exa economy take %player_name% 8> <-exa playsound minecraft:ui.cartography_table.take_result ambient %player_name% ~ ~ ~ 1 1 1>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 8
+        not_air:
+          type: "!string equals"
+          input: "%player_item_in_hand%"
+          output: "AIR"
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够，或者手里空空捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '5':
+    material: name_tag
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 4
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&a重命名物品'
+    lore:
+      - '&7¥8/次'
+      - ''
+    left_click_commands:
+      - '[player] lore name <-ds &e请在聊天框中填写内容，若取消，请回复"x"> <-exa economy take %player_name% 8> <-exa playsound minecraft:ui.cartography_table.take_result ambient %player_name% ~ ~ ~ 1 1 1>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 8
+        not_air:
+          type: "!string equals"
+          input: "%player_item_in_hand%"
+          output: "AIR"
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够，或者手里空空捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '6':
+    material: yellow_concrete
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 5
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&a导入预设'
+    lore:
+      - '&7¥8/次'
+      - ''
+    left_click_commands:
+      - '[player] lore import <-a 请输入名称> <-exa economy take %player_name% 8> <-exa playsound minecraft:ui.cartography_table.take_result ambient %player_name% ~ ~ ~ 1 1 1>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 8
+        not_air:
+          type: "!string equals"
+          input: "%player_item_in_hand%"
+          output: "AIR"
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够，或者手里空空捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '7':
+    material: light_blue_concrete
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 6
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&a导出预设'
+    lore:
+      - '&7¥8/次'
+      - ''
+    left_click_commands:
+      - '[player] lore export <-a 起个名吧> <-exa economy take %player_name% 8> <-exa playsound minecraft:ui.cartography_table.take_result ambient %player_name% ~ ~ ~ 1 1 1>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 8
+        not_air:
+          type: "!string equals"
+          input: "%player_item_in_hand%"
+          output: "AIR"
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够，或者手里空空捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '8':
+    material: player_head
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 7
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&e更改头颅玩家'
+    lore:
+      - '&7¥8/次'
+      - ''
+    left_click_commands:
+      - '[player] lore owner <-p 填写玩家名称> <-exa economy take %player_name% 8> <-exa playsound minecraft:ui.cartography_table.take_result ambient %player_name% ~ ~ ~ 1 1 1>'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 8
+        not_air:
+          type: "!string equals"
+          input: "%player_item_in_hand%"
+          output: "AIR"
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够，或者手里空空捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '9':
+    material: barrier
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 21
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&c删除所有Lore描述'
+    lore:
+      - '&7¥8/次'
+      - ''
+    left_click_commands:
+      - '[player] lore clear lore'
+      - '[takemoney] 8'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 8
+        not_air:
+          type: "!string equals"
+          input: "%player_item_in_hand%"
+          output: "AIR"
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够，或者手里空空捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '10':
+    material: barrier
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 22
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&c删除重命名'
+    lore:
+      - '&7¥8/次'
+      - ''
+    left_click_commands:
+      - '[player] lore clear name'
+      - '[takemoney] 8'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 8
+        not_air:
+          type: "!string equals"
+          input: "%player_item_in_hand%"
+          output: "AIR"
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够，或者手里空空捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  '11':
+    material: armor_stand
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 8
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&c暂不开放'
+    lore:
+      - '&7¥N.A./次'
+      - ''
+    left_click_commands:
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+    left_click_requirement:
+
+  'fill':
+    material: lime_stained_glass_pane
+    enchantments:
+    hide_enchantments: true
+    slots: 
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: ' '
+  'back':
+    material: compass
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 26
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b返回'
+    lore:
+      - ''
+    left_click_commands:
+      - '[openguimenu] npc_lore'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'

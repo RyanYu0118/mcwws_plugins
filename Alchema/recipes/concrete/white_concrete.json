@@ -1,0 +1,19 @@
+{
+    "comment": "Recipe suggested and provided by WanderingPoet",
+    "result": {
+        "type": "alchema:item",
+        "item": "minecraft:white_concrete",
+        "amount": 8
+    },
+    "ingredients": [
+        {
+            "type": "alchema:material",
+            "item": "minecraft:white_concrete_powder",
+            "amount": 8
+        },
+        {
+            "type": "alchema:material",
+            "item": "minecraft:gravel"
+        }
+    ]
+}

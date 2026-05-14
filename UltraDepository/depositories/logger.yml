@@ -1,0 +1,59 @@
+name: "伐木工仓库"
+
+capacity:
+  default: 5000000 # 若为0则默认不可以使用该仓库
+  permissions:
+    - "ud.logger.vip:1000"
+
+gui:
+  title: "&b&l渔夫仓库"
+  lines: 4
+  items:
+    "INFO":
+      material: CHEST
+      data: 0
+      slot: 31
+      name: "&9&l背包信息"
+      lore:
+        - " "
+        - "&f仓库最大容量&b %UltraDepository_capacity_logger%"
+        - "&f仓库已用容量&b %UltraDepository_used_logger%"
+        - "&f仓库剩余容量&b %UltraDepository_usable_logger%"
+        - " "
+
+items:
+  "SPRUCE_LOG":
+    slot: 0
+    price: 1
+    limit: 50000
+    name: "&l云杉原木"
+    lore:
+  "SPRUCE_SAPLING":
+    slot: 9
+    price: 4
+    limit: 50000
+    lore:
+  "SALMON":
+    slot: 13
+    price: 20
+    limit: 50000
+    name: "&l云杉木树种"
+    lore:
+      - " "
+      - "&f肉质鲜美！"
+  "COD":
+    slot: 14
+    price: 30
+    limit: 50000
+    name: "&f&l鳕鱼"
+    lore:
+      - " "
+      - "&f十分美味！"
+  "PUFFERFISH":
+    slot: 15
+    price: 30
+    limit: 50000
+    name: "&6&L河豚"
+    lore:
+      - " "
+      - "&f小心有毒！"

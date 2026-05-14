@@ -1,0 +1,35 @@
+# Don't delete this!
+is-default-language: true
+
+colorNotFound: '&cCould not found color with code &6%color-code%'
+invalidHexColor: '&cCould not parse hex color from &6%hex-color%'
+codeStyleNotFound: '&cCould not found font-style with there code: &6%error-code%'
+maxLength: '&cText length cannot greater than &b%max-length% &c(current &6%current-length%&c)'
+gradientResult: '&7Gradient colored: %result%'
+gradientAction: '&7Actions: '
+gradientShare: '&6&l%player% &7shared gradient text: %result%'
+itemRename: '&aChanged your item name to: %result%'
+entityRename: '&7» Right-click on entity to rename.'
+reloadConfig: '&aReloaded config.'
+noPermission: '&cYou need permissions to access.'
+handEmpty: '&cYou must hold item in hand to rename.'
+clearData: '&aCleared your gradient data!'
+clearWarning: '&eYour gradient data will be cleared after &b%duration%'
+button:
+  chat:
+    name: '&b&l[SHARE]'
+    hover: '&7Click to share this name for everyone.'
+  rename:
+    name: '&a&l[RENAME]'
+    hover: '&7Click to change as your nickname.'
+  clipboard:
+    name: '&c&l[CLIPBOARD]'
+    hover: '&7Click to copy to clipboard.'
+  item:
+    name: '&6&l[ITEM]'
+    hover: '&7Click to rename your item in hand.'
+  entity:
+    name: '&d&l[ENTITY]'
+    hover: '&7Rename entity that you right-click on.'
+
+

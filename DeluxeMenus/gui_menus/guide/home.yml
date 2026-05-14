@@ -1,0 +1,594 @@
+menu_title: '&l需要什么帮助？&k&l!'
+update_interval: 1
+open_command:
+  - ''
+open_commands:
+  - '[sound] BLOCK_BEACON_ACTIVATE'
+#  - '[message] &b欢迎使用服务器指南！'
+size: 54
+# as always, only cool people can open this menu :)
+open_requirement:
+  requirements:
+    example_1:
+      success_commands:
+        - "[message] &8[&bDeluxe&eMenus&8] &cYou have perms for this!"
+      deny_commands:
+        - "[message] &8[&bDeluxe&eMenus&8] &cYou don't have perms for this!"
+items:
+  'file':
+    material: head-%player_name%
+    slot: 4
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b>>> 个人档案 <<<'
+    lore:
+      - ''
+      - '&b========== 基本信息 =========='
+      - '&a▶ID: &e%player_name%'
+      - '&a▶IP: &e%player_ip%'
+      - '&a▶在线时长: &e%statistic_hours_played%h'
+      - '&a▶首次加入: &e%player_first_join_date%'
+      - '&a▶上次加入: &e%player_last_join_date%'
+      - ''
+      - '&b========== 经济信息 =========='
+      - '&6▶当前零钱: &e¥%vault_eco_balance_2dp% &7(%vault_eco_balance_formatted%)'
+      - '&7（左键可切换经济系统实时计分板可见性）'
+    view_requirement:
+      requirements:
+        money:
+          type: hasmoney
+          amount: 10
+    left_click_commands:
+      - '[givepermission] infinite.scoreboard.toggle'
+      - '[player] isb toggle'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  'sign_in':
+    material: BAMBOO_HANGING_SIGN
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 0
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&a>>> 每日签到 <<<'
+    lore:
+      - '&f点击此处完成签到'
+    left_click_commands:
+      - '[console] permission user %player_name% permission set signin.command true'
+      - '[player] signin gui'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  'licence':
+    material:   NAME_TAG
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 1
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&e>>> 许可证 <<<'
+    lore:
+      - ''
+      - '&f点击此处查看个人许可证'
+    left_click_commands:
+      - '[openguimenu] licence'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  'adv':
+    material: TOTEM_OF_UNDYING
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 2
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&e>>> 成就系统 <<<'
+    lore:
+      - '&f点击查看所有成就'
+    left_click_commands:
+      - '[player] ca gui'
+      - '[close]'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  'spawn_private':
+    material: STONE_PRESSURE_PLATE
+    model_data: 2200464
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 19
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b▶ 设置个人标记点'
+    lore:
+      - ''
+      - '&f将您当前的位置设为仅对自己开放的最新标记点 &c与重生点无关！'
+      - '&a左/右键点击 &7| &f设置1/2号标记点'
+      - '&aShift+左/右键点击 &7| &f传送至1/2号标记点'
+      - '&e默认命名格式为“&7%player_name%1/2&e”'
+      - ''
+      - '&e设置/传送 ¥64/次'
+    left_click_commands:
+      - '[console] lp user %player_name% permission settemp essentials.warp.overwrite.* true 5s'
+      - '[console] lp user %player_name% permission settemp essentials.delwarp true 5s'
+      - '[console] lp user %player_name% permission settemp essentials.setwarp true 5s'
+      - '[console] lp user %player_name% permission settemp essentials.warp true 5s'
+      - '[player] esetwarp %player_name%1'
+      - '[takemoney] 64'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    right_click_commands:
+      - '[console] lp user %player_name% permission settemp essentials.warp.overwrite.* true 5s'
+      - '[console] lp user %player_name% permission settemp essentials.delwarp true 5s'
+      - '[console] lp user %player_name% permission settemp essentials.setwarp true 5s'
+      - '[console] lp user %player_name% permission settemp essentials.warp true 5s'
+      - '[player] esetwarp %player_name%2'
+      - '[takemoney] 64'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+      - '[close]'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_left_click_commands:
+      - '[console] lp user %player_name% permission settemp essentials.warp.overwrite.* true 5s'
+      - '[console] lp user %player_name% permission settemp essentials.delwarp true 5s'
+      - '[console] lp user %player_name% permission settemp essentials.setwarp true 5s'
+      - '[console] lp user %player_name% permission settemp essentials.warp true 5s'
+      - '[player] ewarp %player_name%1'
+      - '[takemoney] 64'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+      - '[close]'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_right_click_commands:
+      - '[console] lp user %player_name% permission settemp essentials.warp.overwrite.* true 5s'
+      - '[console] lp user %player_name% permission settemp essentials.delwarp true 5s'
+      - '[console] lp user %player_name% permission settemp essentials.setwarp true 5s'
+      - '[console] lp user %player_name% permission settemp essentials.warp true 5s'
+      - '[player] ewarp %player_name%2'
+      - '[takemoney] 64'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+      - '[close]'
+    shift_right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  'spawn_public':
+    material: STONE_PRESSURE_PLATE
+    model_data: 2200463
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 20
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b▶ 设置公共标记点'
+    lore:
+      - ''
+      - '&f将您当前的位置设为对所有人开放的最新标记点 &c与重生点无关！'
+      - '&a左键点击 &7| &f设置公共标记点'
+      - '&aShift+左键点击 &7| &f传送至公共标记点'
+      - ''
+      - '&e设置 ¥128/次'
+      - '&e传送 ¥48/次'
+    left_click_commands:
+      - '[player] spawn set'
+      - '[takemoney] 128'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+      - '[close]'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 128
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    shift_left_click_commands:
+      - '[player] spawn'
+      - '[takemoney] 48'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+      - '[close]'
+    shift_left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 48
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  'tp':
+    material: ENDER_PEARL
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 21
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b▶ 传送至服务器固定地点'
+    lore:
+      - ''
+      - '&f点击选择想要传送的固定地点'
+      - '&f点数：32点/次'
+    left_click_commands:
+      - '[openguimenu] tp'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+  'tp_player':
+    material: PLAYER_HEAD
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 49
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b▶ 传送玩家'
+    lore:
+      - ''
+      - '&a左键点击 &7| &f将自己传送至某玩家'
+      - '&a右键点击 &7| &f将某玩家传送至自己'
+      - ''
+      - '&e¥64/次'
+    left_click_commands:
+      - '[givepermission] minecraft.command.teleport'
+      - '[player] minecraft:tp <-p 请选择你要传送到的玩家>'
+      - '[takepermission] minecraft.command.teleport <delay=10s>'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+    right_click_commands:
+      - '[givepermission] minecraft.command.teleport'
+      - '[player] minecraft:tp <-p 请选择要传送到你的玩家> %player_name%'
+      - '[takepermission] minecraft.command.teleport <delay=10s>'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+    right_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  'we':
+    material: WOODEN_AXE
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 23
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b创世神工具'
+    lore:
+      - '&f点击选择创世神功能'
+    left_click_commands:
+      - '[player] give <1> <2> <3>'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+  'money':
+    material: GOLD_NUGGET
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    model_data: 10001
+    slot: 6
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&e金钱管理'
+    lore:
+      - '&f点击选择要办理的业务'
+    left_click_commands:
+    #  - '[openguimenu] money'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+  'clothes':
+    material: LEATHER_CHESTPLATE
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 8
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&e装扮管理'
+    lore:
+      - '&f点击管理你的装扮效果'
+    left_click_commands:
+    #  - '[openguimenu] clothes'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+  'bag':
+    material: BUNDLE
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 25
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b我的背包'
+    lore:
+      - '&f点击打开扩展包'
+    left_click_commands:
+      - '[player] geekplayerbag open<delay=2>'
+      - '[close]'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+  'back_to_death':
+    material: RECOVERY_COMPASS
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 28
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b返回至死亡点'
+    lore:
+      - '&f点击返回至死亡点！'
+      - '&f点数：64点/次'
+    left_click_commands:
+      - '[player] back'
+      - '[takemoney] 64'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+    left_click_requirement:
+      requirements:
+        money:
+          type: has money
+          amount: 64
+      deny_commands:
+        - '[message] &c啊哦，你零钱不够捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+        - '[close]'
+  'fly_toggle':
+    material: ELYTRA
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 24
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&a开启 &b飞行模式'
+    lore:
+      - '&f点击打开飞行状态'
+      - '&f点数：不落地4点/秒'
+    view_requirement:
+      requirements:
+        a:
+          type: string equals
+          input: "%player_allow_flight%"
+          output: "no"
+    left_click_commands:
+      - '[givepermission] fly.fly'
+      - '[player] flywithfood on'
+      - '[refresh]'
+      - '[close]'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  'fly_toggle2':
+    material: ELYTRA
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 24
+    priority: 2
+    update: true
+    hide_attributes: true
+    display_name: '&c关闭 &b飞行模式'
+    lore:
+      - '&f点击打开飞行状态'
+      - '&f点数：不落地4点/秒'
+    view_requirement:
+      requirements:
+        a:
+          type: string equals
+          input: "%player_allow_flight%"
+          output: "yes"
+    left_click_commands:
+      - '[givepermission] fly.fly'
+      - '[player] flywithfood off'
+      - '[refresh]'
+      - '[close]'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+  'gamemode':
+    material: grass_block
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 33
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&e切换游戏模式'
+    lore:
+      - '&f左键：切换至生存模式'
+      - '&f右键：切换至创造模式'
+    left_click_commands:
+      - '[console] gamemode survival %player_name%'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+    right_click_commands:
+      - '[console] gamemode creative %player_name%'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+  'depository':
+    material: CHEST
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 34
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&e我的仓库'
+    lore:
+      - '&f点击管理你的仓库'
+    left_click_commands:
+      - '[openguimenu] depository'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+  'server_management':
+    material: END_CRYSTAL
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 47
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&e服务器管理'
+    lore:
+      - '&f点击管理服务器'
+    left_click_commands:
+      - '[openguimenu] server'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+  'more_com':
+    material: COMMAND_BLOCK
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 51
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&e更多命令'
+    lore:
+      - '&f点击打开更多命令'
+    left_click_commands:
+      - '[openguimenu] server'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+  'op':
+    material: COMMAND_BLOCK
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 45
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&e打开管理员身份'
+    left_click_commands:
+      - '[console] op %player_name%'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+      - '[refresh]'
+    view_requirement:
+      requirements:
+        a:
+          type: string equals
+          input: "%player_is_op%"
+          output: "no"
+    left_click_requirement:
+      requirements:
+        b:
+          type: string equals
+          input: "%player_name%"
+          output: "Ryan_yu__"
+      deny_commands:
+        - '[message] &c啊哦，你不是服主捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  'op2':
+    material: CHAIN_COMMAND_BLOCK
+    enchantments:
+      - ARROW_DAMAGE;1
+    hide_enchantments: true
+    slot: 45
+    priority: 2
+    update: true
+    hide_attributes: true
+    display_name: '&e关闭管理员身份'
+    left_click_commands:
+      - '[console] deop %player_name%'
+      - '[sound] BLOCK_NOTE_BLOCK_HAT'
+      - '[refresh]'
+    view_requirement:
+      requirements:
+        a:
+          type: string equals
+          input: "%player_is_op%"
+          output: "yes"
+    left_click_requirement:
+      requirements:
+        b:
+          type: string equals
+          input: "%player_name%"
+          output: "Ryan_yu__"
+      deny_commands:
+        - '[message] &c啊哦，你不是服主捏......'
+        - '[sound] ENTITY_ENDERMAN_TELEPORT 1 0.1'
+  'func':
+    material: experience_bottle
+    slot: 53
+    priority: 1
+    update: true
+    hide_attributes: true
+    display_name: '&b>>> 功能商店 <<<'
+    lore:
+      - ''
+    left_click_commands:
+      - '[openguimenu] func'
+      - '[close]'
+      - '[sound] ENTITY_SNOW_GOLEM_DEATH'
+
+  'filler_item':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slots:
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 9
+      - 36
+      - 37
+      - 38
+      - 39
+      - 40
+      - 41
+      - 42
+      - 43
+      - 44
+      - 22
+      - 31
+      - 18
+      - 27
+      - 35
+      - 26
+    display_name: '%progress_bar_{objective_score_Warning}_c:&a,_p:&e,_r:&7,_l:50_m:100_fullbar:&aCompleted!%'

@@ -1,0 +1,40 @@
+# Message lorsque le chargement du sac à dos commence depuis la base de données (après interaction du joueur)
+backpack-loading: "#eb0000Chargement du sac à dos en cours..."
+# Message lorsque le sac à dos a été chargé
+backpack-loaded: "Le sac à dos a été chargé"
+# Message lorsque le sac à dos est en cours de mise à jour et que le joueur tente de l'ouvrir
+backpack-updating: "Mise à jour du sac à dos en cours"
+# Message lorsque le chargement du sac à dos a échoué
+backpack-loading-error: "Problème rencontré lors du chargement du sac à dos"
+# Lorsqu'un joueur tente d'ouvrir un sac à dos, mais qu'il est utilisé par un autre joueur
+backpack-is-used-by-another-player: "&cLe sac à dos est utilisé par un autre joueur"
+
+# Message lorsque l'administrateur modifie la fabrication
+backpack-crafting-change: "&aLa fabrication du sac à dos a été modifiée"
+# Message lorsque qu'un joueur tente de modifier la fabrication alors qu'elle est vide ou identique à avant
+backpack-crafting-cannot-change: "&cLa fabrication du sac à dos ne peut pas être modifiée, peut-être est-elle vide ou identique"
+# Message lorsque l'administrateur annule les modifications de fabrication
+backpack-crafting-change-cancelled: "&cLes modifications de fabrication du sac à dos ont été annulées"
+
+# Message après que le sac à dos a été ajouté par la vue du sac à dos du joueur
+# %player% Nom du propriétaire du sac à dos
+backpack-added-inventory: "&6Sac à dos du joueur ajouté&8: &f%player% &6à votre inventaire"
+
+# Si un joueur n'a pas les permissions
+command-no-permissions: "&4Vous n'avez pas les permissions pour utiliser cette commande"
+# Lorsqu'un joueur est en période de recharge
+cooldown-message: "#eb0000Vous devez attendre avant de l'utiliser à nouveau"
+# Lorsqu'un joueur n'est pas autorisé à ouvrir un sac à dos
+backpack-no-permission-use: "&4Vous n'avez pas les permissions pour ouvrir le sac à dos"
+# Lorsque le sac à dos du joueur se recharge (en utilisant la commande)
+loading-in-progress: "&6Chargement en cours... veuillez patienter un moment"
+# Lorsque les sacs à dos des joueurs n'ont pas pu être chargés
+players-backpack-not-loaded: "&cLes sacs à dos des joueurs n'ont pas pu être chargés"
+# Lorsque le joueur n'a aucun sac à dos
+player-not-created-backpacks: "&7Ce joueur n'a pas encore créé de sac à dos"
+# Lorsque le joueur est hors ligne
+# %player% > Nom du Joueur
+player-is-offline: "&7Joueur&8: &f%player% &7 est hors ligne"
+
+# Message lorsque qu'un joueur tente d'avoir plus d'un sac à dos (uniquement si l'option dans la configuration est définie sur true : limiter-un-sac-a-dos-par-inventaire)
+one-backpack-per-inventory: "&cVous ne pouvez transporter qu'un seul sac à dos"

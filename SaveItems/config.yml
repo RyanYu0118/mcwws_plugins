@@ -1,0 +1,8 @@
+sqlIs: true
+sql:
+  ip: "127.0.0.1"
+  port: "3306"
+  sqlName: "test"
+  table: "cons_points"
+  user: "root"
+  password: "root"

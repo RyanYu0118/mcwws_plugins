@@ -1,0 +1,15 @@
+# The name the effect will display as
+# Default: pale_oak_leaves
+effect-name: pale_oak_leaves
+
+# If the effect is enabled or not
+# Default: true
+enabled: true
+
+# Default: [PALE_OAK_LEAVES]
+gui-icon-material:
+  - PALE_OAK_LEAVES
+
+# If true, this effect will be hidden when a player is in a WorldGuard region with the flag 'player-particles-limited' denied
+# Default: false
+hide-in-limited-region: false

@@ -1,0 +1,16 @@
+# The name the effect will display as
+# Default: enchant
+effect-name: enchant
+
+# If the effect is enabled or not
+# Default: true
+enabled: true
+
+# Default: [ENCHANTING_TABLE, ENCHANTMENT_TABLE]
+gui-icon-material:
+  - ENCHANTING_TABLE
+  - ENCHANTMENT_TABLE
+
+# If true, this effect will be hidden when a player is in a WorldGuard region with the flag 'player-particles-limited' denied
+# Default: false
+hide-in-limited-region: false

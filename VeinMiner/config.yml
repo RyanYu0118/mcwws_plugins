@@ -1,0 +1,31 @@
+# ActivationMode values are as followed:
+# |--> 'SNEAK': Activated upon breaking block whilst sneaking
+# |--> 'STAND': Activated upon breaking block whilst standing up
+# |--> 'ALWAYS': Always active
+#
+# Material values are 1:1 with in-game IDs. The prepending of "minecraft:" is optional
+# To specify states, do so with [brackets]. For example, "minecraft:chest[waterlogged=true]"
+# The above will search for any waterlogged chests. Other states will be ignored when checking.
+
+MetricsEnabled: true
+PerformUpdateChecks: true
+SortBlocklistAlphabetically: true
+SortToolListAlphabetically: true
+ActivationMode: SNEAK
+RepairFriendlyVeinminer: false
+IncludeEdges: true
+MaxVeinSize: 64
+Cost: 16.0
+DisabledWorlds:
+- WorldName
+BlockList: Moved to categories.yml
+Aliases:
+- minecraft:red_mushroom_block,minecraft:brown_mushroom_block
+- minecraft:grass,minecraft:tall_grass
+- minecraft:pumpkin,minecraft:carved_pumpkin
+- minecraft:acacia_log,minecraft:acacia_wood
+- minecraft:birch_log,minecraft:birch_wood
+- minecraft:dark_oak_log,minecraft:dark_oak_wood
+- minecraft:jungle_log,minecraft:jungle_wood
+- minecraft:oak_log,minecraft:oak_wood
+- minecraft:spruce_log,minecraft:spruce_wood

@@ -1,0 +1,13 @@
+# RykenSlimeCustomizer Wiki: https://rsc.hiworldmc.com/#/file/solar_generators
+RSC_EXAMPLE_SOLAR_GENERATOR:
+  item_group: rsc_example_sub_group
+  item:
+    name: "&c示例太阳能发电机"
+    material: daylight_detector
+    lore:
+      - "&e白天发电量: 1000J/t"
+      - "&b夜晚发电量: 100J/t"
+  capacity: 100000
+  dayEnergy: 1000
+  nightEnergy: 100
+  lightLevel: 14

@@ -1,0 +1,36 @@
+date: 20240710
+depositories:
+  farmer:
+    WHEAT_SEEDS:
+      amount: 1
+  hunter:
+    ROTTEN_FLESH:
+      amount: 32
+    ARROW:
+      amount: 25
+    GUNPOWDER:
+      amount: 5
+    EGG:
+      amount: 1
+    STRING:
+      amount: 26
+    SPIDER_EYE:
+      amount: 21
+    LEATHER:
+      amount: 2
+    BONE:
+      amount: 461
+    BEEF:
+      amount: 2
+    MUTTON:
+      amount: 2
+  fisherman:
+    COD:
+      amount: 566
+  miner:
+    IRON_INGOT:
+      amount: 15
+    COBBLESTONE:
+      amount: 1
+    COAL:
+      amount: 334

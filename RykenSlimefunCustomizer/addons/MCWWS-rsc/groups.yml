@@ -1,0 +1,72 @@
+mcwws_normal:
+  lateInit: false
+  item:
+    name: "&aMCWWS普通物品组"
+    material: GRASS_BLOCK
+
+mcwws_main:
+  type: nested
+  lateInit: false
+  item:
+    name: "&a流浪世界服务器-rsc"
+    material_type: skull_hash
+    material: 42486f2859169c8bfb66a687bcf4c6993417f584b58bbfdb336464d52071ccd7
+  tier: 0
+
+MCWWS_MERCHANDISE:
+  type: sub
+  lateInit: false
+  parent: mcwws_main
+  item:
+    name: "&e商品"
+    material_type: skull_hash
+    material: c73fd868fa8769fb39b40957f21c2e2d7d3e00288171fc9c4676b96df8240d88
+
+mcwws_props:
+  type: sub
+  parent: mcwws_main
+  item:
+    name: "&e道具"
+    material_type: skull_hash
+    material: e7bc251a6cb0d6d9f05c5711911a6ec24b209dbe64267901a4b03761debcf738
+
+rsc_example_seasonal_group:
+  type: seasonal
+  month: 5
+  item:
+    name: "&b示例季节性物品组"
+    material: OAK_LEAVES
+
+rsc_example_locked_group:
+  type: locked
+  parents:
+    - slimefun:basic_machines
+  item:
+    name: "&l示例锁定物品组"
+    material: REPEATER
+
+rsc_example_tier_10086_group:
+  type: sub
+  parent: rsc_example_parent_group
+  tier: 10086
+  item:
+    name: "&e示例优先级10086组"
+    material: IRON_ORE
+
+rsc_example_link_group:
+  type: button
+  parent: rsc_example_parent_group
+  item:
+    name: "&e示例链接组"
+    material: COMMAND_BLOCK
+  actions:
+  - "link https://rsc.himcs.top/#/README"
+
+rsc_example_console_group:
+  type: button
+  parent: rsc_example_parent_group
+  item:
+    name: "&e示例控制台指令组"
+    material: BEDROCK
+  actions:
+  - "console say 示例控制台指令组"

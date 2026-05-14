@@ -1,0 +1,15 @@
+# The name the effect will display as
+# Default: sculk_soul
+effect-name: sculk_soul
+
+# If the effect is enabled or not
+# Default: true
+enabled: true
+
+# Default: [SCULK_CATALYST]
+gui-icon-material:
+  - SCULK_CATALYST
+
+# If true, this effect will be hidden when a player is in a WorldGuard region with the flag 'player-particles-limited' denied
+# Default: false
+hide-in-limited-region: false

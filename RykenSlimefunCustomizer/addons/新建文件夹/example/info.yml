@@ -1,0 +1,10 @@
+# RykenSlimeCustomizer Wiki: https://rsc.hiworldmc.com/#/addon/learn-to-write-addons-information
+id: example
+name: "示例附属"
+depends: []
+pluginDepends: []
+scriptListener: "script-listener"
+version: "1.0"
+description: "RSC示例附属"
+authors: ["mmmjjkx", "tinalness"]
+repo: "SlimefunReloadingProject/rsc-example"

@@ -1,0 +1,396 @@
+{
+  "name": "MCWWS-Halloween",
+  "songs": 65,
+  "list": [
+    {
+      "id": "2624404359",
+      "name": "Call of the Darkness",
+      "singer": "Tom Media",
+      "time": 120
+    },
+    {
+      "id": "2624403637",
+      "name": "Chimes of Serenity",
+      "singer": "Tom Media",
+      "time": 113
+    },
+    {
+      "id": "2624404360",
+      "name": "Echoes of the Hollow",
+      "singer": "Tom Media",
+      "time": 101
+    },
+    {
+      "id": "2624404361",
+      "name": "Ghostly Pursuit",
+      "singer": "Tom Media",
+      "time": 101
+    },
+    {
+      "id": "2624404362",
+      "name": "Gloomy Tension",
+      "singer": "Tom Media",
+      "time": 150
+    },
+    {
+      "id": "2624403638",
+      "name": "Haunted Echoes",
+      "singer": "Tom Media",
+      "time": 98
+    },
+    {
+      "id": "2624403639",
+      "name": "Haunted Haste",
+      "singer": "Tom Media",
+      "time": 121
+    },
+    {
+      "id": "2624404363",
+      "name": "Haunted Wind",
+      "singer": "Tom Media",
+      "time": 136
+    },
+    {
+      "id": "2624403640",
+      "name": "Silent Pursuit",
+      "singer": "Tom Media",
+      "time": 191
+    },
+    {
+      "id": "2624403641",
+      "name": "Whispers of Goodbye",
+      "singer": "Tom Media",
+      "time": 121
+    },
+    {
+      "id": "31152088",
+      "name": "TRICK or TREAT",
+      "singer": "葉月ゆら",
+      "time": 37
+    },
+    {
+      "id": "433223331",
+      "name": "A Place Like This",
+      "singer": "Mike Higham/Matthew Margeson",
+      "time": 103
+    },
+    {
+      "id": "1752876",
+      "name": "The X-Files (Original Version)",
+      "singer": "Mark Snow",
+      "time": 206
+    },
+    {
+      "id": "2104912",
+      "name": "Desert Flags",
+      "singer": "Your Hand in Mine",
+      "time": 323
+    },
+    {
+      "id": "27884284",
+      "name": "Vaggvisa",
+      "singer": "Daniel Olsén",
+      "time": 34
+    },
+    {
+      "id": "414817",
+      "name": "人形の館",
+      "singer": "岩崎琢",
+      "time": 102
+    },
+    {
+      "id": "422900",
+      "name": "MARIA KURENAI’S THEME",
+      "singer": "羽毛田丈史",
+      "time": 88
+    },
+    {
+      "id": "19648868",
+      "name": "Hus Vid Havet",
+      "singer": "Detektivbyrån",
+      "time": 130
+    },
+    {
+      "id": "1312155086",
+      "name": "魔法藥水",
+      "singer": "MIKA STUDIO",
+      "time": 91
+    },
+    {
+      "id": "1312149935",
+      "name": "魔幻森林",
+      "singer": "MIKA STUDIO",
+      "time": 112
+    },
+    {
+      "id": "1312155084",
+      "name": "神奇魔法杖",
+      "singer": "MIKA STUDIO",
+      "time": 114
+    },
+    {
+      "id": "1312155082",
+      "name": "奇幻精靈",
+      "singer": "MIKA STUDIO",
+      "time": 123
+    },
+    {
+      "id": "25918012",
+      "name": "Fireside Dance",
+      "singer": "Danny Elfman",
+      "time": 79
+    },
+    {
+      "id": "4186153",
+      "name": "The Imaginarium",
+      "singer": "Mychael \u0026 Jeff Danna",
+      "time": 66
+    },
+    {
+      "id": "17677590",
+      "name": "Magic and Moonlight",
+      "singer": "Nox Arcana",
+      "time": 204
+    },
+    {
+      "id": "1085277",
+      "name": "Métamorphose",
+      "singer": "Bruno Coulais",
+      "time": 96
+    },
+    {
+      "id": "30431019",
+      "name": "Lulu and Shaco\u0027s Quirky Encounter",
+      "singer": "英雄联盟",
+      "time": 155
+    },
+    {
+      "id": "1085508",
+      "name": "Dreams Are Dangerous",
+      "singer": "Bruno Coulais",
+      "time": 87
+    },
+    {
+      "id": "1085499",
+      "name": "Bobinsky",
+      "singer": "Bruno Coulais",
+      "time": 143
+    },
+    {
+      "id": "1085496",
+      "name": "The Supper",
+      "singer": "Bruno Coulais",
+      "time": 91
+    },
+    {
+      "id": "544000930",
+      "name": "キャッピーとの出会い",
+      "singer": "藤井志帆",
+      "time": 82
+    },
+    {
+      "id": "35440451",
+      "name": "Theme of Despair",
+      "singer": "Skyler McGlothlin",
+      "time": 196
+    },
+    {
+      "id": "4140856",
+      "name": "The Belgian Circus Episode",
+      "singer": "John Morris",
+      "time": 182
+    },
+    {
+      "id": "4140826",
+      "name": "The Elephant Man Theme",
+      "singer": "John Morris",
+      "time": 225
+    },
+    {
+      "id": "543986922",
+      "name": "カブロン",
+      "singer": "藤井志帆",
+      "time": 164
+    },
+    {
+      "id": "530257",
+      "name": "沙子“a long story”",
+      "singer": "高梨康治",
+      "time": 143
+    },
+    {
+      "id": "28993101",
+      "name": "ハロウィーン・ストリート",
+      "singer": "藤澤慶昌",
+      "time": 106
+    },
+    {
+      "id": "453249877",
+      "name": "吸血鬼大战僵尸-万圣节",
+      "singer": "小旭音乐",
+      "time": 30
+    },
+    {
+      "id": "1312155080",
+      "name": "召喚女巫之夜",
+      "singer": "MIKA STUDIO",
+      "time": 108
+    },
+    {
+      "id": "19648861",
+      "name": "Om Du Möter Varg",
+      "singer": "Detektivbyrån",
+      "time": 188
+    },
+    {
+      "id": "686059",
+      "name": "残滓",
+      "singer": "濱本麻央",
+      "time": 61
+    },
+    {
+      "id": "1220020",
+      "name": "Waltz—Music Box (worktape)",
+      "singer": "Danny Elfman",
+      "time": 60
+    },
+    {
+      "id": "410715830",
+      "name": "提线木偶",
+      "singer": "CGDIDO\u0026Igoo2u",
+      "time": 111
+    },
+    {
+      "id": "1842124587",
+      "name": "The Friendly Ghost",
+      "singer": "Arthur Benson",
+      "time": 158
+    },
+    {
+      "id": "1363829370",
+      "name": "The Lotus Tree",
+      "singer": "Jerry Lacey",
+      "time": 177
+    },
+    {
+      "id": "2618989445",
+      "name": "Music-box_Sad",
+      "singer": "PeriTune",
+      "time": 168
+    },
+    {
+      "id": "2618985884",
+      "name": "Spook2",
+      "singer": "PeriTune",
+      "time": 81
+    },
+    {
+      "id": "2618985882",
+      "name": "Spook",
+      "singer": "PeriTune",
+      "time": 133
+    },
+    {
+      "id": "27804996",
+      "name": "Main Title (Chucky Theme)",
+      "singer": "Joseph LoDuca",
+      "time": 143
+    },
+    {
+      "id": "1989255226",
+      "name": "Gothic_Cute (Instrumental)",
+      "singer": "PeriTune",
+      "time": 175
+    },
+    {
+      "id": "1358102369",
+      "name": "Play with Me",
+      "singer": "Myuu",
+      "time": 236
+    },
+    {
+      "id": "1483299624",
+      "name": "Ghost of the Hour",
+      "singer": "Mike Franklyn",
+      "time": 124
+    },
+    {
+      "id": "1363829374",
+      "name": "Two Fixed Points",
+      "singer": "Jerry Lacey",
+      "time": 109
+    },
+    {
+      "id": "1449430030",
+      "name": "Castle Fairy",
+      "singer": "Etienne Roussel",
+      "time": 102
+    },
+    {
+      "id": "22726033",
+      "name": "Overture",
+      "singer": "まめこ",
+      "time": 43
+    },
+    {
+      "id": "1464843057",
+      "name": "万圣节-The Halloween",
+      "singer": "猎豹游戏-Cheetah Mobile Games",
+      "time": 120
+    },
+    {
+      "id": "570337076",
+      "name": "诡异的沉默",
+      "singer": "橙光音乐",
+      "time": 62
+    },
+    {
+      "id": "27804225",
+      "name": "Dangerous Zone (Opening Title)",
+      "singer": "吴俊城",
+      "time": 89
+    },
+    {
+      "id": "1859609971",
+      "name": "Hogwarts",
+      "singer": "Legion Beats",
+      "time": 118
+    },
+    {
+      "id": "1486496",
+      "name": "Hedwig\u0027s Theme",
+      "singer": "John Williams",
+      "time": 309
+    },
+    {
+      "id": "1938273",
+      "name": "Elsinore Revisited",
+      "singer": "Sean Lennon",
+      "time": 150
+    },
+    {
+      "id": "1302685128",
+      "name": "Halloween Theme (From \"Halloween\")",
+      "singer": "Blackround Philharmonic Orchestra",
+      "time": 206
+    },
+    {
+      "id": "17677739",
+      "name": "Veil of Darkness",
+      "singer": "Nox Arcana",
+      "time": 115
+    },
+    {
+      "id": "1161515",
+      "name": "Main Titles",
+      "singer": "Charlie Clouser",
+      "time": 176
+    },
+    {
+      "id": "21071300",
+      "name": "Dance of the Sugar Plum Fairy",
+      "singer": "London Symphony",
+      "time": 136
+    }
+  ]
+}

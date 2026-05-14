@@ -1,0 +1,62 @@
+#不需要权限则设置为null
+permission: null
+# 计分板优先级
+priority: 100
+# 显示的世界
+worlds:
+  - "example_1"
+  - "example_2"
+scoreboard:
+  # 请注意，内容的line-#必须是按照数字顺序来的，比如123456
+  # 计分板标题
+  title:
+    #刷新时间多少tick
+    interval: 20
+    #刷新的不同内容，如果只有一条则为不刷新
+    lines:
+      - '&6&l经济系统'
+      - '&e&l经&6&l济系统'
+      - '&e&l经济&6&l系统'
+      - '&e&l经济系&6&l统'
+      - '&e&l经济系统'
+  #内容（行），line-必须严格按照顺序，比如123456
+  line-1:
+    interval: 1
+    lines:
+      - ' &n&o%server_time_YYYY/M/dd H:mm:ss%'
+  line-2:
+    interval: 10
+    lines:
+      - ' '
+  line-3:
+    interval: 20
+    lines:
+      - ' &a▶ID: &b%player_name%'
+  line-4:
+    interval: 20
+    lines:
+      - ' &a▶在线时长: &d%statistic_hours_played%h'
+  line-5:
+    interval: 10
+    lines:
+      - ' '
+  line-6:
+    interval: 1
+    lines:
+      - ' &6▶当前零钱: &e%vault_eco_balance_formatted%'
+  line-7:
+    interval: 1
+    lines:
+      - ' &6▶当前身份: &e%changeoutput_match_input:{player_is_op}_matcher:yes_ifmatch:管理员/服主_else:普通玩家%'
+  line-8:
+    interval: 100
+    lines:
+      - ''
+  line-9:
+    interval: 10
+    lines:
+      - ' &b▶完成进度: &3%objective_score_Warning%/100'
+  line-10:
+    interval: 100
+    lines:
+      - ' &7&o(Since 2017/9/15)'

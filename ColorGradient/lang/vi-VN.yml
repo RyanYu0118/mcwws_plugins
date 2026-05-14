@@ -1,0 +1,30 @@
+colorNotFound: '&cKhông thể tìm màu phù hợp với mã &6%color-code%'
+invalidHexColor: '&cKhông thể phân tích mã màu hex từ &6%hex-color%'
+codeStyleNotFound: '&cKhông thể tìm style phù hợp với mã: &6%error-code%'
+maxLength: '&cĐộ dài của văn bản không thể vượt quá &b%max-length% &c(hiện tại &6%current-length%&c)'
+gradientResult: '&7Màu gradient: %result%'
+gradientAction: '&7Thao tác: '
+gradientShare: '&6&l%player% &7vừa chia sẽ văn bản gradient: %result%'
+itemRename: '&aĐã thay đổi tên vật phẩm thành: %result%'
+entityRename: '&7» Chuột phải vào thực thể để đổi tên.'
+reloadConfig: '&aĐã tải lại cấu hình.'
+noPermission: '&cBạn không có quyền truy cập lệnh này.'
+handEmpty: '&cYêu cầu cầm vật phẩm trên tay để đổi tên.'
+clearData: '&aĐã xóa dữ liệu của bạn!'
+clearWarning: '&eDữ liệu về màu sẽ bị xóa trong &b%duration% &enữa'
+button:
+  chat:
+    name: '&b&l[CHIA SẼ]'
+    hover: '&7KChia sẽ tên này với mọi người.'
+  rename:
+    name: '&a&l[ĐỔI TÊN]'
+    hover: '&7Thay đổi biệt hiệu của bạn '
+  clipboard:
+    name: '&c&l[SAO CHÉP]'
+    hover: '&7Sao chép vào bộ nhớ tạm.'
+  item:
+    name: '&6&l[VẬT PHẨM]'
+    hover: '&7Đổi tên vật phẩm đang cầm trên tay.'
+  entity:
+    name: '&d&l[THỰC THỂ]'
+    hover: '&7Đổi tên thực thể mà bạn chuột phải vào nó.'

@@ -1,0 +1,17 @@
+# RykenSlimeCustomizer Wiki: https://rsc.hiworldmc.com/#/file/generators
+RSC_EXAMPLE_GENERATOR:
+  item_group: rsc_example_sub_group
+  item:
+    name: "&c示例发电机"
+    material: sea_lantern
+  capacity: 100000
+  production: 100
+  input: [10,11]
+  output: [15,16]
+  fuels:
+    example_fuel:
+      item:
+        material: OAK_WOOD
+      seconds: 10
+      output:
+        material: CHARCOAL

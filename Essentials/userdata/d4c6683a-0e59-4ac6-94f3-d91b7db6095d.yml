@@ -1,0 +1,38 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 127.0.0.1
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 0
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1706804287902
+  login: 1706798869556
+money: '4020.0'
+last-account-name: Goldfish9901
+logoutlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -543.179011334731
+  y: 101.89090782576918
+  z: -455.75174944804826
+  yaw: -125.423828125
+  pitch: 43.35011672973633
+lastlocation:
+  world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
+  world-name: world
+  x: -132.5
+  y: 65.0
+  z: 80.5
+  yaw: 9.44999885559082
+  pitch: 6.150002479553223

@@ -1,0 +1,12 @@
+date: 20231116
+depositories:
+  hunter:
+    ROTTEN_FLESH:
+      amount: 5
+    ARROW:
+      amount: 2
+    BONE:
+      amount: 1
+  miner:
+    REDSTONE:
+      amount: 2

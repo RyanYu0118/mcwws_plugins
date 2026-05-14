@@ -1,0 +1,153 @@
+# +----------------------------------------------------+ #
+# <                      Prompts                       > #
+# <                   Configuration                    > #
+# +----------------------------------------------------+ #
+
+
+
+
+
+
+
+
+
+# PlayerUI formatting
+# Skull-Name-Format - The display name format
+# for the player heads
+# Size - the size of the UI (multiple of 9, between 18-54)
+# Cache-Size - Size for the head cache
+# Cache-Delay - Delay in ticks after the player
+# joins before their head gets cached
+# Sorted - Should the player heads be sorted?
+# Per-World - Only show player in the current world?
+# Empty-Message - Message to be displayed when the
+# head cache is empty
+PlayerUI:
+  Skull-Name-Format: '&6%s'
+  Size: 54
+  Cache-Size: 256
+  Cache-Delay: 1
+  Previous:
+    Item: Feather
+    Column: 3
+    Text: '&7◀◀ 上一页'
+    Custom-Model-Data: 0
+  Next:
+    Item: Feather
+    Column: 7
+    Text: 下一页 ▶▶
+    Custom-Model-Data: 0
+  Cancel:
+    Item: Barrier
+    Column: 5
+    Text: '&7Cancel ✘'
+    Custom-Model-Data: 0
+  Sorted: false
+  Per-World: false
+  Empty-Message: '&c未找到玩家!'
+  Skull-Custom-Model-Data: 0
+  Filter-Format:
+    World: '&6𑁍 %s'
+    Radial: '&cᯤ %s'
+  Search:
+    Item: Name_Tag
+    Custom-Model-Data: 0
+    Column: 9
+    Text: '&6Search ⌕'
+    AnvilItem:
+      Title: '&6&lPlayer Search'
+      Material: PAPER
+      CustomModelData: 0
+      Text: '&6Enter Player Name'
+
+
+
+
+
+# AnvilUI formatting
+# Enable-Title - Show the first line of the prompt
+# (if with {br}) as title of Anvil GUI
+# Item - The item to place on the Anvil GUI
+# Enchanted - Do you want the item enchanted?
+# Custom-Title - If title is enabled, and if custom
+# title is not empty, CommandPrompter will use this instead
+AnvilGUI:
+  Enable-Title: true
+  Custom-Title: ''
+  Item:
+    Material: Paper
+    Custom-Model-Data: 0
+    HideTooltips: false
+    Enchanted: false
+  Enchanted: false
+  Prompt-Message: '0'
+  Enable-Cancel-Item: false
+  ResultItem:
+    Material: Paper
+    HideTooltips: false
+    Custom-Model-Data: 0
+    Enchanted: false
+  CancelItem:
+    Material: Barrier
+    HideTooltips: false
+    Custom-Model-Data: 0
+    Enchanted: false
+    HoverText: '&cClick to Cancel'
+
+
+
+
+
+# Text Prompt Config
+# Clickable-Cancel - Enable clickable cancel
+# Cancel-Message - Clickable text message
+# Cancel-Hover-Message - Message to show when
+# a player hovers over
+# the clickable cancel message.
+# Response-Listener-Priority - Change the priority of
+# the response listener
+# Available Priority - DEFAULT, LOW, LOWEST, NORMAL, HIGH
+# HIGHEST
+TextPrompt:
+  Clickable-Cancel: false
+  Cancel-Message: '&7[&c&l✘&7]'
+  Cancel-Hover-Message: '&7Click here to cancel command completion'
+  Response-Listener-Priority: DEFAULT
+
+
+
+
+
+# Sign UI Settings
+# Input-Field-Location - Which line should the answer
+# be read from.
+# Valid Input Field Locations
+# top - line 1 of the sign will be considered as the field.
+# top-aggregate - the prompt will be placed at the lowest
+# possible line and the input would be
+# the remaining lines on top.
+# bottom - line 4 of the sign will be considered as the
+# field.
+# bottom-aggregate - the prompt will be placed at line
+# 1 and the input would be the
+# remaining lines at the bottom
+# Check wiki for Sign UI
+# https://github.com/CyR1en/CommandPrompter/wiki/Prompts
+SignUI:
+  Input-Field-Location: bottom
+  Material: OAK_SIGN
+
+
+
+# Input Validation
+# Alias - The alias of the input validation
+# Regex - Regex to use for the input validation
+Input-Validation:
+  Integer-Sample:
+    Alias: is
+    Regex: ^\d+
+    Err-Message: '&cPlease enter a valid integer!'
+  Alpha-Sample:
+    Alias: ss
+    Regex: '[A-Za-z ]+'
+    Err-Message: '&cInput must only consist letters of the alphabet!'

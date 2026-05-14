@@ -1,0 +1,16 @@
+# The name the effect will display as
+# Default: block_crumble
+effect-name: block_crumble
+
+# If the effect is enabled or not
+# Default: true
+enabled: true
+
+# Default: [COOKIE, CREAKING_HEART]
+gui-icon-material:
+  - COOKIE
+  - CREAKING_HEART
+
+# If true, this effect will be hidden when a player is in a WorldGuard region with the flag 'player-particles-limited' denied
+# Default: false
+hide-in-limited-region: false
