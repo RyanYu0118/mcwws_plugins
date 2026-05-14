@@ -76,14 +76,6 @@ useTimes:
       totalSellUseTimes: 131
       lastBuyTime: '2026-05-10 02:06:40'
       lastSellTime: '2026-05-10 02:07:01'
-  farming:
-    A:
-      buyUseTimes: 4
-      totalBuyUseTimes: 4
-      sellUseTimes: 1
-      totalSellUseTimes: 1
-      lastBuyTime: '2026-05-14 23:01:04'
-      lastSellTime: '2026-05-14 23:00:35'
   minerals:
     C:
       sellUseTimes: 49
@@ -122,8 +114,16 @@ useTimes:
       sellUseTimes: 64
       totalSellUseTimes: 64
       lastSellTime: '2026-05-10 02:06:05'
+  farming:
+    A:
+      buyUseTimes: 4
+      totalBuyUseTimes: 4
+      sellUseTimes: 1
+      totalSellUseTimes: 1
+      lastBuyTime: '2026-05-14 23:01:04'
+      lastSellTime: '2026-05-14 23:00:35'
 favourites: {}
 randomPlaceholder:
   daily:
-    nowValue: A;;D;;E;;F;;G
-    refreshDoneTime: '2026-05-15 00:00:00'
+    nowValue: A;;B;;D;;F;;G
+    refreshDoneTime: '2026-05-16 00:00:00'
