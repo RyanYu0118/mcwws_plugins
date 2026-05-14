@@ -17,13 +17,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '18'
+        amount: '%mcwws.price_buy_dispenser%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '11'
+        amount: '%mcwws.price_sell_dispenser%'
         placeholder: '{amount}$'
         start-apply: 0
   B:
@@ -36,13 +36,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '14'
+        amount: '%mcwws.price_buy_note_block%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '8'
+        amount: '%mcwws.price_sell_note_block%'
         placeholder: '{amount}$'
         start-apply: 0
   C:
@@ -55,13 +55,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '22'
+        amount: '%mcwws.price_buy_sticky_piston%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '13'
+        amount: '%mcwws.price_sell_sticky_piston%'
         placeholder: '{amount}$'
         start-apply: 0
   D:
@@ -74,13 +74,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '14'
+        amount: '%mcwws.price_buy_piston%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '8'
+        amount: '%mcwws.price_sell_piston%'
         placeholder: '{amount}$'
         start-apply: 0
   E:
@@ -93,13 +93,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '32'
+        amount: '%mcwws.price_buy_tnt%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '19'
+        amount: '%mcwws.price_sell_tnt%'
         placeholder: '{amount}$'
         start-apply: 0
   F:
@@ -112,13 +112,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '12'
+        amount: '%mcwws.price_buy_dropper%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '7'
+        amount: '%mcwws.price_sell_dropper%'
         placeholder: '{amount}$'
         start-apply: 0
   G:
@@ -131,13 +131,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '16'
+        amount: '%mcwws.price_buy_observer%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '9.5'
+        amount: '%mcwws.price_sell_observer%'
         placeholder: '{amount}$'
         start-apply: 0
   H:
@@ -150,13 +150,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '11'
+        amount: '%mcwws.price_buy_repeater%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '6.5'
+        amount: '%mcwws.price_sell_repeater%'
         placeholder: '{amount}$'
         start-apply: 0
   I:
@@ -169,12 +169,12 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '15'
+        amount: '%mcwws.price_buy_comparator%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '9'
+        amount: '%mcwws.price_sell_comparator%'
         placeholder: '{amount}$'
         start-apply: 0

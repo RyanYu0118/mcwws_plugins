@@ -17,13 +17,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_red_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_red_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   B:
@@ -36,13 +36,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_orange_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_orange_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   C:
@@ -55,13 +55,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_yellow_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_yellow_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   D:
@@ -74,13 +74,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_lime_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_lime_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   E:
@@ -93,13 +93,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_green_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_green_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   F:
@@ -112,13 +112,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_light_blue_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_light_blue_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   G:
@@ -131,13 +131,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_cyan_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_cyan_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   H:
@@ -150,13 +150,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_blue_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_blue_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   I:
@@ -169,13 +169,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_purple_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_purple_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   J:
@@ -188,13 +188,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_magenta_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_magenta_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   K:
@@ -207,13 +207,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_pink_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_pink_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   L:
@@ -226,13 +226,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_brown_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_brown_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   M:
@@ -245,13 +245,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_black_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_black_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   N:
@@ -264,13 +264,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_gray_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_gray_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   O:
@@ -283,13 +283,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_light_gray_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_light_gray_wool%'
         placeholder: '{amount}$'
         start-apply: 0
   P:
@@ -302,12 +302,12 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_white_wool%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_white_wool%'
         placeholder: '{amount}$'
         start-apply: 0

@@ -17,13 +17,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '1.8'
+        amount: '%mcwws.price_buy_rail%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1'
+        amount: '%mcwws.price_sell_rail%'
         placeholder: '{amount}$'
         start-apply: 0
   B:
@@ -36,13 +36,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '7.5'
+        amount: '%mcwws.price_buy_powered_rail%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '4.5'
+        amount: '%mcwws.price_sell_powered_rail%'
         placeholder: '{amount}$'
         start-apply: 0
   C:
@@ -55,13 +55,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '5.5'
+        amount: '%mcwws.price_buy_activator_rail%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '3.3'
+        amount: '%mcwws.price_sell_activator_rail%'
         placeholder: '{amount}$'
         start-apply: 0
   D:
@@ -74,13 +74,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '5.5'
+        amount: '%mcwws.price_buy_detector_rail%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '3.3'
+        amount: '%mcwws.price_sell_detector_rail%'
         placeholder: '{amount}$'
         start-apply: 0
   E:
@@ -93,13 +93,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '14'
+        amount: '%mcwws.price_buy_minecart%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '8.4'
+        amount: '%mcwws.price_sell_minecart%'
         placeholder: '{amount}$'
         start-apply: 0
   F:
@@ -112,13 +112,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '17'
+        amount: '%mcwws.price_buy_chest_minecart%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '10.2'
+        amount: '%mcwws.price_sell_chest_minecart%'
         placeholder: '{amount}$'
         start-apply: 0
   G:
@@ -131,13 +131,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '18'
+        amount: '%mcwws.price_buy_furnace_minecart%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '10.8'
+        amount: '%mcwws.price_sell_furnace_minecart%'
         placeholder: '{amount}$'
         start-apply: 0
   H:
@@ -150,13 +150,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '28'
+        amount: '%mcwws.price_buy_hopper_minecart%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '16.8'
+        amount: '%mcwws.price_sell_hopper_minecart%'
         placeholder: '{amount}$'
         start-apply: 0
   I:
@@ -169,12 +169,12 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '38'
+        amount: '%mcwws.price_buy_tnt_minecart%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '22.8'
+        amount: '%mcwws.price_sell_tnt_minecart%'
         placeholder: '{amount}$'
         start-apply: 0

@@ -17,13 +17,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '90'
+        amount: '%mcwws.price_buy_diamond%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '54'
+        amount: '%mcwws.price_sell_diamond%'
         placeholder: '{amount}$'
         start-apply: 0
   B:
@@ -36,13 +36,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '18'
+        amount: '%mcwws.price_buy_gold_ingot%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '11'
+        amount: '%mcwws.price_sell_gold_ingot%'
         placeholder: '{amount}$'
         start-apply: 0
   C:
@@ -55,13 +55,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '9'
+        amount: '%mcwws.price_buy_iron_ingot%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '5.4'
+        amount: '%mcwws.price_sell_iron_ingot%'
         placeholder: '{amount}$'
         start-apply: 0
   D:
@@ -74,13 +74,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4.5'
+        amount: '%mcwws.price_buy_lapis_lazuli%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.7'
+        amount: '%mcwws.price_sell_lapis_lazuli%'
         placeholder: '{amount}$'
         start-apply: 0
   E:
@@ -93,13 +93,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '3.2'
+        amount: '%mcwws.price_buy_redstone%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1.9'
+        amount: '%mcwws.price_sell_redstone%'
         placeholder: '{amount}$'
         start-apply: 0
   F:
@@ -112,13 +112,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_buy_coal%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1.4'
+        amount: '%mcwws.price_sell_coal%'
         placeholder: '{amount}$'
         start-apply: 0
   G:
@@ -131,13 +131,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '7.5'
+        amount: '%mcwws.price_buy_amethyst_shard%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '4.5'
+        amount: '%mcwws.price_sell_amethyst_shard%'
         placeholder: '{amount}$'
         start-apply: 0
   H:
@@ -150,13 +150,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '480'
+        amount: '%mcwws.price_buy_ancient_debris%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '300'
+        amount: '%mcwws.price_sell_ancient_debris%'
         placeholder: '{amount}$'
         start-apply: 0
   I:
@@ -169,13 +169,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '5.4'
+        amount: '%mcwws.price_buy_quartz%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '3.2'
+        amount: '%mcwws.price_sell_quartz%'
         placeholder: '{amount}$'
         start-apply: 0
   J:
@@ -188,12 +188,12 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '6.5'
+        amount: '%mcwws.price_buy_copper_ingot%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '3.9'
+        amount: '%mcwws.price_sell_copper_ingot%'
         placeholder: '{amount}$'
         start-apply: 0

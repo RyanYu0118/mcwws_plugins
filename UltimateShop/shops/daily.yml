@@ -30,7 +30,7 @@ items:
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: 1
+        amount: '%mcwws.price_sell_redstone%'
         placeholder: '&6{amount} Coins'
         start-apply: 0
   B:
@@ -41,7 +41,7 @@ items:
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: 3
+        amount: '%mcwws.price_sell_iron_ingot%'
         placeholder: '&6{amount} Coins'
         start-apply: 0
   C:
@@ -52,7 +52,7 @@ items:
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: 1.6
+        amount: '%mcwws.price_sell_gold_ingot%'
         placeholder: '&6{amount} Coins'
         start-apply: 0
   D:
@@ -63,7 +63,7 @@ items:
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: 2
+        amount: '%mcwws.price_sell_copper_ingot%'
         placeholder: '&6{amount} Coins'
         start-apply: 0
   E:
@@ -74,7 +74,7 @@ items:
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: 0.8
+        amount: '%mcwws.price_sell_diamond%'
         placeholder: '&6{amount} Coins'
         start-apply: 0
   F:
@@ -88,12 +88,12 @@ items:
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: 1.2
+        amount: '%mcwws.price_sell_emerald%'
         placeholder: '&6{amount} Coins'
         start-apply: 0
       2:
         economy-plugin: Vault
-        amount: 3.3
+        amount: '%mcwws.price_sell_emerald%'
         placeholder: '&6{amount} Coins'
         start-apply: 0
   G:
@@ -104,6 +104,6 @@ items:
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: 5
+        amount: '%mcwws.price_sell_emerald%'
         placeholder: '&6{amount} Coins'
         start-apply: 0

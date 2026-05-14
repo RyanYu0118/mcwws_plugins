@@ -17,13 +17,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '3'
+        amount: '%mcwws.price_buy_cod%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1.8'
+        amount: '%mcwws.price_sell_cod%'
         placeholder: '{amount}$'
         start-apply: 0
   B:
@@ -36,13 +36,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4.5'
+        amount: '%mcwws.price_buy_cooked_cod%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.7'
+        amount: '%mcwws.price_sell_cooked_cod%'
         placeholder: '{amount}$'
         start-apply: 0
   C:
@@ -55,13 +55,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_salmon%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_salmon%'
         placeholder: '{amount}$'
         start-apply: 0
   D:
@@ -74,13 +74,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '5.5'
+        amount: '%mcwws.price_buy_cooked_salmon%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '3.3'
+        amount: '%mcwws.price_sell_cooked_salmon%'
         placeholder: '{amount}$'
         start-apply: 0
   E:
@@ -93,13 +93,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '9'
+        amount: '%mcwws.price_buy_tropical_fish%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '5.4'
+        amount: '%mcwws.price_sell_tropical_fish%'
         placeholder: '{amount}$'
         start-apply: 0
   F:
@@ -112,12 +112,12 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '10'
+        amount: '%mcwws.price_buy_pufferfish%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '6'
+        amount: '%mcwws.price_sell_pufferfish%'
         placeholder: '{amount}$'
         start-apply: 0

@@ -17,13 +17,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '5.5'
+        amount: '%mcwws.price_buy_cherry_log%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '3.3'
+        amount: '%mcwws.price_sell_cherry_log%'
         placeholder: '{amount}$'
         start-apply: 0
   B:
@@ -36,13 +36,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '5'
+        amount: '%mcwws.price_buy_oak_log%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '3'
+        amount: '%mcwws.price_sell_oak_log%'
         placeholder: '{amount}$'
         start-apply: 0
   C:
@@ -55,13 +55,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '5'
+        amount: '%mcwws.price_buy_spruce_log%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '3'
+        amount: '%mcwws.price_sell_spruce_log%'
         placeholder: '{amount}$'
         start-apply: 0
   D:
@@ -74,13 +74,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '5'
+        amount: '%mcwws.price_buy_birch_log%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '3'
+        amount: '%mcwws.price_sell_birch_log%'
         placeholder: '{amount}$'
         start-apply: 0
   E:
@@ -93,13 +93,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '5.5'
+        amount: '%mcwws.price_buy_mangrove_log%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '3.3'
+        amount: '%mcwws.price_sell_mangrove_log%'
         placeholder: '{amount}$'
         start-apply: 0
   F:
@@ -112,13 +112,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '5'
+        amount: '%mcwws.price_buy_jungle_log%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '3'
+        amount: '%mcwws.price_sell_jungle_log%'
         placeholder: '{amount}$'
         start-apply: 0
   G:
@@ -131,13 +131,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '5'
+        amount: '%mcwws.price_buy_acacia_log%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '3'
+        amount: '%mcwws.price_sell_acacia_log%'
         placeholder: '{amount}$'
         start-apply: 0
   H:
@@ -150,13 +150,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '5.2'
+        amount: '%mcwws.price_buy_dark_oak_log%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '3.1'
+        amount: '%mcwws.price_sell_dark_oak_log%'
         placeholder: '{amount}$'
         start-apply: 0
   I:
@@ -169,13 +169,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '3.5'
+        amount: '%mcwws.price_buy_cherry_sapling%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.1'
+        amount: '%mcwws.price_sell_cherry_sapling%'
         placeholder: '{amount}$'
         start-apply: 0
   J:
@@ -188,13 +188,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '3'
+        amount: '%mcwws.price_buy_oak_sapling%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1.8'
+        amount: '%mcwws.price_sell_oak_sapling%'
         placeholder: '{amount}$'
         start-apply: 0
   K:
@@ -207,13 +207,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '3'
+        amount: '%mcwws.price_buy_spruce_sapling%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1.8'
+        amount: '%mcwws.price_sell_spruce_sapling%'
         placeholder: '{amount}$'
         start-apply: 0
   L:
@@ -226,13 +226,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '3'
+        amount: '%mcwws.price_buy_birch_sapling%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1.8'
+        amount: '%mcwws.price_sell_birch_sapling%'
         placeholder: '{amount}$'
         start-apply: 0
   M:
@@ -245,13 +245,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_buy_mangrove_propagule%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_sell_mangrove_propagule%'
         placeholder: '{amount}$'
         start-apply: 0
   N:
@@ -264,13 +264,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '3.2'
+        amount: '%mcwws.price_buy_jungle_sapling%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1.9'
+        amount: '%mcwws.price_sell_jungle_sapling%'
         placeholder: '{amount}$'
         start-apply: 0
   O:
@@ -283,13 +283,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '3.2'
+        amount: '%mcwws.price_buy_acacia_sapling%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1.9'
+        amount: '%mcwws.price_sell_acacia_sapling%'
         placeholder: '{amount}$'
         start-apply: 0
   P:
@@ -302,12 +302,12 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '3.6'
+        amount: '%mcwws.price_buy_dark_oak_sapling%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.1'
+        amount: '%mcwws.price_sell_dark_oak_sapling%'
         placeholder: '{amount}$'
         start-apply: 0

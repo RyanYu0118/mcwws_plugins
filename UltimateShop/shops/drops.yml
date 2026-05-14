@@ -17,13 +17,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '1.4'
+        amount: '%mcwws.price_buy_string%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '0.8'
+        amount: '%mcwws.price_sell_string%'
         placeholder: '{amount}$'
         start-apply: 0
   B:
@@ -36,13 +36,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '1.2'
+        amount: '%mcwws.price_buy_feather%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '0.7'
+        amount: '%mcwws.price_sell_feather%'
         placeholder: '{amount}$'
         start-apply: 0
   C:
@@ -55,13 +55,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '4.2'
+        amount: '%mcwws.price_buy_gunpowder%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2.5'
+        amount: '%mcwws.price_sell_gunpowder%'
         placeholder: '{amount}$'
         start-apply: 0
   D:
@@ -74,13 +74,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_buy_flint%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1.4'
+        amount: '%mcwws.price_sell_flint%'
         placeholder: '{amount}$'
         start-apply: 0
   E:
@@ -93,13 +93,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '1.8'
+        amount: '%mcwws.price_buy_bone%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1'
+        amount: '%mcwws.price_sell_bone%'
         placeholder: '{amount}$'
         start-apply: 0
   F:
@@ -112,13 +112,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '28'
+        amount: '%mcwws.price_buy_ghast_tear%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '16'
+        amount: '%mcwws.price_sell_ghast_tear%'
         placeholder: '{amount}$'
         start-apply: 0
   G:
@@ -131,13 +131,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '2.4'
+        amount: '%mcwws.price_buy_ink_sac%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1.4'
+        amount: '%mcwws.price_sell_ink_sac%'
         placeholder: '{amount}$'
         start-apply: 0
   H:
@@ -150,13 +150,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '7.2'
+        amount: '%mcwws.price_buy_glow_ink_sac%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '4.2'
+        amount: '%mcwws.price_sell_glow_ink_sac%'
         placeholder: '{amount}$'
         start-apply: 0
   I:
@@ -169,13 +169,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '2.3'
+        amount: '%mcwws.price_buy_spider_eye%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1.3'
+        amount: '%mcwws.price_sell_spider_eye%'
         placeholder: '{amount}$'
         start-apply: 0
   J:
@@ -188,13 +188,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '0.9'
+        amount: '%mcwws.price_buy_rotten_flesh%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '0.4'
+        amount: '%mcwws.price_sell_rotten_flesh%'
         placeholder: '{amount}$'
         start-apply: 0
   K:
@@ -207,13 +207,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '3.5'
+        amount: '%mcwws.price_buy_leather%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '2'
+        amount: '%mcwws.price_sell_leather%'
         placeholder: '{amount}$'
         start-apply: 0
   L:
@@ -226,13 +226,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '2.8'
+        amount: '%mcwws.price_buy_rabbit_hide%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '1.6'
+        amount: '%mcwws.price_sell_rabbit_hide%'
         placeholder: '{amount}$'
         start-apply: 0
   M:
@@ -245,13 +245,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '13'
+        amount: '%mcwws.price_buy_ender_pearl%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '7.5'
+        amount: '%mcwws.price_sell_ender_pearl%'
         placeholder: '{amount}$'
         start-apply: 0
   N:
@@ -264,13 +264,13 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '6.8'
+        amount: '%mcwws.price_buy_slime_ball%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '4'
+        amount: '%mcwws.price_sell_slime_ball%'
         placeholder: '{amount}$'
         start-apply: 0
   O:
@@ -283,12 +283,12 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: '8.5'
+        amount: '%mcwws.price_buy_magma_cream%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
       1:
         economy-plugin: Vault
-        amount: '5'
+        amount: '%mcwws.price_sell_magma_cream%'
         placeholder: '{amount}$'
         start-apply: 0

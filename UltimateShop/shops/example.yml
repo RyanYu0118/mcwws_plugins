@@ -35,11 +35,11 @@ items:
         base-effect: STRENGTH, true, false
         # For 1.20.5+ server:
         # base-effect: LONG_STRENGTH
-        amount: 1
+        amount: '1'
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: 60
+        amount: '%mcwws.price_buy_potion%'
         placeholder: '{amount}$'
         start-apply: 0
   #
@@ -59,7 +59,7 @@ items:
     buy-prices:
       1:
         economy-type: levels
-        amount: 60
+        amount: '%mcwws.price_buy_bundle%'
         placeholder: '&6{amount} levels'
         start-apply: 0
   #
@@ -82,7 +82,7 @@ items:
     buy-prices:
       1:
         economy-type: levels
-        amount: 1
+        amount: '%mcwws.price_buy_suspicious_sand%'
         placeholder: '&6{amount} levels'
         start-apply: 0
   #
@@ -107,7 +107,7 @@ items:
     buy-prices:
       1:
         economy-type: levels
-        amount: 20
+        amount: '%mcwws.price_buy_diamond_axe%'
         placeholder: '&6{amount} levels'
         start-apply: 0
   #
@@ -125,7 +125,7 @@ items:
     buy-prices:
       1:
         economy-type: levels
-        amount: 2
+        amount: '%mcwws.price_buy_enchanted_book%'
         placeholder: '&6{amount} levels'
         start-apply: 0
   #
@@ -142,7 +142,7 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: 2
+        amount: '%mcwws.price_buy_potato%'
         placeholder: '&6{amount} Coins'
         conditions:
           1:
@@ -152,7 +152,7 @@ items:
             value: 'Spring'
       2:
         economy-plugin: Vault
-        amount: 1.8
+        amount: '%mcwws.price_buy_potato%'
         placeholder: '&6{amount} Coins'
         conditions:
           1:
@@ -162,7 +162,7 @@ items:
             value: 'Summber'
       3:
         economy-plugin: Vault
-        amount: 3.2
+        amount: '%mcwws.price_buy_potato%'
         placeholder: '&6{amount} Coins'
         conditions:
           1:
@@ -172,7 +172,7 @@ items:
             value: 'Fall'
       4:
         economy-plugin: Vault
-        amount: 8.8
+        amount: '%mcwws.price_buy_potato%'
         placeholder: '&6{amount} Coins'
         conditions:
           1:
@@ -195,7 +195,7 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: 60
+        amount: '%mcwws.price_buy_blue_banner%'
         placeholder: '{amount}$'
         start-apply: 0
   #
@@ -212,7 +212,7 @@ items:
     buy-prices:
       1:
         economy-type: exp
-        amount: 60
+        amount: '%mcwws.price_buy_axolotl_bucket%'
         placeholder: '&6{amount} Exps'
         start-apply: 0
   #
@@ -231,7 +231,7 @@ items:
     buy-prices:
       1:
         economy-type: exp
-        amount: 50
+        amount: '%mcwws.price_buy_tropical_fish_bucket%'
         placeholder: '&6{amount} Exps'
         start-apply: 0
   #
@@ -248,7 +248,7 @@ items:
     buy-prices:
       1:
         economy-type: exp
-        amount: 5
+        amount: '%mcwws.price_buy_player_head%'
         placeholder: '&6{amount} Exps'
         start-apply: 0
   K:
@@ -262,7 +262,7 @@ items:
     buy-prices:
       1:
         economy-type: exp
-        amount: 0
+        amount: '%mcwws.price_buy_player_head%'
         placeholder: '&6{amount} Exps'
         start-apply: 0
   #
@@ -289,7 +289,7 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: 155
+        amount: '%mcwws.price_buy_firework_rocket%'
         placeholder: '{amount}$'
         start-apply: 0
   #
@@ -306,7 +306,7 @@ items:
     buy-prices:
       1:
         economy-type: exp
-        amount: 0
+        amount: '%mcwws.price_buy_leather_chestplate%'
         placeholder: '&6{amount} Exps'
         start-apply: 0
   #
@@ -323,7 +323,7 @@ items:
     buy-prices:
       1:
         economy-plugin: Vault
-        amount: 5000
+        amount: '%mcwws.price_buy_spawner%'
         placeholder: '{amount}$'
         start-apply: 0
     buy-limits:
@@ -361,13 +361,13 @@ items:
       1:
         # The product
         material: APPLE
-        amount: 64
+        amount: 1
     # If UltimateShop does not support your economy plugin.
     buy-prices:
       1:
         # Buy Match Placeholder - Put your economy plugin placeholder here!
         match-placeholder: '%economy_now_balance_placeholder%'
-        amount: 500
+        amount: '%mcwws.price_buy_apple%'
         # Buy Take Actions
         take-actions:
           1:
@@ -384,7 +384,7 @@ items:
             type: 'console_command'
             # Put your economy give command here!
             command: 'eco give {player} {amount}'
-        amount: 500
+        amount: '%mcwws.price_sell_apple%'
   #
   # Save Item
   #
@@ -457,7 +457,7 @@ items:
       1:
         economy-plugin: EcoBits
         economy-type: quest_points
-        amount: 5
+        amount: '%mcwws.price_buy_echo_shard%'
         placeholder: '&b{amount} Quest Points'
         start-apply: 0
     sell-prices:
@@ -465,7 +465,7 @@ items:
       1:
         economy-plugin: EcoBits
         economy-type: quest_points
-        amount: 5
+        amount: '%mcwws.price_sell_echo_shard%'
         placeholder: '&b{amount} Quest Points'
         start-apply: 0
     sell-times-reset-mode: 'COOLDOWN_CUSTOM'
