@@ -453,7 +453,7 @@ function renderCards() {
 }
 
 function getItemIconHtml(itemId, itemName) {
-    if (window.McItemIcon && window.McItemIcon.enabled && typeof THREE !== 'undefined') {
+    if (window.McItemIcon && window.McItemIcon.enabled) {
         return window.McItemIcon.getIconSlotHtml(itemId, itemName);
     }
     return window.getTextureHtml ? window.getTextureHtml(itemId, itemName) : '';

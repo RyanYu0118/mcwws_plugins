@@ -17,9 +17,11 @@
     const iconCache = new Map();
     const textureCache = new Map();
     let renderer = null;
-    let scene = null;
     let camera = null;
-    let renderTarget = null;
+
+    function getThree() {
+        return global.THREE;
+    }
     let queue = [];
     let draining = false;
     const pendingRenders = new Map();
@@ -256,21 +258,16 @@
     }
 
     function initRenderer() {
-        if (renderer) return;
+        const THREE = getThree();
+        if (!THREE) return false;
+        if (renderer) return true;
         renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, preserveDrawingBuffer: true });
         renderer.setSize(RENDER_SIZE, RENDER_SIZE);
         renderer.setPixelRatio(1);
+        renderer.setClearColor(0x000000, 0);
         renderer.outputColorSpace = THREE.SRGBColorSpace;
-
-        scene = new THREE.Scene();
-        const amb = new THREE.AmbientLight(0xffffff, 0.9);
-        const dir = new THREE.DirectionalLight(0xffffff, 0.6);
-        dir.position.set(3, 5, 4);
-        scene.add(amb);
-        scene.add(dir);
-
         camera = new THREE.PerspectiveCamera(35, 1, 0.05, 50);
-        renderTarget = new THREE.WebGLRenderTarget(RENDER_SIZE, RENDER_SIZE);
+        return true;
     }
 
     function disposeObject(obj) {
@@ -295,6 +292,10 @@
 
     async function renderItemToDataUrl(itemId) {
         if (iconCache.has(itemId)) return iconCache.get(itemId);
+        const THREE = getThree();
+        if (!THREE || !initRenderer()) {
+            return null;
+        }
 
         const model = await resolveModel(itemId);
         if (!model) {
@@ -311,7 +312,6 @@
             return null;
         }
 
-        initRenderer();
         applyGuiTransform(group, model);
 
         const renderScene = new THREE.Scene();
@@ -323,32 +323,11 @@
         renderScene.add(group);
         fitCamera(group);
 
-        renderer.setRenderTarget(renderTarget);
-        renderer.render(renderScene, camera);
         renderer.setRenderTarget(null);
-
-        const pixels = new Uint8Array(RENDER_SIZE * RENDER_SIZE * 4);
-        renderer.readRenderTargetPixels(renderTarget, 0, 0, RENDER_SIZE, RENDER_SIZE, pixels);
-
-        const canvas = document.createElement('canvas');
-        canvas.width = RENDER_SIZE;
-        canvas.height = RENDER_SIZE;
-        const ctx = canvas.getContext('2d');
-        const imgData = ctx.createImageData(RENDER_SIZE, RENDER_SIZE);
-        for (let y = 0; y < RENDER_SIZE; y += 1) {
-            for (let x = 0; x < RENDER_SIZE; x += 1) {
-                const src = ((RENDER_SIZE - 1 - y) * RENDER_SIZE + x) * 4;
-                const dst = (y * RENDER_SIZE + x) * 4;
-                imgData.data[dst] = pixels[src];
-                imgData.data[dst + 1] = pixels[src + 1];
-                imgData.data[dst + 2] = pixels[src + 2];
-                imgData.data[dst + 3] = pixels[src + 3];
-            }
-        }
-        ctx.putImageData(imgData, 0, 0);
+        renderer.render(renderScene, camera);
+        const dataUrl = renderer.domElement.toDataURL('image/png');
 
         disposeObject(group);
-        const dataUrl = canvas.toDataURL('image/png');
         iconCache.set(itemId, dataUrl);
         return dataUrl;
     }
@@ -399,7 +378,13 @@
 
     global.McItemIcon = {
         mountGrid(gridEl) {
-            if (!gridEl || typeof THREE === 'undefined' || !global.McItemIcon.enabled) return;
+            if (!gridEl || !global.McItemIcon.enabled) return;
+            if (!getThree()) {
+                gridEl.querySelectorAll('.item-icon-3d').forEach((slot) => {
+                    applyIconToSlot(slot, null);
+                });
+                return;
+            }
             gridEl.querySelectorAll('.item-icon-3d').forEach((slot) => {
                 const itemId = slot.dataset.itemId;
                 if (!itemId) return;
