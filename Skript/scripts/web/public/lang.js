@@ -1757,6 +1757,40 @@ const ItemDict = {
     "glass": "玻璃",
     "glass_pane": "玻璃板",
 };
+// ==========================================
+// 物品分类汉化（与 items.yml category 字段对应）
+// ==========================================
+const CategoryDict = {
+    archaeology: '考古',
+    armor: '盔甲',
+    brewing: '酿造',
+    brick: '砖块',
+    copper: '铜',
+    'deep dark': '深暗之域',
+    discs: '唱片',
+    drops: '掉落物',
+    dyed: '染色',
+    earth: '土石',
+    enchantments: '附魔',
+    end: '末地',
+    food: '食物',
+    ice: '冰系',
+    light: '光源',
+    nether: '下界',
+    ocean: '海洋',
+    ores: '矿石',
+    plants: '植物',
+    redstone: '红石',
+    sand: '沙子',
+    stone: '石头',
+    tools: '工具',
+    transport: '运输',
+    utility: '实用物品',
+    weapons: '武器',
+    wood: '木材',
+    unknown: '未知'
+};
+
 /**
  * 全局翻译函数
  * 逻辑：如果字典里有这个词，就返回中文；如果没有，就返回首字母大写的英文作为兜底。
@@ -1771,4 +1805,21 @@ window.getChineseName = function(itemId) {
     
     // 兜底方案：如果没有翻译，就把 spruce_wood 变成 Spruce Wood
     return id.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+};
+
+window.getChineseCategory = function(category) {
+    if (category == null || category === '') {
+        return CategoryDict.unknown;
+    }
+    const raw = String(category).trim();
+    const lower = raw.toLowerCase();
+    if (CategoryDict[raw]) {
+        return CategoryDict[raw];
+    }
+    if (CategoryDict[lower]) {
+        return CategoryDict[lower];
+    }
+    return raw.split(/[\s_-]+/)
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+        .join(' ');
 };

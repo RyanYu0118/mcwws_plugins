@@ -7,6 +7,10 @@ useTimes:
       totalSellUseTimes: 1
       lastBuyTime: '2026-05-10 14:49:53'
       lastSellTime: '2026-05-10 14:49:54'
+    M:
+      sellUseTimes: 13
+      totalSellUseTimes: 13
+      lastSellTime: '2026-05-15 23:02:07'
   wools:
     O:
       sellUseTimes: 1
@@ -24,19 +28,23 @@ useTimes:
     A:
       buyUseTimes: 4
       totalBuyUseTimes: 4
-      sellUseTimes: 1
-      totalSellUseTimes: 1
+      sellUseTimes: 4
+      totalSellUseTimes: 4
       lastBuyTime: '2026-05-14 23:01:04'
-      lastSellTime: '2026-05-14 23:00:35'
+      lastSellTime: '2026-05-15 23:02:07'
   minerals:
+    A:
+      buyUseTimes: 6
+      totalBuyUseTimes: 6
+      lastBuyTime: '2026-05-15 23:07:13'
     C:
       sellUseTimes: 49
       totalSellUseTimes: 49
       lastSellTime: '2026-05-10 23:47:12'
     B:
-      sellUseTimes: 42
-      totalSellUseTimes: 42
-      lastSellTime: '2026-05-10 23:44:42'
+      sellUseTimes: 43
+      totalSellUseTimes: 43
+      lastSellTime: '2026-05-15 23:02:06'
     G:
       buyUseTimes: 2
       totalBuyUseTimes: 2
@@ -52,44 +60,6 @@ useTimes:
       totalSellUseTimes: 1
       lastBuyTime: '2026-05-10 14:41:43'
       lastSellTime: '2026-05-10 14:41:45'
-  flowers:
-    P:
-      sellUseTimes: 8
-      totalSellUseTimes: 8
-      lastSellTime: '2026-05-10 02:06:05'
-    H:
-      sellUseTimes: 14
-      totalSellUseTimes: 14
-      lastSellTime: '2026-05-10 02:06:12'
-  concretes:
-    P:
-      sellUseTimes: 64
-      totalSellUseTimes: 64
-      lastSellTime: '2026-05-10 02:06:05'
-  blocks:
-    A:
-      buyUseTimes: 1
-      totalBuyUseTimes: 1
-      lastBuyTime: '2026-05-15 01:36:05'
-    B:
-      sellUseTimes: 4351
-      totalSellUseTimes: 4351
-      lastSellTime: '2026-05-10 02:06:12'
-    C:
-      sellUseTimes: 296
-      totalSellUseTimes: 296
-      lastSellTime: '2026-05-10 02:06:05'
-    M:
-      buyUseTimes: 1
-      totalBuyUseTimes: 1
-      sellUseTimes: 1
-      totalSellUseTimes: 1
-      lastBuyTime: '2026-05-10 02:09:38'
-      lastSellTime: '2026-05-10 02:09:42'
-    H:
-      sellUseTimes: 1
-      totalSellUseTimes: 1
-      lastSellTime: '2026-05-10 14:37:11'
   example:
     R:
       buyUseTimes: 2
@@ -126,6 +96,55 @@ useTimes:
       buyUseTimes: 3
       totalBuyUseTimes: 3
       lastBuyTime: '2026-05-11 00:00:32'
+  flowers:
+    P:
+      sellUseTimes: 8
+      totalSellUseTimes: 8
+      lastSellTime: '2026-05-10 02:06:05'
+    H:
+      sellUseTimes: 14
+      totalSellUseTimes: 14
+      lastSellTime: '2026-05-10 02:06:12'
+  concretes:
+    P:
+      sellUseTimes: 64
+      totalSellUseTimes: 64
+      lastSellTime: '2026-05-10 02:06:05'
+  blocks:
+    A:
+      buyUseTimes: 1
+      totalBuyUseTimes: 1
+      sellUseTimes: 1
+      totalSellUseTimes: 1
+      lastBuyTime: '2026-05-15 01:36:05'
+      lastSellTime: '2026-05-15 23:02:06'
+    B:
+      sellUseTimes: 4401
+      totalSellUseTimes: 4401
+      lastSellTime: '2026-05-15 23:02:06'
+    C:
+      sellUseTimes: 296
+      totalSellUseTimes: 296
+      lastSellTime: '2026-05-10 02:06:05'
+    M:
+      buyUseTimes: 1
+      totalBuyUseTimes: 1
+      sellUseTimes: 9
+      totalSellUseTimes: 9
+      lastBuyTime: '2026-05-10 02:09:38'
+      lastSellTime: '2026-05-15 23:02:07'
+    F:
+      sellUseTimes: 14
+      totalSellUseTimes: 14
+      lastSellTime: '2026-05-15 23:02:07'
+    G:
+      sellUseTimes: 20
+      totalSellUseTimes: 20
+      lastSellTime: '2026-05-15 23:02:07'
+    H:
+      sellUseTimes: 1
+      totalSellUseTimes: 1
+      lastSellTime: '2026-05-10 14:37:11'
 favourites:
   favourite:
   - minerals;;G

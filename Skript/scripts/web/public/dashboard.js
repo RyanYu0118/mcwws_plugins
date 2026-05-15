@@ -17,6 +17,26 @@ let currentTrends = 'hot';
 let activityChart = null;
 let categoryChart = null;
 
+function itemDisplayName(itemId) {
+    if (window.getChineseName) {
+        return window.getChineseName(itemId);
+    }
+    return prettifyItem(itemId);
+}
+
+function categoryDisplayName(category) {
+    if (window.getChineseCategory) {
+        return window.getChineseCategory(category);
+    }
+    return category || '未知';
+}
+
+function txTypeLabel(type) {
+    if (type === 'BUY') return '购买';
+    if (type === 'SELL') return '出售';
+    return type;
+}
+
 // ═══ INITIALIZATION ═══
 document.addEventListener('DOMContentLoaded', () => {
     loadAllData();
@@ -75,7 +95,7 @@ async function loadTransactions() {
         renderActivityChart();
     } catch (error) {
         console.error('Error loading transactions:', error);
-        showError('transactionsBody', 'Error loading transactions');
+        showError('transactionsBody', '加载交易失败');
     }
 }
 
@@ -109,7 +129,7 @@ async function loadEconomyHealth() {
             buyRatioBar.style.width = (health.buyRatio * 100) + '%';
         }
 
-        setText('velocity', health.velocity + ' txs/hr');
+        setText('velocity', health.velocity + ' 笔/小时');
 
         const netFlow = health.netFlow;
         const flowElement = document.getElementById('netFlow');
@@ -133,7 +153,7 @@ async function loadLeaderboards() {
         renderLeaderboard(data);
     } catch (error) {
         console.error('Error loading leaderboards:', error);
-        showError('leaderboardContent', 'Error loading leaderboard');
+        showError('leaderboardContent', '加载排行榜失败');
     }
 }
 
@@ -144,7 +164,7 @@ async function loadTrends() {
         renderTrends(data[currentTrends] || []);
     } catch (error) {
         console.error('Error loading trends:', error);
-        showError('trendsContent', 'Error loading trends');
+        showError('trendsContent', '加载趋势失败');
     }
 }
 
@@ -152,7 +172,7 @@ async function loadTrends() {
 function renderLeaderboard(data) {
     const container = document.getElementById('leaderboardContent');
     if (!container || !data.length) {
-        if (container) container.innerHTML = '<div class="loading">No data available</div>';
+        if (container) container.innerHTML = '<div class="loading">暂无数据</div>';
         return;
     }
 
@@ -162,7 +182,7 @@ function renderLeaderboard(data) {
     container.innerHTML = data.map((entry, i) => {
         const rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
         const value = valueKey === 'trades' ?
-            entry.trades.toLocaleString() + ' trades' :
+            entry.trades.toLocaleString() + ' 笔交易' :
             formatCurrency(Math.abs(entry[valueKey]));
 
         return `
@@ -174,7 +194,7 @@ function renderLeaderboard(data) {
                      onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22><rect fill=%22%23334155%22 width=%2232%22 height=%2232%22/></svg>'">
                 <div class="player-info">
                     <div class="player-name">${escapeHtml(entry.player)}</div>
-                    <div class="player-stat">${entry.trades} trades</div>
+                    <div class="player-stat">${entry.trades} 笔交易</div>
                 </div>
                 <div class="player-value">${value}</div>
             </div>
@@ -185,7 +205,7 @@ function renderLeaderboard(data) {
 function renderTrends(items) {
     const container = document.getElementById('trendsContent');
     if (!container || !items.length) {
-        if (container) container.innerHTML = '<div class="loading">No trend data</div>';
+        if (container) container.innerHTML = '<div class="loading">暂无趋势数据</div>';
         return;
     }
 
@@ -195,8 +215,8 @@ function renderTrends(items) {
             <div class="trend-item" onclick="showItemDetails('${escapeHtml(item.item)}')">
                 <span class="trend-icon">${isPositive ? '📈' : '📉'}</span>
                 <div class="trend-info">
-                    <div class="trend-name">${prettifyItem(item.item)}</div>
-                    <div class="trend-stats">${item.recentCount} recent • ${formatCurrency(item.avgPrice)}/unit</div>
+                    <div class="trend-name">${itemDisplayName(item.item)}</div>
+                    <div class="trend-stats">${item.recentCount} 笔近期 · ${formatCurrency(item.avgPrice)}/件</div>
                 </div>
                 <span class="trend-change ${isPositive ? 'positive' : 'negative'}">
                     ${isPositive ? '+' : ''}${item.changePercent.toFixed(0)}%
@@ -211,7 +231,7 @@ function renderTransactions() {
     if (!tbody) return;
 
     if (!filteredTransactions.length) {
-        tbody.innerHTML = '<tr><td colspan="6" class="loading">No transactions found</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" class="loading">未找到交易</td></tr>';
         return;
     }
 
@@ -225,8 +245,8 @@ function renderTransactions() {
         <tr onclick="showItemDetails('${escapeHtml(tx.item)}')">
             <td>${formatTime(tx.timestamp)}</td>
             <td>${escapeHtml(tx.playerName)}</td>
-            <td><span class="type-badge ${tx.type.toLowerCase()}">${tx.type}</span></td>
-            <td>${prettifyItem(tx.item)}</td>
+            <td><span class="type-badge ${tx.type.toLowerCase()}">${txTypeLabel(tx.type)}</span></td>
+            <td>${itemDisplayName(tx.item)}</td>
             <td>${tx.amount.toLocaleString()}</td>
             <td>${formatCurrency(tx.price)}</td>
         </tr>
@@ -509,10 +529,10 @@ function updateTopItems() {
 
     container.innerHTML = sorted.map(([item, data]) => `
         <div class="insight-item" onclick="showItemDetails('${escapeHtml(item)}')">
-            <span class="insight-name">${prettifyItem(item)}</span>
+            <span class="insight-name">${itemDisplayName(item)}</span>
             <span class="insight-value">${formatCurrency(data.volume)}</span>
         </div>
-    `).join('') || '<div class="loading">No data</div>';
+    `).join('') || '<div class="loading">暂无数据</div>';
 }
 
 function updateTopPlayers() {
@@ -532,9 +552,9 @@ function updateTopPlayers() {
     container.innerHTML = sorted.map(([player, count]) => `
         <div class="insight-item">
             <span class="insight-name">${escapeHtml(player)}</span>
-            <span class="insight-value">${count} txs</span>
+            <span class="insight-value">${count} 笔</span>
         </div>
-    `).join('') || '<div class="loading">No data</div>';
+    `).join('') || '<div class="loading">暂无数据</div>';
 }
 
 function renderCategoryChart() {
@@ -543,7 +563,7 @@ function renderCategoryChart() {
 
     const categories = {};
     filteredTransactions.forEach(tx => {
-        const cat = tx.category || 'Unknown';
+        const cat = categoryDisplayName(tx.category || 'unknown');
         categories[cat] = (categories[cat] || 0) + 1;
     });
 
@@ -591,7 +611,7 @@ async function showItemDetails(item) {
 
     if (!modal || !modalTitle || !modalBody) return;
 
-    modalTitle.textContent = prettifyItem(item);
+    modalTitle.textContent = itemDisplayName(item);
     modalBody.innerHTML = '<div class="loading-spinner"></div>';
     modal.classList.add('active');
 
@@ -605,46 +625,46 @@ async function showItemDetails(item) {
 
         modalBody.innerHTML = `
             <div class="modal-item-info">
-                <img src="${itemData.imageUrl}" alt="${itemData.displayName}" 
+                <img src="${itemData.imageUrl}" alt="${itemDisplayName(item)}" 
                      style="width: 64px; height: 64px; margin-right: 1rem;"
                      onerror="this.style.display='none'">
                 <div>
-                    <div style="font-size: 1.25rem; font-weight: 600;">${itemData.displayName}</div>
-                    <div style="color: var(--text-muted); margin-bottom: 0.5rem;">${itemData.category}</div>
+                    <div style="font-size: 1.25rem; font-weight: 600;">${itemDisplayName(item)}</div>
+                    <div style="color: var(--text-muted); margin-bottom: 0.5rem;">${categoryDisplayName(itemData.category)}</div>
                     <div style="display: flex; gap: 1rem;">
-                        <span style="color: var(--success);">Buy: ${formatCurrency(itemData.buyPrice)}</span>
-                        <span style="color: var(--danger);">Sell: ${formatCurrency(itemData.sellPrice)}</span>
+                        <span style="color: var(--success);">买入：${formatCurrency(itemData.buyPrice)}</span>
+                        <span style="color: var(--danger);">卖出：${formatCurrency(itemData.sellPrice)}</span>
                     </div>
                 </div>
             </div>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0;">
                 <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; text-align: center;">
-                    <div style="color: var(--text-muted); font-size: 0.8rem;">Stock</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">库存</div>
                     <div style="font-size: 1.25rem; font-weight: 600;">${itemData.stock?.toFixed(0) || 0}</div>
                 </div>
                 <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; text-align: center;">
-                    <div style="color: var(--text-muted); font-size: 0.8rem;">Total Buys</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">总购买</div>
                     <div style="font-size: 1.25rem; font-weight: 600;">${itemData.totalBuys || 0}</div>
                 </div>
                 <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: 8px; text-align: center;">
-                    <div style="color: var(--text-muted); font-size: 0.8rem;">Total Sells</div>
+                    <div style="color: var(--text-muted); font-size: 0.8rem;">总出售</div>
                     <div style="font-size: 1.25rem; font-weight: 600;">${itemData.totalSells || 0}</div>
                 </div>
             </div>
-            <h3 style="margin-bottom: 1rem;">Price History (7 Days)</h3>
+            <h3 style="margin-bottom: 1rem;">价格历史（7 天）</h3>
             <div style="height: 200px; margin-bottom: 1.5rem;">
                 <canvas id="modalPriceChart"></canvas>
             </div>
-            <h3 style="margin-bottom: 1rem;">Recent Transactions</h3>
+            <h3 style="margin-bottom: 1rem;">最近交易</h3>
             <div style="max-height: 200px; overflow-y: auto;">
                 ${recentTxs.slice(0, 10).map(tx => `
                     <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: var(--bg-tertiary); border-radius: 6px; margin-bottom: 0.5rem;">
                         <span>${formatTime(tx.timestamp)}</span>
-                        <span class="type-badge ${tx.type.toLowerCase()}">${tx.type}</span>
-                        <span>${tx.amount}x @ ${formatCurrency(tx.price)}</span>
+                        <span class="type-badge ${tx.type.toLowerCase()}">${txTypeLabel(tx.type)}</span>
+                        <span>${tx.amount} 件 @ ${formatCurrency(tx.price)}</span>
                         <span>${escapeHtml(tx.playerName)}</span>
                     </div>
-                `).join('') || '<div class="loading">No recent transactions</div>'}
+                `).join('') || '<div class="loading">暂无最近交易</div>'}
             </div>
         `;
 
@@ -658,7 +678,7 @@ async function showItemDetails(item) {
                         labels: priceHistory.map(h => h.timestamp.split(' ')[1] || h.timestamp),
                         datasets: [
                             {
-                                label: 'Buy Price',
+                                label: '买入价',
                                 data: priceHistory.map(h => h.avgBuyPrice),
                                 borderColor: '#10B981',
                                 backgroundColor: 'rgba(16, 185, 129, 0.1)',
@@ -666,7 +686,7 @@ async function showItemDetails(item) {
                                 fill: true
                             },
                             {
-                                label: 'Sell Price',
+                                label: '卖出价',
                                 data: priceHistory.map(h => h.avgSellPrice),
                                 borderColor: '#EF4444',
                                 backgroundColor: 'rgba(239, 68, 68, 0.1)',
@@ -689,7 +709,7 @@ async function showItemDetails(item) {
         }, 100);
     } catch (error) {
         console.error('Error loading item details:', error);
-        modalBody.innerHTML = '<div class="loading">Error loading item details</div>';
+        modalBody.innerHTML = '<div class="loading">加载物品详情失败</div>';
     }
 }
 
@@ -724,9 +744,11 @@ function applyFilters() {
     // Then filter by search and type on top of the time-filtered results
     if (search || typeFilter) {
         filteredTransactions = filteredTransactions.filter(tx => {
+            const itemCn = itemDisplayName(tx.item).toLowerCase();
             const matchesSearch = !search ||
                 tx.playerName.toLowerCase().includes(search) ||
-                tx.item.toLowerCase().includes(search);
+                tx.item.toLowerCase().includes(search) ||
+                itemCn.includes(search);
             const matchesType = !typeFilter || tx.type === typeFilter;
             return matchesSearch && matchesType;
         });
@@ -801,7 +823,7 @@ function refreshData() {
 
 function updateLastUpdateTime() {
     const el = document.getElementById('lastUpdate');
-    if (el) el.textContent = new Date().toLocaleTimeString();
+    if (el) el.textContent = new Date().toLocaleTimeString('zh-CN');
 }
 
 function formatTime(timestamp) {
@@ -809,14 +831,14 @@ function formatTime(timestamp) {
     const diff = Date.now() - date.getTime();
     const mins = Math.floor(diff / 60000);
 
-    if (mins < 1) return 'Just now';
-    if (mins < 60) return `${mins}m ago`;
-    if (mins < 1440) return `${Math.floor(mins / 60)}h ago`;
-    return date.toLocaleDateString();
+    if (mins < 1) return '刚刚';
+    if (mins < 60) return `${mins} 分钟前`;
+    if (mins < 1440) return `${Math.floor(mins / 60)} 小时前`;
+    return date.toLocaleDateString('zh-CN');
 }
 
 function formatCurrency(amount) {
-    return '￥' + (amount || 0).toLocaleString('en-US', {
+    return '￥' + (amount || 0).toLocaleString('zh-CN', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     });
