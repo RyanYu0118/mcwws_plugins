@@ -1,5 +1,8 @@
 date: 20240710
 depositories:
+  logger:
+    SPRUCE_LOG:
+      amount: 1
   farmer:
     WHEAT_SEEDS:
       amount: 1
@@ -7,11 +10,11 @@ depositories:
     ROTTEN_FLESH:
       amount: 32
     ARROW:
-      amount: 25
+      amount: 29
     GUNPOWDER:
       amount: 5
     EGG:
-      amount: 1
+      amount: 6
     STRING:
       amount: 26
     SPIDER_EYE:
@@ -19,7 +22,7 @@ depositories:
     LEATHER:
       amount: 2
     BONE:
-      amount: 461
+      amount: 466
     BEEF:
       amount: 2
     MUTTON:

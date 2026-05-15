@@ -1,3 +1,11 @@
-useTimes: {}
+useTimes:
+  farming:
+    A:
+      buyUseTimes: 4
+      totalBuyUseTimes: 4
+      sellUseTimes: 1
+      totalSellUseTimes: 1
+      lastBuyTime: '2026-05-15 16:41:04'
+      lastSellTime: '2026-05-15 17:10:58'
 favourites: {}
 randomPlaceholder: {}

@@ -4,7 +4,7 @@ godmode: false
 muted: false
 jailed: false
 ip-address: 127.0.0.1
-afk: true
+afk: false
 socialspy: false
 npc: false
 powertoolsenabled: true
@@ -16,18 +16,18 @@ timestamps:
   mute: 0
   jail: 0
   onlinejail: 0
-  logout: 1778828433792
+  logout: 1778836386677
   login: 1778828937211
-money: '15212.0'
+money: '15208.99'
 last-account-name: Song_zi
 logoutlocation:
   world: 407ccbed-2f74-4524-be27-8b4371eedfa8
   world-name: world
-  x: -513.0945867713704
-  y: 92.0
-  z: -582.1137384666198
-  yaw: 41.91619873046875
-  pitch: 21.150020599365234
+  x: -309.65917954845605
+  y: 70.0
+  z: -421.18632176122804
+  yaw: -4.052385330200195
+  pitch: 0.28099364042282104
 lastlocation:
   world: f989f3ce-8a5a-4a01-ae75-bb085a65fe5a
   world-name: world

@@ -120,12 +120,12 @@ useTimes:
       lastSellTime: '2026-05-10 02:06:05'
   farming:
     A:
-      buyUseTimes: 4
-      totalBuyUseTimes: 4
-      sellUseTimes: 1
-      totalSellUseTimes: 1
-      lastBuyTime: '2026-05-14 23:01:04'
-      lastSellTime: '2026-05-14 23:00:35'
+      buyUseTimes: 8
+      totalBuyUseTimes: 8
+      sellUseTimes: 2
+      totalSellUseTimes: 2
+      lastBuyTime: '2026-05-15 16:41:04'
+      lastSellTime: '2026-05-15 17:10:58'
 favourites: {}
 randomPlaceholder:
   daily:
