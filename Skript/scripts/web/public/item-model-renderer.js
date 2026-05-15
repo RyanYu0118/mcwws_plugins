@@ -9,13 +9,57 @@
         RENDER_SIZE: Math.round(64 * 1.3),
         ICON_GAP_RIGHT: Math.round(12 * 1.3),
         FLAT_PAD_RATIO: 0.1,
-        RENDER_SCALE_3D: 2
+        RENDER_SCALE_3D: 2,
+        SLOT_DPR_CAP: 3,
+        SLOT_BITMAP_MAX_3D: 512,
+        SLOT_WEBGL_MAX: 2048
     };
     const RENDER_SIZE = cfg.RENDER_SIZE;
     const ICON_PX = cfg.ICON_PX;
     const ICON_GAP_RIGHT = cfg.ICON_GAP_RIGHT;
-    const RENDER_SCALE_3D = Math.max(1, Math.min(4, Number(cfg.RENDER_SCALE_3D) || 2));
-    const WEBGL_SIZE = Math.round(RENDER_SIZE * RENDER_SCALE_3D);
+
+    function getMcCfg() {
+        return global.McIconConfig || cfg;
+    }
+
+    /** 含 Ctrl+/ 缩放、visualViewport 缩放时的有效 DPR（有上限） */
+    function getEffectiveDevicePixelRatio() {
+        let dpr = (typeof window !== 'undefined' && window.devicePixelRatio) ? window.devicePixelRatio : 1;
+        if (typeof window !== 'undefined' && window.visualViewport && window.visualViewport.scale) {
+            dpr *= window.visualViewport.scale;
+        }
+        const c = getMcCfg();
+        const cap = Number(c.SLOT_DPR_CAP);
+        const dprCap = Number.isFinite(cap) && cap > 0 ? cap : 3;
+        return Math.min(dprCap, Math.max(1, dpr));
+    }
+
+    /** 3D 槽位 canvas 位图边长：随屏幕 DPR 变，保证物理像素≈锐利 */
+    function get3dSlotBitmapSize() {
+        const c = getMcCfg();
+        const iconPx = Math.round(Number(c.ICON_PX) || ICON_PX);
+        const minSz = Math.round(Number(c.RENDER_SIZE) || RENDER_SIZE);
+        const maxSz = Number(c.SLOT_BITMAP_MAX_3D);
+        const maxCap = Number.isFinite(maxSz) && maxSz > 0 ? maxSz : 512;
+        const dpr = getEffectiveDevicePixelRatio();
+        const base = Math.round(iconPx * dpr * 1.02);
+        return Math.min(maxCap, Math.max(minSz, base));
+    }
+
+    function getWebglRenderSize() {
+        const slot = get3dSlotBitmapSize();
+        const c = getMcCfg();
+        const scale = Math.max(1, Math.min(4, Number(c.RENDER_SCALE_3D) || 2));
+        const raw = Math.round(slot * scale);
+        const cap = Number(c.SLOT_WEBGL_MAX);
+        const webCap = Number.isFinite(cap) && cap > 0 ? cap : 2048;
+        return Math.min(webCap, Math.max(slot, raw));
+    }
+
+    let lastMountedGrid = null;
+    let lastSlotBitmapSnap = -1;
+    let viewportListenersBound = false;
+    let viewportResizeTimer = null;
 
     const DEFAULT_GUI = {
         rotation: [30, 225, 0],
@@ -612,12 +656,54 @@
         if (!THREE) return false;
         if (renderer) return true;
         renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
-        renderer.setSize(WEBGL_SIZE, WEBGL_SIZE);
+        const w = getWebglRenderSize();
+        renderer.setSize(w, w, false);
         renderer.setPixelRatio(1);
         renderer.setClearColor(0x000000, 0);
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         setupMcItemCamera();
         return true;
+    }
+
+    function ensureWebglRendererSize() {
+        if (!renderer) return;
+        const w = getWebglRenderSize();
+        const el = renderer.domElement;
+        if (el.width !== w || el.height !== w) {
+            renderer.setSize(w, w, false);
+        }
+    }
+
+    function sync3dSlotCanvasSize(slot) {
+        const canvas = slot && slot.querySelector && slot.querySelector('canvas');
+        if (!canvas) return;
+        const s = get3dSlotBitmapSize();
+        if (canvas.width !== s || canvas.height !== s) {
+            canvas.width = s;
+            canvas.height = s;
+        }
+    }
+
+    function bindViewportRescaleOnce() {
+        if (viewportListenersBound || typeof window === 'undefined') return;
+        viewportListenersBound = true;
+        function scheduleRemountFor3dResolution() {
+            clearTimeout(viewportResizeTimer);
+            viewportResizeTimer = setTimeout(() => {
+                const s = get3dSlotBitmapSize();
+                if (s === lastSlotBitmapSnap) return;
+                lastSlotBitmapSnap = s;
+                iconCache.clear();
+                use3dCache.clear();
+                if (lastMountedGrid && lastMountedGrid.isConnected && global.McItemIcon) {
+                    global.McItemIcon.mountGrid(lastMountedGrid);
+                }
+            }, 140);
+        }
+        window.addEventListener('resize', scheduleRemountFor3dResolution);
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', scheduleRemountFor3dResolution);
+        }
     }
 
     function disposeObject(obj) {
@@ -633,19 +719,25 @@
     function paintSlotCanvas(slot) {
         const canvas = slot.querySelector('canvas');
         if (!canvas) return;
+        sync3dSlotCanvasSize(slot);
+        ensureWebglRendererSize();
+        const cw = canvas.width;
+        const ch = canvas.height;
+        const web = getWebglRenderSize();
         const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, RENDER_SIZE, RENDER_SIZE);
-        ctx.imageSmoothingEnabled = RENDER_SCALE_3D > 1;
+        ctx.clearRect(0, 0, cw, ch);
+        ctx.imageSmoothingEnabled = web > cw;
         if (ctx.imageSmoothingQuality !== undefined) {
             ctx.imageSmoothingQuality = 'high';
         }
-        ctx.drawImage(renderer.domElement, 0, 0, WEBGL_SIZE, WEBGL_SIZE, 0, 0, RENDER_SIZE, RENDER_SIZE);
+        ctx.drawImage(renderer.domElement, 0, 0, web, web, 0, 0, cw, ch);
         canvas.style.opacity = '1';
         const fallback = slot.querySelector('.item-icon-fallback');
         if (fallback) fallback.innerHTML = '';
     }
 
     function renderGroupOnce(group) {
+        ensureWebglRendererSize();
         const renderScene = new THREE.Scene();
         renderScene.add(group);
         renderer.setRenderTarget(null);
@@ -655,6 +747,7 @@
     function mountAnimatedSlot(slot, group) {
         animatedSlots.push({ slot, group });
         slot.dataset.mcAnimated = '1';
+        sync3dSlotCanvasSize(slot);
         renderGroupOnce(group);
         paintSlotCanvas(slot);
     }
@@ -675,6 +768,8 @@
             applyIconToSlot(slot, null);
             return;
         }
+        sync3dSlotCanvasSize(slot);
+        ensureWebglRendererSize();
 
         const cached = iconCache.get(id);
         if (cached && cached !== 'ANIMATED') {
@@ -708,6 +803,8 @@
             return;
         }
 
+        sync3dSlotCanvasSize(slot);
+        ensureWebglRendererSize();
         renderGroupOnce(group);
         const dataUrl = renderer.domElement.toDataURL('image/png');
         disposeObject(group);
@@ -760,15 +857,18 @@
         if (dataUrl && canvas) {
             const img = new Image();
             img.onload = () => {
+                sync3dSlotCanvasSize(slot);
                 const ctx = canvas.getContext('2d');
-                ctx.clearRect(0, 0, RENDER_SIZE, RENDER_SIZE);
-                ctx.imageSmoothingEnabled = RENDER_SCALE_3D > 1;
+                const cw = canvas.width;
+                const ch = canvas.height;
+                ctx.clearRect(0, 0, cw, ch);
+                const iw = img.naturalWidth || img.width;
+                const ih = img.naturalHeight || img.height;
+                ctx.imageSmoothingEnabled = iw > cw || ih > ch;
                 if (ctx.imageSmoothingQuality !== undefined) {
                     ctx.imageSmoothingQuality = 'high';
                 }
-                const iw = img.naturalWidth || img.width;
-                const ih = img.naturalHeight || img.height;
-                ctx.drawImage(img, 0, 0, iw, ih, 0, 0, RENDER_SIZE, RENDER_SIZE);
+                ctx.drawImage(img, 0, 0, iw, ih, 0, 0, cw, ch);
                 canvas.style.opacity = '1';
                 if (fallback) fallback.innerHTML = '';
             };
@@ -778,6 +878,8 @@
             if (canvas) canvas.style.opacity = '0';
         }
     }
+
+    getMcCfg().get3dSlotBitmapSize = get3dSlotBitmapSize;
 
     global.McItemIcon = {
         renderAnimatedSlots() {
@@ -823,6 +925,9 @@
             if (global.McEnchantGlint) {
                 global.McEnchantGlint.initInContainer(gridEl);
             }
+            lastMountedGrid = gridEl;
+            lastSlotBitmapSnap = get3dSlotBitmapSize();
+            bindViewportRescaleOnce();
         },
 
         prefers3d,
@@ -830,14 +935,15 @@
         getIconSlotHtml(itemId, itemName) {
             const safeId = String(itemId).replace(/"/g, '&quot;');
             const safeName = String(itemName || itemId).replace(/"/g, '&quot;');
+            const slotPx = get3dSlotBitmapSize();
             const glintHtml = global.McEnchantGlint && global.McEnchantGlint.itemHasGlint(itemId)
-                ? global.McEnchantGlint.glintOverlayHtml()
+                ? global.McEnchantGlint.glintOverlayHtml(slotPx)
                 : '';
             return `
             <div class="item-icon-3d" data-item-id="${safeId}" data-item-name="${safeName}"
                  style="width:${ICON_PX}px;height:${ICON_PX}px;margin-right:${ICON_GAP_RIGHT}px;flex-shrink:0;position:relative;background:rgba(255,255,255,0.03);border-radius:4px;">
-                <canvas width="${RENDER_SIZE}" height="${RENDER_SIZE}"
-                    style="width:${ICON_PX}px;height:${ICON_PX}px;image-rendering:pixelated;opacity:0;transition:opacity 0.25s;display:block;"></canvas>
+                <canvas width="${slotPx}" height="${slotPx}"
+                    style="width:${ICON_PX}px;height:${ICON_PX}px;image-rendering:auto;opacity:0;transition:opacity 0.25s;display:block;"></canvas>
                 <div class="item-icon-fallback" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;"></div>
                 ${glintHtml}
             </div>`;
