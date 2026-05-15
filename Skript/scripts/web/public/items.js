@@ -458,10 +458,13 @@ function renderCards() {
 }
 
 function getItemIconHtml(itemId, itemName) {
-    if (window.McItemIcon && window.McItemIcon.enabled) {
-        return window.McItemIcon.getIconSlotHtml(itemId, itemName);
+    const png = window.getTextureHtml ? window.getTextureHtml(itemId, itemName) : '';
+    if (!window.McItemIcon || !window.McItemIcon.enabled) {
+        return png;
     }
-    return window.getTextureHtml ? window.getTextureHtml(itemId, itemName) : '';
+    const safeId = String(itemId).replace(/"/g, '&quot;');
+    const safeName = String(itemName || itemId).replace(/"/g, '&quot;');
+    return `<span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}">${png}</span>`;
 }
 
 function mountItemIcons() {

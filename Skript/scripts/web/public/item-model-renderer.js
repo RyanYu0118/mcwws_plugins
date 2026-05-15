@@ -12,9 +12,12 @@
         translation: [0, 0, 0],
         scale: [0.625, 0.625, 0.625]
     };
+    // 物品栏格正交视锥半宽（越小图标越大）；对齐 MC GUI 固定机位
+    const GUI_FRUSTUM_HALF = 0.36;
 
     const modelJsonCache = new Map();
     const iconCache = new Map();
+    const use3dCache = new Map();
     const textureCache = new Map();
     let renderer = null;
     let camera = null;
@@ -111,6 +114,18 @@
             if (m && (m.elements.length || m.layers.length)) return m;
         }
         return null;
+    }
+
+    function modelNeeds3d(model) {
+        return !!(model && model.elements && model.elements.length > 0);
+    }
+
+    async function prefers3d(itemId) {
+        if (use3dCache.has(itemId)) return use3dCache.get(itemId);
+        const model = await resolveModel(itemId);
+        const needs = modelNeeds3d(model);
+        use3dCache.set(itemId, needs);
+        return needs;
     }
 
     function loadTexture(url) {
@@ -244,10 +259,13 @@
     }
 
     function applyGuiTransform(obj, model) {
+        const THREE = getThree();
         const gui = (model.display && model.display.gui) || DEFAULT_GUI;
         const rot = gui.rotation || DEFAULT_GUI.rotation;
         const trans = gui.translation || DEFAULT_GUI.translation;
         const scale = gui.scale || DEFAULT_GUI.scale;
+        // MC：绕方块中心 (8,8,8) 依次绕 X、Y、Z 旋转（度）
+        obj.rotation.order = 'XYZ';
         obj.rotation.set(
             THREE.MathUtils.degToRad(rot[0]),
             THREE.MathUtils.degToRad(rot[1]),
@@ -255,6 +273,24 @@
         );
         obj.position.set(trans[0] / 16, trans[1] / 16, trans[2] / 16);
         obj.scale.set(scale[0], scale[1], scale[2]);
+    }
+
+    function setupMcItemCamera() {
+        const THREE = getThree();
+        const h = GUI_FRUSTUM_HALF;
+        if (!camera || !(camera instanceof THREE.OrthographicCamera)) {
+            camera = new THREE.OrthographicCamera(-h, h, h, -h, 0.1, 100);
+        } else {
+            camera.left = -h;
+            camera.right = h;
+            camera.top = h;
+            camera.bottom = -h;
+        }
+        // 固定机位看向原点，斜二测感由 display.gui 旋转提供（与游戏物品栏一致）
+        camera.position.set(0, 0, 10);
+        camera.lookAt(0, 0, 0);
+        camera.up.set(0, 1, 0);
+        camera.updateProjectionMatrix();
     }
 
     function initRenderer() {
@@ -266,7 +302,7 @@
         renderer.setPixelRatio(1);
         renderer.setClearColor(0x000000, 0);
         renderer.outputColorSpace = THREE.SRGBColorSpace;
-        camera = new THREE.PerspectiveCamera(35, 1, 0.05, 50);
+        setupMcItemCamera();
         return true;
     }
 
@@ -280,16 +316,6 @@
         });
     }
 
-    function fitCamera(group) {
-        const box = new THREE.Box3().setFromObject(group);
-        const center = box.getCenter(new THREE.Vector3());
-        const size = box.getSize(new THREE.Vector3());
-        const maxDim = Math.max(size.x, size.y, size.z, 0.05);
-        const dist = maxDim * 2.35;
-        camera.position.set(center.x + dist, center.y + dist * 0.82, center.z + dist);
-        camera.lookAt(center);
-    }
-
     async function renderItemToDataUrl(itemId) {
         if (iconCache.has(itemId)) return iconCache.get(itemId);
         const THREE = getThree();
@@ -298,14 +324,13 @@
         }
 
         const model = await resolveModel(itemId);
-        if (!model) {
-            iconCache.set(itemId, null);
+        if (!model || !modelNeeds3d(model)) {
+            use3dCache.set(itemId, false);
             return null;
         }
+        use3dCache.set(itemId, true);
 
-        const group = model.layers.length
-            ? await buildFromLayers(model.layers)
-            : await buildFromElements(model);
+        const group = await buildFromElements(model);
 
         if (!group) {
             iconCache.set(itemId, null);
@@ -321,7 +346,7 @@
         renderScene.add(amb);
         renderScene.add(dir);
         renderScene.add(group);
-        fitCamera(group);
+        setupMcItemCamera();
 
         renderer.setRenderTarget(null);
         renderer.render(renderScene, camera);
@@ -346,6 +371,9 @@
     }
 
     function enqueueRender(itemId) {
+        if (use3dCache.has(itemId) && use3dCache.get(itemId) === false) {
+            return Promise.resolve(null);
+        }
         if (iconCache.has(itemId)) return Promise.resolve(iconCache.get(itemId));
         if (pendingRenders.has(itemId)) return pendingRenders.get(itemId);
         const promise = new Promise((resolve) => {
@@ -377,31 +405,35 @@
     }
 
     global.McItemIcon = {
-        mountGrid(gridEl) {
+        async mountGrid(gridEl) {
             if (!gridEl || !global.McItemIcon.enabled) return;
-            if (!getThree()) {
-                gridEl.querySelectorAll('.item-icon-3d').forEach((slot) => {
-                    applyIconToSlot(slot, null);
-                });
-                return;
-            }
-            gridEl.querySelectorAll('.item-icon-3d').forEach((slot) => {
-                const itemId = slot.dataset.itemId;
-                if (!itemId) return;
+            const mounts = [...gridEl.querySelectorAll('.item-icon-mount')];
+            for (const wrap of mounts) {
+                const itemId = wrap.dataset.itemId;
+                if (!itemId) continue;
+                const itemName = wrap.dataset.itemName || itemId;
+                if (!(await prefers3d(itemId))) continue;
+                if (!getThree()) continue;
+
+                const holder = document.createElement('div');
+                holder.innerHTML = global.McItemIcon.getIconSlotHtml(itemId, itemName).trim();
+                const slot = holder.firstElementChild;
+                if (!slot) continue;
+                wrap.replaceWith(slot);
+
                 const fallback = slot.querySelector('.item-icon-fallback');
                 if (
                     fallback &&
                     !iconCache.has(itemId) &&
                     typeof global.getTextureHtml === 'function'
                 ) {
-                    fallback.innerHTML = global.getTextureHtml(
-                        itemId,
-                        slot.dataset.itemName || itemId
-                    );
+                    fallback.innerHTML = global.getTextureHtml(itemId, itemName);
                 }
                 enqueueRender(itemId).then((url) => applyIconToSlot(slot, url));
-            });
+            }
         },
+
+        prefers3d,
 
         getIconSlotHtml(itemId, itemName) {
             const safeId = String(itemId).replace(/"/g, '&quot;');
