@@ -8,8 +8,141 @@
     const domEntries = new Set();
     let rafId = null;
 
+    const ASSET_VER = global.McTexturePackVersion || '26.1.2';
+
+    const grassColormapResolved = new Map();
+    const grassColormapLoading = new Map();
+
+    function normalizeTintId(id) {
+        return String(id || '').toLowerCase().replace(/-/g, '_');
+    }
+
+    /** 2D 绘制后乘 grass.png 色谱（与 Java 草类方块一致） */
+    const GRASS_TINT_2D_IDS = new Set([
+        'grass_block', 'grass', 'short_grass', 'tall_grass', 'fern', 'large_fern',
+        'sugar_cane', 'bamboo', 'moss_block', 'moss_carpet',
+        'small_dripleaf', 'big_dripleaf', 'seagrass', 'tall_seagrass',
+        'short_dry_grass', 'tall_dry_grass'
+    ]);
+
+    const GRASS_2D_BIOME_BY_ID = {
+        short_dry_grass: [0.92, 0.18],
+        tall_dry_grass: [0.92, 0.18]
+    };
+    const GRASS_2D_DEFAULT_BIOME = [0.8, 0.4];
+
     function iconCfg() {
         return global.McIconConfig || { FLAT_PAD_RATIO: 0.1 };
+    }
+
+    function itemIdForCanvas(canvas) {
+        if (!canvas) return '';
+        const d = canvas.dataset && canvas.dataset.itemId;
+        if (d) return d;
+        const host = canvas.closest && canvas.closest('[data-item-id]');
+        return (host && host.dataset && host.dataset.itemId) || '';
+    }
+
+    function needsGrassTint2d(itemIdRaw) {
+        const id = normalizeTintId(itemIdRaw);
+        if (!id) return false;
+        if (GRASS_TINT_2D_IDS.has(id)) return true;
+        if (global.getSmartId) {
+            const sid = normalizeTintId(global.getSmartId(id));
+            if (GRASS_TINT_2D_IDS.has(sid)) return true;
+        }
+        return false;
+    }
+
+    function grassBiomeParamsFor2d(itemIdRaw) {
+        const id = normalizeTintId(itemIdRaw);
+        if (GRASS_2D_BIOME_BY_ID[id]) return GRASS_2D_BIOME_BY_ID[id];
+        return GRASS_2D_DEFAULT_BIOME;
+    }
+
+    function sampleColormapBuf(buf, temperature, downfall) {
+        if (!buf || !buf.canvas || buf.w < 1 || buf.h < 1) return null;
+        const adjT = Math.min(1, Math.max(0, temperature));
+        let adjH = Math.min(1, Math.max(0, downfall));
+        adjH *= adjT;
+        const x = Math.min(buf.w - 1, Math.max(0, Math.floor((1 - adjT) * (buf.w - 1))));
+        const y = Math.min(buf.h - 1, Math.max(0, Math.floor((1 - adjH) * (buf.h - 1))));
+        const ctx = buf.canvas.getContext('2d');
+        const d = ctx.getImageData(x, y, 1, 1).data;
+        return [d[0], d[1], d[2]];
+    }
+
+    async function loadColormapGrassBuffer() {
+        if (grassColormapResolved.has('buf')) return grassColormapResolved.get('buf');
+        if (grassColormapLoading.has('p')) return grassColormapLoading.get('p');
+        const url = `/${ASSET_VER}/assets/minecraft/textures/colormap/grass.png`;
+        const p = new Promise((resolve) => {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = () => {
+                const c = document.createElement('canvas');
+                c.width = img.naturalWidth || img.width;
+                c.height = img.naturalHeight || img.height;
+                c.getContext('2d').drawImage(img, 0, 0);
+                const buf = { canvas: c, w: c.width, h: c.height };
+                grassColormapResolved.set('buf', buf);
+                resolve(buf);
+            };
+            img.onerror = () => {
+                grassColormapResolved.set('buf', null);
+                resolve(null);
+            };
+            img.src = url;
+        });
+        grassColormapLoading.set('p', p);
+        const out = await p;
+        grassColormapLoading.delete('p');
+        return out;
+    }
+
+    function padInsetForCanvas(canvas) {
+        const cw = canvas.width;
+        const pad = iconCfg().FLAT_PAD_RATIO || 0;
+        return cw * pad;
+    }
+
+    /** 仅对非透明像素做 grass 乘法着色，避免污染透明背景 */
+    function multiplyGrassTintPixels(ctx, x, y, w, h, rgb) {
+        if (!ctx || w < 1 || h < 1 || !rgb) return;
+        const tr = rgb[0] / 255;
+        const tg = rgb[1] / 255;
+        const tb = rgb[2] / 255;
+        let imgData;
+        try {
+            imgData = ctx.getImageData(x, y, w, h);
+        } catch {
+            return;
+        }
+        const d = imgData.data;
+        const ALPHA_THRESHOLD = 6;
+        for (let i = 0; i < d.length; i += 4) {
+            if (d[i + 3] <= ALPHA_THRESHOLD) continue;
+            d[i] = Math.min(255, Math.round(d[i] * tr));
+            d[i + 1] = Math.min(255, Math.round(d[i + 1] * tg));
+            d[i + 2] = Math.min(255, Math.round(d[i + 2] * tb));
+        }
+        ctx.putImageData(imgData, x, y);
+    }
+
+    async function applyGrassTint2dIfNeeded(canvas) {
+        if (!canvas || !canvas.getContext) return;
+        const rawId = itemIdForCanvas(canvas);
+        if (!needsGrassTint2d(rawId)) return;
+        const buf = await loadColormapGrassBuffer();
+        if (!buf) return;
+        const [t, hum] = grassBiomeParamsFor2d(rawId);
+        const rgb = sampleColormapBuf(buf, t, hum);
+        if (!rgb) return;
+        const ctx = canvas.getContext('2d');
+        const inset = padInsetForCanvas(canvas);
+        const rw = canvas.width - inset * 2;
+        const rh = canvas.height - inset * 2;
+        multiplyGrassTintPixels(ctx, inset, inset, rw, rh, rgb);
     }
 
     function drawImageWithFlatPadding(ctx, img, sx, sy, sw, sh) {
@@ -84,6 +217,12 @@
                     e.img,
                     0, fi * e.frameH, e.frameW, e.frameH
                 );
+                if (e.grassTintRgb) {
+                    const inset = padInsetForCanvas(e.canvas);
+                    const rw = e.canvas.width - inset * 2;
+                    const rh = e.canvas.height - inset * 2;
+                    multiplyGrassTintPixels(ctx, inset, inset, rw, rh, e.grassTintRgb);
+                }
             });
             if (typeof global.McItemIcon !== 'undefined' && global.McItemIcon.renderAnimatedSlots) {
                 global.McItemIcon.renderAnimatedSlots();
@@ -140,6 +279,15 @@
 
         const frameW = img.width;
         const frameH = img.width;
+        let grassTintRgb = null;
+        if (needsGrassTint2d(itemIdForCanvas(canvas))) {
+            const buf = await loadColormapGrassBuffer();
+            if (buf) {
+                const id = itemIdForCanvas(canvas);
+                const [t, hum] = grassBiomeParamsFor2d(id);
+                grassTintRgb = sampleColormapBuf(buf, t, hum);
+            }
+        }
         domEntries.add({
             canvas,
             img,
@@ -147,7 +295,8 @@
             frames,
             frameW,
             frameH,
-            startMs: performance.now()
+            startMs: performance.now(),
+            grassTintRgb
         });
         ensureLoop();
         return true;
@@ -166,6 +315,7 @@
                 } else {
                     drawImageWithFlatPadding(ctx, img, 0, 0, img.width, img.height);
                 }
+                await applyGrassTint2dIfNeeded(canvas);
                 return true;
             } catch {
                 continue;

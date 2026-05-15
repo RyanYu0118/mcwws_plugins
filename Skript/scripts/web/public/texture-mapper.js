@@ -24,6 +24,7 @@ const TextureConfig = {
         return `/${this.version}/assets/minecraft/textures`;
     }
 };
+window.McTexturePackVersion = TextureConfig.version;
 
 window.getSmartId = function(id) {
     const rawId = id.toLowerCase();
@@ -81,7 +82,7 @@ window.getTextureHtml = function(itemId, itemName) {
     return `
         <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
             style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
-            <canvas class="item-tex-anim" width="${cfg.RENDER_SIZE}" height="${cfg.RENDER_SIZE}" data-tex-urls="${texUrls}"
+            <canvas class="item-tex-anim" width="${cfg.RENDER_SIZE}" height="${cfg.RENDER_SIZE}" data-tex-urls="${texUrls}" data-item-id="${safeId}"
                 style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
                 title="${safeName}"></canvas>
             ${glintHtml}

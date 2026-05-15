@@ -137,14 +137,18 @@
         'cornflower', 'lily_of_the_valley', 'torchflower', 'wither_rose', 'spore_blossom',
         'open_eyeblossom', 'closed_eyeblossom', 'sunflower', 'lilac', 'rose_bush', 'peony',
         'pitcher_plant', 'pitcher_pod', 'pink_petals', 'wildflowers', 'chorus_flower',
-        'azalea', 'flowering_azalea', 'mangrove_propagule', 'bamboo_sapling', 'cactus_flower',
+        'azalea', 'flowering_azalea', 'mangrove_propagule', 'cactus_flower',
         'firefly_bush'
     ]);
+
+    const BUSH_BLOCK_IDS = new Set(['sweet_berry_bush']);
 
     function iconForce2dFlatIcon(id) {
         if (!id) return false;
         if (GRASS_LIKE_IDS.has(id)) return true;
         if (FLOWER_IDS.has(id)) return true;
+        if (BUSH_BLOCK_IDS.has(id)) return true;
+        if (id.endsWith('_sapling')) return true;
         if (id.startsWith('potted_')) return true;
         if (/_tulip$/.test(id) || /_orchid$/.test(id)) return true;
         return false;
@@ -373,7 +377,8 @@
     const GRASS_COLORMAP_IDS = new Set([
         'grass_block', 'grass', 'short_grass', 'tall_grass', 'fern', 'large_fern',
         'sugar_cane', 'tall_seagrass', 'seagrass', 'bamboo',
-        'moss_block', 'moss_carpet', 'small_dripleaf', 'big_dripleaf'
+        'moss_block', 'moss_carpet', 'small_dripleaf', 'big_dripleaf',
+        'short_dry_grass', 'tall_dry_grass'
     ]);
 
     /** 树叶等用 foliage 图上的 (温度, 湿度) 近似原版常见群系 */
@@ -393,6 +398,10 @@
 
     const FOLIAGE_DEFAULT_BIOME = [0.48, 0.62];
     const GRASS_DEFAULT_BIOME = [0.8, 0.4];
+    const GRASS_BIOME_BY_ID = {
+        short_dry_grass: [0.92, 0.18],
+        tall_dry_grass: [0.92, 0.18]
+    };
 
     function colormapKindForItem(itemId) {
         const id = normalizeId(itemId);
@@ -402,7 +411,10 @@
 
     function biomeParamsForItem(itemId, kind) {
         const id = normalizeId(itemId);
-        if (kind === 'grass') return GRASS_DEFAULT_BIOME;
+        if (kind === 'grass') {
+            if (GRASS_BIOME_BY_ID[id]) return GRASS_BIOME_BY_ID[id];
+            return GRASS_DEFAULT_BIOME;
+        }
         if (FOLIAGE_BIOME_BY_LEAVES[id]) return FOLIAGE_BIOME_BY_LEAVES[id];
         if (id.endsWith('_leaves')) return FOLIAGE_DEFAULT_BIOME;
         return FOLIAGE_DEFAULT_BIOME;
