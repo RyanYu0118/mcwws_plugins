@@ -279,6 +279,91 @@
         return p;
     }
 
+    /** 群系色谱：树叶等用 foliage.png，草方块等用 grass.png（与 Java 采样公式一致） */
+    const colormapResolved = new Map();
+    const colormapLoading = new Map();
+
+    async function loadColormapImage(kind) {
+        if (colormapResolved.has(kind)) return colormapResolved.get(kind);
+        if (colormapLoading.has(kind)) return colormapLoading.get(kind);
+        const file = kind === 'grass' ? 'grass.png' : 'foliage.png';
+        const url = `${ASSET_BASE}/textures/colormap/${file}`;
+        const p = new Promise((resolve) => {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = () => {
+                const c = document.createElement('canvas');
+                c.width = img.naturalWidth || img.width;
+                c.height = img.naturalHeight || img.height;
+                const ctx = c.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                const buf = { canvas: c, w: c.width, h: c.height };
+                colormapResolved.set(kind, buf);
+                resolve(buf);
+            };
+            img.onerror = () => {
+                colormapResolved.set(kind, null);
+                resolve(null);
+            };
+            img.src = url;
+        });
+        colormapLoading.set(kind, p);
+        const out = await p;
+        colormapLoading.delete(kind);
+        return out;
+    }
+
+    /** Java ColorResolver：湿度先 clamp 再乘温度，再映射到 colormap 像素 */
+    function sampleColormapBuffer(buf, temperature, downfall) {
+        if (!buf || !buf.canvas || buf.w < 1 || buf.h < 1) return null;
+        const adjT = Math.min(1, Math.max(0, temperature));
+        let adjH = Math.min(1, Math.max(0, downfall));
+        adjH *= adjT;
+        const x = Math.min(buf.w - 1, Math.max(0, Math.floor((1 - adjT) * (buf.w - 1))));
+        const y = Math.min(buf.h - 1, Math.max(0, Math.floor((1 - adjH) * (buf.h - 1))));
+        const ctx = buf.canvas.getContext('2d');
+        const d = ctx.getImageData(x, y, 1, 1).data;
+        return [d[0] / 255, d[1] / 255, d[2] / 255];
+    }
+
+    const GRASS_COLORMAP_IDS = new Set([
+        'grass_block', 'grass', 'short_grass', 'tall_grass', 'fern', 'large_fern',
+        'sugar_cane', 'tall_seagrass', 'seagrass', 'bamboo',
+        'moss_block', 'moss_carpet', 'small_dripleaf', 'big_dripleaf'
+    ]);
+
+    /** 树叶等用 foliage 图上的 (温度, 湿度) 近似原版常见群系 */
+    const FOLIAGE_BIOME_BY_LEAVES = {
+        spruce_leaves: [0.15, 0.35],
+        birch_leaves: [0.38, 0.42],
+        jungle_leaves: [0.9, 0.85],
+        acacia_leaves: [0.95, 0.25],
+        dark_oak_leaves: [0.45, 0.58],
+        mangrove_leaves: [0.55, 0.75],
+        oak_leaves: [0.48, 0.62],
+        azalea_leaves: [0.45, 0.55],
+        flowering_azalea_leaves: [0.45, 0.55],
+        cherry_leaves: [0.52, 0.48],
+        pale_oak_leaves: [0.42, 0.55]
+    };
+
+    const FOLIAGE_DEFAULT_BIOME = [0.48, 0.62];
+    const GRASS_DEFAULT_BIOME = [0.8, 0.4];
+
+    function colormapKindForItem(itemId) {
+        const id = normalizeId(itemId);
+        if (GRASS_COLORMAP_IDS.has(id)) return 'grass';
+        return 'foliage';
+    }
+
+    function biomeParamsForItem(itemId, kind) {
+        const id = normalizeId(itemId);
+        if (kind === 'grass') return GRASS_DEFAULT_BIOME;
+        if (FOLIAGE_BIOME_BY_LEAVES[id]) return FOLIAGE_BIOME_BY_LEAVES[id];
+        if (id.endsWith('_leaves')) return FOLIAGE_DEFAULT_BIOME;
+        return FOLIAGE_DEFAULT_BIOME;
+    }
+
     function mcUv(uv) {
         return [
             uv[0] / 16, 1 - uv[1] / 16,
@@ -332,21 +417,51 @@
         geo.computeVertexNormals();
 
         const shade = computeViewShade(faceName, model);
-        const meshHolder = { geo, url, shade };
+        const tintindex = face.tintindex;
+        const meshHolder = { geo, url, shade, tintindex };
         group.__meshes = group.__meshes || [];
         group.__meshes.push(meshHolder);
     }
 
     async function finalizeGroup(group) {
         const THREE = getThree();
+        const itemId = group.userData.mcItemId || '';
         const holders = group.__meshes || [];
         delete group.__meshes;
+
+        const needsBiomeTint = holders.some(
+            (h) => h.tintindex !== undefined && h.tintindex !== null && h.tintindex >= 0
+        );
+        let colormapBuf = null;
+        if (needsBiomeTint && itemId) {
+            const kind = colormapKindForItem(itemId);
+            colormapBuf = await loadColormapImage(kind);
+        }
+        const [temp, downfall] = needsBiomeTint && itemId
+            ? biomeParamsForItem(itemId, colormapKindForItem(itemId))
+            : [0, 0];
+        const tintRgb = colormapBuf ? sampleColormapBuffer(colormapBuf, temp, downfall) : null;
+
         for (const h of holders) {
             const tex = await loadTexture(h.url);
+            if (!tex) continue;
             const shade = h.shade ?? 0.8;
+            let r = shade;
+            let g = shade;
+            let b = shade;
+            if (
+                tintRgb
+                && h.tintindex !== undefined
+                && h.tintindex !== null
+                && h.tintindex >= 0
+            ) {
+                r = tintRgb[0] * shade;
+                g = tintRgb[1] * shade;
+                b = tintRgb[2] * shade;
+            }
             const mat = new THREE.MeshBasicMaterial({
                 map: tex,
-                color: new THREE.Color(shade, shade, shade),
+                color: new THREE.Color(r, g, b),
                 transparent: true,
                 side: THREE.DoubleSide
             });
@@ -355,8 +470,9 @@
         }
     }
 
-    async function buildFromElements(model) {
+    async function buildFromElements(model, itemId) {
         const root = new THREE.Group();
+        root.userData.mcItemId = normalizeId(itemId || '');
         const resolveTex = (ref) => resolveTextureRef(ref, model.textures, 0);
 
         model.elements.forEach((el) => {
@@ -574,7 +690,7 @@
         }
         use3dCache.set(id, true);
 
-        const group = await buildFromElements(model);
+        const group = await buildFromElements(model, itemId);
         if (!group) {
             iconCache.set(id, null);
             applyIconToSlot(slot, null);

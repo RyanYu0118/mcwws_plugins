@@ -149,9 +149,9 @@
         });
     }
 
-    function glintOverlayHtml() {
+    function glintOverlayHtml(pixelSize) {
         const cfg = global.McIconConfig || { RENDER_SIZE: 83 };
-        const s = cfg.RENDER_SIZE;
+        const s = pixelSize != null && Number.isFinite(pixelSize) ? Math.round(pixelSize) : cfg.RENDER_SIZE;
         return `<canvas class="item-glint-overlay" width="${s}" height="${s}" aria-hidden="true"
             style="position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;pointer-events:none;mix-blend-mode:plus-lighter;"></canvas>`;
     }

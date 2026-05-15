@@ -7,8 +7,13 @@ window.McIconConfig = window.McIconConfig || {
     RENDER_SIZE: Math.round(64 * 1.3),
     ICON_GAP_RIGHT: Math.round(12 * 1.3),
     FLAT_PAD_RATIO: 0.1,
-    /** 仅 3D WebGL：相对 RENDER_SIZE 的内部渲染倍数（≥2 可明显减轻锯齿，略增 GPU 负担） */
-    RENDER_SCALE_3D: 3
+    /** 仅 3D WebGL：相对槽位位图边长的内部渲染倍数 */
+    RENDER_SCALE_3D: 2,
+    /** 3D 槽位边长 = ICON_PX × min(实际 DPR, SLOT_DPR_CAP)，再与 RENDER_SIZE 取大；上限 SLOT_BITMAP_MAX_3D */
+    SLOT_DPR_CAP: 3,
+    SLOT_BITMAP_MAX_3D: 512,
+    /** WebGL  framebuffer 单边最大像素，防止极端 DPR+倍数爆显存 */
+    SLOT_WEBGL_MAX: 2048
 };
 
 window.LoadedTextureCache = window.LoadedTextureCache || new Set();
