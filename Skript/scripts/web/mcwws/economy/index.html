@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MC全服实时物价大盘</title>
+    <style>
+        /* 全局样式设定：深色电竞风 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a; /* 深蓝灰背景 */
+            color: #e2e8f0;
+        }
+
+        /* 顶部导航栏 / 标题区 */
+        header {
+            background-color: #1e293b;
+            padding: 20px 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #3b82f6;
+        }
+
+        .title-group h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #f8fafc;
+            letter-spacing: 1px;
+        }
+
+        .title-group p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        /* 实时状态指示灯 */
+        .status-badge {
+            display: flex;
+            align-items: center;
+            background: #334155;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            margin-right: 10px;
+            box-shadow: 0 0 8px #22c55e;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; box-shadow: 0 0 8px #22c55e; }
+            50% { opacity: 0.4; box-shadow: 0 0 2px #22c55e; }
+            100% { opacity: 1; box-shadow: 0 0 8px #22c55e; }
+        }
+
+        /* 主体内容区：响应式网格 */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* 物品卡片样式 */
+        .card {
+            background-color: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #334155;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            border-color: #475569;
+        }
+
+        /* 卡片顶部的装饰条 */
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+
+        .item-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fbbf24; /* 金黄色 */
+            margin-bottom: 15px;
+            text-transform: capitalize; /* 首字母大写 */
+            display: flex;
+            align-items: center;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #0f172a;
+            border-radius: 8px;
+        }
+
+        .price-label {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .price-value {
+            font-size: 16px;
+            font-weight: bold;
+            font-family: monospace;
+        }
+
+        .buy-price { color: #4ade80; } /* 涨幅绿 */
+        .sell-price { color: #f87171; } /* 跌幅红 */
+
+        /* 报错信息提示 */
+        .error-msg {
+            text-align: center;
+            color: #f87171;
+            font-size: 18px;
+            grid-column: 1 / -1;
+            padding: 40px;
+            background: #1e293b;
+            border-radius: 12px;
+            border: 1px dashed #f87171;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="title-group">
+            <h1>📊 MC 全服经济大盘</h1>
+            <p id="update-time">正在连接服务器获取最新数据...</p>
+        </div>
+        <div class="status-badge">
+            <div class="status-dot" id="live-dot"></div>
+            <span id="status-text">LIVE 实时同步中</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="grid" id="market-board">
+            </div>
+    </div>
+
+    <script>
+        // 你的本地 Node.js 后端接口地址
+        const API_URL = 'http://127.0.0.1:8002/api/prices';
+
+        // 格式化物品 ID (把 spruce_wood 变成 Spruce Wood)
+        function formatItemName(id) {
+            return id.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        }
+
+        // 核心获取数据函数
+        async function fetchPrices() {
+            const board = document.getElementById('market-board');
+            const updateTimeEl = document.getElementById('update-time');
+            const statusDot = document.getElementById('live-dot');
+            const statusText = document.getElementById('status-text');
+
+            try {
+                // 加上时间戳防止浏览器缓存老数据
+                const response = await fetch(`${API_URL}?t=${new Date().getTime()}`);
+                
+                if (!response.ok) throw new Error('网络响应失败');
+                
+                const data = await response.json();
+                
+                // 清空画板准备重绘
+                board.innerHTML = ''; 
+
+                // 遍历 JSON 数据生成卡片
+                let itemCount = 0;
+                for (const [item, prices] of Object.entries(data)) {
+                    itemCount++;
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <div class="item-name">📦 ${formatItemName(item)}</div>
+                        
+                        <div class="price-row">
+                            <span class="price-label">系统买入价</span>
+                            <span class="price-value buy-price">￥${prices.buy.toFixed(2)}</span>
+                        </div>
+                        
+                        <div class="price-row" style="margin-top: 8px;">
+                            <span class="price-label">玩家回收价</span>
+                            <span class="price-value sell-price">￥${prices.sell.toFixed(2)}</span>
+                        </div>
+                    `;
+                    board.appendChild(card);
+                }
+
+                // 如果数据为空（比如还没生成任何物品）
+                if (itemCount === 0) {
+                    board.innerHTML = '<div class="error-msg">服务器暂无物品数据，请等待 Skript 刷新。</div>';
+                }
+
+                // 更新界面状态
+                const now = new Date();
+                updateTimeEl.innerText = `上次更新: ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')} (已接入 ${itemCount} 种商品)`;
+                
+                statusDot.style.backgroundColor = '#22c55e'; // 绿色
+                statusText.innerText = 'LIVE 实时同步中';
+
+            } catch (error) {
+                console.error('拉取数据失败:', error);
+                
+                // 报错时的界面反馈
+                updateTimeEl.innerText = `数据同步中断... 正在重试`;
+                statusDot.style.backgroundColor = '#ef4444'; // 红色
+                statusText.innerText = '服务器连接断开';
+                
+                // 如果是第一次加载就失败，显示错误卡片
+                if (board.children.length === 0) {
+                    board.innerHTML = `
+                        <div class="error-msg">
+                            ⚠️ 无法连接到本地后端服务。<br>
+                            请检查黑框框 (Node.js) 是否正在运行，并确保访问地址为 http://127.0.0.1:8002
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // 页面打开时立即执行一次
+        fetchPrices();
+
+        // 设定定时器：每隔 10 秒 (10000 毫秒) 自动去后台拿一次最新数据
+        setInterval(fetchPrices, 10000);
+
+    </script>
+</body>
+</html>

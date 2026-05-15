@@ -1,0 +1,44 @@
+# UltimateShop 交易 → 网页仪表板日志（需 skript-reflect + skript-yaml + UltimateShop）
+import:
+    cn.superiormc.ultimateshop.api.ItemFinishTransactionEvent
+
+function mcwwsInitTransactionLog():
+    load yaml "plugins/Skript/scripts/web/data/transactions_store.yml" as "txstore"
+    if yaml value "next_id" from "txstore" is not set:
+        set yaml value "next_id" from "txstore" to 1
+        save yaml "txstore"
+        send "§a[MCWWS] 已创建网页交易日志 YAML。" to console
+    else:
+        send "§a[MCWWS] UltimateShop 网页交易日志已启用。" to console
+    unload yaml "txstore"
+
+function mcwwsAppendTransactionLog(row: text):
+    load yaml "plugins/Skript/scripts/web/data/transactions_store.yml" as "txstore"
+    set {_idx} to yaml value "next_id" from "txstore"
+    if {_idx} is not set:
+        set {_idx} to 1
+    set yaml value "entry.%{_idx}%" from "txstore" to {_row}
+    add 1 to {_idx}
+    set yaml value "next_id" from "txstore" to {_idx}
+    save yaml "txstore"
+    unload yaml "txstore"
+
+on load:
+    mcwwsInitTransactionLog()
+
+on ItemFinishTransactionEvent:
+    set {_p} to event.getPlayer()
+    if {_p} is not set:
+        stop
+    set {_shop} to event.getShop().getShopName()
+    set {_product} to event.getItem().getProduct()
+    set {_amount} to event.getAmount()
+    if event.isBuyOrSell() is true:
+        set {_type} to "BUY"
+    else:
+        set {_type} to "SELL"
+    set {_name} to name of {_p}
+    replace "," with "|" in {_name}
+    set {_time} to now formatted as "yyyy-MM-dd HH:mm:ss"
+    set {_row} to "%random uuid%,%uuid of {_p}%,%{_name}%,%{_type}%,%{_shop}%,%{_product}%,%{_amount}%,%{_time}%"
+    mcwwsAppendTransactionLog({_row})
