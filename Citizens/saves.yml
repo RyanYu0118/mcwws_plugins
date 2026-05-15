@@ -536,12 +536,12 @@ npc:
         direction: BOTTOM_UP
       woolcolor: BLUE
       location:
-        bodyYaw: 132.67056
+        bodyYaw: -160.68527
         x: -437.4868
         y: 99.0
         z: -486.473
-        yaw: 132.6706
-        pitch: 18.4767
+        yaw: -160.6853
+        pitch: 16.0595
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait:
         color: BLUE
@@ -645,12 +645,12 @@ npc:
         direction: BOTTOM_UP
       woolcolor: MAGENTA
       location:
-        bodyYaw: -147.73676
+        bodyYaw: 90.07431
         x: -425.5029
         y: 99.0
         z: -486.4966
-        yaw: -147.7368
-        pitch: 17.205
+        yaw: 91.6838
+        pitch: -47.7969
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait:
         color: MAGENTA
@@ -701,12 +701,12 @@ npc:
         direction: BOTTOM_UP
       woolcolor: PURPLE
       location:
-        bodyYaw: -168.92743
+        bodyYaw: 76.94095
         x: -421.5488
         y: 99.0
         z: -487.6352
-        yaw: -168.9274
-        pitch: 18.4538
+        yaw: 76.9409
+        pitch: -48.413
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait:
         color: PURPLE
@@ -756,12 +756,12 @@ npc:
         direction: BOTTOM_UP
       woolcolor: LIGHT_GRAY
       location:
-        bodyYaw: 131.20247
+        bodyYaw: 86.024155
         x: -417.5152
         y: 99.0
         z: -486.5659
-        yaw: 131.2025
-        pitch: 18.8021
+        yaw: 86.0242
+        pitch: -37.8409
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait:
         color: LIGHT_GRAY
@@ -813,12 +813,12 @@ npc:
         direction: BOTTOM_UP
       woolcolor: GRAY
       location:
-        bodyYaw: -164.36646
+        bodyYaw: 78.762955
         x: -413.4942
         y: 99.0
         z: -486.4422
-        yaw: -164.3665
-        pitch: 14.2137
+        yaw: 78.763
+        pitch: -32.0242
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait:
         color: GRAY
@@ -871,12 +871,12 @@ npc:
         direction: BOTTOM_UP
       woolcolor: BLACK
       location:
-        bodyYaw: -163.02058
+        bodyYaw: -23.066673
         x: -413.476
         y: 95.0
         z: -488.469
-        yaw: -163.0206
-        pitch: -1.6625
+        yaw: -23.0667
+        pitch: -36.394
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait:
         color: BLACK
@@ -928,12 +928,12 @@ npc:
         direction: BOTTOM_UP
       woolcolor: RED
       location:
-        bodyYaw: -145.81586
+        bodyYaw: -112.69122
         x: -417.5124
         y: 95.0
         z: -488.6074
-        yaw: -145.8159
-        pitch: -1.5756
+        yaw: -112.6912
+        pitch: -1.8599
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait:
         color: RED
@@ -984,12 +984,12 @@ npc:
         direction: BOTTOM_UP
       woolcolor: LIGHT_BLUE
       location:
-        bodyYaw: -147.66943
+        bodyYaw: -132.2467
         x: -421.5153
         y: 95.0
         z: -488.4551
-        yaw: -147.6694
-        pitch: -1.9688
+        yaw: -132.2467
+        pitch: -2.022
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait:
         color: LIGHT_BLUE
@@ -1039,12 +1039,12 @@ npc:
         direction: BOTTOM_UP
       woolcolor: LIME
       location:
-        bodyYaw: -136.2983
+        bodyYaw: -148.49924
         x: -425.4958
         y: 95.0
         z: -488.4561
-        yaw: -136.2983
-        pitch: -1.6113
+        yaw: -148.4992
+        pitch: -1.7035
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait:
         color: LIME
@@ -1152,12 +1152,12 @@ npc:
         direction: BOTTOM_UP
       woolcolor: YELLOW
       location:
-        bodyYaw: -169.62747
+        bodyYaw: -140.48378
         x: -441.4878
         y: 95.0
         z: -488.4374
-        yaw: -169.6275
-        pitch: -2.1068
+        yaw: -140.4838
+        pitch: -1.7207
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait:
         color: YELLOW
@@ -1210,12 +1210,12 @@ npc:
         direction: BOTTOM_UP
       woolcolor: WHITE
       location:
-        bodyYaw: 120.482544
+        bodyYaw: -139.9494
         x: -433.5216
         y: 95.0
         z: -488.5202
-        yaw: 120.4825
-        pitch: -1.7225
+        yaw: -139.9494
+        pitch: -2.1531
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait: {
         }
@@ -1267,12 +1267,12 @@ npc:
         direction: BOTTOM_UP
       woolcolor: ORANGE
       location:
-        bodyYaw: 148.31842
+        bodyYaw: -146.40799
         x: -437.4777
         y: 95.0
         z: -488.4502
-        yaw: 148.3184
-        pitch: -2.1001
+        yaw: -146.408
+        pitch: -1.9573
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait:
         color: ORANGE
@@ -1338,12 +1338,12 @@ npc:
       gravity: {
         }
       location:
-        bodyYaw: 270.00266
-        x: -423.314
+        bodyYaw: 85.868835
+        x: -414.2032
         y: 95.0
-        z: -496.5
-        yaw: 270.0023
-        pitch: 0.8089
+        z: -496.5894
+        yaw: 77.1987
+        pitch: 18.2811
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait: {
         }
