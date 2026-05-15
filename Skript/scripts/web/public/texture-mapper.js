@@ -6,7 +6,9 @@ window.McIconConfig = window.McIconConfig || {
     ICON_PX: Math.round(32 * 1.3),
     RENDER_SIZE: Math.round(64 * 1.3),
     ICON_GAP_RIGHT: Math.round(12 * 1.3),
-    FLAT_PAD_RATIO: 0.1
+    FLAT_PAD_RATIO: 0.1,
+    /** 仅 3D WebGL：相对 RENDER_SIZE 的内部渲染倍数（≥2 可明显减轻锯齿，略增 GPU 负担） */
+    RENDER_SCALE_3D: 3
 };
 
 window.LoadedTextureCache = window.LoadedTextureCache || new Set();

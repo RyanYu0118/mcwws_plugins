@@ -8,11 +8,14 @@
         ICON_PX: Math.round(32 * 1.3),
         RENDER_SIZE: Math.round(64 * 1.3),
         ICON_GAP_RIGHT: Math.round(12 * 1.3),
-        FLAT_PAD_RATIO: 0.1
+        FLAT_PAD_RATIO: 0.1,
+        RENDER_SCALE_3D: 2
     };
     const RENDER_SIZE = cfg.RENDER_SIZE;
     const ICON_PX = cfg.ICON_PX;
     const ICON_GAP_RIGHT = cfg.ICON_GAP_RIGHT;
+    const RENDER_SCALE_3D = Math.max(1, Math.min(4, Number(cfg.RENDER_SCALE_3D) || 2));
+    const WEBGL_SIZE = Math.round(RENDER_SIZE * RENDER_SCALE_3D);
 
     const DEFAULT_GUI = {
         rotation: [30, 225, 0],
@@ -74,6 +77,41 @@
 
     function normalizeId(id) {
         return String(id).toLowerCase().replace(/-/g, '_');
+    }
+
+    /** 草丛、草方块等（物品栏用 2D 平面贴图） */
+    const GRASS_LIKE_IDS = new Set([
+        'grass', 'short_grass', 'tall_grass', 'fern', 'large_fern', 'dead_bush',
+        'seagrass', 'tall_seagrass', 'crimson_roots', 'warped_roots', 'nether_sprouts',
+        'short_dry_grass', 'tall_dry_grass', 'leaf_litter'
+    ]);
+
+    /** 花类（含盆栽前缀），物品栏用 2D */
+    const FLOWER_IDS = new Set([
+        'dandelion', 'poppy', 'blue_orchid', 'allium', 'azure_bluet',
+        'red_tulip', 'orange_tulip', 'white_tulip', 'pink_tulip', 'oxeye_daisy',
+        'cornflower', 'lily_of_the_valley', 'torchflower', 'wither_rose', 'spore_blossom',
+        'open_eyeblossom', 'closed_eyeblossom', 'sunflower', 'lilac', 'rose_bush', 'peony',
+        'pitcher_plant', 'pitcher_pod', 'pink_petals', 'wildflowers', 'chorus_flower',
+        'azalea', 'flowering_azalea', 'mangrove_propagule', 'bamboo_sapling', 'cactus_flower',
+        'firefly_bush'
+    ]);
+
+    function iconForce2dFlatIcon(id) {
+        if (!id) return false;
+        if (GRASS_LIKE_IDS.has(id)) return true;
+        if (FLOWER_IDS.has(id)) return true;
+        if (id.startsWith('potted_')) return true;
+        if (/_tulip$/.test(id) || /_orchid$/.test(id)) return true;
+        return false;
+    }
+
+    /** 门、活板门、整块玻璃（非玻璃板）、沉重核心 → 方块模型含立方体面，走 3D（modelCandidates 已优先 block） */
+    function modelCandidatesFlatFirst(itemId) {
+        const id = normalizeId(itemId);
+        const itemPath = `item/${id}`;
+        const rest = modelCandidates(itemId).filter((p) => p !== itemPath);
+        return [itemPath, ...rest];
     }
 
     function parentToPath(parent) {
@@ -157,17 +195,28 @@
                 .sort()
                 .map((k) => merged.textures[k]);
         }
+        if (!Array.isArray(merged.layers)) merged.layers = [];
 
         return merged;
     }
 
     async function resolveModel(itemId) {
+        const id = normalizeId(itemId);
+        const paths = iconForce2dFlatIcon(id) ? modelCandidatesFlatFirst(itemId) : modelCandidates(itemId);
         let flatModel = null;
-        for (const path of modelCandidates(itemId)) {
+        for (const path of paths) {
             const m = await mergeModel(path, new Set());
             if (!m) continue;
+
+            if (iconForce2dFlatIcon(id)) {
+                if (modelNeeds3d(m)) continue;
+                if (m.layers && m.layers.length) return m;
+                if (!modelNeeds3d(m) && !flatModel) flatModel = m;
+                continue;
+            }
+
             if (modelNeeds3d(m)) return m;
-            if (m.layers.length && !flatModel) flatModel = m;
+            if (m.layers && m.layers.length && !flatModel) flatModel = m;
         }
         return flatModel;
     }
@@ -177,10 +226,15 @@
     }
 
     async function prefers3d(itemId) {
-        if (use3dCache.has(itemId)) return use3dCache.get(itemId);
+        const id = normalizeId(itemId);
+        if (use3dCache.has(id)) return use3dCache.get(id);
+        if (iconForce2dFlatIcon(id)) {
+            use3dCache.set(id, false);
+            return false;
+        }
         const model = await resolveModel(itemId);
         const needs = modelNeeds3d(model);
-        use3dCache.set(itemId, needs);
+        use3dCache.set(id, needs);
         return needs;
     }
 
@@ -441,8 +495,8 @@
         const THREE = getThree();
         if (!THREE) return false;
         if (renderer) return true;
-        renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, preserveDrawingBuffer: true });
-        renderer.setSize(RENDER_SIZE, RENDER_SIZE);
+        renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
+        renderer.setSize(WEBGL_SIZE, WEBGL_SIZE);
         renderer.setPixelRatio(1);
         renderer.setClearColor(0x000000, 0);
         renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -465,7 +519,11 @@
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, RENDER_SIZE, RENDER_SIZE);
-        ctx.drawImage(renderer.domElement, 0, 0, RENDER_SIZE, RENDER_SIZE);
+        ctx.imageSmoothingEnabled = RENDER_SCALE_3D > 1;
+        if (ctx.imageSmoothingQuality !== undefined) {
+            ctx.imageSmoothingQuality = 'high';
+        }
+        ctx.drawImage(renderer.domElement, 0, 0, WEBGL_SIZE, WEBGL_SIZE, 0, 0, RENDER_SIZE, RENDER_SIZE);
         canvas.style.opacity = '1';
         const fallback = slot.querySelector('.item-icon-fallback');
         if (fallback) fallback.innerHTML = '';
@@ -496,12 +554,13 @@
 
     async function renderItemToSlot(slot, itemId) {
         const THREE = getThree();
+        const id = normalizeId(itemId);
         if (!THREE || !initRenderer()) {
             applyIconToSlot(slot, null);
             return;
         }
 
-        const cached = iconCache.get(itemId);
+        const cached = iconCache.get(id);
         if (cached && cached !== 'ANIMATED') {
             applyIconToSlot(slot, cached);
             return;
@@ -509,15 +568,15 @@
 
         const model = await resolveModel(itemId);
         if (!model || !modelNeeds3d(model)) {
-            use3dCache.set(itemId, false);
+            use3dCache.set(id, false);
             applyIconToSlot(slot, null);
             return;
         }
-        use3dCache.set(itemId, true);
+        use3dCache.set(id, true);
 
         const group = await buildFromElements(model);
         if (!group) {
-            iconCache.set(itemId, null);
+            iconCache.set(id, null);
             applyIconToSlot(slot, null);
             return;
         }
@@ -528,7 +587,7 @@
 
         const hasAnimation = await itemUsesAnimatedTextures(model);
         if (hasAnimation) {
-            iconCache.set(itemId, 'ANIMATED');
+            iconCache.set(id, 'ANIMATED');
             mountAnimatedSlot(slot, group);
             return;
         }
@@ -536,13 +595,14 @@
         renderGroupOnce(group);
         const dataUrl = renderer.domElement.toDataURL('image/png');
         disposeObject(group);
-        iconCache.set(itemId, dataUrl);
+        iconCache.set(id, dataUrl);
         applyIconToSlot(slot, dataUrl);
     }
 
     async function renderItemToDataUrl(itemId) {
-        if (iconCache.has(itemId)) {
-            const c = iconCache.get(itemId);
+        const id = normalizeId(itemId);
+        if (iconCache.has(id)) {
+            const c = iconCache.get(id);
             return c === 'ANIMATED' ? null : c;
         }
         return null;
@@ -562,18 +622,19 @@
     }
 
     function enqueueRender(itemId) {
-        if (use3dCache.has(itemId) && use3dCache.get(itemId) === false) {
+        const id = normalizeId(itemId);
+        if (use3dCache.has(id) && use3dCache.get(id) === false) {
             return Promise.resolve(null);
         }
-        const cached = iconCache.get(itemId);
+        const cached = iconCache.get(id);
         if (cached && cached !== 'ANIMATED') return Promise.resolve(cached);
-        if (pendingRenders.has(itemId)) return pendingRenders.get(itemId);
+        if (pendingRenders.has(id)) return pendingRenders.get(id);
         const promise = new Promise((resolve) => {
-            queue.push({ itemId, resolve });
+            queue.push({ itemId: id, resolve });
             drainQueue();
         });
-        pendingRenders.set(itemId, promise);
-        promise.finally(() => pendingRenders.delete(itemId));
+        pendingRenders.set(id, promise);
+        promise.finally(() => pendingRenders.delete(id));
         return promise;
     }
 
@@ -585,7 +646,13 @@
             img.onload = () => {
                 const ctx = canvas.getContext('2d');
                 ctx.clearRect(0, 0, RENDER_SIZE, RENDER_SIZE);
-                ctx.drawImage(img, 0, 0);
+                ctx.imageSmoothingEnabled = RENDER_SCALE_3D > 1;
+                if (ctx.imageSmoothingQuality !== undefined) {
+                    ctx.imageSmoothingQuality = 'high';
+                }
+                const iw = img.naturalWidth || img.width;
+                const ih = img.naturalHeight || img.height;
+                ctx.drawImage(img, 0, 0, iw, ih, 0, 0, RENDER_SIZE, RENDER_SIZE);
                 canvas.style.opacity = '1';
                 if (fallback) fallback.innerHTML = '';
             };
@@ -627,7 +694,7 @@
                 const fallback = slot.querySelector('.item-icon-fallback');
                 if (
                     fallback &&
-                    !iconCache.has(itemId) &&
+                    !iconCache.has(normalizeId(itemId)) &&
                     typeof global.getTextureHtml === 'function'
                 ) {
                     fallback.innerHTML = global.getTextureHtml(itemId, itemName);

@@ -16,6 +16,96 @@ let currentPage = 1;
 const PAGE_SIZE = 60;
 let searchTimer = null;
 
+const SORT_VALUES = new Set(['name', 'buyPrice', 'sellPrice', 'stock']);
+
+function replaceUrlIfChanged(params) {
+    const qs = params.toString();
+    const next = qs
+        ? `${window.location.pathname}?${qs}${window.location.hash || ''}`
+        : `${window.location.pathname}${window.location.hash || ''}`;
+    const cur = `${window.location.pathname}${window.location.search}${window.location.hash || ''}`;
+    if (next !== cur) {
+        history.replaceState(null, '', next);
+    }
+}
+
+/** 从地址栏恢复：搜索、排序、复选框、页码（交易弹窗在数据加载后单独处理） */
+function hydrateItemsStateFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.has('q')) {
+        const trimmed = (params.get('q') || '').trim();
+        searchQuery = trimmed.toLowerCase();
+        const inp = document.getElementById('searchInput');
+        if (inp) inp.value = trimmed;
+    }
+
+    const sortVal = params.get('sort');
+    if (sortVal && SORT_VALUES.has(sortVal)) {
+        currentSort = sortVal;
+        const sortSelect = document.getElementById('sortSelect');
+        if (sortSelect) sortSelect.value = sortVal;
+    }
+
+    sortReverse = params.get('rev') === '1';
+    const revEl = document.getElementById('sortReverse');
+    if (revEl) revEl.checked = sortReverse;
+
+    hideUntradable = params.get('hide') === '1';
+    const hideEl = document.getElementById('hideUntradable');
+    if (hideEl) hideEl.checked = hideUntradable;
+
+    const pageNum = parseInt(params.get('page'), 10);
+    if (Number.isFinite(pageNum) && pageNum >= 1) {
+        currentPage = pageNum;
+    }
+}
+
+/** 根据当前 UI 状态写回地址栏（不新增历史记录） */
+function syncItemsStateToUrl() {
+    const params = new URLSearchParams(window.location.search);
+
+    const inp = document.getElementById('searchInput');
+    const raw = inp ? inp.value.trim() : '';
+    if (raw) params.set('q', raw);
+    else params.delete('q');
+
+    if (currentSort && currentSort !== 'name') params.set('sort', currentSort);
+    else params.delete('sort');
+
+    if (sortReverse) params.set('rev', '1');
+    else params.delete('rev');
+
+    if (hideUntradable) params.set('hide', '1');
+    else params.delete('hide');
+
+    if (currentPage > 1) params.set('page', String(currentPage));
+    else params.delete('page');
+
+    const tradeModal = document.getElementById('tradeModal');
+    const tradeOpen = tradeModal && tradeModal.classList.contains('active');
+    const tradeId = tradeOpen && tradeModal.dataset.tradeItemId ? tradeModal.dataset.tradeItemId : null;
+    if (tradeId) params.set('trade', tradeId);
+    else params.delete('trade');
+
+    replaceUrlIfChanged(params);
+}
+
+/** 刷新后若带 ?trade= 则打开交易弹窗；无效则移除参数 */
+function tryOpenTradeFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const tid = params.get('trade');
+    if (!tid || !allItems.length) return;
+    const item = allItems.find((i) => i.id === tid);
+    const offers = item && item.ultimateShopOffers ? item.ultimateShopOffers : [];
+    if (item && offers.length) {
+        openTradeModal(item);
+    } else {
+        params.delete('trade');
+        replaceUrlIfChanged(params);
+    }
+}
+
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', async () => {
     if (window.mcLangReady) {
@@ -57,7 +147,9 @@ async function loadItems() {
                 : []
         }));
 
+        hydrateItemsStateFromUrl();
         filterAndRenderItems();
+        tryOpenTradeFromUrl();
 
     } catch (error) {
         console.error('加载物品数据出错:', error);
@@ -90,7 +182,9 @@ function closeTradeModal() {
     const modal = document.getElementById('tradeModal');
     if (modal) {
         modal.classList.remove('active');
+        delete modal.dataset.tradeItemId;
     }
+    syncItemsStateToUrl();
 }
 
 function openTradeModal(item) {
@@ -135,15 +229,19 @@ function openTradeModal(item) {
     `;
 
     modal.classList.add('active');
+    modal.dataset.tradeItemId = item.id;
+    syncItemsStateToUrl();
 }
 
 function handleTradeClick(itemId) {
     const item = allItems.find(i => i.id === itemId);
     if (!item) {
+        syncItemsStateToUrl();
         return showToast('未找到该物品。', false);
     }
     const offers = item.ultimateShopOffers || [];
     if (!offers.length) {
+        syncItemsStateToUrl();
         return showToast('该物品未在任何 UltimateShop 商店 YAML 中上架，无法交易。', false);
     }
     openTradeModal(item);
@@ -235,6 +333,7 @@ function setupEventListeners() {
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             searchQuery = e.target.value.toLowerCase();
+            syncItemsStateToUrl();
             clearTimeout(searchTimer);
             searchTimer = setTimeout(() => {
                 currentPage = 1;
@@ -395,7 +494,10 @@ function setupEventListeners() {
 // 将数据渲染为 HTML 卡片（无修改）
 function renderCards() {
     const grid = document.getElementById('itemsGrid');
-    if (!grid) return;
+    if (!grid) {
+        syncItemsStateToUrl();
+        return;
+    }
 
     // 更新页面顶部和列表显示计数
     const itemCount = document.getElementById('itemCount');
@@ -411,6 +513,7 @@ function renderCards() {
     if (filteredItems.length === 0) {
         grid.innerHTML = '<div style="text-align:center; color:#94a3b8; grid-column:1/-1; padding: 40px;">没有找到匹配的物品 📦</div>';
         renderPagination();
+        syncItemsStateToUrl();
         return;
     }
 
@@ -461,6 +564,7 @@ function renderCards() {
     if (window.McEnchantGlint) {
         window.McEnchantGlint.initInContainer(grid);
     }
+    syncItemsStateToUrl();
 }
 
 function getItemIconHtml(itemId, itemName) {

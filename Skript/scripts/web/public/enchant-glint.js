@@ -68,37 +68,54 @@
         return glintLoadPromise;
     }
 
-    function padInset(ctx) {
-        const cfg = global.McIconConfig || { FLAT_PAD_RATIO: 0.1 };
-        const w = ctx.canvas.width;
-        return w * (cfg.FLAT_PAD_RATIO || 0);
+    /** 与物品实际像素对齐：主 canvas（2D 贴图或 3D 渲染结果） */
+    function getMaskCanvas(glintCanvas) {
+        const host = glintCanvas && glintCanvas.parentElement;
+        const first = host && host.firstElementChild;
+        if (first && first.tagName === 'CANVAS' && first !== glintCanvas) return first;
+        return null;
     }
 
-    function drawGlintOnCanvas(ctx, nowMs, useFlatPad) {
+    function drawGlintOnCanvas(ctx, nowMs, maskCanvas) {
         if (!glintSource || !ctx) return;
         const w = ctx.canvas.width;
         const h = ctx.canvas.height;
-        const inset = useFlatPad ? padInset(ctx) : 0;
-        const size = w - inset * 2;
-        const t = (nowMs || performance.now()) * 0.003;
+        const t = (nowMs || performance.now()) * 0.0003;
         const scrollX = (t % 1) * glintSource.width;
         const scrollY = (t * 0.6 % 1) * glintSource.height;
         const gw = glintSource.width;
         const gh = glintSource.height;
 
-        ctx.save();
         ctx.clearRect(0, 0, w, h);
+        ctx.save();
+        const cfg = global.McIconConfig || { FLAT_PAD_RATIO: 0.1 };
+        const pad = cfg.FLAT_PAD_RATIO || 0;
+        const inset = !maskCanvas || maskCanvas.width < 1 ? w * pad : 0;
+        const inner = w - inset * 2;
+        if (inset > 0) {
+            ctx.beginPath();
+            ctx.rect(inset, inset, inner, inner);
+            ctx.clip();
+        }
         ctx.globalCompositeOperation = 'lighter';
-        ctx.globalAlpha = 0.72;
-        ctx.beginPath();
-        ctx.rect(inset, inset, size, size);
-        ctx.clip();
-        for (let x = -gw; x < size + gw; x += gw) {
-            for (let y = -gh; y < size + gh; y += gh) {
-                ctx.drawImage(glintSource, x - scrollX, y - scrollY);
+        ctx.globalAlpha = 0.5;
+        const spanW = inset > 0 ? inner : w;
+        const spanH = inset > 0 ? inner : h;
+        for (let x = -gw; x < spanW + gw; x += gw) {
+            for (let y = -gh; y < spanH + gh; y += gh) {
+                const dx = inset > 0 ? x + inset : x;
+                const dy = inset > 0 ? y + inset : y;
+                ctx.drawImage(glintSource, dx - scrollX, dy - scrollY);
             }
         }
         ctx.restore();
+
+        if (maskCanvas && maskCanvas.width > 0 && maskCanvas.height > 0) {
+            ctx.globalCompositeOperation = 'destination-in';
+            ctx.globalAlpha = 1;
+            ctx.drawImage(maskCanvas, 0, 0, w, h);
+            ctx.globalCompositeOperation = 'source-over';
+        }
     }
 
     function ensureLoop() {
@@ -110,7 +127,7 @@
                     return;
                 }
                 const ctx = entry.canvas.getContext('2d');
-                if (ctx) drawGlintOnCanvas(ctx, now, entry.useFlatPad);
+                if (ctx) drawGlintOnCanvas(ctx, now, entry.maskCanvas);
             });
             if (overlayTargets.size > 0) {
                 rafId = requestAnimationFrame(tick);
@@ -123,13 +140,11 @@
 
     function registerOverlay(canvas, itemId) {
         if (!canvas || !itemHasGlint(itemId)) return;
-        const host = canvas.parentElement;
-        const useFlatPad = !!(host && host.querySelector('.item-tex-anim'));
-        overlayTargets.add({ canvas, itemId, useFlatPad });
-        loadGlintImage().then((img) => {
-            if (!img) return;
+        const maskCanvas = getMaskCanvas(canvas);
+        overlayTargets.add({ canvas, itemId, maskCanvas });
+        loadGlintImage().then(() => {
             const ctx = canvas.getContext('2d');
-            if (ctx) drawGlintOnCanvas(ctx, performance.now(), useFlatPad);
+            if (ctx) drawGlintOnCanvas(ctx, performance.now(), maskCanvas);
             ensureLoop();
         });
     }
@@ -138,7 +153,7 @@
         const cfg = global.McIconConfig || { RENDER_SIZE: 83 };
         const s = cfg.RENDER_SIZE;
         return `<canvas class="item-glint-overlay" width="${s}" height="${s}" aria-hidden="true"
-            style="position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;pointer-events:none;"></canvas>`;
+            style="position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;pointer-events:none;mix-blend-mode:plus-lighter;"></canvas>`;
     }
 
     function initInContainer(root) {
