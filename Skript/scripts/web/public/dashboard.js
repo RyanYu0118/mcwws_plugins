@@ -37,6 +37,17 @@ function txTypeLabel(type) {
     return type;
 }
 
+function trendTextureHtml(itemId) {
+    const name = itemDisplayName(itemId);
+    if (typeof getTextureHtml === 'function') {
+        return getTextureHtml(itemId, name);
+    }
+    if (window.getTextureHtml) {
+        return window.getTextureHtml(itemId, name);
+    }
+    return '';
+}
+
 // ═══ INITIALIZATION ═══
 document.addEventListener('DOMContentLoaded', () => {
     loadAllData();
@@ -185,7 +196,7 @@ function renderLeaderboard(data) {
             entry.trades.toLocaleString() + ' 笔' :
             formatCurrency(Math.abs(entry[valueKey]));
         const subStat = currentLeaderboard === 'traders'
-            ? `买入 ${formatCurrency(entry.spent)} · 回收 ${formatCurrency(entry.earned)}`
+            ? `买入 ${formatCurrency(entry.spent)}  回收 ${formatCurrency(entry.earned)}`
             : `${entry.trades} 笔交易`;
 
         return `
@@ -216,10 +227,10 @@ function renderTrends(items) {
         const isPositive = item.changePercent >= 0;
         return `
             <div class="trend-item" onclick="showItemDetails('${escapeHtml(item.item)}')">
-                <span class="trend-icon">${isPositive ? '📈' : '📉'}</span>
+                <div class="trend-icon">${trendTextureHtml(item.item)}</div>
                 <div class="trend-info">
                     <div class="trend-name">${itemDisplayName(item.item)}</div>
-                    <div class="trend-stats">${item.recentCount} 笔近期 · ${formatCurrency(item.avgPrice)}/件</div>
+                    <div class="trend-stats">${item.recentCount} 笔近期  ${formatCurrency(item.avgPrice)}/件</div>
                 </div>
                 <span class="trend-change ${isPositive ? 'positive' : 'negative'}">
                     ${isPositive ? '+' : ''}${item.changePercent.toFixed(0)}%

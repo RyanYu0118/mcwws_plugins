@@ -93,7 +93,7 @@ function openTradeModal(item) {
         return;
     }
 
-    title.textContent = `UltimateShop · ${item.name}`;
+    title.textContent = `UltimateShop  ${item.name}`;
 
     const offers = item.ultimateShopOffers || [];
     const blocks = offers.map((o, idx) => {

@@ -749,7 +749,14 @@ body {
 }
 
 .trend-icon {
-    font-size: 1.5rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trend-icon > div {
+    margin-right: 0 !important;
 }
 
 .trend-info {
