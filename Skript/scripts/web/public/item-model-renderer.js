@@ -14,6 +14,18 @@
     };
     // 物品栏格正交视锥半宽（越小图标越大）；对齐 MC GUI 固定机位
     const GUI_FRUSTUM_HALF = 0.36;
+    // 占 NDC 视口比例（2.0 为满幅），略留边避免贴边裁切
+    const GUI_CELL_FILL = 0.9;
+
+    // 与 MC 物品栏 gui_light=side 一致：顶面亮，左下稍暗，右下较暗
+    const MC_FACE_SHADE = {
+        up: 1.0,
+        down: 0.5,
+        north: 0.8,
+        south: 0.8,
+        west: 0.8,
+        east: 0.48
+    };
 
     const modelJsonCache = new Map();
     const iconCache = new Map();
@@ -49,9 +61,19 @@
         return `${ASSET_BASE}/textures/${t.slice(0, i)}/${t.slice(i + 1)}.png`;
     }
 
+    function resolveTextureRef(ref, textures, depth) {
+        if (!ref || !textures) return null;
+        if (depth > 12) return null;
+        if (ref[0] !== '#') return textureToUrl(ref);
+        const next = textures[ref.slice(1)];
+        if (!next) return null;
+        if (next[0] === '#') return resolveTextureRef(next, textures, depth + 1);
+        return textureToUrl(next);
+    }
+
     function modelCandidates(itemId) {
         const id = normalizeId(itemId);
-        const list = [`item/${id}`, `block/${id}_inventory`, `block/${id}`];
+        const list = [`block/${id}_inventory`, `block/${id}`, `item/${id}`];
         if (id.startsWith('enchanted_book')) list.unshift('item/enchanted_book');
         if (/^(potion|splash_potion|lingering_potion)/.test(id)) list.unshift('item/potion');
         if (id.startsWith('arrow_of_')) list.unshift('item/tipped_arrow');
@@ -109,11 +131,14 @@
     }
 
     async function resolveModel(itemId) {
+        let flatModel = null;
         for (const path of modelCandidates(itemId)) {
             const m = await mergeModel(path, new Set());
-            if (m && (m.elements.length || m.layers.length)) return m;
+            if (!m) continue;
+            if (modelNeeds3d(m)) return m;
+            if (m.layers.length && !flatModel) flatModel = m;
         }
-        return null;
+        return flatModel;
     }
 
     function modelNeeds3d(model) {
@@ -200,18 +225,22 @@
         geo.setIndex([0, 1, 2, 0, 2, 3]);
         geo.computeVertexNormals();
 
-        const meshHolder = { geo, url, group };
+        const shade = MC_FACE_SHADE[faceName] ?? 0.8;
+        const meshHolder = { geo, url, shade };
         group.__meshes = group.__meshes || [];
         group.__meshes.push(meshHolder);
     }
 
     async function finalizeGroup(group) {
+        const THREE = getThree();
         const holders = group.__meshes || [];
         delete group.__meshes;
         for (const h of holders) {
             const tex = await loadTexture(h.url);
-            const mat = new THREE.MeshLambertMaterial({
+            const shade = h.shade ?? 0.8;
+            const mat = new THREE.MeshBasicMaterial({
                 map: tex,
+                color: new THREE.Color(shade, shade, shade),
                 transparent: true,
                 side: THREE.DoubleSide
             });
@@ -222,11 +251,7 @@
 
     async function buildFromElements(model) {
         const root = new THREE.Group();
-        const resolveTex = (ref) => {
-            if (!ref) return null;
-            if (ref[0] === '#') return textureToUrl(model.textures[ref.slice(1)]);
-            return textureToUrl(ref);
-        };
+        const resolveTex = (ref) => resolveTextureRef(ref, model.textures, 0);
 
         model.elements.forEach((el) => {
             Object.entries(el.faces || {}).forEach(([name, face]) => {
@@ -293,6 +318,73 @@
         camera.updateProjectionMatrix();
     }
 
+    function getBoxCorners(box, out) {
+        const { min, max } = box;
+        out[0].set(min.x, min.y, min.z);
+        out[1].set(max.x, min.y, min.z);
+        out[2].set(min.x, max.y, min.z);
+        out[3].set(max.x, max.y, min.z);
+        out[4].set(min.x, min.y, max.z);
+        out[5].set(max.x, min.y, max.z);
+        out[6].set(min.x, max.y, max.z);
+        out[7].set(max.x, max.y, max.z);
+    }
+
+    function getNdcBounds(group, cam, scratch) {
+        const THREE = getThree();
+        group.updateMatrixWorld(true);
+        cam.updateMatrixWorld(true);
+        const box = new THREE.Box3().setFromObject(group);
+        if (box.isEmpty()) return null;
+
+        const corners = scratch.corners;
+        getBoxCorners(box, corners);
+        let minX = Infinity;
+        let maxX = -Infinity;
+        let minY = Infinity;
+        let maxY = -Infinity;
+        const p = scratch.vec;
+        for (let i = 0; i < 8; i += 1) {
+            p.copy(corners[i]).project(cam);
+            minX = Math.min(minX, p.x);
+            maxX = Math.max(maxX, p.x);
+            minY = Math.min(minY, p.y);
+            maxY = Math.max(maxY, p.y);
+        }
+        return {
+            span: Math.max(maxX - minX, maxY - minY, 0.0001),
+            midX: (minX + maxX) / 2,
+            midY: (minY + maxY) / 2
+        };
+    }
+
+    function fitModelToGuiCell(group, cam) {
+        const THREE = getThree();
+        const scratch = {
+            corners: Array.from({ length: 8 }, () => new THREE.Vector3()),
+            vec: new THREE.Vector3()
+        };
+        const targetSpan = 2 * GUI_CELL_FILL;
+        let bounds = getNdcBounds(group, cam, scratch);
+        if (!bounds) return;
+
+        if (bounds.span > targetSpan) {
+            group.scale.multiplyScalar(targetSpan / bounds.span);
+            bounds = getNdcBounds(group, cam, scratch);
+        }
+        if (!bounds) return;
+
+        if (Math.abs(bounds.midX) > 0.002 || Math.abs(bounds.midY) > 0.002) {
+            group.updateMatrixWorld(true);
+            const center = new THREE.Box3().setFromObject(group).getCenter(scratch.vec);
+            const ndc = center.clone().project(cam);
+            const worldW = (cam.right - cam.left) * 0.5;
+            const worldH = (cam.top - cam.bottom) * 0.5;
+            group.position.x -= ndc.x * worldW;
+            group.position.y -= ndc.y * worldH;
+        }
+    }
+
     function initRenderer() {
         const THREE = getThree();
         if (!THREE) return false;
@@ -338,15 +430,11 @@
         }
 
         applyGuiTransform(group, model);
+        setupMcItemCamera();
+        fitModelToGuiCell(group, camera);
 
         const renderScene = new THREE.Scene();
-        const amb = new THREE.AmbientLight(0xffffff, 0.9);
-        const dir = new THREE.DirectionalLight(0xffffff, 0.6);
-        dir.position.set(3, 5, 4);
-        renderScene.add(amb);
-        renderScene.add(dir);
         renderScene.add(group);
-        setupMcItemCamera();
 
         renderer.setRenderTarget(null);
         renderer.render(renderScene, camera);

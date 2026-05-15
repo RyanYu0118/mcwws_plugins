@@ -16,8 +16,8 @@ timestamps:
   mute: 0
   jail: 0
   onlinejail: 0
-  logout: 1778863584327
-  login: 1778857270273
+  logout: 1778864877404
+  login: 1778864822453
 money: '220768.22671956333864727'
 last-account-name: Ryan_yu__
 logoutlocation:
@@ -26,8 +26,8 @@ logoutlocation:
   x: -468.9632901662078
   y: 98.0
   z: -500.1992128990796
-  yaw: -121.87832641601562
-  pitch: 8.824565887451172
+  yaw: -107.66212463378906
+  pitch: 40.11703872680664
 lastlocation:
   world: 407ccbed-2f74-4524-be27-8b4371eedfa8
   world-name: world
