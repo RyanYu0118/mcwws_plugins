@@ -154,7 +154,7 @@
         return false;
     }
 
-    /** 门、活板门、整块玻璃（非玻璃板）、沉重核心 → 方块模型含立方体面，走 3D（modelCandidates 已优先 block） */
+    /** 门、活板门、整块玻璃（非玻璃板）、沉重核心 → 方块模型含立方体面，走 3D；门/活板门无单体 block/id 时尝试 block/id_bottom_left 等子模型；玻璃纹理可为 { sprite } 对象 */
     function modelCandidatesFlatFirst(itemId) {
         const id = normalizeId(itemId);
         const itemPath = `item/${id}`;
@@ -167,6 +167,14 @@
         let p = String(parent);
         if (p.startsWith('minecraft:')) p = p.slice(10);
         return p;
+    }
+
+    /** 1.21+ 方块 JSON 中 textures 值可为 { sprite: "minecraft:..." } */
+    function textureMapValueToString(val) {
+        if (!val) return null;
+        if (typeof val === 'string') return val;
+        if (typeof val === 'object' && typeof val.sprite === 'string') return val.sprite;
+        return null;
     }
 
     function textureToUrl(ref) {
@@ -182,15 +190,41 @@
         if (!ref || !textures) return null;
         if (depth > 12) return null;
         if (ref[0] !== '#') return textureToUrl(ref);
-        const next = textures[ref.slice(1)];
+        const nextRaw = textures[ref.slice(1)];
+        const next = textureMapValueToString(nextRaw) || (typeof nextRaw === 'string' ? nextRaw : null);
         if (!next) return null;
         if (next[0] === '#') return resolveTextureRef(next, textures, depth + 1);
         return textureToUrl(next);
     }
 
+    function isMcDoorBlockId(id) {
+        return !!(id && id.endsWith('_door') && !id.endsWith('_trapdoor'));
+    }
+
+    function isMcTrapdoorBlockId(id) {
+        return !!(id && id.endsWith('_trapdoor'));
+    }
+
     function modelCandidates(itemId) {
         const id = normalizeId(itemId);
-        const list = [`block/${id}_inventory`, `block/${id}`, `item/${id}`];
+        const doorBlockParts = isMcDoorBlockId(id)
+            ? [
+                `block/${id}_bottom_left`,
+                `block/${id}_bottom_right`,
+                `block/${id}_top_left`,
+                `block/${id}_top_right`
+            ]
+            : [];
+        const trapdoorBlockParts = isMcTrapdoorBlockId(id)
+            ? [`block/${id}_bottom`, `block/${id}_top`, `block/${id}_open`]
+            : [];
+        const list = [
+            `block/${id}_inventory`,
+            ...doorBlockParts,
+            ...trapdoorBlockParts,
+            `block/${id}`,
+            `item/${id}`
+        ];
         if (id.startsWith('enchanted_book')) list.unshift('item/enchanted_book');
         if (/^(potion|splash_potion|lingering_potion)/.test(id)) list.unshift('item/potion');
         if (id.startsWith('arrow_of_')) list.unshift('item/tipped_arrow');
@@ -241,7 +275,8 @@
             merged.layers = Object.keys(merged.textures)
                 .filter((k) => k.startsWith('layer'))
                 .sort()
-                .map((k) => merged.textures[k]);
+                .map((k) => textureMapValueToString(merged.textures[k]) || (typeof merged.textures[k] === 'string' ? merged.textures[k] : null))
+                .filter(Boolean);
         }
         if (!Array.isArray(merged.layers)) merged.layers = [];
 
@@ -428,6 +463,8 @@
     }
 
     function pushFace(group, from, to, faceName, face, resolveTex, model) {
+        // GUI 斜视机位下底面不可见，不生成 mesh（减绘制、透明块少一层）
+        if (faceName === 'down') return;
         const url = resolveTex(face.texture);
         if (!url) return;
 
@@ -458,10 +495,6 @@
                 positions = [x1, y2, z2, x2, y2, z2, x2, y2, z1, x1, y2, z1];
                 uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
                 break;
-            case 'down':
-                positions = [x1, y1, z1, x2, y1, z1, x2, y1, z2, x1, y1, z2];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
-                break;
             default:
                 return;
         }
@@ -469,7 +502,9 @@
         const geo = new THREE.BufferGeometry();
         geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
         geo.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
-        geo.setIndex([0, 1, 2, 0, 2, 3]);
+        // FrontSide：正面为 CCW。当前顶点序里仅 up 与 Three 外法向一致，其余面需反转索引以免被背面剔除误删
+        const triIdx = faceName === 'up' ? [0, 1, 2, 0, 2, 3] : [0, 2, 1, 0, 3, 2];
+        geo.setIndex(triIdx);
         geo.computeVertexNormals();
 
         const shade = computeViewShade(faceName, model);
@@ -519,7 +554,8 @@
                 map: tex,
                 color: new THREE.Color(r, g, b),
                 transparent: true,
-                side: THREE.DoubleSide
+                // 单面绘制：背对机位的面不渲染（立方体约一半面被剔除，玻璃少画内侧面、减轻透明叠层）
+                side: THREE.FrontSide
             });
             const mesh = new THREE.Mesh(h.geo, mat);
             group.add(mesh);
