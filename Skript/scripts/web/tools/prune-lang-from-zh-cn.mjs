@@ -21,14 +21,17 @@ function normalizeEffectId(effect) {
     return EFFECT_ID_ALIASES[effect] || effect;
 }
 
-function buildMcItemByKey(lang) {
-    const byKey = {};
+function buildMcLangMaps(lang) {
+    const itemByKey = {};
+    const blockByKey = {};
     for (const [k, v] of Object.entries(lang)) {
         if (k.startsWith('item.minecraft.')) {
-            byKey[k.slice('item.minecraft.'.length)] = v;
+            itemByKey[k.slice('item.minecraft.'.length)] = v;
+        } else if (k.startsWith('block.minecraft.')) {
+            blockByKey[k.slice('block.minecraft.'.length)] = v;
         }
     }
-    return byKey;
+    return { itemByKey, blockByKey };
 }
 
 function romanLevelSuffix(level) {
@@ -38,9 +41,12 @@ function romanLevelSuffix(level) {
     return '';
 }
 
-function lookupMcItemName(itemId, byKey) {
+function lookupMcItemName(itemId, maps) {
+    const itemByKey = maps.itemByKey;
+    const blockByKey = maps.blockByKey;
     const id = String(itemId).toLowerCase().replace(/-/g, '_');
-    if (byKey[id]) return byKey[id];
+    if (itemByKey[id]) return itemByKey[id];
+    if (blockByKey[id]) return blockByKey[id];
 
     const standalone = {
         water_bottle: 'potion.effect.water',
@@ -50,42 +56,42 @@ function lookupMcItemName(itemId, byKey) {
         awkward_splash_potion: 'splash_potion.effect.awkward',
         awkward_lingering_potion: 'lingering_potion.effect.awkward'
     };
-    if (standalone[id] && byKey[standalone[id]]) {
-        return byKey[standalone[id]];
+    if (standalone[id] && itemByKey[standalone[id]]) {
+        return itemByKey[standalone[id]];
     }
 
     let m = id.match(/^(potion|splash_potion|lingering_potion)_of_(.+)_extended$/);
     if (m) {
         const effect = normalizeEffectId(m[2]);
-        const base = byKey[`${m[1]}.effect.${effect}`];
+        const base = itemByKey[m[1] + '.effect.' + effect];
         if (base) return base;
     }
 
     m = id.match(/^(potion|splash_potion|lingering_potion)_of_(.+)_([0-9]+)$/);
     if (m) {
         const effect = normalizeEffectId(m[2]);
-        const base = byKey[`${m[1]}.effect.${effect}`];
+        const base = itemByKey[m[1] + '.effect.' + effect];
         if (base) return base + romanLevelSuffix(m[3]);
     }
 
     m = id.match(/^(potion|splash_potion|lingering_potion)_of_(.+)$/);
     if (m) {
         const effect = normalizeEffectId(m[2]);
-        const base = byKey[`${m[1]}.effect.${effect}`];
+        const base = itemByKey[m[1] + '.effect.' + effect];
         if (base) return base;
     }
 
     m = id.match(/^arrow_of_(.+)_extended$/);
     if (m) {
         const effect = normalizeEffectId(m[1]);
-        const base = byKey[`tipped_arrow.effect.${effect}`];
+        const base = itemByKey['tipped_arrow.effect.' + effect];
         if (base) return base;
     }
 
     m = id.match(/^arrow_of_(.+)_([0-9]+)$/);
     if (m) {
         const effect = normalizeEffectId(m[1]);
-        const base = byKey[`tipped_arrow.effect.${effect}`];
+        const base = itemByKey['tipped_arrow.effect.' + effect];
         if (base) return base + romanLevelSuffix(m[2]);
     }
 
@@ -116,7 +122,7 @@ function escapeJsString(s) {
 function formatItemDict(entries) {
     const lines = [
         '// ==========================================',
-        '// 补充译名：zh_cn.json 无 item.minecraft.* 对应时使用',
+        '// 补充译名：zh_cn.json 无 item/block.minecraft.* 对应时使用',
         '// ==========================================',
         '',
         'const ItemDict = {'
@@ -129,7 +135,7 @@ function formatItemDict(entries) {
 }
 
 const LOADER_AND_LOOKUP = `// ==========================================
-// Minecraft 官方中文（zh_cn.json → item.minecraft.*）
+// Minecraft 官方中文（zh_cn.json → item/block.minecraft.*）
 // ==========================================
 const MC_LANG_URL = '26.1.2/assets/minecraft/lang/zh_cn.json';
 
@@ -139,20 +145,23 @@ const EFFECT_ID_ALIASES = {
     wind_charging: 'wind_charged'
 };
 
-let mcItemByKey = null;
+let mcLangMaps = null;
 
 function normalizeEffectId(effect) {
     return EFFECT_ID_ALIASES[effect] || effect;
 }
 
-function buildMcItemByKey(lang) {
-    const byKey = {};
+function buildMcLangMaps(lang) {
+    const itemByKey = {};
+    const blockByKey = {};
     for (const [k, v] of Object.entries(lang)) {
         if (k.startsWith('item.minecraft.')) {
-            byKey[k.slice('item.minecraft.'.length)] = v;
+            itemByKey[k.slice('item.minecraft.'.length)] = v;
+        } else if (k.startsWith('block.minecraft.')) {
+            blockByKey[k.slice('block.minecraft.'.length)] = v;
         }
     }
-    return byKey;
+    return { itemByKey, blockByKey };
 }
 
 function romanLevelSuffix(level) {
@@ -162,9 +171,12 @@ function romanLevelSuffix(level) {
     return '';
 }
 
-function lookupMcItemName(itemId, byKey) {
+function lookupMcItemName(itemId, maps) {
+    const itemByKey = maps.itemByKey;
+    const blockByKey = maps.blockByKey;
     const id = String(itemId).toLowerCase().replace(/-/g, '_');
-    if (byKey[id]) return byKey[id];
+    if (itemByKey[id]) return itemByKey[id];
+    if (blockByKey[id]) return blockByKey[id];
 
     const standalone = {
         water_bottle: 'potion.effect.water',
@@ -174,42 +186,42 @@ function lookupMcItemName(itemId, byKey) {
         awkward_splash_potion: 'splash_potion.effect.awkward',
         awkward_lingering_potion: 'lingering_potion.effect.awkward'
     };
-    if (standalone[id] && byKey[standalone[id]]) {
-        return byKey[standalone[id]];
+    if (standalone[id] && itemByKey[standalone[id]]) {
+        return itemByKey[standalone[id]];
     }
 
     let m = id.match(/^(potion|splash_potion|lingering_potion)_of_(.+)_extended$/);
     if (m) {
         const effect = normalizeEffectId(m[2]);
-        const base = byKey[m[1] + '.effect.' + effect];
+        const base = itemByKey[m[1] + '.effect.' + effect];
         if (base) return base;
     }
 
     m = id.match(/^(potion|splash_potion|lingering_potion)_of_(.+)_([0-9]+)$/);
     if (m) {
         const effect = normalizeEffectId(m[2]);
-        const base = byKey[m[1] + '.effect.' + effect];
+        const base = itemByKey[m[1] + '.effect.' + effect];
         if (base) return base + romanLevelSuffix(m[3]);
     }
 
     m = id.match(/^(potion|splash_potion|lingering_potion)_of_(.+)$/);
     if (m) {
         const effect = normalizeEffectId(m[2]);
-        const base = byKey[m[1] + '.effect.' + effect];
+        const base = itemByKey[m[1] + '.effect.' + effect];
         if (base) return base;
     }
 
     m = id.match(/^arrow_of_(.+)_extended$/);
     if (m) {
         const effect = normalizeEffectId(m[1]);
-        const base = byKey['tipped_arrow.effect.' + effect];
+        const base = itemByKey['tipped_arrow.effect.' + effect];
         if (base) return base;
     }
 
     m = id.match(/^arrow_of_(.+)_([0-9]+)$/);
     if (m) {
         const effect = normalizeEffectId(m[1]);
-        const base = byKey['tipped_arrow.effect.' + effect];
+        const base = itemByKey['tipped_arrow.effect.' + effect];
         if (base) return base + romanLevelSuffix(m[2]);
     }
 
@@ -222,23 +234,23 @@ window.mcLangReady = fetch(MC_LANG_URL)
         return r.json();
     })
     .then((lang) => {
-        mcItemByKey = buildMcItemByKey(lang);
+        mcLangMaps = buildMcLangMaps(lang);
     })
     .catch((err) => {
         console.warn('无法加载 zh_cn.json，将仅使用 ItemDict 兜底', err);
-        mcItemByKey = {};
+        mcLangMaps = { itemByKey: {}, blockByKey: {} };
     });
 
 `;
 
 const GET_CHINESE_NAME = `/**
- * 物品中文名：优先 zh_cn.json (item.minecraft.*)，其次 ItemDict 兜底。
+ * 物品中文名：zh_cn item.minecraft.* → block.minecraft.* → ItemDict 兜底。
  */
 window.getChineseName = function(itemId) {
     const id = String(itemId).toLowerCase().replace(/-/g, '_');
 
-    if (mcItemByKey) {
-        const mc = lookupMcItemName(id, mcItemByKey);
+    if (mcLangMaps) {
+        const mc = lookupMcItemName(id, mcLangMaps);
         if (mc) return mc;
     }
 
@@ -271,13 +283,13 @@ const GET_CHINESE_CATEGORY = `window.getChineseCategory = function(category) {
 
 const langJs = fs.readFileSync(langJsPath, 'utf8');
 const zhCn = JSON.parse(fs.readFileSync(zhCnPath, 'utf8'));
-const byKey = buildMcItemByKey(zhCn);
+const mcMaps = buildMcLangMaps(zhCn);
 const entries = parseItemDict(langJs);
 
 const kept = [];
 const removed = [];
 for (const entry of entries) {
-    if (lookupMcItemName(entry.key, byKey)) {
+    if (lookupMcItemName(entry.key, mcMaps)) {
         removed.push(entry.key);
     } else {
         kept.push(entry);

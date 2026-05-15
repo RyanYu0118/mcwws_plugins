@@ -424,7 +424,7 @@ function renderCards() {
             <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #3b82f6, #8b5cf6);"></div>
 
             <div style="display:flex; align-items:center; margin-bottom:15px; margin-top: 5px;">
-                ${getTextureHtml(item.id, item.name)}
+                ${getItemIconHtml(item.id, item.name)}
                 <div style="min-width:0; width:100%;">
                     <h3 style="margin:0; font-size:1.1rem; color:#F1F5F9; font-weight: 600;">${item.name}</h3>
                     <span class="scrolling-id" style="font-size:0.75rem; color:#64748b; text-transform: lowercase;"><span class="scrolling-id-text">${item.id}</span></span>
@@ -449,6 +449,21 @@ function renderCards() {
     }).join('');
     initScrollingIds();
     renderPagination();
+    mountItemIcons();
+}
+
+function getItemIconHtml(itemId, itemName) {
+    if (window.McItemIcon && window.McItemIcon.enabled && typeof THREE !== 'undefined') {
+        return window.McItemIcon.getIconSlotHtml(itemId, itemName);
+    }
+    return window.getTextureHtml ? window.getTextureHtml(itemId, itemName) : '';
+}
+
+function mountItemIcons() {
+    const grid = document.getElementById('itemsGrid');
+    if (grid && window.McItemIcon) {
+        window.McItemIcon.mountGrid(grid);
+    }
 }
 
 function renderPagination() {
