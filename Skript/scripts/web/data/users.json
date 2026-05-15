@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "username": "Ryan Yu",
+    "passwordHash": "eb966d07d446bd5cfbc3cd56dec96d0dc657af834d39e060dcd3f7934a49a53aa9a1a6d263877e1853f958d2c7a69c6642791c8d5d625d5ba38197e393e6b946",
+    "passwordSalt": "dc3b5ab95f667e0061745883c2309de8",
+    "playerId": "Ryan_yu__",
+    "authToken": null,
+    "createdAt": "2026-05-14T18:27:21.078Z"
+  },
+  {
+    "id": 2,
+    "username": "Song Yi",
+    "passwordHash": "5a195f7444539c6e4f80cf70ed52a978bb06f2e62428b03852f6aa16ec311a92e386a86493935ffefb61400c2c5d4116cd8cd4d8ca8b58950fa38db94e302873",
+    "passwordSalt": "c834d4b040468cdb7d4b7816639dc70b",
+    "playerId": "Song_zi",
+    "authToken": "57ae2021bffd535d1f1deea1a3c5e13543564cc4a01d69a5d6c4f9f3c8de43e9",
+    "createdAt": "2026-05-15T07:35:39.432Z"
+  }
+]

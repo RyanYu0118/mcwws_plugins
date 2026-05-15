@@ -1,0 +1,280 @@
+<!-- DS-WEB-VERSION: 2.5.7 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://www.ryanstudio.work/upload/Icon.png">
+    <title>动态商店仪表板</title>
+    <meta name="description" content="流浪世界服务器商店系统实时商店分析与交易监控面板">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="brand-icon"></span>
+            <span class="brand-text">流浪世界服务器商店系统</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link active">
+                <span class="nav-icon">📊</span> 仪表板
+            </a>
+            <a href="items.html" class="nav-link">
+                <span class="nav-icon">🛒</span> 物品目录
+            </a>
+            <a href="admin.html" class="nav-link">
+                <span class="nav-icon">⚡</span> 管理
+            </a>
+        </div>
+        <div class="nav-actions">
+            <button class="refresh-btn" onclick="refreshData()" title="刷新数据">
+                <span class="refresh-icon">↻</span>
+            </button>
+            <span class="last-updated">上次更新: <span id="lastUpdate">--</span></span>
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">商店分析</h1>
+            <p class="hero-subtitle">实时经济监测与市场洞察</p>
+        </div>
+        <div class="hero-glow"></div>
+    </header>
+
+    <div class="container">
+        <!-- 统计卡片网格 -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card glass" data-type="total">
+                    <div class="stat-icon-wrap">
+                        <span class="stat-icon">📦</span>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">总交易次数</span>
+                        <span class="stat-value" id="totalTransactions">--</span>
+                    </div>
+                    <div class="stat-trend positive" id="txTrend">--</div>
+                </div>
+
+                <div class="stat-card glass" data-type="volume">
+                    <div class="stat-icon-wrap">
+                        <span class="stat-icon">💰</span>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">总交易额</span>
+                        <span class="stat-value" id="totalMoney">--</span>
+                    </div>
+                    <div class="stat-trend" id="volumeTrend">--</div>
+                </div>
+
+                <div class="stat-card glass" data-type="buy">
+                    <div class="stat-icon-wrap buy">
+                        <span class="stat-icon">📈</span>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">购买次数</span>
+                        <span class="stat-value" id="totalBuys">--</span>
+                    </div>
+                </div>
+
+                <div class="stat-card glass" data-type="sell">
+                    <div class="stat-icon-wrap sell">
+                        <span class="stat-icon">📉</span>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">出售次数</span>
+                        <span class="stat-value" id="totalSells">--</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 经济健康指标 -->
+        <section class="health-section glass">
+            <h2 class="section-title">
+                <span class="title-icon">💊</span> 经济健康
+            </h2>
+            <div class="health-grid">
+                <div class="health-card">
+                    <div class="health-label">购买比率</div>
+                    <div class="health-value" id="buyRatio">--</div>
+                    <div class="health-bar">
+                        <div class="health-bar-fill" id="buyRatioBar" style="width: 50%"></div>
+                    </div>
+                </div>
+                <div class="health-card">
+                    <div class="health-label">活跃度</div>
+                    <div class="health-value" id="velocity">--</div>
+                </div>
+                <div class="health-card">
+                    <div class="health-label">净流量</div>
+                    <div class="health-value" id="netFlow">--</div>
+                </div>
+                <div class="health-card">
+                    <div class="health-label">平均交易额</div>
+                    <div class="health-value" id="avgTransaction">--</div>
+                </div>
+                <div class="health-card">
+                    <div class="health-label">独特物品数</div>
+                    <div class="health-value" id="uniqueItems">--</div>
+                </div>
+                <div class="health-card">
+                    <div class="health-label">活跃交易者</div>
+                    <div class="health-value" id="uniquePlayers">--</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 图表区 -->
+        <section class="charts-section">
+            <div class="chart-card glass">
+                <h3 class="chart-title">交易活动趋势</h3>
+                <div class="time-selector activity-time-selector">
+                    <button type="button" class="time-btn" data-range="10m" onclick="setActivityTimeRange('10m', this)">10分钟</button>
+                    <button type="button" class="time-btn" data-range="30m" onclick="setActivityTimeRange('30m', this)">30分钟</button>
+                    <button type="button" class="time-btn" data-range="1h" onclick="setActivityTimeRange('1h', this)">1小时</button>
+                    <button type="button" class="time-btn" data-range="6h" onclick="setActivityTimeRange('6h', this)">6小时</button>
+                    <button type="button" class="time-btn active" data-range="24h" onclick="setActivityTimeRange('24h', this)">24小时</button>
+                    <button type="button" class="time-btn" data-range="7d" onclick="setActivityTimeRange('7d', this)">7天</button>
+                    <button type="button" class="time-btn" data-range="1mo" onclick="setActivityTimeRange('1mo', this)">1个月</button>
+                    <button type="button" class="time-btn" data-range="1y" onclick="setActivityTimeRange('1y', this)">1年</button>
+                    <button type="button" class="time-btn" data-range="3y" onclick="setActivityTimeRange('3y', this)">3年</button>
+                    <button type="button" class="time-btn" data-range="all" onclick="setActivityTimeRange('all', this)">全部</button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="activityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- 主内容区网格 -->
+        <div class="content-grid">
+            <!-- 排行榜 -->
+            <section class="leaderboards-section glass">
+                <h2 class="section-title">
+                    <span class="title-icon">🏆</span> 排行榜
+                </h2>
+                <div class="leaderboard-tabs">
+                    <button class="tab-btn active" onclick="switchLeaderboard('earners')">收入最高</button>
+                    <button class="tab-btn" onclick="switchLeaderboard('spenders')">消费最高</button>
+                    <button class="tab-btn" onclick="switchLeaderboard('traders')">最活跃</button>
+                </div>
+                <div class="leaderboard-content" id="leaderboardContent">
+                    <div class="loading-spinner"></div>
+                </div>
+            </section>
+
+            <!-- 市场趋势 -->
+            <section class="trends-section glass">
+                <h2 class="section-title">
+                    <span class="title-icon">📊</span> 市场趋势
+                </h2>
+                <div class="trends-tabs">
+                    <button class="tab-btn active" onclick="switchTrends('hot')">🔥 热门</button>
+                    <button class="tab-btn" onclick="switchTrends('rising')">🚀 上涨</button>
+                    <button class="tab-btn" onclick="switchTrends('falling')">📉 下跌</button>
+                </div>
+                <div class="trends-content" id="trendsContent">
+                    <div class="loading-spinner"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 洞察卡片区：热门物品/活跃玩家/类别分布 -->
+        <section class="insights-section">
+            <div class="insight-card glass">
+                <h3 class="insight-title">
+                    <span class="title-icon">🔥</span> 热门交易物品
+                </h3>
+                <div class="insight-list" id="topItems">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+            <div class="insight-card glass">
+                <h3 class="insight-title">
+                    <span class="title-icon">👥</span> 最活跃玩家
+                </h3>
+                <div class="insight-list" id="topPlayers">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+            <div class="insight-card glass">
+                <h3 class="insight-title">
+                    <span class="title-icon">📊</span> 类别分布
+                </h3>
+                <div class="chart-container-sm">
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- 最近交易列表 -->
+        <section class="transactions-section glass">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-icon">📋</span> 最近交易
+                </h2>
+                <div class="section-actions">
+                    <div class="search-box">
+                        <input type="text" id="txSearch" placeholder="搜索交易..." class="search-input">
+                    </div>
+                    <select id="typeFilter" class="filter-select">
+                        <option value="">全部类型</option>
+                        <option value="BUY">购买</option>
+                        <option value="SELL">出售</option>
+                    </select>
+                </div>
+            </div>
+            <div class="transactions-table-wrap">
+                <table class="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>时间</th>
+                            <th>玩家</th>
+                            <th>类型</th>
+                            <th>物品</th>
+                            <th>数量</th>
+                            <th>价格</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsBody">
+                        <tr><td colspan="6" class="loading">加载中...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <button class="page-btn" onclick="previousPage()" id="prevBtn" disabled>← 上一页</button>
+                <span class="page-info">第 <span id="currentPage">1</span> 页 / 共 <span id="totalPages">1</span> 页</span>
+                <button class="page-btn" onclick="nextPage()" id="nextBtn">下一页 →</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>流浪世界服务器商店系统 v2.0 · 由 selfservice0 制作 · <a href="https://minecraftsmp.org" target="_blank">MinecraftSMP</a></p>
+    </footer>
+
+    <!-- 物品详情模态框 -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2 id="modalItemName">物品详情</h2>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div id="modalBody" class="modal-body">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# UltimateShop 映射文件
+# 用于将网页端的 itemId 对应到 UltimateShop 里的 shop 和 item 标识。
+# 例如，网页端 itemId 为 angler_pottery_sherd 的商品，实际在 UltimateShop 中是 shop 'pottery_shop' 的产品 ID 'A'
+# 请根据你的 UltimateShop shops/*.yml 配置实际填写 shop 和 item 值。
+# amount 表示默认购买数量，可省略。
+
+angler_pottery_sherd:
+  shop: 'example-shop-menu'
+  item: 'A'
+  amount: 1
+
+diamond_boots:
+  shop: 'example-shop-menu'
+  item: 'B'
+  amount: 1

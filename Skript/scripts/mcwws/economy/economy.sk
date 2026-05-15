@@ -1,0 +1,128 @@
+# ==========================================
+# 1. 核心计算函数 (极致性能内存版)
+# ==========================================
+function updatePrices():
+    loop {economy_items::*}:
+        set {_item} to loop-value
+        
+        # 直接从内存中读取基础价格，彻底脱离对 YAML 文件的频繁依赖
+        set {_buy_base} to {-base_price::buy::%{_item}%}
+        set {_sell_base} to {-base_price::sell::%{_item}%}
+        
+        # 防错机制：跳过空节点
+        if {_buy_base} is not set:
+            continue
+            
+        # 计算波动后的最终价格
+        set {_final_buy} to {_buy_base} * getMarketMultiplier({_item}, "buy")
+        set {_final_sell} to {_sell_base} * getMarketMultiplier({_item}, "sell")
+        
+        # 存入纯内存缓存，精确保留两位小数 (先乘100取整再除以100)
+        # 注意这里的 {-} 前缀，代表完全不写入硬盘！
+        set {-price_cache::buy::%{_item}%} to round({_final_buy} * 100) / 100
+        set {-price_cache::sell::%{_item}%} to round({_final_sell} * 100) / 100
+
+# ==========================================
+# 2. 波动函数 (在此处编写你的经济逻辑)
+# ==========================================
+function getMarketMultiplier(item: text, actionType: text) :: number:
+    set {_multiplier} to 1.0
+    
+    # 优化：从内存中直接获取物品分类标签，不再读取 YAML 文件
+    set {_category} to {-item_category::%{_item}%}
+    
+    # --- 逻辑示例：考古类物品回收价提高 10% ---
+    if {_category} is "archaeology":
+        if {_actionType} is "sell":
+            add 0.1 to {_multiplier}
+            
+    # --- 逻辑示例：木材类物品买入价打 9 折 ---
+    if {_category} is "wood":
+        if {_actionType} is "buy":
+            subtract 0.1 from {_multiplier}
+            
+    # --- 逻辑示例：根据在线人数动态涨价 ---
+    # set {_online} to amount of all players
+    # add ({_online} * 0.01) to {_multiplier}
+
+    return {_multiplier}
+
+# ==========================================
+# 3. 自动化任务 (启动加载与定时刷新)
+# ==========================================
+on load:
+    # 加载数据库
+    load yaml "plugins/Skript/scripts/mcwws/economy/database/items.yml" as "item_db"
+    set {economy_items::*} to yaml nodes with keys "" from "item_db"
+    
+    # 启动时，把基础价格和分类一次性全部读入内存临时变量！
+    loop {economy_items::*}:
+        set {_item} to loop-value
+        set {-base_price::buy::%{_item}%} to yaml value "%{_item}%.unit_buy" from "item_db"
+        set {-base_price::sell::%{_item}%} to yaml value "%{_item}%.unit_sell" from "item_db"
+        set {-item_category::%{_item}%} to yaml value "%{_item}%.category" from "item_db"
+        
+    # 立即执行一次初始化计算
+    updatePrices()
+    send "§a[Economy] 物品数据库已加载，并已缓存 %size of {economy_items::*}% 个物品的基础数据至内存。" to console
+
+# 每分钟自动刷新一次全服物价（后台静默执行）
+every 1 minute:
+    # 1. 先执行内存里的物价更新
+    updatePrices()
+    
+    # 2. 准备导出 Web 数据
+    load yaml "plugins/Skript/scripts/web/mcwws/economy/web_prices.yml" as "web_out"
+    
+    # 3. 将内存中的最新价格写入这个暂存 YAML
+    loop {economy_items::*}:
+        set {_item} to loop-value
+        # 防错检查
+        if {-price_cache::buy::%{_item}%} is set:
+            set yaml value "%{_item}%.buy" from "web_out" to {-price_cache::buy::%{_item}%}
+            set yaml value "%{_item}%.sell" from "web_out" to {-price_cache::sell::%{_item}%}
+            
+    # 4. 一次性保存到硬盘（每分钟仅产生 1 次磁盘写入，性能绝对安全）
+    save yaml "web_out"
+    unload yaml "web_out"
+
+# ==========================================
+# 4. PAPI 接口 (适配 skript-placeholders 1.7.1)
+# ==========================================
+papi placeholder with the prefix "mcwws.price":
+    if the identifier starts with "buy_":
+        set {_item} to subtext of the identifier from character 5 to (length of the identifier)
+        # 输出时也改为读取带有 {-} 的临时变量
+        set the result to "%{-price_cache::buy::%{_item}%}%"
+        
+    if the identifier starts with "sell_":
+        set {_item} to subtext of the identifier from character 6 to (length of the identifier)
+        set the result to "%{-price_cache::sell::%{_item}%}%"
+
+# ==========================================
+# 5. 管理员工具
+# ==========================================
+# 强制手动刷新物价: /eco-reload
+command /eco-reload:
+    permission: op
+    trigger:
+        updatePrices()
+        send "§a[Economy] 全服物价已强制刷新！"
+
+# 查询特定物品当前价格: /eco-check spruce_wood
+command /eco-check [<text>]:
+    permission: op
+    trigger:
+        if arg-1 is not set:
+            send "§c用法: /eco-check [物品ID]"
+            stop
+        set {_i} to arg-1
+        
+        # 判断和查询都改为带有 {-} 的临时变量
+        if {-price_cache::buy::%{_i}%} is not set:
+            send "§c数据库中不存在物品: %{_i}%"
+            stop
+            
+        send "§b--- 物品经济信息: §e%{_i}% §b---"
+        send "§f当前买入价: §a%{-price_cache::buy::%{_i}%}%"
+        send "§f当前卖出价: §6%{-price_cache::sell::%{_i}%}%"

@@ -1,0 +1,183 @@
+<!-- DS-WEB-VERSION: 2.5.7 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://www.ryanstudio.work/upload/Icon.png">
+    <title>物品目录 - 流浪世界服务器商店系统</title>
+    <meta name="description" content="浏览所有商店物品及当前价格">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3.26.0/dist/index.js"></script>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="brand-icon"></span>
+            <span class="brand-text">流浪世界服务器商店系统</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <span class="nav-icon">📊</span> 仪表板
+            </a>
+            <a href="items.html" class="nav-link active">
+                <span class="nav-icon">🛒</span> 物品目录
+            </a>
+            <a href="admin.html" class="nav-link">
+                <span class="nav-icon">⚡</span> 管理
+            </a>
+        </div>
+        <div class="nav-actions">
+            <span class="item-count" id="itemCount">-- 个物品</span>
+            <button id="refreshButton" class="refresh-btn" type="button" title="刷新物品">⟳</button>
+            <div class="user-actions">
+                <span id="userStatus" class="user-status">未登录</span>
+                <button id="authButton" class="auth-button" type="button">登录 / 注册</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <header class="hero items-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">物品目录</h1>
+            <p class="hero-subtitle">浏览所有商店物品及当前价格</p>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="hero-search" placeholder="搜索物品...">
+            </div>
+        </div>
+        <div class="hero-glow"></div>
+    </header>
+
+    <div class="container">
+        <!-- 分类选项卡 -->
+        <section class="category-section glass">
+            <div class="category-tabs" id="categoryTabs">
+                <button class="category-btn active" data-category="">标准动态价格</button>
+            </div>
+        </section>
+
+        <!-- 物品网格 -->
+        <section class="items-section">
+            <div class="items-header">
+                <span class="items-showing" id="itemsShowing">显示 -- 个物品</span>
+                <div class="filter-options">
+                    <label class="filter-checkbox">
+                        <input type="checkbox" id="hideUntradable">
+                        <span class="checkmark"></span>
+                        隐藏不可交易物品
+                    </label>
+                    <select id="sortSelect" class="filter-select">
+                        <option value="name">按名称排序</option>
+                        <option value="buyPrice">按购买价排序</option>
+                        <option value="sellPrice">按出售价排序</option>
+                        <option value="stock">按库存排序</option>
+                    </select>
+                    <!-- 新增逆序复选框 -->
+                    <label class="filter-checkbox" style="margin-left: 10px;">
+                        <input type="checkbox" id="sortReverse">
+                        <span class="checkmark"></span>
+                        逆序
+                    </label>
+                </div>
+                <div class="page-controls items-pagination">
+                    <button id="pagePrev" class="pagination-btn" type="button">上一页</button>
+                    <span id="pageInfo" class="pagination-info">第 1 / 1 页</span>
+                    <div class="page-jump">
+                        <input type="number" id="pageJumpInput" class="page-jump-input" placeholder="页码" min="1">
+                        <button id="pageJumpBtn" class="pagination-btn page-jump-btn" type="button">跳转</button>
+                    </div>
+                    <button id="pageNext" class="pagination-btn" type="button">下一页</button>
+                </div>
+            </div>
+            <div class="items-grid" id="itemsGrid">
+                <div class="loading-spinner"></div>
+            </div>
+            <div class="page-controls items-pagination items-pagination--bottom" aria-label="分页（页尾）">
+                <button id="pagePrevBottom" class="pagination-btn" type="button">上一页</button>
+                <span id="pageInfoBottom" class="pagination-info">第 1 / 1 页</span>
+                <div class="page-jump">
+                    <input type="number" id="pageJumpInputBottom" class="page-jump-input" placeholder="页码" min="1">
+                    <button id="pageJumpBtnBottom" class="pagination-btn page-jump-btn" type="button">跳转</button>
+                </div>
+                <button id="pageNextBottom" class="pagination-btn" type="button">下一页</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>流浪世界服务器商店系统 v2.0 · 由 selfservice0 制作 · <a href="https://minecraftsmp.org" target="_blank">MinecraftSMP</a>
+        </p>
+    </footer>
+
+    <!-- 物品详情模态框 -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2 id="modalItemName">物品详情</h2>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div id="modalBody" class="modal-body">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tradeModal" class="modal">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2 id="tradeModalTitle">UltimateShop 交易信息</h2>
+                <button type="button" class="modal-close" onclick="closeTradeModal()">×</button>
+            </div>
+            <div id="tradeModalBody" class="modal-body"></div>
+        </div>
+    </div>
+
+    <div id="authModal" class="modal">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2 id="authModalTitle">登录</h2>
+                <button class="modal-close" onclick="closeAuthModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-toggle">
+                    <button id="authModeLogin" type="button" class="auth-toggle-btn active" onclick="switchAuthMode('login')">登录</button>
+                    <button id="authModeRegister" type="button" class="auth-toggle-btn" onclick="switchAuthMode('register')">注册</button>
+                </div>
+                <form id="authForm" onsubmit="handleAuthSubmit(event)">
+                    <div class="form-field">
+                        <label for="authUsername">用户名</label>
+                        <input type="text" id="authUsername" autocomplete="username" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="authPassword">密码</label>
+                        <input type="password" id="authPassword" autocomplete="current-password" required>
+                    </div>
+                    <div class="form-field auth-register-only" style="display:none;">
+                        <label for="authPlayerId">游戏玩家ID</label>
+                        <input type="text" id="authPlayerId" autocomplete="off">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn">提交</button>
+                    </div>
+                    <p id="authMessage" class="auth-message"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="lang.js"></script>
+    <script src="texture-mapper.js"></script>
+    <script src="items.js"></script>
+</body>
+
+</html>
