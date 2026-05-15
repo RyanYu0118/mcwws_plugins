@@ -522,7 +522,6 @@ function setActivityTimeRange(range, btn) {
 
 function updateInsights() {
     updateTopItems();
-    updateTopPlayers();
     renderCategoryChart();
 }
 
@@ -545,28 +544,6 @@ function updateTopItems() {
         <div class="insight-item" onclick="showItemDetails('${escapeHtml(item)}')">
             <span class="insight-name">${itemDisplayName(item)}</span>
             <span class="insight-value">${formatCurrency(data.volume)}</span>
-        </div>
-    `).join('') || '<div class="loading">暂无数据</div>';
-}
-
-function updateTopPlayers() {
-    const container = document.getElementById('topPlayers');
-    if (!container) return;
-
-    const playerStats = {};
-    filteredTransactions.forEach(tx => {
-        if (!playerStats[tx.playerName]) playerStats[tx.playerName] = 0;
-        playerStats[tx.playerName]++;
-    });
-
-    const sorted = Object.entries(playerStats)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 8);
-
-    container.innerHTML = sorted.map(([player, count]) => `
-        <div class="insight-item">
-            <span class="insight-name">${escapeHtml(player)}</span>
-            <span class="insight-value">${count} 笔</span>
         </div>
     `).join('') || '<div class="loading">暂无数据</div>';
 }
