@@ -49,7 +49,10 @@ function trendTextureHtml(itemId) {
 }
 
 // ═══ INITIALIZATION ═══
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    if (window.mcLangReady) {
+        await window.mcLangReady;
+    }
     loadAllData();
     setupEventListeners();
     setInterval(loadAllData, 30000); // Auto-refresh every 30 seconds

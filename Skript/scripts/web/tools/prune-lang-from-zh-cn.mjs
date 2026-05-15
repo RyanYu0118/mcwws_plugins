@@ -61,7 +61,7 @@ function lookupMcItemName(itemId, byKey) {
         if (base) return base;
     }
 
-    m = id.match(/^(potion|splash_potion|lingering_potion)_of_(.+)_(\d+)$/);
+    m = id.match(/^(potion|splash_potion|lingering_potion)_of_(.+)_([0-9]+)$/);
     if (m) {
         const effect = normalizeEffectId(m[2]);
         const base = byKey[`${m[1]}.effect.${effect}`];
@@ -82,7 +82,7 @@ function lookupMcItemName(itemId, byKey) {
         if (base) return base;
     }
 
-    m = id.match(/^arrow_of_(.+)_(\d+)$/);
+    m = id.match(/^arrow_of_(.+)_([0-9]+)$/);
     if (m) {
         const effect = normalizeEffectId(m[1]);
         const base = byKey[`tipped_arrow.effect.${effect}`];
@@ -185,7 +185,7 @@ function lookupMcItemName(itemId, byKey) {
         if (base) return base;
     }
 
-    m = id.match(/^(potion|splash_potion|lingering_potion)_of_(.+)_(\d+)$/);
+    m = id.match(/^(potion|splash_potion|lingering_potion)_of_(.+)_([0-9]+)$/);
     if (m) {
         const effect = normalizeEffectId(m[2]);
         const base = byKey[m[1] + '.effect.' + effect];
@@ -206,7 +206,7 @@ function lookupMcItemName(itemId, byKey) {
         if (base) return base;
     }
 
-    m = id.match(/^arrow_of_(.+)_(\d+)$/);
+    m = id.match(/^arrow_of_(.+)_([0-9]+)$/);
     if (m) {
         const effect = normalizeEffectId(m[1]);
         const base = byKey['tipped_arrow.effect.' + effect];
@@ -285,9 +285,17 @@ for (const entry of entries) {
 }
 
 // Preserve CategoryDict from current file
-const catStart = langJs.indexOf('const CategoryDict = {');
-const catEnd = langJs.indexOf('\n};', catStart) + 3;
-const categoryBlock = langJs.slice(langJs.lastIndexOf('// ==========================================\n// 物品分类汉化', catStart), catEnd);
+let categoryBlock = '';
+const catMarker = '// 物品分类汉化';
+const catMarkerIdx = langJs.indexOf(catMarker);
+const catStart = langJs.indexOf('const CategoryDict = {', catMarkerIdx >= 0 ? catMarkerIdx : 0);
+if (catStart >= 0) {
+    const catEnd = langJs.indexOf('\n};', catStart) + 3;
+    const headerStart = langJs.lastIndexOf('// ==========================================', catStart);
+    categoryBlock = langJs.slice(headerStart >= 0 ? headerStart : catStart, catEnd);
+} else {
+    throw new Error('CategoryDict block not found in lang.js');
+}
 
 const finalJs = [
     LOADER_AND_LOOKUP,

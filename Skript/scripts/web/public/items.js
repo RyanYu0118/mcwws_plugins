@@ -17,7 +17,10 @@ const PAGE_SIZE = 60;
 let searchTimer = null;
 
 // 页面加载完成后初始化
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    if (window.mcLangReady) {
+        await window.mcLangReady;
+    }
     loadItems();
     setupEventListeners();
     loadUserProfile();

@@ -1,292 +1,120 @@
 // ==========================================
-// 物品名称汉化字典 (按 web_prices.yml 顺序排列)
+// Minecraft 官方中文（zh_cn.json → item.minecraft.*）
+// ==========================================
+const MC_LANG_URL = '26.1.2/assets/minecraft/lang/zh_cn.json';
+
+const EFFECT_ID_ALIASES = {
+    infestation: 'infested',
+    the_turtle_master: 'turtle_master',
+    wind_charging: 'wind_charged'
+};
+
+let mcItemByKey = null;
+
+function normalizeEffectId(effect) {
+    return EFFECT_ID_ALIASES[effect] || effect;
+}
+
+function buildMcItemByKey(lang) {
+    const byKey = {};
+    for (const [k, v] of Object.entries(lang)) {
+        if (k.startsWith('item.minecraft.')) {
+            byKey[k.slice('item.minecraft.'.length)] = v;
+        }
+    }
+    return byKey;
+}
+
+function romanLevelSuffix(level) {
+    if (level === '2') return ' II';
+    if (level === '3') return ' III';
+    if (level === '4') return ' IV';
+    return '';
+}
+
+function lookupMcItemName(itemId, byKey) {
+    const id = String(itemId).toLowerCase().replace(/-/g, '_');
+    if (byKey[id]) return byKey[id];
+
+    const standalone = {
+        water_bottle: 'potion.effect.water',
+        awkward_potion: 'potion.effect.awkward',
+        mundane_potion: 'potion.effect.mundane',
+        thick_potion: 'potion.effect.thick',
+        awkward_splash_potion: 'splash_potion.effect.awkward',
+        awkward_lingering_potion: 'lingering_potion.effect.awkward'
+    };
+    if (standalone[id] && byKey[standalone[id]]) {
+        return byKey[standalone[id]];
+    }
+
+    let m = id.match(/^(potion|splash_potion|lingering_potion)_of_(.+)_extended$/);
+    if (m) {
+        const effect = normalizeEffectId(m[2]);
+        const base = byKey[m[1] + '.effect.' + effect];
+        if (base) return base;
+    }
+
+    m = id.match(/^(potion|splash_potion|lingering_potion)_of_(.+)_(\d+)$/);
+    if (m) {
+        const effect = normalizeEffectId(m[2]);
+        const base = byKey[m[1] + '.effect.' + effect];
+        if (base) return base + romanLevelSuffix(m[3]);
+    }
+
+    m = id.match(/^(potion|splash_potion|lingering_potion)_of_(.+)$/);
+    if (m) {
+        const effect = normalizeEffectId(m[2]);
+        const base = byKey[m[1] + '.effect.' + effect];
+        if (base) return base;
+    }
+
+    m = id.match(/^arrow_of_(.+)_extended$/);
+    if (m) {
+        const effect = normalizeEffectId(m[1]);
+        const base = byKey['tipped_arrow.effect.' + effect];
+        if (base) return base;
+    }
+
+    m = id.match(/^arrow_of_(.+)_(\d+)$/);
+    if (m) {
+        const effect = normalizeEffectId(m[1]);
+        const base = byKey['tipped_arrow.effect.' + effect];
+        if (base) return base + romanLevelSuffix(m[2]);
+    }
+
+    return null;
+}
+
+window.mcLangReady = fetch(MC_LANG_URL)
+    .then((r) => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+    })
+    .then((lang) => {
+        mcItemByKey = buildMcItemByKey(lang);
+    })
+    .catch((err) => {
+        console.warn('无法加载 zh_cn.json，将仅使用 ItemDict 兜底', err);
+        mcItemByKey = {};
+    });
+
+
+// ==========================================
+// 补充译名：zh_cn.json 无 item.minecraft.* 对应时使用
 // ==========================================
 
 const ItemDict = {
-    // === 考古与陶片系列 ===
-    "angler_pottery_sherd": "垂钓陶片",
-    "archer_pottery_sherd": "弓箭陶片",
-    "arms_up_pottery_sherd": "举臂陶片",
-    "blade_pottery_sherd": "刀剑陶片",
-    "brewer_pottery_sherd": "酿造陶片",
-    "brush": "刷子",
-    "burn_pottery_sherd": "烈焰陶片",
-    "danger_pottery_sherd": "危险陶片",
     "decorated_pot": "饰纹陶罐",
-    "explorer_pottery_sherd": "探险陶片",
-    "flow_pottery_sherd": "清风陶片",
-    "friend_pottery_sherd": "挚友陶片",
-    "guster_pottery_sherd": "旋风陶片",
-    "heart_pottery_sherd": "心之陶片",
-    "heartbreak_pottery_sherd": "心碎陶片",
-    "howl_pottery_sherd": "狼嚎陶片",
-    "miner_pottery_sherd": "矿工陶片",
-    "mourner_pottery_sherd": "哀悼陶片",
-    "plenty_pottery_sherd": "富饶陶片",
-    "prize_pottery_sherd": "珍宝陶片",
-    "scrape_pottery_sherd": "刮削陶片",
-    "sheaf_pottery_sherd": "麦捆陶片",
-    "shelter_pottery_sherd": "庇护陶片",
-    "skull_pottery_sherd": "头颅陶片",
     "sniffer_egg": "嗅探兽蛋",
-    "snort_pottery_sherd": "粗鼻陶片",
-
-    // === 玩家盔甲系列 ===
-    "armor_stand": "盔甲架",
-    "chainmail_boots": "锁链靴子",
-    "chainmail_chestplate": "锁链胸甲",
-    "chainmail_helmet": "锁链头盔",
-    "chainmail_leggings": "锁链护腿",
-    "copper_boots": "铜靴子",
-    "copper_chestplate": "铜胸甲",
-    "copper_helmet": "铜头盔",
-    "copper_leggings": "铜护腿",
-    "diamond_boots": "钻石靴子",
-    "diamond_chestplate": "钻石胸甲",
-    "diamond_helmet": "钻石头盔",
-    "diamond_leggings": "钻石护腿",
-    "golden_boots": "金靴子",
-    "golden_chestplate": "金胸甲",
-    "golden_helmet": "金头盔",
-    "golden_leggings": "金护腿",
-    "iron_boots": "铁靴子",
-    "iron_chestplate": "铁胸甲",
-    "iron_helmet": "铁头盔",
-    "iron_leggings": "铁护腿",
-    "leather_boots": "皮革靴子",
-    "leather_helmet": "皮革帽子",
-    "leather_leggings": "皮革裤子",
-    "leather_chestplate": "皮革外套",
-    "netherite_boots": "下界合金靴子",
-    "netherite_chestplate": "下界合金胸甲",
-    "netherite_helmet": "下界合金头盔",
-    "netherite_leggings": "下界合金护腿",
-    "shield": "盾牌",
-    "turtle_helmet": "海龟壳",
-
-    // === 动物护甲与特殊装备 ===
-    "copper_horse_armor": "铜马铠",
-    "diamond_horse_armor": "钻石马铠",
-    "golden_horse_armor": "金马铠",
-    "iron_horse_armor": "铁马铠",
-    "leather_horse_armor": "皮革马铠",
-    "netherite_horse_armor": "下界合金马铠",
-    "copper_nautilus_armor": "铜鹦鹉螺护甲",
-    "diamond_nautilus_armor": "钻石鹦鹉螺护甲",
-    "golden_nautilus_armor": "金鹦鹉螺护甲",
-    "iron_nautilus_armor": "铁鹦鹉螺护甲",
-    "netherite_nautilus_armor": "下界合金鹦鹉螺护甲",
-
-    // === 锻造模板 ===
-    "bolt_armor_trim_smithing_template": "螺纹锻造模板",
-    "coast_armor_trim_smithing_template": "海岸锻造模板",
-    "dune_armor_trim_smithing_template": "沙丘锻造模板",
-    "eye_armor_trim_smithing_template": "眼眸锻造模板",
-    "flow_armor_trim_smithing_template": "清风锻造模板",
-    "host_armor_trim_smithing_template": "向导锻造模板",
-    "raiser_armor_trim_smithing_template": "幽光锻造模板",
-    "rib_armor_trim_smithing_template": "肋骨锻造模板",
-    "sentry_armor_trim_smithing_template": "哨兵锻造模板",
-    "shaper_armor_trim_smithing_template": "塑造锻造模板",
-    "silence_armor_trim_smithing_template": "幽寂锻造模板",
-    "snout_armor_trim_smithing_template": "猪鼻锻造模板",
-    "spire_armor_trim_smithing_template": "尖塔锻造模板",
-    "tide_armor_trim_smithing_template": "潮汐锻造模板",
-    "vex_armor_trim_smithing_template": "恼鬼锻造模板",
-    "ward_armor_trim_smithing_template": "守卫锻造模板",
-    "wayfinder_armor_trim_smithing_template": "寻路锻造模板",
-    "wild_armor_trim_smithing_template": "荒野锻造模板",
-    "wolf_armor": "狼铠",
-
-    // === 药水与水瓶 ===
-    "water_bottle": "水瓶",
     "lingering_water_bottle": "滞留水瓶",
     "splash_water_bottle": "喷溅水瓶",
-    "awkward_potion": "粗制药水",
-    "mundane_potion": "平凡药水",
-    "potion_of_fire_resistance_1": "抗火药水",
-    "potion_of_fire_resistance_extended": "抗火药水 (延长)",
-    "potion_of_harming_1": "伤害药水",
-    "potion_of_harming_2": "伤害药水 II",
-    "potion_of_healing_1": "治疗药水",
-    "potion_of_healing_2": "治疗药水 II",
-    "potion_of_infestation_1": "虫蛀药水",
-    "potion_of_invisibility_1": "隐身药水",
-    "potion_of_invisibility_extended": "隐身药水 (延长)",
-    "potion_of_leaping_1": "跳跃药水",
-    "potion_of_leaping_extended": "跳跃药水 (延长)",
-    "potion_of_leaping_2": "跳跃药水 II",
-    "potion_of_night_vision_1": "夜视药水",
-    "potion_of_night_vision_extended": "夜视药水 (延长)",
-    "potion_of_oozing_1": "渗出药水",
-    "potion_of_poison_1": "中毒药水",
-    "potion_of_poison_extended": "中毒药水 (延长)",
-
-    "potion_of_poison_2": "中毒药水 II",
-    "potion_of_regeneration_1": "再生药水",
-    "potion_of_regeneration_extended": "再生药水 (延长)",
-    "potion_of_regeneration_2": "再生药水 II",
-    "potion_of_slow_falling_1": "缓降药水",
-    "potion_of_slow_falling_extended": "缓降药水 (延长)",
-    "potion_of_slowness_1": "迟缓药水",
-    "potion_of_slowness_extended": "迟缓药水 (延长)",
-    "potion_of_slowness_2": "迟缓药水 II",
-    "potion_of_strength_1": "力量药水",
-    "potion_of_strength_extended": "力量药水 (延长)",
-    "potion_of_strength_2": "力量药水 II",
-    "potion_of_swiftness_1": "迅捷药水",
-    "potion_of_swiftness_extended": "迅捷药水 (延长)",
-    "potion_of_swiftness_2": "迅捷药水 II",
-    "potion_of_the_turtle_master_1": "神龟药水",
-    "potion_of_the_turtle_master_extended": "神龟药水 (延长)",
-    "potion_of_the_turtle_master_2": "神龟药水 II",
-    "potion_of_water_breathing_1": "水肺药水",
-    "potion_of_water_breathing_extended": "水肺药水 (延长)",
-    "potion_of_weakness": "虚弱药水",
-    "potion_of_weakness_extended": "虚弱药水 (延长)",
-    "potion_of_weaving_1": "盘丝药水",
-    "potion_of_wind_charging_1": "蓄风药水",
-    "thick_potion": "浓稠药水",
-
-    // === 滞留型药水系列 ===
-    "awkward_lingering_potion": "滞留型粗制药水",
-    "lingering_potion_of_fire_resistance_1": "滞留型抗火药水",
-    "lingering_potion_of_fire_resistance_extended": "滞留型抗火药水 (延长)",
-    "lingering_potion_of_harming_1": "滞留型伤害药水",
-    "lingering_potion_of_harming_2": "滞留型伤害药水 II",
-    "lingering_potion_of_healing_1": "滞留型治疗药水",
-    "lingering_potion_of_healing_2": "滞留型治疗药水 II",
-    "lingering_potion_of_infestation_1": "滞留型虫蛀药水",
-    "lingering_potion_of_invisibility_1": "滞留型隐身药水",
-    "lingering_potion_of_invisibility_extended": "滞留型隐身药水 (延长)",
-    "lingering_potion_of_leaping_1": "滞留型跳跃药水",
-    "lingering_potion_of_leaping_extended": "滞留型跳跃药水 (延长)",
-    "lingering_potion_of_leaping_2": "滞留型跳跃药水 II",
-    "lingering_potion_of_night_vision_1": "滞留型夜视药水",
-    "lingering_potion_of_night_vision_extended": "滞留型夜视药水 (延长)",
-    "lingering_potion_of_oozing_1": "滞留型渗出药水",
-    "lingering_potion_of_poison_1": "滞留型中毒药水",
-    "lingering_potion_of_poison_extended": "滞留型中毒药水 (延长)",
-    "lingering_potion_of_poison_2": "滞留型中毒药水 II",
-    "lingering_potion_of_regeneration_1": "滞留型再生药水",
-    "lingering_potion_of_regeneration_extended": "滞留型再生药水 (延长)",
-    "lingering_potion_of_regeneration_2": "滞留型再生药水 II",
-    "lingering_potion_of_slow_falling_1": "滞留型缓降药水",
-    "lingering_potion_of_slow_falling_extended": "滞留型缓降药水 (延长)",
-    "lingering_potion_of_slowness_1": "滞留型迟缓药水",
-    "lingering_potion_of_slowness_extended": "滞留型迟缓药水 (延长)",
-    "lingering_potion_of_slowness_2": "滞留型迟缓药水 II",
-    "lingering_potion_of_strength_1": "滞留型力量药水",
-    "lingering_potion_of_strength_extended": "滞留型力量药水 (延长)",
-    "lingering_potion_of_strength_2": "滞留型力量药水 II",
-    "lingering_potion_of_swiftness_1": "滞留型迅捷药水",
-    "lingering_potion_of_swiftness_extended": "滞留型迅捷药水 (延长)",
-    "lingering_potion_of_swiftness_2": "滞留型迅捷药水 II",
-    "lingering_potion_of_the_turtle_master_1": "滞留型神龟药水",
-    "lingering_potion_of_the_turtle_master_extended": "滞留型神龟药水 (延长)",
-    "lingering_potion_of_the_turtle_master_2": "滞留型神龟药水 II",
-    "lingering_potion_of_water_breathing_1": "滞留型水肺药水",
-    "lingering_potion_of_water_breathing_extended": "滞留型水肺药水 (延长)",
-    "lingering_potion_of_weakness_1": "滞留型虚弱药水",
-    "lingering_potion_of_weakness_extended": "滞留型虚弱药水 (延长)",
-    "lingering_potion_of_weaving_1": "滞留型盘丝药水",
-    "lingering_potion_of_wind_charging_1": "滞留型蓄风药水",
-
-    // === 喷溅型药水系列 ===
-    "awkward_splash_potion": "喷溅型粗制药水",
-    "splash_potion_of_fire_resistance_1": "喷溅型抗火药水",
-    "splash_potion_of_fire_resistance_extended": "喷溅型抗火药水 (延长)",
-    "splash_potion_of_harming_1": "喷溅型伤害药水",
-    "splash_potion_of_harming_2": "喷溅型伤害药水 II",
-    "splash_potion_of_healing_1": "喷溅型治疗药水",
-    "splash_potion_of_healing_2": "喷溅型治疗药水 II",
-    "splash_potion_of_infestation_1": "喷溅型虫蛀药水",
-    "splash_potion_of_invisibility_1": "喷溅型隐身药水",
-    "splash_potion_of_invisibility_extended": "喷溅型隐身药水 (延长)",
-    "splash_potion_of_leaping_1": "喷溅型跳跃药水",
-    "splash_potion_of_leaping_extended": "喷溅型跳跃药水 (延长)",
-    "splash_potion_of_leaping_2": "喷溅型跳跃药水 II",
-    "splash_potion_of_night_vision_1": "喷溅型夜视药水",
-    "splash_potion_of_night_vision_extended": "喷溅型夜视药水 (延长)",
-    "splash_potion_of_oozing_1": "喷溅型渗出药水",
-    "splash_potion_of_poison_1": "喷溅型中毒药水",
-    "splash_potion_of_poison_extended": "喷溅型中毒药水 (延长)",
-    "splash_potion_of_poison_2": "喷溅型中毒药水 II",
-    "splash_potion_of_regeneration_1": "喷溅型再生药水",
-    "splash_potion_of_regeneration_extended": "喷溅型再生药水 (延长)",
-    "splash_potion_of_regeneration_2": "喷溅型再生药水 II",
-    "splash_potion_of_slow_falling_1": "喷溅型缓降药水",
-    "splash_potion_of_slow_falling_extended": "喷溅型缓降药水 (延长)",
-    "splash_potion_of_slowness_1": "喷溅型迟缓药水",
-    "splash_potion_of_slowness_extended": "喷溅型迟缓药水 (延长)",
-    "splash_potion_of_slowness_2": "喷溅型迟缓药水 II",
-    "splash_potion_of_strength_1": "喷溅型力量药水",
-    "splash_potion_of_strength_extended": "喷溅型力量药水 (延长)",
-    "splash_potion_of_strength_2": "喷溅型力量药水 II",
-    "splash_potion_of_swiftness_1": "喷溅型迅捷药水",
-    "splash_potion_of_swiftness_extended": "喷溅型迅捷药水 (延长)",
-    "splash_potion_of_swiftness_2": "喷溅型迅捷药水 II",
-    "splash_potion_of_the_turtle_master_1": "喷溅型神龟药水",
-    "splash_potion_of_the_turtle_master_extended": "喷溅型神龟药水 (延长)",
-    "splash_potion_of_the_turtle_master_2": "喷溅型神龟药水 II",
-    "splash_potion_of_water_breathing_1": "喷溅型水肺药水",
-    "splash_potion_of_water_breathing_extended": "喷溅型水肺药水 (延长)",
-    "splash_potion_of_weakness_1": "喷溅型虚弱药水",
-    "splash_potion_of_weakness_extended": "喷溅型虚弱药水 (延长)",
-    "splash_potion_of_weaving_1": "喷溅型盘丝药水",
-    "splash_potion_of_wind_charging_1": "喷溅型蓄风药水",
-    // === 药水箭系列 (Arrows) ===
-    "arrow_of_fire_resistance_1": "抗火之箭",
-    "arrow_of_fire_resistance_extended": "抗火之箭 (延长)",
-    "arrow_of_harming_1": "伤害之箭",
-    "arrow_of_harming_2": "伤害之箭 II",
-    "arrow_of_healing_1": "治疗之箭",
-    "arrow_of_healing_2": "治疗之箭 II",
-    "arrow_of_infestation_1": "虫蛀之箭",
-    "arrow_of_invisibility_1": "隐身之箭",
-    "arrow_of_invisibility_extended": "隐身之箭 (延长)",
-    "arrow_of_leaping_1": "跳跃之箭",
-    "arrow_of_leaping_extended": "跳跃之箭 (延长)",
-    "arrow_of_leaping_2": "跳跃之箭 II",
-    "arrow_of_night_vision_1": "夜视之箭",
-    "arrow_of_night_vision_extended": "夜视之箭 (延长)",
-    "arrow_of_oozing_1": "渗出之箭",
-    "arrow_of_poison_1": "中毒之箭",
-    "arrow_of_poison_extended": "中毒之箭 (延长)",
-    "arrow_of_poison_2": "中毒之箭 II",
-    "arrow_of_regeneration_1": "再生之箭",
-    "arrow_of_regeneration_extended": "再生之箭 (延长)",
-    "arrow_of_regeneration_2": "再生之箭 II",
-    "arrow_of_slow_falling_1": "缓降之箭",
-    "arrow_of_slow_falling_extended": "缓降之箭 (延长)",
-    "arrow_of_slowness_1": "迟缓之箭",
-    "arrow_of_slowness_extended": "迟缓之箭 (延长)",
-    "arrow_of_slowness_2": "迟缓之箭 II",
-    "arrow_of_strength_1": "力量之箭",
-    "arrow_of_strength_extended": "力量之箭 (延长)",
-    "arrow_of_strength_2": "力量之箭 II",
-    "arrow_of_swiftness_1": "迅捷之箭",
-    "arrow_of_swiftness_extended": "迅捷之箭 (延长)",
-    "arrow_of_swiftness_2": "迅捷之箭 II",
-    "arrow_of_the_turtle_master_1": "神龟之箭",
-    "arrow_of_the_turtle_master_extended": "神龟之箭 (延长)",
-    "arrow_of_the_turtle_master_2": "神龟之箭 II",
-    "arrow_of_water_breathing_1": "水肺之箭",
-    "arrow_of_water_breathing_extended": "水肺之箭 (延长)",
-    "arrow_of_weakness_1": "虚弱之箭",
-    "arrow_of_weakness_extended": "虚弱之箭 (延长)",
-    "arrow_of_weaving_1": "盘丝之箭",
-    "arrow_of_wind_charging_1": "蓄风之箭",
-    
-    // === 砖块系列 ===
-    "brick": "红砖",
     "brick_slab": "红砖台阶",
     "brick_stairs": "红砖楼梯",
     "brick_wall": "红砖墙",
     "bricks": "红砖块",
     "chiseled_nether_bricks": "錾制下界砖",
     "cracked_nether_bricks": "裂纹下界砖",
-    "nether_brick": "下界砖",
     "nether_brick_fence": "下界砖栅栏",
     "nether_brick_slab": "下界砖台阶",
     "nether_brick_stairs": "下界砖楼梯",
@@ -296,16 +124,11 @@ const ItemDict = {
     "red_nether_brick_stairs": "红色下界砖楼梯",
     "red_nether_brick_wall": "红色下界砖墙",
     "red_nether_bricks": "红色下界砖块",
-
-    // === 树脂系列 (Pale Garden更新内容) ===
     "chiseled_resin_bricks": "錾制树脂砖",
-    "resin_brick": "树脂砖",
     "resin_brick_slab": "树脂砖台阶",
     "resin_brick_stairs": "树脂砖楼梯",
     "resin_brick_wall": "树脂砖墙",
     "resin_bricks": "树脂砖块",
-
-    // === 铜块及其变体 (全状态) ===
     "copper_block": "铜块",
     "chiseled_copper": "錾制铜块",
     "cut_copper": "切制铜块",
@@ -346,8 +169,6 @@ const ItemDict = {
     "weathered_cut_copper": "锈蚀的切制铜块",
     "weathered_cut_copper_slab": "锈蚀的切制铜块台阶",
     "weathered_cut_copper_stairs": "锈蚀的切制铜块楼梯",
-
-    // === 铜栏杆、链条、格栅 ===
     "copper_bars": "铜栏杆",
     "exposed_copper_bars": "斑驳的铜栏杆",
     "oxidized_copper_bars": "氧化的铜栏杆",
@@ -372,8 +193,6 @@ const ItemDict = {
     "waxed_oxidized_copper_grate": "涂蜡的氧化铜格栅",
     "waxed_weathered_copper_grate": "涂蜡的锈蚀铜格栅",
     "weathered_copper_grate": "锈蚀的铜格栅",
-
-    // === 铜傀儡相关 (模态或特殊物品) ===
     "copper_golem_statue": "铜傀儡像",
     "exposed_copper_golem_statue": "斑驳的铜傀儡像",
     "oxidized_copper_golem_statue": "氧化的铜傀儡像",
@@ -382,83 +201,23 @@ const ItemDict = {
     "waxed_exposed_copper_golem_statue": "涂蜡的斑驳铜傀儡像",
     "waxed_oxidized_copper_golem_statue": "涂蜡的氧化铜傀儡像",
     "waxed_weathered_copper_golem_statue": "涂蜡的锈蚀铜傀儡像",
-
-    // === 幽匿系列 ===
     "calibrated_sculk_sensor": "校准幽匿感应器",
-    "echo_shard": "回响碎片",
     "sculk": "幽匿方块",
     "sculk_catalyst": "幽匿催化体",
     "sculk_sensor": "幽匿感应器",
     "sculk_shrieker": "幽匿尖啸体",
     "sculk_vein": "幽匿脉络",
-
-    // === 音乐唱片系列 ===
-    "music_disc_11": "音乐唱片 (11)",
-    "music_disc_13": "音乐唱片 (13)",
-    "music_disc_5": "音乐唱片 (5)",
-    "disc_fragment_5": "唱片残片 (5)",
-    "music_disc_blocks": "音乐唱片 (blocks)",
-    "music_disc_cat": "音乐唱片 (cat)",
-    "music_disc_chirp": "音乐唱片 (chirp)",
-    "music_disc_creator": "音乐唱片 (Creator)",
-    "music_disc_far": "音乐唱片 (far)",
-    "music_disc_lava_chicken": "音乐唱片 (Lava Chicken)",
-    "music_disc_mall": "音乐唱片 (mall)",
-    "music_disc_mellohi": "音乐唱片 (mellohi)",
-    "music_disc_creator_music_box": "音乐唱片 (Creator - 八音盒版)",
-    "music_disc_otherside": "音乐唱片 (otherside)",
-    "music_disc_pigstep": "音乐唱片 (Pigstep)",
-    "music_disc_precipice": "音乐唱片 (Precipice)",
-    "music_disc_relic": "音乐唱片 (Relic)",
-    "music_disc_stal": "音乐唱片 (stal)",
-    "music_disc_strad": "音乐唱片 (strad)",
-    "music_disc_wait": "音乐唱片 (wait)",
-    "music_disc_ward": "音乐唱片 (ward)",
-
-// === 怪物掉落与生物材料 ===
-    "armadillo_scute": "犰狳鳞甲",
     "bee_nest": "蜂巢",
-    "blaze_powder": "烈焰粉",
-    "blaze_rod": "烈焰棒",
-    "bone": "骨头",
-    "breeze_rod": "旋风棒",
     "creeper_head": "苦力怕的头",
-    "ender_pearl": "末影珍珠",
-    "feather": "羽毛",
-    "ghast_tear": "恶魂之泪",
-    "goat_horn": "山羊角",
-    "gunpowder": "火药",
     "honey_block": "蜂蜜块",
-    "honey_bottle": "蜂蜜瓶",
-    "honeycomb": "蜜碑",
     "honeycomb_block": "蜜碑块",
-    "leather": "皮革",
-    "magma_cream": "岩浆膏",
-    "nautilus_shell": "鹦鹉螺壳",
-    "nether_star": "下界之星",
-    "ominous_bottle": "厄运瓶",
-    "phantom_membrane": "幻翼膜",
     "piglin_head": "猪灵的头",
-    "rabbit_hide": "兔子皮",
-    "rotten_flesh": "腐肉",
     "skeleton_skull": "骷髅头颅",
     "slime_block": "粘液块",
-    "slime_ball": "粘液球",
-    "spider_eye": "蜘蛛眼",
-    "string": "线",
-    "turtle_scute": "海龟鳞甲",
-    "wind_charge": "风弹",
     "wither_rose": "凋灵玫瑰",
     "wither_skeleton_skull": "凋灵骷髅头颅",
     "zombie_head": "僵尸的头",
-    "glow_ink_sac": "荧光墨囊",
-    "ink_sac": "墨囊",
-    "ominous_trial_key": "厄运试炼钥匙",
-    "trial_key": "试炼钥匙",
     "resin_block": "树脂块",
-    "resin_clump": "树脂团",
-
-    // === 旗帜系列 (Banners) ===
     "black_banner": "黑色旗帜",
     "blue_banner": "蓝色旗帜",
     "brown_banner": "棕色旗帜",
@@ -475,8 +234,6 @@ const ItemDict = {
     "red_banner": "红色旗帜",
     "white_banner": "白色旗帜",
     "yellow_banner": "黄色旗帜",
-
-    // === 床系列 (Beds) ===
     "black_bed": "黑色床",
     "blue_bed": "蓝色床",
     "brown_bed": "棕色床",
@@ -492,26 +249,6 @@ const ItemDict = {
     "purple_bed": "紫色床",
     "red_bed": "红色床",
     "yellow_bed": "黄色床",
-
-    // === 收纳袋系列 (Bundles) ===
-    "black_bundle": "黑色收纳袋",
-    "blue_bundle": "蓝色收纳袋",
-    "brown_bundle": "棕色收纳袋",
-    "cyan_bundle": "青色收纳袋",
-    "gray_bundle": "灰色收纳袋",
-    "green_bundle": "绿色收纳袋",
-    "light_blue_bundle": "淡蓝色收纳袋",
-    "light_gray_bundle": "淡灰色收纳袋",
-    "lime_bundle": "黄绿色收纳袋",
-    "magenta_bundle": "品红色收纳袋",
-    "orange_bundle": "橙色收纳袋",
-    "pink_bundle": "粉红色收纳袋",
-    "purple_bundle": "紫色收纳袋",
-    "red_bundle": "红色收纳袋",
-    "white_bundle": "白色收纳袋",
-    "yellow_bundle": "黄色收纳袋",
-
-    // === 蜡烛系列 (Candles) ===
     "black_candle": "黑色蜡烛",
     "blue_candle": "蓝色蜡烛",
     "brown_candle": "棕色蜡烛",
@@ -528,8 +265,6 @@ const ItemDict = {
     "red_candle": "红色蜡烛",
     "white_candle": "白色蜡烛",
     "yellow_candle": "黄色蜡烛",
-
-    // === 混凝土系列 (Concrete & Powder) ===
     "black_concrete": "黑色混凝土",
     "black_concrete_powder": "黑色混凝土粉末",
     "blue_concrete": "蓝色混凝土",
@@ -562,26 +297,6 @@ const ItemDict = {
     "white_concrete_powder": "白色混凝土粉末",
     "yellow_concrete": "黄色混凝土",
     "yellow_concrete_powder": "黄色混凝土粉末",
-
-// === 染料系列 (Dyes) ===
-    "black_dye": "黑色染料",
-    "blue_dye": "蓝色染料",
-    "brown_dye": "棕色染料",
-    "cyan_dye": "青色染料",
-    "gray_dye": "灰色染料",
-    "green_dye": "绿色染料",
-    "light_blue_dye": "淡蓝色染料",
-    "light_gray_dye": "淡灰色染料",
-    "lime_dye": "黄绿色染料",
-    "magenta_dye": "品红色染料",
-    "orange_dye": "橙色染料",
-    "pink_dye": "粉红色染料",
-    "purple_dye": "紫色染料",
-    "red_dye": "红色染料",
-    "white_dye": "白色染料",
-    "yellow_dye": "黄色染料",
-
-    // === 染色玻璃系列 (Stained Glass) ===
     "black_stained_glass": "黑色染色玻璃",
     "blue_stained_glass": "蓝色染色玻璃",
     "brown_stained_glass": "棕色染色玻璃",
@@ -598,8 +313,6 @@ const ItemDict = {
     "red_stained_glass": "红色染色玻璃",
     "white_stained_glass": "白色染色玻璃",
     "yellow_stained_glass": "黄色染色玻璃",
-
-    // === 染色玻璃板系列 (Stained Glass Panes) ===
     "black_stained_glass_pane": "黑色染色玻璃板",
     "blue_stained_glass_pane": "蓝色染色玻璃板",
     "brown_stained_glass_pane": "棕色染色玻璃板",
@@ -616,8 +329,6 @@ const ItemDict = {
     "red_stained_glass_pane": "红色染色玻璃板",
     "white_stained_glass_pane": "白色染色玻璃板",
     "yellow_stained_glass_pane": "黄色染色玻璃板",
-
-    // === 陶瓦系列 (Terracotta) ===
     "terracotta": "陶瓦",
     "black_terracotta": "黑色陶瓦",
     "blue_terracotta": "蓝色陶瓦",
@@ -635,8 +346,6 @@ const ItemDict = {
     "red_terracotta": "红色陶瓦",
     "white_terracotta": "白色陶瓦",
     "yellow_terracotta": "黄色陶瓦",
-
-    // === 带釉陶瓦系列 (Glazed Terracotta) ===
     "black_glazed_terracotta": "黑色带釉陶瓦",
     "blue_glazed_terracotta": "蓝色带釉陶瓦",
     "brown_glazed_terracotta": "棕色带釉陶瓦",
@@ -653,8 +362,6 @@ const ItemDict = {
     "red_glazed_terracotta": "红色带釉陶瓦",
     "white_glazed_terracotta": "白色带釉陶瓦",
     "yellow_glazed_terracotta": "黄色带釉陶瓦",
-
-    // === 羊毛系列 (Wool) ===
     "black_wool": "黑色羊毛",
     "blue_wool": "蓝色羊毛",
     "brown_wool": "棕色羊毛",
@@ -671,8 +378,6 @@ const ItemDict = {
     "red_wool": "红色羊毛",
     "white_wool": "白色羊毛",
     "yellow_wool": "黄色羊毛",
-
-    // === 地毯系列 (Carpet) ===
     "black_carpet": "黑色地毯",
     "blue_carpet": "蓝色地毯",
     "brown_carpet": "棕色地毯",
@@ -689,8 +394,6 @@ const ItemDict = {
     "red_carpet": "红色地毯",
     "white_carpet": "白色地毯",
     "yellow_carpet": "黄色地毯",
-
-    // === 基础方块与泥土系列 ===
     "coarse_dirt": "砂土",
     "dirt": "泥土",
     "grass_block": "草方块",
@@ -704,8 +407,6 @@ const ItemDict = {
     "mud_brick_wall": "泥砖墙",
     "mud_bricks": "泥砖",
     "packed_mud": "压制泥巴",
-
-    // === 附魔书系列 (Enchanted Books) ===
     "enchanted_book_aqua_affinity_1": "附魔书 (水下速掘)",
     "enchanted_book_blast_protection_1": "附魔书 (爆炸保护 I)",
     "enchanted_book_blast_protection_2": "附魔书 (爆炸保护 II)",
@@ -816,8 +517,6 @@ const ItemDict = {
     "enchanted_book_bane_of_arthropods_3": "附魔书 (节肢杀手 III)",
     "enchanted_book_bane_of_arthropods_4": "附魔书 (节肢杀手 IV)",
     "enchanted_book_bane_of_arthropods_5": "附魔书 (节肢杀手 V)",
-
-    // === 1.21 新增重锤附魔系列 ===
     "enchanted_book_breach_1": "附魔书 (破重 I)",
     "enchanted_book_breach_2": "附魔书 (破重 II)",
     "enchanted_book_breach_3": "附魔书 (破重 III)",
@@ -830,8 +529,6 @@ const ItemDict = {
     "enchanted_book_wind_burst_1": "附魔书 (风爆 I)",
     "enchanted_book_wind_burst_2": "附魔书 (风爆 II)",
     "enchanted_book_wind_burst_3": "附魔书 (风爆 III)",
-
-    // === 战斗类附魔补充 ===
     "enchanted_book_fire_aspect_1": "附魔书 (火焰附加 I)",
     "enchanted_book_fire_aspect_2": "附魔书 (火焰附加 II)",
     "enchanted_book_knockback_1": "附魔书 (击退 I)",
@@ -848,11 +545,8 @@ const ItemDict = {
     "enchanted_book_mending_1": "附魔书 (经验修补)",
     "enchanted_book_vanishing_curse_1": "附魔书 (消失诅咒)",
     "enchanted_book_binding_curse_1": "附魔书 (绑定诅咒)",
-
     "dragon_egg": "龙蛋",
     "dragon_head": "龙首",
-    "dragon_breath": "龙息",
-    "end_crystal": "末影水晶",
     "end_stone": "末地石",
     "end_stone_brick_slab": "末地石砖台阶",
     "end_stone_brick_stairs": "末地石砖楼梯",
@@ -863,63 +557,16 @@ const ItemDict = {
     "purpur_pillar": "紫珀柱",
     "purpur_slab": "紫珀台阶",
     "purpur_stairs": "紫珀楼梯",
-    "shulker_shell": "潜影壳",
     "shulker_box": "潜影箱",
-    "beetroot": "甜菜根",
-    "beetroot_soup": "甜菜汤",
-    "blue_egg": "蓝色鸡蛋",
-    "bread": "面包",
-    "brown_egg": "棕色鸡蛋",
     "cake": "蛋糕",
-    "cookie": "曲奇",
-    "dried_kelp": "干海带",
     "dried_kelp_block": "干海带块",
-    "egg": "鸡蛋",
-    "glow_berries": "发光浆果",
     "hay_block": "干草块",
-    "poisonous_potato": "毒马铃薯",
-    "sugar": "糖",
-    "sweet_berries": "甜浆果",
-    "wheat": "小麦",
-    "apple": "苹果",
-    "enchanted_golden_apple": "附魔金苹果",
-    "golden_apple": "金苹果",
-    "beef": "生牛肉",
-    "cooked_beef": "熟牛肉",
-    "carrot": "胡萝卜",
-    "golden_carrot": "金胡萝卜",
-    "cooked_chicken": "熟鸡肉",
-    "chicken": "生鸡肉",
-    "chorus_fruit": "紫颂果",
-    "popped_chorus_fruit": "爆裂紫颂果",
-    "pufferfish": "河豚",
-    "tropical_fish": "热带鱼",
-    "cooked_cod": "熟鳕鱼",
-    "cod": "生鳕鱼",
-    "cooked_salmon": "熟鲑鱼",
-    "salmon": "生鲑鱼",
-    "glistering_melon_slice": "闪烁的西瓜片",
     "melon": "西瓜",
-    "melon_slice": "西瓜片",
-    "cooked_mutton": "熟羊肉",
-    "mutton": "生羊肉",
-    "cooked_porkchop": "熟猪排",
-    "porkchop": "生猪排",
-    "baked_potato": "烤马铃薯",
-    "potato": "马铃薯",
-    "pumpkin_pie": "南瓜派",
-    "cooked_rabbit": "熟兔肉",
-    "rabbit": "生兔肉",
-    "fermented_spider_eye": "发酵蛛眼",
-    "mushroom_stew": "蘑菇煲",
-    "rabbit_stew": "兔肉煲",
-    "suspicious_stew": "可疑的炖菜",
     "blue_ice": "蓝冰",
     "ice": "冰",
     "packed_ice": "浮冰",
     "snow": "雪",
     "snow_block": "雪块",
-    "snowball": "雪球",
     "candle": "蜡烛",
     "end_rod": "末地烛",
     "jack_o_lantern": "南瓜灯",
@@ -940,7 +587,6 @@ const ItemDict = {
     "pearlescent_froglight": "珠光蛙明灯",
     "verdant_froglight": "翠绿蛙明灯",
     "glowstone": "萤石",
-    "glowstone_dust": "萤石粉",
     "lantern": "灯笼",
     "soul_lantern": "灵魂灯笼",
     "copper_lantern": "铜灯笼",
@@ -958,7 +604,6 @@ const ItemDict = {
     "dried_ghast": "干恶魂",
     "magma_block": "岩浆块",
     "nether_sprouts": "下界苗",
-    "netherite_upgrade_smithing_template": "下界合金升级锻造模板",
     "respawn_anchor": "重生锚",
     "basalt": "玄武岩",
     "polished_basalt": "磨制玄武岩",
@@ -981,7 +626,6 @@ const ItemDict = {
     "crimson_fungus": "绯红菌",
     "crimson_nylium": "绯红菌岩",
     "crimson_roots": "绯红菌索",
-    "nether_wart": "地狱疣",
     "nether_wart_block": "地狱疣块",
     "warped_fungus": "诡异菌",
     "warped_nylium": "诡异菌岩",
@@ -991,7 +635,6 @@ const ItemDict = {
     "obsidian": "黑曜石",
     "quartz_block": "石英块",
     "chiseled_quartz_block": "錾制石英块",
-    "quartz": "石英",
     "nether_quartz_ore": "下界石英矿石",
     "quartz_bricks": "石英砖",
     "quartz_pillar": "石英柱",
@@ -1004,7 +647,6 @@ const ItemDict = {
     "soul_sand": "灵魂沙",
     "soul_soil": "灵魂土",
     "conduit": "潮涌核心",
-    "heart_of_the_sea": "海洋之心",
     "kelp": "海带",
     "sea_pickle": "海泡菜",
     "seagrass": "海草",
@@ -1041,8 +683,6 @@ const ItemDict = {
     "tube_coral": "管珊瑚",
     "tube_coral_block": "管珊瑚块",
     "tube_coral_fan": "管珊瑚扇",
-    "prismarine_crystals": "海晶碎片",
-    "prismarine_shard": "海晶石碎片",
     "prismarine_brick_slab": "海晶石砖台阶",
     "prismarine_brick_stairs": "海晶石砖楼梯",
     "prismarine_bricks": "海晶石砖",
@@ -1054,67 +694,47 @@ const ItemDict = {
     "prismarine_stairs": "海晶石楼梯",
     "prismarine_wall": "海晶石围墙",
     "amethyst_cluster": "紫晶簇",
-    "amethyst_shard": "紫晶碎片",
     "amethyst_block": "紫晶块",
     "coal_block": "煤炭块",
-    "coal": "煤炭",
     "coal_ore": "煤矿石",
     "deepslate_coal_ore": "深层煤矿石",
     "raw_copper_block": "粗铜块",
-    "copper_ingot": "铜锭",
-    "copper_nugget": "铜粒",
     "copper_ore": "铜矿石",
     "deepslate_copper_ore": "深层铜矿石",
-    "raw_copper": "粗铜",
     "diamond_block": "钻石块",
     "deepslate_diamond_ore": "深层钻石矿石",
-    "diamond": "钻石",
     "diamond_ore": "钻石矿石",
     "emerald_block": "绿宝石块",
     "deepslate_emerald_ore": "深层绿宝石矿石",
-    "emerald": "绿宝石",
     "emerald_ore": "绿宝石矿石",
     "gold_block": "金块",
     "raw_gold_block": "粗金块",
     "deepslate_gold_ore": "深层金矿石",
-    "gold_ingot": "金锭",
-    "gold_nugget": "金粒",
     "gold_ore": "金矿石",
     "nether_gold_ore": "下界金矿石",
-    "raw_gold": "粗金",
     "iron_block": "铁块",
     "raw_iron_block": "粗铁块",
     "deepslate_iron_ore": "深层铁矿石",
-    "iron_ingot": "铁锭",
-    "iron_nugget": "铁粒",
     "iron_ore": "铁矿石",
-    "raw_iron": "粗铁",
     "deepslate_lapis_ore": "深层青金石矿石",
-    "lapis_lazuli": "青金石",
     "lapis_block": "青金石块",
     "lapis_ore": "青金石矿石",
     "ancient_debris": "远古残骸",
     "netherite_block": "下界合金块",
-    "netherite_ingot": "下界合金锭",
-    "netherite_scrap": "下界合金碎片",
     "redstone_block": "红石块",
     "deepslate_redstone_ore": "深层红石矿石",
-    "redstone": "红石粉",
     "redstone_ore": "红石矿石",
     "bamboo": "竹子",
     "bone_block": "骨块",
-    "bone_meal": "骨粉",
     "bush": "灌木",
     "cactus": "仙人掌",
     "cactus_flower": "仙人掌花",
     "carved_pumpkin": "雕刻南瓜",
     "chorus_flower": "紫颂花",
     "closed_eyeblossom": "闭合的眼之花",
-    "cocoa_beans": "可可豆",
     "dead_bush": "枯死的灌木",
     "fern": "蕨类植物",
     "firefly_bush": "萤火虫灌木",
-    "flower_pot": "花盆",
     "glow_lichen": "发光地衣",
     "hanging_roots": "垂根",
     "large_fern": "大型蕨类",
@@ -1127,7 +747,6 @@ const ItemDict = {
     "pale_moss_block": "浅色苔藓块",
     "pale_moss_carpet": "浅色苔藓地毯",
     "pink_petals": "粉色花瓣",
-    "pitcher_plant": "猪笼草",
     "short_dry_grass": "短干草",
     "short_grass": "短草",
     "spore_blossom": "孢子花",
@@ -1186,12 +805,6 @@ const ItemDict = {
     "oak_sapling": "橡树树苗",
     "pale_oak_sapling": "浅色橡树树苗",
     "spruce_sapling": "云杉树苗",
-    "beetroot_seeds": "甜菜种子",
-    "melon_seeds": "西瓜种子",
-    "pitcher_pod": "猪笼草荚",
-    "pumpkin_seeds": "南瓜种子",
-    "torchflower_seeds": "火把花种子",
-    "wheat_seeds": "小麦种子",
     "daylight_detector": "阳光传感器",
     "dispenser": "发射器",
     "dropper": "投掷器",
@@ -1301,7 +914,6 @@ const ItemDict = {
     "smooth_sandstone_stairs": "平滑砂岩楼梯",
     "calcite": "方解石",
     "clay": "粘土块",
-    "clay_ball": "粘土球",
     "cobblestone": "圆石",
     "cobblestone_slab": "圆石台阶",
     "cobblestone_stairs": "圆石楼梯",
@@ -1382,81 +994,6 @@ const ItemDict = {
     "tuff_slab": "凝灰岩台阶",
     "tuff_stairs": "凝灰岩楼梯",
     "tuff_wall": "凝灰岩围墙",
-    "fishing_rod": "钓鱼竿",
-    "shears": "剪刀",
-    "copper_axe": "铜斧",
-    "diamond_axe": "钻石斧",
-    "golden_axe": "金斧",
-    "iron_axe": "铁斧",
-    "netherite_axe": "下界合金斧",
-    "stone_axe": "石斧",
-    "wooden_axe": "木斧",
-    "copper_hoe": "铜锄",
-    "diamond_hoe": "钻石锄",
-    "golden_hoe": "金锄",
-    "iron_hoe": "铁锄",
-    "netherite_hoe": "下界合金锄",
-    "stone_hoe": "石锄",
-    "wooden_hoe": "木锄",
-    "copper_pickaxe": "铜镐",
-    "diamond_pickaxe": "钻石镐",
-    "golden_pickaxe": "金镐",
-    "iron_pickaxe": "铁镐",
-    "netherite_pickaxe": "下界合金镐",
-    "stone_pickaxe": "石镐",
-    "wooden_pickaxe": "木镐",
-    "copper_shovel": "铜锹",
-    "diamond_shovel": "钻石锹",
-    "golden_shovel": "金锹",
-    "iron_shovel": "铁锹",
-    "netherite_shovel": "下界合金锹",
-    "stone_shovel": "石锹",
-    "wooden_shovel": "木锹",
-    "carrot_on_a_stick": "胡萝卜钓竿",
-    "warped_fungus_on_a_stick": "诡异菌钓竿",
-    "elytra": "鞘翅",
-    "saddle": "鞍",
-    "acacia_boat": "金合欢木船",
-    "acacia_chest_boat": "金合欢木运输船",
-    "bamboo_raft": "竹筏",
-    "bamboo_chest_raft": "竹制运输筏",
-    "birch_boat": "白桦木船",
-    "birch_chest_boat": "白桦木运输船",
-    "cherry_boat": "樱花木船",
-    "cherry_chest_boat": "樱花木运输船",
-    "dark_oak_boat": "深色橡木船",
-    "dark_oak_chest_boat": "深色橡木运输船",
-    "jungle_boat": "丛林木船",
-    "jungle_chest_boat": "丛林木运输船",
-    "mangrove_boat": "红树林船",
-    "mangrove_chest_boat": "红树林运输船",
-    "oak_boat": "橡木船",
-    "oak_chest_boat": "橡木运输船",
-    "pale_oak_boat": "浅色橡木船",
-    "pale_oak_chest_boat": "浅色橡木运输船",
-    "spruce_boat": "云杉木船",
-    "spruce_chest_boat": "云杉木运输船",
-    "minecart": "矿车",
-    "chest_minecart": "运输矿车",
-    "furnace_minecart": "熔炉矿车",
-    "hopper_minecart": "漏斗矿车",
-    "tnt_minecart": "TNT矿车",
-    "black_harness": "黑色马铠",
-    "blue_harness": "蓝色马铠",
-    "brown_harness": "棕色马铠",
-    "cyan_harness": "青色马铠",
-    "gray_harness": "灰色马铠",
-    "green_harness": "绿色马铠",
-    "light_blue_harness": "浅蓝色马铠",
-    "light_gray_harness": "浅灰色马铠",
-    "lime_harness": "黄绿色马铠",
-    "magenta_harness": "品红色马铠",
-    "orange_harness": "橙色马铠",
-    "pink_harness": "粉色马铠",
-    "purple_harness": "紫色马铠",
-    "red_harness": "红色马铠",
-    "white_harness": "白色马铠",
-    "yellow_harness": "黄色马铠",
     "activator_rail": "激活铁轨",
     "detector_rail": "探测铁轨",
     "powered_rail": "动力铁轨",
@@ -1467,63 +1004,31 @@ const ItemDict = {
     "beehive": "蜂箱",
     "bell": "钟",
     "blast_furnace": "高炉",
-    "book": "书",
-    "writable_book": "可写字的书",
-    "experience_bottle": "经验瓶",
-    "bowl": "碗",
-    "brewing_stand": "酿造台",
-    "bucket": "桶",
-    "bundle": "捆绑包",
     "cartography_table": "制图台",
-    "cauldron": "炼药锅",
-    "charcoal": "木炭",
     "chipped_anvil": "损坏的铁砧",
-    "clock": "时钟",
     "cobweb": "蜘蛛网",
-    "compass": "指南针",
     "composter": "堆肥桶",
     "crafter": "合成器",
     "crafting_table": "工作台",
     "creaking_heart": "吱呀心跳",
     "damaged_anvil": "严重损坏的铁砧",
-    "map": "地图",
     "enchanting_table": "附魔台",
-    "ender_eye": "末影之眼",
-    "fire_charge": "火焰弹",
-    "firework_rocket": "烟花火箭",
-    "firework_star": "烟花之星",
     "fletching_table": "制箭台",
-    "flint": "燧石",
-    "flint_and_steel": "打火石",
     "furnace": "熔炉",
-    "glass_bottle": "玻璃瓶",
     "grindstone": "砂轮",
     "heavy_core": "重型核心",
     "hopper": "漏斗",
     "jukebox": "唱片机",
     "ladder": "梯子",
-    "lava_bucket": "岩浆桶",
-    "lead": "拴绳",
     "lectern": "讲台",
     "lodestone": "磁石",
     "loom": "织布机",
-    "milk_bucket": "牛奶桶",
-    "name_tag": "命名牌",
-    "painting": "画",
-    "paper": "纸",
-    "powder_snow_bucket": "细雪桶",
-    "rabbit_foot": "兔子脚",
-    "recovery_compass": "回溯指南针",
     "scaffolding": "脚手架",
     "smithing_table": "锻造台",
     "smoker": "烟熏炉",
-    "spyglass": "望远镜",
-    "stick": "木棍",
     "stonecutter": "切石机",
     "tinted_glass": "染色玻璃",
     "tnt": "TNT",
-    "totem_of_undying": "不死图腾",
-    "water_bucket": "水桶",
     "white_bed": "白色床",
     "iron_bars": "铁栅栏",
     "bookshelf": "书架",
@@ -1562,12 +1067,6 @@ const ItemDict = {
     "pale_oak_fence_gate": "浅色橡木栅栏门",
     "spruce_fence_gate": "云杉木栅栏门",
     "warped_fence_gate": "诡异栅栏门",
-    "axolotl_bucket": "美西螈桶",
-    "cod_bucket": "鳕鱼桶",
-    "pufferfish_bucket": "河豚桶",
-    "salmon_bucket": "鲑鱼桶",
-    "tadpole_bucket": "蝌蚪桶",
-    "tropical_fish_bucket": "热带鱼桶",
     "acacia_hanging_sign": "金合欢木悬挂告示牌",
     "bamboo_hanging_sign": "竹悬挂告示牌",
     "birch_hanging_sign": "白桦木悬挂告示牌",
@@ -1580,18 +1079,6 @@ const ItemDict = {
     "pale_oak_hanging_sign": "浅色橡木悬挂告示牌",
     "spruce_hanging_sign": "云杉木悬挂告示牌",
     "warped_hanging_sign": "诡异悬挂告示牌",
-    "glow_item_frame": "发光物品展示框",
-    "item_frame": "物品展示框",
-    "globe_banner_pattern": "地球旗帜图案",
-    "bordure_indented_banner_pattern": "凹边旗帜图案",
-    "creeper_banner_pattern": "爬行者旗帜图案",
-    "field_masoned_banner_pattern": "方块纹理旗帜图案",
-    "flow_banner_pattern": "流动旗帜图案",
-    "flower_banner_pattern": "花朵旗帜图案",
-    "guster_banner_pattern": "气流旗帜图案",
-    "skull_banner_pattern": "骷髅旗帜图案",
-    "piglin_banner_pattern": "猪灵旗帜图案",
-    "mojang_banner_pattern": "Mojang旗帜图案",
     "exposed_lightning_rod": "锈蚀避雷针",
     "lightning_rod": "避雷针",
     "oxidized_lightning_rod": "氧化铜避雷针",
@@ -1624,26 +1111,6 @@ const ItemDict = {
     "pale_oak_sign": "浅色橡木告示牌",
     "spruce_sign": "云杉木告示牌",
     "warped_sign": "诡异告示牌",
-    "arrow": "箭",
-    "bow": "弓",
-    "crossbow": "弩",
-    "mace": "狼牙棒",
-    "spectral_arrow": "光灵箭",
-    "trident": "三叉戟",
-    "copper_spear": "铜矛",
-    "diamond_spear": "钻石矛",
-    "golden_spear": "金矛",
-    "iron_spear": "铁矛",
-    "netherite_spear": "下界合金矛",
-    "stone_spear": "石矛",
-    "wooden_spear": "木矛",
-    "copper_sword": "铜剑",
-    "diamond_sword": "钻石剑",
-    "golden_sword": "金剑",
-    "iron_sword": "铁剑",
-    "netherite_sword": "下界合金剑",
-    "stone_sword": "石剑",
-    "wooden_sword": "木剑",
     "acacia_planks": "金合欢木板",
     "acacia_slab": "金合欢木台阶",
     "acacia_stairs": "金合欢木楼梯",
@@ -1652,7 +1119,7 @@ const ItemDict = {
     "stripped_acacia_wood": "去皮金合欢木",
     "acacia_log": "金合欢原木",
     "bamboo_mosaic": "竹马赛克块",
-        "bamboo_mosaic_slab": "竹马赛克台阶",
+    "bamboo_mosaic_slab": "竹马赛克台阶",
     "bamboo_mosaic_stairs": "竹马赛克楼梯",
     "bamboo_planks": "竹木板",
     "bamboo_slab": "竹台阶",
@@ -1753,10 +1220,10 @@ const ItemDict = {
     "enchanted_book_swift_sneak_1": "迅捷潜行附魔书I",
     "enchanted_book_swift_sneak_2": "迅捷潜行附魔书II",
     "enchanted_book_swift_sneak_3": "迅捷潜行附魔书III",
-    "music_disc_tears": "音乐唱片 泪水",
     "glass": "玻璃",
     "glass_pane": "玻璃板",
 };
+
 // ==========================================
 // 物品分类汉化（与 items.yml category 字段对应）
 // ==========================================
@@ -1792,20 +1259,23 @@ const CategoryDict = {
 };
 
 /**
- * 全局翻译函数
- * 逻辑：如果字典里有这个词，就返回中文；如果没有，就返回首字母大写的英文作为兜底。
+ * 物品中文名：优先 zh_cn.json (item.minecraft.*)，其次 ItemDict 兜底。
  */
 window.getChineseName = function(itemId) {
-    const id = itemId.toLowerCase();
-    
-    // 查字典
+    const id = String(itemId).toLowerCase().replace(/-/g, '_');
+
+    if (mcItemByKey) {
+        const mc = lookupMcItemName(id, mcItemByKey);
+        if (mc) return mc;
+    }
+
     if (ItemDict[id]) {
         return ItemDict[id];
     }
-    
-    // 兜底方案：如果没有翻译，就把 spruce_wood 变成 Spruce Wood
-    return id.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+    return id.split('_').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 };
+
 
 window.getChineseCategory = function(category) {
     if (category == null || category === '') {
@@ -1820,6 +1290,6 @@ window.getChineseCategory = function(category) {
         return CategoryDict[lower];
     }
     return raw.split(/[\s_-]+/)
-        .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
         .join(' ');
 };
