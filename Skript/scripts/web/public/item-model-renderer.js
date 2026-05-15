@@ -4,8 +4,15 @@
 (function (global) {
     const VERSION = '26.1.2';
     const ASSET_BASE = `/${VERSION}/assets/minecraft`;
-    const RENDER_SIZE = 64;
-    const ICON_PX = 32;
+    const cfg = global.McIconConfig || {
+        ICON_PX: Math.round(32 * 1.3),
+        RENDER_SIZE: Math.round(64 * 1.3),
+        ICON_GAP_RIGHT: Math.round(12 * 1.3),
+        FLAT_PAD_RATIO: 0.1
+    };
+    const RENDER_SIZE = cfg.RENDER_SIZE;
+    const ICON_PX = cfg.ICON_PX;
+    const ICON_GAP_RIGHT = cfg.ICON_GAP_RIGHT;
 
     const DEFAULT_GUI = {
         rotation: [30, 225, 0],
@@ -17,15 +24,38 @@
     // 占 NDC 视口比例（2.0 为满幅），略留边避免贴边裁切
     const GUI_CELL_FILL = 0.9;
 
-    // 与 MC 物品栏 gui_light=side 一致：顶面亮，左下稍暗，右下较暗
-    const MC_FACE_SHADE = {
-        up: 1.0,
-        down: 0.5,
-        north: 0.8,
-        south: 0.8,
-        west: 0.8,
-        east: 0.48
+    const FACE_NORMAL = {
+        north: [0, 0, -1],
+        south: [0, 0, 1],
+        east: [1, 0, 0],
+        west: [-1, 0, 0],
+        up: [0, 1, 0],
+        down: [0, -1, 0]
     };
+
+    function computeViewShade(faceName, model) {
+        const THREE = getThree();
+        const base = FACE_NORMAL[faceName];
+        if (!base) return 0.8;
+
+        const gui = (model.display && model.display.gui) || DEFAULT_GUI;
+        const rot = gui.rotation || DEFAULT_GUI.rotation;
+        const n = new THREE.Vector3(base[0], base[1], base[2]);
+        n.applyEuler(new THREE.Euler(
+            THREE.MathUtils.degToRad(rot[0]),
+            THREE.MathUtils.degToRad(rot[1]),
+            THREE.MathUtils.degToRad(rot[2]),
+            'XYZ'
+        ));
+
+        if (n.z < 0.12) return 0.5;
+        if (n.y > 0.55) return 1.0;
+
+        const sx = n.x;
+        if (sx > 0.12) return 0.2;
+        if (sx < -0.12) return 0.4;
+        return 0.68;
+    }
 
     const modelJsonCache = new Map();
     const iconCache = new Map();
@@ -40,6 +70,7 @@
     let queue = [];
     let draining = false;
     const pendingRenders = new Map();
+    const animatedSlots = [];
 
     function normalizeId(id) {
         return String(id).toLowerCase().replace(/-/g, '_');
@@ -153,16 +184,37 @@
         return needs;
     }
 
+    async function itemUsesAnimatedTextures(model) {
+        if (!global.McTextureAnim || !model || !model.textures) return false;
+        const urls = new Set();
+        Object.values(model.textures).forEach((ref) => {
+            const u = resolveTextureRef(ref, model.textures, 0);
+            if (u) urls.add(u);
+        });
+        for (const url of urls) {
+            const meta = await global.McTextureAnim.fetchAnimationMeta(url);
+            if (meta) return true;
+        }
+        return false;
+    }
+
     function loadTexture(url) {
         if (!url) return Promise.resolve(null);
         if (textureCache.has(url)) return textureCache.get(url);
         const p = new Promise((resolve) => {
+            const THREE = getThree();
             new THREE.TextureLoader().load(
                 url,
-                (t) => {
+                async (t) => {
                     t.magFilter = THREE.NearestFilter;
                     t.minFilter = THREE.NearestFilter;
                     t.colorSpace = THREE.SRGBColorSpace;
+                    const meta = global.McTextureAnim
+                        ? await global.McTextureAnim.fetchAnimationMeta(url)
+                        : null;
+                    if (meta && t.image && global.McTextureAnim.setupThreeTexture(t, t.image, meta)) {
+                        t.userData.mcAnimated = true;
+                    }
                     resolve(t);
                 },
                 undefined,
@@ -180,7 +232,7 @@
         ];
     }
 
-    function pushFace(group, from, to, faceName, face, resolveTex) {
+    function pushFace(group, from, to, faceName, face, resolveTex, model) {
         const url = resolveTex(face.texture);
         if (!url) return;
 
@@ -225,7 +277,7 @@
         geo.setIndex([0, 1, 2, 0, 2, 3]);
         geo.computeVertexNormals();
 
-        const shade = MC_FACE_SHADE[faceName] ?? 0.8;
+        const shade = computeViewShade(faceName, model);
         const meshHolder = { geo, url, shade };
         group.__meshes = group.__meshes || [];
         group.__meshes.push(meshHolder);
@@ -255,7 +307,7 @@
 
         model.elements.forEach((el) => {
             Object.entries(el.faces || {}).forEach(([name, face]) => {
-                pushFace(root, el.from, el.to, name, face, resolveTex);
+                pushFace(root, el.from, el.to, name, face, resolveTex, model);
             });
         });
 
@@ -408,41 +460,92 @@
         });
     }
 
-    async function renderItemToDataUrl(itemId) {
-        if (iconCache.has(itemId)) return iconCache.get(itemId);
+    function paintSlotCanvas(slot) {
+        const canvas = slot.querySelector('canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, RENDER_SIZE, RENDER_SIZE);
+        ctx.drawImage(renderer.domElement, 0, 0, RENDER_SIZE, RENDER_SIZE);
+        canvas.style.opacity = '1';
+        const fallback = slot.querySelector('.item-icon-fallback');
+        if (fallback) fallback.innerHTML = '';
+    }
+
+    function renderGroupOnce(group) {
+        const renderScene = new THREE.Scene();
+        renderScene.add(group);
+        renderer.setRenderTarget(null);
+        renderer.render(renderScene, camera);
+    }
+
+    function mountAnimatedSlot(slot, group) {
+        animatedSlots.push({ slot, group });
+        slot.dataset.mcAnimated = '1';
+        renderGroupOnce(group);
+        paintSlotCanvas(slot);
+    }
+
+    function pruneAnimatedSlots() {
+        for (let i = animatedSlots.length - 1; i >= 0; i -= 1) {
+            if (!animatedSlots[i].slot.isConnected) {
+                disposeObject(animatedSlots[i].group);
+                animatedSlots.splice(i, 1);
+            }
+        }
+    }
+
+    async function renderItemToSlot(slot, itemId) {
         const THREE = getThree();
         if (!THREE || !initRenderer()) {
-            return null;
+            applyIconToSlot(slot, null);
+            return;
+        }
+
+        const cached = iconCache.get(itemId);
+        if (cached && cached !== 'ANIMATED') {
+            applyIconToSlot(slot, cached);
+            return;
         }
 
         const model = await resolveModel(itemId);
         if (!model || !modelNeeds3d(model)) {
             use3dCache.set(itemId, false);
-            return null;
+            applyIconToSlot(slot, null);
+            return;
         }
         use3dCache.set(itemId, true);
 
         const group = await buildFromElements(model);
-
         if (!group) {
             iconCache.set(itemId, null);
-            return null;
+            applyIconToSlot(slot, null);
+            return;
         }
 
         applyGuiTransform(group, model);
         setupMcItemCamera();
         fitModelToGuiCell(group, camera);
 
-        const renderScene = new THREE.Scene();
-        renderScene.add(group);
+        const hasAnimation = await itemUsesAnimatedTextures(model);
+        if (hasAnimation) {
+            iconCache.set(itemId, 'ANIMATED');
+            mountAnimatedSlot(slot, group);
+            return;
+        }
 
-        renderer.setRenderTarget(null);
-        renderer.render(renderScene, camera);
+        renderGroupOnce(group);
         const dataUrl = renderer.domElement.toDataURL('image/png');
-
         disposeObject(group);
         iconCache.set(itemId, dataUrl);
-        return dataUrl;
+        applyIconToSlot(slot, dataUrl);
+    }
+
+    async function renderItemToDataUrl(itemId) {
+        if (iconCache.has(itemId)) {
+            const c = iconCache.get(itemId);
+            return c === 'ANIMATED' ? null : c;
+        }
+        return null;
     }
 
     function drainQueue() {
@@ -462,7 +565,8 @@
         if (use3dCache.has(itemId) && use3dCache.get(itemId) === false) {
             return Promise.resolve(null);
         }
-        if (iconCache.has(itemId)) return Promise.resolve(iconCache.get(itemId));
+        const cached = iconCache.get(itemId);
+        if (cached && cached !== 'ANIMATED') return Promise.resolve(cached);
         if (pendingRenders.has(itemId)) return pendingRenders.get(itemId);
         const promise = new Promise((resolve) => {
             queue.push({ itemId, resolve });
@@ -493,8 +597,19 @@
     }
 
     global.McItemIcon = {
+        renderAnimatedSlots() {
+            if (!renderer || !camera) return;
+            pruneAnimatedSlots();
+            animatedSlots.forEach((entry) => {
+                renderGroupOnce(entry.group);
+                paintSlotCanvas(entry.slot);
+            });
+        },
+
         async mountGrid(gridEl) {
             if (!gridEl || !global.McItemIcon.enabled) return;
+            pruneAnimatedSlots();
+            animatedSlots.length = 0;
             const mounts = [...gridEl.querySelectorAll('.item-icon-mount')];
             for (const wrap of mounts) {
                 const itemId = wrap.dataset.itemId;
@@ -517,7 +632,13 @@
                 ) {
                     fallback.innerHTML = global.getTextureHtml(itemId, itemName);
                 }
-                enqueueRender(itemId).then((url) => applyIconToSlot(slot, url));
+                await renderItemToSlot(slot, itemId);
+            }
+            if (global.McTextureAnim) {
+                global.McTextureAnim.initInContainer(gridEl);
+            }
+            if (global.McEnchantGlint) {
+                global.McEnchantGlint.initInContainer(gridEl);
             }
         },
 
@@ -526,12 +647,16 @@
         getIconSlotHtml(itemId, itemName) {
             const safeId = String(itemId).replace(/"/g, '&quot;');
             const safeName = String(itemName || itemId).replace(/"/g, '&quot;');
+            const glintHtml = global.McEnchantGlint && global.McEnchantGlint.itemHasGlint(itemId)
+                ? global.McEnchantGlint.glintOverlayHtml()
+                : '';
             return `
             <div class="item-icon-3d" data-item-id="${safeId}" data-item-name="${safeName}"
-                 style="width:${ICON_PX}px;height:${ICON_PX}px;margin-right:12px;flex-shrink:0;position:relative;background:rgba(255,255,255,0.03);border-radius:4px;">
+                 style="width:${ICON_PX}px;height:${ICON_PX}px;margin-right:${ICON_GAP_RIGHT}px;flex-shrink:0;position:relative;background:rgba(255,255,255,0.03);border-radius:4px;">
                 <canvas width="${RENDER_SIZE}" height="${RENDER_SIZE}"
                     style="width:${ICON_PX}px;height:${ICON_PX}px;image-rendering:pixelated;opacity:0;transition:opacity 0.25s;display:block;"></canvas>
                 <div class="item-icon-fallback" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;"></div>
+                ${glintHtml}
             </div>`;
         },
 

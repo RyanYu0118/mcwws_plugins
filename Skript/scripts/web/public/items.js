@@ -455,16 +455,16 @@ function renderCards() {
     initScrollingIds();
     renderPagination();
     mountItemIcons();
+    if (window.McTextureAnim) {
+        window.McTextureAnim.initInContainer(grid);
+    }
+    if (window.McEnchantGlint) {
+        window.McEnchantGlint.initInContainer(grid);
+    }
 }
 
 function getItemIconHtml(itemId, itemName) {
-    const png = window.getTextureHtml ? window.getTextureHtml(itemId, itemName) : '';
-    if (!window.McItemIcon || !window.McItemIcon.enabled) {
-        return png;
-    }
-    const safeId = String(itemId).replace(/"/g, '&quot;');
-    const safeName = String(itemName || itemId).replace(/"/g, '&quot;');
-    return `<span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}">${png}</span>`;
+    return window.getTextureHtml ? window.getTextureHtml(itemId, itemName) : '';
 }
 
 function mountItemIcons() {

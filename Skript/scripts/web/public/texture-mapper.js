@@ -2,7 +2,13 @@
 // 全局材质映射器 (Texture Mapper) - 缓存记忆版
 // ==========================================
 
-// 创建一个全局 Set，用来记录哪些物品图标已经成功加载过了
+window.McIconConfig = window.McIconConfig || {
+    ICON_PX: Math.round(32 * 1.3),
+    RENDER_SIZE: Math.round(64 * 1.3),
+    ICON_GAP_RIGHT: Math.round(12 * 1.3),
+    FLAT_PAD_RATIO: 0.1
+};
+
 window.LoadedTextureCache = window.LoadedTextureCache || new Set();
 
 const TextureConfig = {
@@ -12,9 +18,6 @@ const TextureConfig = {
     }
 };
 
-/**
- * 智能 ID 处理：处理附魔书、药水、药水箭等带后缀的物品
- */
 window.getSmartId = function(id) {
     const rawId = id.toLowerCase();
     if (rawId.startsWith('enchanted_book')) return 'enchanted_book';
@@ -25,9 +28,6 @@ window.getSmartId = function(id) {
     return rawId;
 };
 
-/**
- * 全局错误捕获：静默切换
- */
 window.handleTextureError = function(imgElement, originalId) {
     const basePath = TextureConfig.getBasePath();
     const smartId = window.getSmartId(originalId);
@@ -47,37 +47,37 @@ window.handleTextureError = function(imgElement, originalId) {
     }
 };
 
-/**
- * 核心逻辑：记录成功状态
- */
-window.markAsLoaded = function(imgElement, itemId) {
-    // 1. 将该物品 ID 存入已加载缓存
+window.markAsLoaded = function(el, itemId) {
     window.LoadedTextureCache.add(itemId);
-    // 2. 执行淡入动画
-    imgElement.style.opacity = 1;
+    if (el && el.style) {
+        el.style.opacity = 1;
+    }
 };
 
-/**
- * 渲染函数：根据缓存决定是否闪烁
- */
 window.getTextureHtml = function(itemId, itemName) {
     const smartId = window.getSmartId(itemId);
-    const initialSrc = `${TextureConfig.getBasePath()}/item/${smartId}.png`;
-    
-    // 检查这个物品是否已经加载成功过
+    const base = TextureConfig.getBasePath();
+    const texUrls = [
+        `${base}/block/${smartId}.png`,
+        `${base}/item/${smartId}.png`
+    ].join('|');
+    const safeId = String(itemId).replace(/"/g, '&quot;');
+    const safeName = String(itemName || itemId).replace(/"/g, '&quot;');
     const isCached = window.LoadedTextureCache.has(itemId);
-
-    // 如果已经加载过，初始透明度就是 1 (不闪烁)；如果是第一次加载，初始透明度是 0 (平滑淡入)
     const initialOpacity = isCached ? 1 : 0;
     const transitionStyle = isCached ? 'none' : 'opacity 0.3s ease';
 
+    const cfg = window.McIconConfig;
+    const glintHtml = window.McEnchantGlint && window.McEnchantGlint.itemHasGlint(itemId)
+        ? window.McEnchantGlint.glintOverlayHtml()
+        : '';
     return `
-        <div style="width:32px; height:32px; margin-right:12px; display:flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0;">
-            <img src="${initialSrc}" 
-                 onload="window.markAsLoaded(this, '${itemId}')"
-                 onerror="window.handleTextureError(this, '${itemId}')"
-                 style="width:32px; height:32px; image-rendering:pixelated; object-fit: contain; opacity: ${initialOpacity}; transition: ${transitionStyle};" 
-                 alt="${itemName}">
-        </div>
+        <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
+            style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
+            <canvas class="item-tex-anim" width="${cfg.RENDER_SIZE}" height="${cfg.RENDER_SIZE}" data-tex-urls="${texUrls}"
+                style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
+                title="${safeName}"></canvas>
+            ${glintHtml}
+        </span>
     `;
 };
