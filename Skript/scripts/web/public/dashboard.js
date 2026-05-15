@@ -12,7 +12,7 @@ let sortColumn = 'timestamp';
 let sortDirection = 'desc';
 let timeRange = 'all';
 let activityTimeRange = '24h';
-let currentLeaderboard = 'earners';
+let currentLeaderboard = 'buyers';
 let currentTrends = 'hot';
 let activityChart = null;
 let categoryChart = null;
@@ -177,13 +177,16 @@ function renderLeaderboard(data) {
     }
 
     const valueKey = currentLeaderboard === 'traders' ? 'trades' :
-        currentLeaderboard === 'spenders' ? 'spent' : 'netProfit';
+        currentLeaderboard === 'recyclers' ? 'earned' : 'spent';
 
     container.innerHTML = data.map((entry, i) => {
         const rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
         const value = valueKey === 'trades' ?
-            entry.trades.toLocaleString() + ' 笔交易' :
+            entry.trades.toLocaleString() + ' 笔' :
             formatCurrency(Math.abs(entry[valueKey]));
+        const subStat = currentLeaderboard === 'traders'
+            ? `买入 ${formatCurrency(entry.spent)} · 回收 ${formatCurrency(entry.earned)}`
+            : `${entry.trades} 笔交易`;
 
         return `
             <div class="leaderboard-item">
@@ -194,7 +197,7 @@ function renderLeaderboard(data) {
                      onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22><rect fill=%22%23334155%22 width=%2232%22 height=%2232%22/></svg>'">
                 <div class="player-info">
                     <div class="player-name">${escapeHtml(entry.player)}</div>
-                    <div class="player-stat">${entry.trades} 笔交易</div>
+                    <div class="player-stat">${subStat}</div>
                 </div>
                 <div class="player-value">${value}</div>
             </div>

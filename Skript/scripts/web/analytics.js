@@ -412,11 +412,17 @@ function createAnalyticsService(opts) {
             players[name].netProfit = players[name].earned - players[name].spent;
         });
 
-        let sortKey = 'netProfit';
-        if (type === 'spenders') {
-            sortKey = 'spent';
+        let sortKey = 'spent';
+        if (type === 'recyclers' || type === 'sellers') {
+            sortKey = 'earned';
         } else if (type === 'traders') {
             sortKey = 'trades';
+        } else if (type === 'buyers') {
+            sortKey = 'spent';
+        } else if (type === 'earners') {
+            sortKey = 'netProfit';
+        } else if (type === 'spenders') {
+            sortKey = 'spent';
         }
 
         return Object.values(players)

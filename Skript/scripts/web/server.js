@@ -372,7 +372,7 @@ app.get('/api/analytics/economy', (req, res) => {
 
 app.get('/api/analytics/leaderboard', (req, res) => {
     try {
-        const type = req.query.type || 'earners';
+        const type = req.query.type || 'buyers';
         const limit = Math.min(Number(req.query.limit) || 5, 50);
         res.json(analytics.getLeaderboard(type, limit));
     } catch (error) {
