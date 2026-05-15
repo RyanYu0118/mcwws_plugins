@@ -4,7 +4,7 @@ godmode: false
 muted: false
 jailed: false
 ip-address: 127.0.0.1
-afk: true
+afk: false
 socialspy: false
 npc: false
 powertoolsenabled: true
@@ -16,18 +16,18 @@ timestamps:
   mute: 0
   jail: 0
   onlinejail: 0
-  logout: 1778786003571
+  logout: 1778863584327
   login: 1778857270273
 money: '220768.22671956333864727'
 last-account-name: Ryan_yu__
 logoutlocation:
   world: 407ccbed-2f74-4524-be27-8b4371eedfa8
   world-name: world
-  x: -448.2491350426484
-  y: 87.0
-  z: -528.1752147141808
-  yaw: -89.2091064453125
-  pitch: 12.52584457397461
+  x: -468.9632901662078
+  y: 98.0
+  z: -500.1992128990796
+  yaw: -121.87832641601562
+  pitch: 8.824565887451172
 lastlocation:
   world: 407ccbed-2f74-4524-be27-8b4371eedfa8
   world-name: world

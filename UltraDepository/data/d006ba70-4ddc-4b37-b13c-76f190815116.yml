@@ -36,7 +36,7 @@ depositories:
       amount: 494
   hunter:
     ROTTEN_FLESH:
-      amount: 1864
+      amount: 1867
     EGG:
       amount: 19
     MAGMA_CREAM:
@@ -82,7 +82,7 @@ depositories:
     DIAMOND:
       amount: 62
     IRON_INGOT:
-      amount: 2
+      amount: 3
     COBBLESTONE:
       amount: 193
     FLINT:

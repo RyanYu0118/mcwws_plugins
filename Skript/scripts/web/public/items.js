@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (window.mcLangReady) {
         await window.mcLangReady;
     }
+    if (!window.McItemIcon) {
+        console.warn('[物品图标] item-model-renderer.js 未加载，仍使用 PNG');
+    } else if (!window.THREE) {
+        console.warn('[物品图标] Three.js 未加载（检查 vendor/three.module.min.js），仍使用 PNG');
+    }
     loadItems();
     setupEventListeners();
     loadUserProfile();
