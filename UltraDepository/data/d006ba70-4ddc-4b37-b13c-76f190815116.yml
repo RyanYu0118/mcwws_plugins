@@ -44,7 +44,7 @@ depositories:
     PORKCHOP:
       amount: 5
     SPIDER_EYE:
-      amount: 208
+      amount: 210
     ENDER_PEARL:
       amount: 10
     FEATHER:
@@ -60,7 +60,7 @@ depositories:
     SLIME_BALL:
       amount: 91
     STRING:
-      amount: 544
+      amount: 546
     LEATHER:
       amount: 542
     RABBIT:
