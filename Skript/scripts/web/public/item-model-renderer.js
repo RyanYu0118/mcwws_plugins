@@ -66,8 +66,8 @@
         translation: [0, 0, 0],
         scale: [0.625, 0.625, 0.625]
     };
-    // 物品栏格正交视锥半宽（越小图标越大）；对齐 MC GUI 固定机位
-    const GUI_FRUSTUM_HALF = 0.36;
+    // 物品栏格正交视锥半宽（越小图标越大）；略加大以减少高模型（双格门）贴边裁切
+    const GUI_FRUSTUM_HALF = 0.44;
     // 占 NDC 视口比例（2.0 为满幅），略留边避免贴边裁切
     const GUI_CELL_FILL = 0.9;
 
@@ -143,8 +143,17 @@
 
     const BUSH_BLOCK_IDS = new Set(['sweet_berry_bush']);
 
+    function isMcDoorBlockId(id) {
+        return !!(id && id.endsWith('_door') && !id.endsWith('_trapdoor'));
+    }
+
+    function isMcTrapdoorBlockId(id) {
+        return !!(id && id.endsWith('_trapdoor'));
+    }
+
     function iconForce2dFlatIcon(id) {
         if (!id) return false;
+        if (isMcDoorBlockId(id)) return true;
         if (GRASS_LIKE_IDS.has(id)) return true;
         if (FLOWER_IDS.has(id)) return true;
         if (BUSH_BLOCK_IDS.has(id)) return true;
@@ -154,7 +163,7 @@
         return false;
     }
 
-    /** 门、活板门、整块玻璃（非玻璃板）、沉重核心 → 方块模型含立方体面，走 3D；门/活板门无单体 block/id 时尝试 block/id_bottom_left 等子模型；玻璃纹理可为 { sprite } 对象 */
+    /** 花、草丛等走 2D：item 路径优先；门与原版物品栏一致走 2D 平面 */
     function modelCandidatesFlatFirst(itemId) {
         const id = normalizeId(itemId);
         const itemPath = `item/${id}`;
@@ -197,30 +206,13 @@
         return textureToUrl(next);
     }
 
-    function isMcDoorBlockId(id) {
-        return !!(id && id.endsWith('_door') && !id.endsWith('_trapdoor'));
-    }
-
-    function isMcTrapdoorBlockId(id) {
-        return !!(id && id.endsWith('_trapdoor'));
-    }
-
     function modelCandidates(itemId) {
         const id = normalizeId(itemId);
-        const doorBlockParts = isMcDoorBlockId(id)
-            ? [
-                `block/${id}_bottom_left`,
-                `block/${id}_bottom_right`,
-                `block/${id}_top_left`,
-                `block/${id}_top_right`
-            ]
-            : [];
         const trapdoorBlockParts = isMcTrapdoorBlockId(id)
             ? [`block/${id}_bottom`, `block/${id}_top`, `block/${id}_open`]
             : [];
         const list = [
             `block/${id}_inventory`,
-            ...doorBlockParts,
             ...trapdoorBlockParts,
             `block/${id}`,
             `item/${id}`
@@ -667,13 +659,33 @@
         }
         return {
             span: Math.max(maxX - minX, maxY - minY, 0.0001),
+            minX,
+            maxX,
+            minY,
+            maxY,
             midX: (minX + maxX) / 2,
             midY: (minY + maxY) / 2
         };
     }
 
+    /** 物品栏图标：投影超出 NDC 安全边时整体再缩小一档 */
+    function clampNdcExtentIfNeeded(group, cam, scratch) {
+        group.updateMatrixWorld(true);
+        const bounds = getNdcBounds(group, cam, scratch);
+        if (!bounds || bounds.minX == null) return;
+        const m = Math.max(
+            Math.abs(bounds.minX),
+            Math.abs(bounds.maxX),
+            Math.abs(bounds.minY),
+            Math.abs(bounds.maxY)
+        );
+        const ndcSafe = 0.9;
+        if (m > ndcSafe) {
+            group.scale.multiplyScalar(ndcSafe / m);
+        }
+    }
+
     function fitModelToGuiCell(group, cam) {
-        const THREE = getThree();
         const scratch = {
             corners: Array.from({ length: 8 }, () => new THREE.Vector3()),
             vec: new THREE.Vector3()
@@ -690,6 +702,7 @@
 
         if (Math.abs(bounds.midX) > 0.002 || Math.abs(bounds.midY) > 0.002) {
             group.updateMatrixWorld(true);
+            const THREE = getThree();
             const center = new THREE.Box3().setFromObject(group).getCenter(scratch.vec);
             const ndc = center.clone().project(cam);
             const worldW = (cam.right - cam.left) * 0.5;
@@ -697,6 +710,8 @@
             group.position.x -= ndc.x * worldW;
             group.position.y -= ndc.y * worldH;
         }
+
+        clampNdcExtentIfNeeded(group, cam, scratch);
     }
 
     function initRenderer() {

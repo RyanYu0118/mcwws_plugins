@@ -36,7 +36,7 @@ depositories:
       amount: 494
   hunter:
     ROTTEN_FLESH:
-      amount: 1867
+      amount: 1868
     EGG:
       amount: 19
     MAGMA_CREAM:
@@ -44,7 +44,7 @@ depositories:
     PORKCHOP:
       amount: 5
     SPIDER_EYE:
-      amount: 210
+      amount: 211
     ENDER_PEARL:
       amount: 10
     FEATHER:
@@ -60,13 +60,13 @@ depositories:
     SLIME_BALL:
       amount: 91
     STRING:
-      amount: 546
+      amount: 548
     LEATHER:
       amount: 542
     RABBIT:
       amount: 8
     BONE:
-      amount: 730
+      amount: 731
     BEEF:
       amount: 19
     MUTTON:
