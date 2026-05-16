@@ -66,8 +66,8 @@
         translation: [0, 0, 0],
         scale: [0.625, 0.625, 0.625]
     };
-    // 物品栏格正交视锥半宽（越小图标越大）；略加大以减少高模型（双格门）贴边裁切
-    const GUI_FRUSTUM_HALF = 0.44;
+    // 物品栏格正交视锥半宽（越小图标越大）；对齐 MC GUI 固定机位
+    const GUI_FRUSTUM_HALF = 0.36;
     // 占 NDC 视口比例（2.0 为满幅），略留边避免贴边裁切
     const GUI_CELL_FILL = 0.9;
 
@@ -120,6 +120,7 @@
     const animatedSlots = [];
 
     function normalizeId(id) {
+        if (global.getSmartId) return global.getSmartId(id);
         return String(id).toLowerCase().replace(/-/g, '_');
     }
 

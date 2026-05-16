@@ -27,13 +27,21 @@ const TextureConfig = {
 window.McTexturePackVersion = TextureConfig.version;
 
 window.getSmartId = function(id) {
-    const rawId = id.toLowerCase();
+    let rawId = String(id).toLowerCase().replace(/-/g, '_');
+    // 涂蜡铜等无独立贴图/模型，与不涂蜡方块共用资源
+    if (rawId.startsWith('waxed_')) rawId = rawId.slice(6);
     if (rawId.startsWith('enchanted_book')) return 'enchanted_book';
     if (rawId.startsWith('potion')) return 'potion';
     if (rawId.startsWith('lingering_potion')) return 'lingering_potion';
     if (rawId.startsWith('splash_potion')) return 'splash_potion';
     if (rawId.startsWith('arrow_of_')) return 'tipped_arrow';
     return rawId;
+};
+
+/** 木门等（非活板门）：物品栏用 2D 平面，绘制时不加 FLAT_PAD（与先前 3D 满幅一致） */
+window.isMcDoorItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n.endsWith('_door') && !n.endsWith('_trapdoor');
 };
 
 window.handleTextureError = function(imgElement, originalId) {

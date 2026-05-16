@@ -1339,11 +1339,11 @@ npc:
       gravity: {
         }
       location:
-        bodyYaw: 90.00018
-        x: -444.1398
-        y: 95.0
-        z: -496.5
-        yaw: 90.0001
+        bodyYaw: 0.02267456
+        x: -411.3881
+        y: 95.9216
+        z: -496.4471
+        yaw: -74.9773
         pitch: 18.2811
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait: {
@@ -1473,7 +1473,7 @@ npc:
       attributetrait:
         attributes:
           minecraft:waypoint_transmit_range: 0.0
-    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,skinlayers,skintrait,mounttrait,lookclose,equipment,type,inventory,attributetrait,gravity,location
+    traitnames: scoreboardtrait,spawned,owner,rotationtrait,commandtrait,skinlayers,skintrait,mounttrait,lookclose,equipment,type,inventory,attributetrait,targetable,gravity,location
     navigator:
       speedmodifier: 1.0
       avoidwater: false

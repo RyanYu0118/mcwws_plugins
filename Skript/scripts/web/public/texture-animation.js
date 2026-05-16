@@ -100,10 +100,15 @@
         return out;
     }
 
+    function flatPadRatioForCanvas(canvas) {
+        const rawId = itemIdForCanvas(canvas);
+        if (global.isMcDoorItemId && global.isMcDoorItemId(rawId)) return 0;
+        return iconCfg().FLAT_PAD_RATIO || 0;
+    }
+
     function padInsetForCanvas(canvas) {
         const cw = canvas.width;
-        const pad = iconCfg().FLAT_PAD_RATIO || 0;
-        return cw * pad;
+        return cw * flatPadRatioForCanvas(canvas);
     }
 
     /** 仅对非透明像素做 grass 乘法着色，避免污染透明背景 */
@@ -148,7 +153,7 @@
     function drawImageWithFlatPadding(ctx, img, sx, sy, sw, sh) {
         const cw = ctx.canvas.width;
         const ch = ctx.canvas.height;
-        const pad = iconCfg().FLAT_PAD_RATIO || 0;
+        const pad = flatPadRatioForCanvas(ctx.canvas);
         const inset = cw * pad;
         const sizeW = cw - inset * 2;
         const sizeH = ch - inset * 2;
