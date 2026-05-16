@@ -172,6 +172,8 @@
         if (global.isMcCopperGolemStatueItemId && global.isMcCopperGolemStatueItemId(nid)) return true;
         if (global.isMcShulkerBoxItemId && global.isMcShulkerBoxItemId(nid)) return true;
         if (global.isMcChestBlockItemId && global.isMcChestBlockItemId(nid)) return true;
+        if (global.isMcConduitItemId && global.isMcConduitItemId(nid)) return true;
+        if (global.isMcHeavyCoreItemId && global.isMcHeavyCoreItemId(nid)) return true;
         if (global.isMcCandleItemId && global.isMcCandleItemId(nid)) return true;
         if (global.isMcTripwireHookItemId && global.isMcTripwireHookItemId(nid)) return true;
         if (global.isMcVineOrRootPlantItemId && global.isMcVineOrRootPlantItemId(nid)) return true;
@@ -615,15 +617,9 @@
         return root.children.length ? root : null;
     }
 
-    function displayGuiForModel(obj, model) {
-        const itemId = obj && obj.userData ? normalizeId(obj.userData.mcItemId || '') : '';
-        if (itemId === 'conduit') return DEFAULT_GUI;
-        return (model.display && model.display.gui) || DEFAULT_GUI;
-    }
-
     function applyGuiTransform(obj, model) {
         const THREE = getThree();
-        const gui = displayGuiForModel(obj, model);
+        const gui = (model.display && model.display.gui) || DEFAULT_GUI;
         const rot = gui.rotation || DEFAULT_GUI.rotation;
         const trans = gui.translation || DEFAULT_GUI.translation;
         const scale = gui.scale || DEFAULT_GUI.scale;

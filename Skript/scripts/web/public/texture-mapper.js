@@ -70,6 +70,12 @@ window.flatTextureUrlsForItem = function(itemId) {
     if (window.isMcSporeBlossomItemId && window.isMcSporeBlossomItemId(itemId)) {
         return window.sporeBlossomWikiImageUrlsForItem(itemId);
     }
+    if (window.isMcConduitItemId && window.isMcConduitItemId(itemId)) {
+        return window.conduitWikiImageUrlsForItem(itemId);
+    }
+    if (window.isMcHeavyCoreItemId && window.isMcHeavyCoreItemId(itemId)) {
+        return window.heavyCoreWikiImageUrlsForItem(itemId);
+    }
     if (window.isMcTripwireHookItemId && window.isMcTripwireHookItemId(itemId)) {
         return [`${base}/block/tripwire_hook.png`, `${base}/item/barrier.png`];
     }
@@ -122,6 +128,48 @@ window.sporeBlossomWikiImageUrlsForItem = function(itemId) {
         window.sporeBlossomWikiImageUrlForItem(itemId, 'zh.minecraft.wiki'),
         window.sporeBlossomWikiImageUrlForItem(itemId, 'minecraft.wiki'),
         `${base}/block/spore_blossom.png`,
+        `${base}/item/barrier.png`
+    ];
+};
+
+/** 潮涌核心：使用 Wiki 物品栏渲染图，避免本地 cube_all 模型被当完整方块渲染 */
+window.isMcConduitItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'conduit';
+};
+
+window.conduitWikiImageUrlForItem = function(itemId, wikiHost) {
+    const host = wikiHost || 'zh.minecraft.wiki';
+    return `https://${host}/images/Conduit_JE1_BE1.png`;
+};
+
+window.conduitWikiImageUrlsForItem = function(itemId) {
+    const base = TextureConfig.getBasePath();
+    return [
+        window.conduitWikiImageUrlForItem(itemId, 'zh.minecraft.wiki'),
+        window.conduitWikiImageUrlForItem(itemId, 'minecraft.wiki'),
+        `${base}/block/conduit.png`,
+        `${base}/item/barrier.png`
+    ];
+};
+
+/** 沉重核心：使用 Wiki 物品栏渲染图，避免特殊方块被普通 3D 方块模型处理 */
+window.isMcHeavyCoreItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'heavy_core';
+};
+
+window.heavyCoreWikiImageUrlForItem = function(itemId, wikiHost) {
+    const host = wikiHost || 'zh.minecraft.wiki';
+    return `https://${host}/images/Heavy_Core_JE1_BE1.png`;
+};
+
+window.heavyCoreWikiImageUrlsForItem = function(itemId) {
+    const base = TextureConfig.getBasePath();
+    return [
+        window.heavyCoreWikiImageUrlForItem(itemId, 'zh.minecraft.wiki'),
+        window.heavyCoreWikiImageUrlForItem(itemId, 'minecraft.wiki'),
+        `${base}/block/heavy_core.png`,
         `${base}/item/barrier.png`
     ];
 };
@@ -706,6 +754,28 @@ window.getTextureHtml = function(itemId, itemName) {
     `;
     }
     if (window.isMcSporeBlossomItemId && window.isMcSporeBlossomItemId(itemId)) {
+        return `
+        <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
+            style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
+            <img class="item-mc-wiki-invicon" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
+                style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
+                title="${safeName}" referrerpolicy="no-referrer" />
+            ${glintHtml}
+        </span>
+    `;
+    }
+    if (window.isMcConduitItemId && window.isMcConduitItemId(itemId)) {
+        return `
+        <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
+            style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
+            <img class="item-mc-wiki-invicon" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
+                style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
+                title="${safeName}" referrerpolicy="no-referrer" />
+            ${glintHtml}
+        </span>
+    `;
+    }
+    if (window.isMcHeavyCoreItemId && window.isMcHeavyCoreItemId(itemId)) {
         return `
         <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
             style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
