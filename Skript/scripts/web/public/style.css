@@ -9,6 +9,8 @@
     src: url('5_Minecraft AE.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    /* × (U+00D7) 在该字体中显示异常，排除后回退到 font-family 中的系统字体 */
+    unicode-range: U+0000-00D6, U+00D8-10FFFF;
 }
 /* 强制所有文本使用该字体，并取消所有默认加粗效果 */
 body, h1, h2, h3, h4, h5, h6, p, span, div, input, button, select, strong, b, a {
