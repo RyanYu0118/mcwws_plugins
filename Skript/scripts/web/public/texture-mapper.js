@@ -48,6 +48,10 @@ window.flatTextureUrlsForItem = function(itemId) {
     if (window.isMcGlassPaneItemId && window.isMcGlassPaneItemId(itemId)) {
         return [`${base}/block/${smartId}.png`];
     }
+    if (window.isMcBedItemId && window.isMcBedItemId(itemId)) {
+        const color = window.bedWoolColorFromItemId(itemId);
+        return [`${base}/entity/bed/${color}.png`];
+    }
     return [`${base}/block/${smartId}.png`, `${base}/item/${smartId}.png`];
 };
 
@@ -62,6 +66,20 @@ window.isMcGlassPaneItemId = function(id) {
 window.isMcDoorItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
     return n.endsWith('_door') && !n.endsWith('_trapdoor');
+};
+
+/** 各色床（item/template_bed → builtin/entity，贴图在 entity/bed/） */
+window.isMcBedItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    if (n === 'bedrock') return false;
+    if (n.startsWith('flower_bed')) return false;
+    return /_bed$/.test(n);
+};
+
+window.bedWoolColorFromItemId = function(itemId) {
+    const n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    if (n.endsWith('_bed')) return n.slice(0, -4);
+    return 'red';
 };
 
 window.handleTextureError = function(imgElement, originalId) {
