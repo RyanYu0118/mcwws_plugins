@@ -164,10 +164,6 @@
         return n === 'glass_pane' || (n.endsWith('_glass_pane') && n !== 'glass_bottle');
     }
 
-    function isMcConduitItemId(id) {
-        return normalizeId(id) === 'conduit';
-    }
-
     function iconForce2dFlatIcon(id) {
         if (!id) return false;
         const nid = normalizeId(id);
@@ -308,39 +304,8 @@
         return merged;
     }
 
-    function resolveConduitDisplayModel() {
-        return {
-            elements: [
-                {
-                    from: [3, 3, 3],
-                    to: [13, 13, 13],
-                    faces: {
-                        north: { texture: '#base', uv: [0, 0, 16, 16] },
-                        south: { texture: '#base', uv: [0, 0, 16, 16] },
-                        east: { texture: '#base', uv: [16, 0, 32, 16] },
-                        west: { texture: '#base', uv: [16, 0, 32, 16] },
-                        up: { texture: '#base', uv: [0, 0, 16, 16] },
-                        down: { texture: '#base', uv: [16, 0, 32, 16] }
-                    }
-                }
-            ],
-            textureSize: [32, 16],
-            textures: {
-                base: 'minecraft:entity/conduit/base'
-            },
-            display: {
-                gui: {
-                    rotation: [30, 45, 0],
-                    translation: [0, 0, 0],
-                    scale: [1, 1, 1]
-                }
-            }
-        };
-    }
-
     async function resolveModel(itemId) {
         const id = normalizeId(itemId);
-        if (isMcConduitItemId(id)) return resolveConduitDisplayModel();
         const paths = iconForce2dFlatIcon(id) ? modelCandidatesFlatFirst(itemId) : modelCandidates(itemId);
         let flatModel = null;
         for (const path of paths) {
@@ -650,9 +615,15 @@
         return root.children.length ? root : null;
     }
 
+    function displayGuiForModel(obj, model) {
+        const itemId = obj && obj.userData ? normalizeId(obj.userData.mcItemId || '') : '';
+        if (itemId === 'conduit') return DEFAULT_GUI;
+        return (model.display && model.display.gui) || DEFAULT_GUI;
+    }
+
     function applyGuiTransform(obj, model) {
         const THREE = getThree();
-        const gui = (model.display && model.display.gui) || DEFAULT_GUI;
+        const gui = displayGuiForModel(obj, model);
         const rot = gui.rotation || DEFAULT_GUI.rotation;
         const trans = gui.translation || DEFAULT_GUI.translation;
         const scale = gui.scale || DEFAULT_GUI.scale;

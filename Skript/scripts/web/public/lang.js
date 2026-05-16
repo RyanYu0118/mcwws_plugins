@@ -309,7 +309,7 @@ window.getChineseName = function(itemId) {
     if (ItemDict[id]) {
         return ItemDict[id];
     }
-
+    
     return id.split('_').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 };
 

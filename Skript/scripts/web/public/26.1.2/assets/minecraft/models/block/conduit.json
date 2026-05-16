@@ -1,5 +1,14 @@
 {
+  "parent": "minecraft:block/cube_all",
   "textures": {
+    "all": "minecraft:block/conduit",
     "particle": "minecraft:block/conduit"
+  },
+  "display": {
+    "gui": {
+      "rotation": [30, 45, 0],
+      "translation": [0, 0, 0],
+      "scale": [1, 1, 1]
+    }
   }
 }
