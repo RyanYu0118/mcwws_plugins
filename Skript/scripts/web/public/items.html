@@ -51,7 +51,8 @@
             <h1 class="hero-title">物品目录</h1>
             <p class="hero-subtitle">浏览所有商店物品及当前价格</p>
             <div class="search-container">
-                <input type="text" id="searchInput" class="hero-search" placeholder="搜索物品...">
+                <input type="text" id="searchInput" class="hero-search" placeholder="搜索物品..." autocomplete="off">
+                <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="清除搜索" hidden>×</button>
             </div>
         </div>
         <div class="hero-glow"></div>
@@ -191,7 +192,7 @@
     <script src="enchant-glint.js?v=2.5.28" defer></script>
     <script src="texture-animation.js?v=2.5.40" defer></script>
     <script src="item-model-renderer.js?v=2.5.41" defer></script>
-    <script src="items.js?v=2.5.24" defer></script>
+    <script src="items.js?v=2.5.42" defer></script>
 </body>
 
 </html>

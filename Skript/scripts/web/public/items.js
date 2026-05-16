@@ -38,6 +38,7 @@ function hydrateItemsStateFromUrl() {
         searchQuery = trimmed.toLowerCase();
         const inp = document.getElementById('searchInput');
         if (inp) inp.value = trimmed;
+        updateSearchClearButton();
     }
 
     const sortVal = params.get('sort');
@@ -327,12 +328,34 @@ function filterAndRenderItems() {
     renderCards();
 }
 
+function updateSearchClearButton() {
+    const inp = document.getElementById('searchInput');
+    const btn = document.getElementById('searchClearBtn');
+    if (!inp || !btn) return;
+    btn.hidden = inp.value.length === 0;
+}
+
+function clearSearchInput() {
+    const inp = document.getElementById('searchInput');
+    if (!inp) return;
+    inp.value = '';
+    searchQuery = '';
+    updateSearchClearButton();
+    syncItemsStateToUrl();
+    currentPage = 1;
+    filterAndRenderItems();
+    inp.focus();
+}
+
 function setupEventListeners() {
     // 监听搜索框输入
     const searchInput = document.getElementById('searchInput');
+    const searchClearBtn = document.getElementById('searchClearBtn');
     if (searchInput) {
+        updateSearchClearButton();
         searchInput.addEventListener('input', (e) => {
             searchQuery = e.target.value.toLowerCase();
+            updateSearchClearButton();
             syncItemsStateToUrl();
             clearTimeout(searchTimer);
             searchTimer = setTimeout(() => {
@@ -340,6 +363,9 @@ function setupEventListeners() {
                 filterAndRenderItems();
             }, 200);
         });
+    }
+    if (searchClearBtn) {
+        searchClearBtn.addEventListener('click', clearSearchInput);
     }
 
     // 监听刷新按钮
