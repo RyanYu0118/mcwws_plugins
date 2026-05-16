@@ -168,6 +168,7 @@
         if (!id) return false;
         const nid = normalizeId(id);
         if (global.isMcBedItemId && global.isMcBedItemId(nid)) return true;
+        if (global.isMcCandleItemId && global.isMcCandleItemId(nid)) return true;
         if (isMcGlassPaneItemId(nid)) return true;
         if (isMcDoorBlockId(nid)) return true;
         if (GRASS_LIKE_IDS.has(nid)) return true;
@@ -185,6 +186,7 @@
         const itemPath = `item/${id}`;
         // 玻璃板只用 item/generated（layer0=block/glass），勿并入 block/glass 立方体模型
         if (isMcGlassPaneItemId(id)) return [itemPath];
+        if (global.isMcCandleItemId && global.isMcCandleItemId(id)) return [itemPath];
         const rest = modelCandidates(itemId).filter((p) => p !== itemPath);
         return [itemPath, ...rest];
     }

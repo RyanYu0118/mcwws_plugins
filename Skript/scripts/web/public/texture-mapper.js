@@ -51,6 +51,9 @@ window.flatTextureUrlsForItem = function(itemId) {
     if (window.isMcBedItemId && window.isMcBedItemId(itemId)) {
         return window.bedInviconUrlsForItem(itemId);
     }
+    if (window.isMcCandleItemId && window.isMcCandleItemId(itemId)) {
+        return [`${base}/item/${smartId}.png`, `${base}/item/barrier.png`];
+    }
     return [`${base}/block/${smartId}.png`, `${base}/item/${smartId}.png`];
 };
 
@@ -65,6 +68,13 @@ window.isMcGlassPaneItemId = function(id) {
 window.isMcDoorItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
     return n.endsWith('_door') && !n.endsWith('_trapdoor');
+};
+
+/** 蜡烛（非插蛋糕上的）：物品栏有独立 item/*_candle.png，勿用 block 方块贴图 */
+window.isMcCandleItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    if (n === 'candle') return true;
+    return /_candle$/.test(n) && !/_candle_cake$/.test(n);
 };
 
 /** 各色床（item/template_bed → builtin/entity，贴图在 entity/bed/） */
@@ -148,6 +158,14 @@ window.handleTextureError = function(imgElement, originalId) {
             imgElement.src = `${basePath}/entity/bed/${color}.png`;
         } else if (step === 3) {
             imgElement.dataset.step = "4";
+            imgElement.src = `${basePath}/item/barrier.png`;
+        }
+        return;
+    }
+
+    if (window.isMcCandleItemId && window.isMcCandleItemId(originalId)) {
+        if (step === 1) {
+            imgElement.dataset.step = "2";
             imgElement.src = `${basePath}/item/barrier.png`;
         }
         return;
