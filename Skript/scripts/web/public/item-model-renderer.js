@@ -164,6 +164,10 @@
         return n === 'glass_pane' || (n.endsWith('_glass_pane') && n !== 'glass_bottle');
     }
 
+    function isMcConduitItemId(id) {
+        return normalizeId(id) === 'conduit';
+    }
+
     function iconForce2dFlatIcon(id) {
         if (!id) return false;
         const nid = normalizeId(id);
@@ -304,8 +308,39 @@
         return merged;
     }
 
+    function resolveConduitDisplayModel() {
+        return {
+            elements: [
+                {
+                    from: [3, 3, 3],
+                    to: [13, 13, 13],
+                    faces: {
+                        north: { texture: '#base', uv: [0, 0, 16, 16] },
+                        south: { texture: '#base', uv: [0, 0, 16, 16] },
+                        east: { texture: '#base', uv: [16, 0, 32, 16] },
+                        west: { texture: '#base', uv: [16, 0, 32, 16] },
+                        up: { texture: '#base', uv: [0, 0, 16, 16] },
+                        down: { texture: '#base', uv: [16, 0, 32, 16] }
+                    }
+                }
+            ],
+            textureSize: [32, 16],
+            textures: {
+                base: 'minecraft:entity/conduit/base'
+            },
+            display: {
+                gui: {
+                    rotation: [30, 45, 0],
+                    translation: [0, 0, 0],
+                    scale: [1, 1, 1]
+                }
+            }
+        };
+    }
+
     async function resolveModel(itemId) {
         const id = normalizeId(itemId);
+        if (isMcConduitItemId(id)) return resolveConduitDisplayModel();
         const paths = iconForce2dFlatIcon(id) ? modelCandidatesFlatFirst(itemId) : modelCandidates(itemId);
         let flatModel = null;
         for (const path of paths) {
@@ -470,10 +505,12 @@
         return FOLIAGE_DEFAULT_BIOME;
     }
 
-    function mcUv(uv) {
+    function mcUv(uv, texW, texH) {
+        const w = texW || 16;
+        const h = texH || 16;
         return [
-            uv[0] / 16, 1 - uv[1] / 16,
-            uv[2] / 16, 1 - uv[3] / 16
+            uv[0] / w, 1 - uv[1] / h,
+            uv[2] / w, 1 - uv[3] / h
         ];
     }
 
@@ -485,7 +522,8 @@
 
         const [x1, y1, z1] = from.map((c) => c / 16 - 0.5);
         const [x2, y2, z2] = to.map((c) => c / 16 - 0.5);
-        const uv = mcUv(face.uv || [0, 0, 16, 16]);
+        const texSize = model.textureSize || model.texture_size || [16, 16];
+        const uv = mcUv(face.uv || [0, 0, texSize[0], texSize[1]], texSize[0], texSize[1]);
 
         let positions;
         let uvs;
