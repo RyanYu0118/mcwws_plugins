@@ -76,6 +76,27 @@ window.isMcDoorItemId = function(id) {
     return n.endsWith('_door') && !n.endsWith('_trapdoor');
 };
 
+/** 潜影盒（special shulker_box，贴图在 entity/shulker/ 展开图） */
+window.isMcShulkerBoxItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'shulker_box' || n.endsWith('_shulker_box');
+};
+
+window.shulkerBoxSpriteFromItemId = function(itemId) {
+    const n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    if (n === 'shulker_box') return 'shulker';
+    if (n.endsWith('_shulker_box')) {
+        const color = n.slice(0, -12);
+        return color ? `shulker_${color}` : 'shulker';
+    }
+    return 'shulker';
+};
+
+window.shulkerBoxAtlasTextureUrl = function(itemId) {
+    const sprite = window.shulkerBoxSpriteFromItemId(itemId);
+    return `${TextureConfig.getBasePath()}/entity/shulker/${sprite}.png`;
+};
+
 /** 铜傀儡像（special copper_golem_statue，贴图在 entity/copper_golem/） */
 window.isMcCopperGolemStatueItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
