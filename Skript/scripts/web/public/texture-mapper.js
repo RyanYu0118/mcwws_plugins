@@ -63,6 +63,9 @@ window.flatTextureUrlsForItem = function(itemId) {
     if (window.isMcChestBlockItemId && window.isMcChestBlockItemId(itemId)) {
         return window.chestWikiImageUrlsForItem(itemId);
     }
+    if (window.isMcTripwireHookItemId && window.isMcTripwireHookItemId(itemId)) {
+        return [`${base}/block/tripwire_hook.png`, `${base}/item/barrier.png`];
+    }
     if (window.isMcCandleItemId && window.isMcCandleItemId(itemId)) {
         return [`${base}/item/${smartId}.png`, `${base}/item/barrier.png`];
     }
@@ -80,6 +83,12 @@ window.isMcGlassPaneItemId = function(id) {
 window.isMcDoorItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
     return n.endsWith('_door') && !n.endsWith('_trapdoor');
+};
+
+/** 绊线钩：物品栏使用 item/generated 的平面图标，避免误走 block/tripwire_hook 3D 模型 */
+window.isMcTripwireHookItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'tripwire_hook';
 };
 
 /**
