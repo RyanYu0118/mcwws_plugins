@@ -164,18 +164,6 @@
         return n === 'glass_pane' || (n.endsWith('_glass_pane') && n !== 'glass_bottle');
     }
 
-    function isMcChestBlockItemId(id) {
-        if (global.isMcChestBlockItemId) return global.isMcChestBlockItemId(id);
-        const n = normalizeId(id);
-        return n === 'chest' || n === 'trapped_chest' || n === 'ender_chest' || n.endsWith('_copper_chest');
-    }
-
-    const CHEST_GUI = {
-        rotation: [30, 45, 0],
-        translation: [0, 0, 0],
-        scale: [0.625, 0.625, 0.625]
-    };
-
     function iconForce2dFlatIcon(id) {
         if (!id) return false;
         const nid = normalizeId(id);
@@ -183,6 +171,7 @@
         if (global.isMcBannerItemId && global.isMcBannerItemId(nid)) return true;
         if (global.isMcCopperGolemStatueItemId && global.isMcCopperGolemStatueItemId(nid)) return true;
         if (global.isMcShulkerBoxItemId && global.isMcShulkerBoxItemId(nid)) return true;
+        if (global.isMcChestBlockItemId && global.isMcChestBlockItemId(nid)) return true;
         if (global.isMcCandleItemId && global.isMcCandleItemId(nid)) return true;
         if (isMcGlassPaneItemId(nid)) return true;
         if (isMcDoorBlockId(nid)) return true;
@@ -311,24 +300,8 @@
         return merged;
     }
 
-    function resolveChestDisplayModel(itemId) {
-        const key = global.chestEntityTextureKeyFromItemId
-            ? global.chestEntityTextureKeyFromItemId(itemId)
-            : 'normal';
-        return {
-            __chestEntity: true,
-            chestTextureKey: key,
-            elements: [{ from: [0, 0, 0], to: [16, 16, 16], faces: {} }],
-            textures: {},
-            display: { gui: { ...CHEST_GUI } }
-        };
-    }
-
     async function resolveModel(itemId) {
         const id = normalizeId(itemId);
-        if (isMcChestBlockItemId(id)) {
-            return resolveChestDisplayModel(itemId);
-        }
         const paths = iconForce2dFlatIcon(id) ? modelCandidatesFlatFirst(itemId) : modelCandidates(itemId);
         let flatModel = null;
         for (const path of paths) {
@@ -349,17 +322,12 @@
     }
 
     function modelNeeds3d(model) {
-        if (model && model.__chestEntity) return true;
         return !!(model && model.elements && model.elements.length > 0);
     }
 
     async function prefers3d(itemId) {
         const id = normalizeId(itemId);
         if (use3dCache.has(id)) return use3dCache.get(id);
-        if (isMcChestBlockItemId(id)) {
-            use3dCache.set(id, true);
-            return true;
-        }
         if (iconForce2dFlatIcon(id) || isMcGlassPaneItemId(id)) {
             use3dCache.set(id, false);
             return false;
@@ -505,105 +473,6 @@
         ];
     }
 
-    function mcUvPixels(pixelUv, texW, texH) {
-        return [
-            pixelUv[0] / texW, 1 - pixelUv[3] / texH,
-            pixelUv[2] / texW, 1 - pixelUv[1] / texH
-        ];
-    }
-
-    /**
-     * 实体 CubeListBuilder 在贴图上的 UV（像素 [u1,v1,u2,v2]）。
-     * 底/顶面横向跨度为 depth(d)，非 width(w)。
-     */
-    function entityCuboidFaceUvs(texOffX, texOffY, w, h, d) {
-        const u = texOffX;
-        const v = texOffY;
-        return {
-            down: [u, v + d, u + d, v + d + h],
-            up: [u + d + w, v + d, u + d + w + w, v + d + h],
-            north: [u + d, v, u + d + w, v + h],
-            south: [u, v, u + d, v + h],
-            west: [u + d + w, v, u + d + w + d, v + h],
-            east: [u, v, u + d, v + h]
-        };
-    }
-
-    function pushFaceDirect(group, from, to, faceName, pixelUv, url, model, texW, texH) {
-        if (faceName === 'down') return;
-        if (!url) return;
-
-        const THREE = getThree();
-        const [x1, y1, z1] = from.map((c) => c / 16 - 0.5);
-        const [x2, y2, z2] = to.map((c) => c / 16 - 0.5);
-        const uv = mcUvPixels(pixelUv, texW, texH);
-
-        let positions;
-        let uvs;
-        switch (faceName) {
-            case 'north':
-                positions = [x1, y1, z1, x2, y1, z1, x2, y2, z1, x1, y2, z1];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
-                break;
-            case 'south':
-                positions = [x2, y1, z2, x1, y1, z2, x1, y2, z2, x2, y2, z2];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
-                break;
-            case 'west':
-                positions = [x1, y1, z2, x1, y1, z1, x1, y2, z1, x1, y2, z2];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
-                break;
-            case 'east':
-                positions = [x2, y1, z1, x2, y1, z2, x2, y2, z2, x2, y2, z1];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
-                break;
-            case 'up':
-                positions = [x1, y2, z2, x2, y2, z2, x2, y2, z1, x1, y2, z1];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
-                break;
-            default:
-                return;
-        }
-
-        const geo = new THREE.BufferGeometry();
-        geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-        geo.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
-        const triIdx = faceName === 'up' ? [0, 1, 2, 0, 2, 3] : [0, 2, 1, 0, 3, 2];
-        geo.setIndex(triIdx);
-        geo.computeVertexNormals();
-
-        const shade = computeViewShade(faceName, model);
-        group.__meshes = group.__meshes || [];
-        group.__meshes.push({ geo, url, shade, tintindex: null });
-    }
-
-    function pushEntityCuboid(group, from, to, texOffX, texOffY, url, model, texW, texH) {
-        const w = to[0] - from[0];
-        const h = to[1] - from[1];
-        const d = to[2] - from[2];
-        const faceUvs = entityCuboidFaceUvs(texOffX, texOffY, w, h, d);
-        Object.entries(faceUvs).forEach(([faceName, pixelUv]) => {
-            pushFaceDirect(group, from, to, faceName, pixelUv, url, model, texW, texH);
-        });
-    }
-
-    /** 原版 ChestModel 闭合态（64×64 展开图） */
-    async function buildChestEntityModel(textureKey, itemId) {
-        const url = `${ASSET_BASE}/textures/entity/chest/${textureKey}.png`;
-        const texW = 64;
-        const texH = 64;
-        const root = new THREE.Group();
-        root.userData.mcItemId = normalizeId(itemId || '');
-        const model = resolveChestDisplayModel(itemId);
-
-        pushEntityCuboid(root, [1, 0, 1], [15, 10, 15], 14, 19, url, model, texW, texH);
-        pushEntityCuboid(root, [0, 10, 0], [16, 15, 16], 0, 0, url, model, texW, texH);
-        pushEntityCuboid(root, [7, 9, 15], [9, 13, 16], 0, 0, url, model, texW, texH);
-
-        await finalizeGroup(root);
-        return root.children.length ? root : null;
-    }
-
     function pushFace(group, from, to, faceName, face, resolveTex, model) {
         // GUI 斜视机位下底面不可见，不生成 mesh（减绘制、透明块少一层）
         if (faceName === 'down') return;
@@ -705,9 +574,6 @@
     }
 
     async function buildFromElements(model, itemId) {
-        if (model && model.__chestEntity) {
-            return buildChestEntityModel(model.chestTextureKey || 'normal', itemId);
-        }
         const root = new THREE.Group();
         root.userData.mcItemId = normalizeId(itemId || '');
         const resolveTex = (ref) => resolveTextureRef(ref, model.textures, 0);

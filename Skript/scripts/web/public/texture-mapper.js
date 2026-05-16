@@ -61,10 +61,7 @@ window.flatTextureUrlsForItem = function(itemId) {
         return window.shulkerBoxWikiImageUrlsForItem(itemId);
     }
     if (window.isMcChestBlockItemId && window.isMcChestBlockItemId(itemId)) {
-        return [
-            window.chestEntityTextureUrl(itemId),
-            `${base}/item/barrier.png`
-        ];
+        return window.chestWikiImageUrlsForItem(itemId);
     }
     if (window.isMcCandleItemId && window.isMcCandleItemId(itemId)) {
         return [`${base}/item/${smartId}.png`, `${base}/item/barrier.png`];
@@ -86,8 +83,8 @@ window.isMcDoorItemId = function(id) {
 };
 
 /**
- * 箱子方块（special chest；贴图 entity/chest/*.png）
- * 排除胸甲、运输船、矿车箱。
+ * 箱子方块（special chest；商店图标用 Wiki JE 渲染图）
+ * 排除胸甲、运输船、矿车箱。涂蜡铜箱与不涂蜡共用材质。
  */
 window.isMcChestBlockItemId = function(id) {
     let n = String(id || '').toLowerCase().replace(/-/g, '_');
@@ -97,23 +94,92 @@ window.isMcChestBlockItemId = function(id) {
     return /^(exposed_|weathered_|oxidized_)?copper_chest$/.test(n);
 };
 
-/** items/*.json 中 minecraft:chest 的 texture 键 → entity/chest 文件名（不含 .png） */
-window.chestEntityTextureKeyFromItemId = function(itemId) {
+/** 本地回退与 Wiki 键：chest / trapped / ender / copper / exposed / weathered / oxidized */
+window.chestWikiVariantFromItemId = function(itemId) {
     let n = String(itemId || '').toLowerCase().replace(/-/g, '_');
     if (n.startsWith('waxed_')) n = n.slice(6);
-    if (n === 'chest') return 'normal';
+    if (n === 'chest') return 'chest';
     if (n === 'trapped_chest') return 'trapped';
     if (n === 'ender_chest') return 'ender';
     if (n === 'copper_chest') return 'copper';
-    if (n === 'exposed_copper_chest') return 'copper_exposed';
-    if (n === 'weathered_copper_chest') return 'copper_weathered';
-    if (n === 'oxidized_copper_chest') return 'copper_oxidized';
+    if (n === 'exposed_copper_chest') return 'exposed';
+    if (n === 'weathered_copper_chest') return 'weathered';
+    if (n === 'oxidized_copper_chest') return 'oxidized';
+    return 'chest';
+};
+
+window.chestWikiJeFilename = function(variant) {
+    const map = {
+        chest: 'Chest_JE2_BE3.gif',
+        trapped: 'Trapped_Chest_JE1_BE1.gif',
+        ender: 'Ender_Chest.gif',
+        copper: 'Copper_Chest_(S)_JE2.png',
+        exposed: 'Exposed_Copper_Chest_(S)_JE2.png',
+        weathered: 'Weathered_Copper_Chest_(S)_JE2.png',
+        oxidized: 'Oxidized_Copper_Chest_(S)_JE2.png'
+    };
+    return map[variant] || map.chest;
+};
+
+window.chestWikiImageUrlForItem = function(itemId, wikiHost) {
+    const variant = window.chestWikiVariantFromItemId(itemId);
+    const file = window.chestWikiJeFilename(variant);
+    const host = wikiHost || 'zh.minecraft.wiki';
+    return `https://${host}/images/${file}`;
+};
+
+/** items/*.json 中 minecraft:chest 的 texture 键 → entity/chest 文件名（2D 回退） */
+window.chestEntityTextureKeyFromItemId = function(itemId) {
+    const v = window.chestWikiVariantFromItemId(itemId);
+    if (v === 'chest') return 'normal';
+    if (v === 'trapped') return 'trapped';
+    if (v === 'ender') return 'ender';
+    if (v === 'copper') return 'copper';
+    if (v === 'exposed') return 'copper_exposed';
+    if (v === 'weathered') return 'copper_weathered';
+    if (v === 'oxidized') return 'copper_oxidized';
     return 'normal';
 };
 
 window.chestEntityTextureUrl = function(itemId) {
     const key = window.chestEntityTextureKeyFromItemId(itemId);
     return `${TextureConfig.getBasePath()}/entity/chest/${key}.png`;
+};
+
+window.chestLocalKeyFromItemId = function(itemId) {
+    return window.chestWikiVariantFromItemId(itemId);
+};
+
+window.chestLocalAssetName = function(variant) {
+    const file = window.chestWikiJeFilename(variant);
+    return file;
+};
+
+window.chestWikiImageUrlsForItem = function(itemId) {
+    const variant = window.chestWikiVariantFromItemId(itemId);
+    const localFile = window.chestWikiJeFilename(variant);
+    return [
+        `/assets/chest-invicons/${localFile}`,
+        window.chestWikiImageUrlForItem(itemId, 'zh.minecraft.wiki'),
+        window.chestWikiImageUrlForItem(itemId, 'minecraft.wiki'),
+        window.chestEntityTextureUrl(itemId),
+        `${TextureConfig.getBasePath()}/item/barrier.png`
+    ];
+};
+
+/** Wiki JE 图为游戏左右镜像；本地 assets 图应为游戏朝向，勿翻转 */
+window.applyChestImgMirror = function(img) {
+    if (!img) return;
+    const src = String(img.currentSrc || img.src || '');
+    if (src.indexOf('/assets/chest-invicons/') !== -1) {
+        img.style.transform = '';
+        return;
+    }
+    if (/minecraft\.wiki/i.test(src) || src.indexOf('/entity/chest/') !== -1) {
+        img.style.transform = 'scaleX(-1)';
+        return;
+    }
+    img.style.transform = '';
 };
 
 /** 潜影盒（special shulker_box；商店图标用 Wiki JE 渲染图） */
@@ -353,7 +419,11 @@ window.initMcWikiInviconImages = function(root) {
         };
         img.onerror = loadNext;
         img.onload = () => {
-            if (window.applyCopperGolemStatueImgMirror
+            if (window.applyChestImgMirror
+                && window.isMcChestBlockItemId
+                && window.isMcChestBlockItemId(itemId)) {
+                window.applyChestImgMirror(img);
+            } else if (window.applyCopperGolemStatueImgMirror
                 && window.isMcCopperGolemStatueItemId
                 && window.isMcCopperGolemStatueItemId(itemId)) {
                 window.applyCopperGolemStatueImgMirror(img);
@@ -440,6 +510,22 @@ window.handleTextureError = function(imgElement, originalId) {
         return;
     }
 
+    if (window.isMcChestBlockItemId && window.isMcChestBlockItemId(originalId)) {
+        if (step === 1) {
+            imgElement.dataset.step = "2";
+            imgElement.src = window.chestWikiImageUrlForItem(originalId, 'minecraft.wiki');
+        } else if (step === 2) {
+            imgElement.dataset.step = "3";
+            imgElement.src = window.chestEntityTextureUrl(originalId);
+            if (window.applyChestImgMirror) window.applyChestImgMirror(imgElement);
+        } else if (step === 3) {
+            imgElement.dataset.step = "4";
+            imgElement.src = `${basePath}/item/barrier.png`;
+            imgElement.style.transform = '';
+        }
+        return;
+    }
+
     if (step === 1) {
         imgElement.dataset.step = "2";
         imgElement.src = `${basePath}/block/${smartId}.png`;
@@ -509,6 +595,17 @@ window.getTextureHtml = function(itemId, itemName) {
         <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
             style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
             <img class="item-mc-wiki-invicon" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
+                style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
+                title="${safeName}" referrerpolicy="no-referrer" />
+            ${glintHtml}
+        </span>
+    `;
+    }
+    if (window.isMcChestBlockItemId && window.isMcChestBlockItemId(itemId)) {
+        return `
+        <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
+            style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
+            <img class="item-mc-wiki-invicon item-chest-wiki" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
                 style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
                 title="${safeName}" referrerpolicy="no-referrer" />
             ${glintHtml}
