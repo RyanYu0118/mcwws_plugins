@@ -170,6 +170,7 @@
         if (global.isMcBedItemId && global.isMcBedItemId(nid)) return true;
         if (global.isMcBannerItemId && global.isMcBannerItemId(nid)) return true;
         if (global.isMcCopperGolemStatueItemId && global.isMcCopperGolemStatueItemId(nid)) return true;
+        if (global.isMcShulkerBoxItemId && global.isMcShulkerBoxItemId(nid)) return true;
         if (global.isMcCandleItemId && global.isMcCandleItemId(nid)) return true;
         if (isMcGlassPaneItemId(nid)) return true;
         if (isMcDoorBlockId(nid)) return true;
@@ -226,67 +227,6 @@
         if (!next) return null;
         if (next[0] === '#') return resolveTextureRef(next, textures, depth + 1);
         return textureToUrl(next);
-    }
-
-    function isMcShulkerBoxItemId(id) {
-        if (global.isMcShulkerBoxItemId) return global.isMcShulkerBoxItemId(id);
-        const n = normalizeId(id);
-        return n === 'shulker_box' || n.endsWith('_shulker_box');
-    }
-
-    function shulkerBoxSpriteFromItemId(itemId) {
-        if (global.shulkerBoxSpriteFromItemId) return global.shulkerBoxSpriteFromItemId(itemId);
-        const n = normalizeId(itemId);
-        if (n === 'shulker_box') return 'shulker';
-        if (n.endsWith('_shulker_box')) {
-            const color = n.slice(0, -12);
-            return color ? `shulker_${color}` : 'shulker';
-        }
-        return 'shulker';
-    }
-
-    /** 64×64 潜影盒展开图 UV（与 ShulkerBoxBlockModel 一致） */
-    function shulkerAtlasFacePixelUvs(texOffX, texOffY, w, h, d) {
-        const u = texOffX;
-        const v = texOffY;
-        return {
-            down: [u, v + d, u + d, v + d + h],
-            up: [u + d + w, v + d, u + d + w + w, v + d + h],
-            north: [u + d, v, u + d + w, v + h],
-            south: [u, v, u + d, v + h],
-            west: [u + d + w, v, u + d + w + d, v + h],
-            east: [u, v, u + d, v + h]
-        };
-    }
-
-    function shulkerBoxElementFromCuboid(from, to, texOffX, texOffY, w, h, d) {
-        const pixelFaces = shulkerAtlasFacePixelUvs(texOffX, texOffY, w, h, d);
-        const faces = {};
-        Object.keys(pixelFaces).forEach((name) => {
-            const p = pixelFaces[name];
-            faces[name] = {
-                texture: '#atlas',
-                uv: [p[0] / 4, p[1] / 4, p[2] / 4, p[3] / 4]
-            };
-        });
-        return { from: [...from], to: [...to], faces };
-    }
-
-    async function resolveShulkerBoxModel(itemId) {
-        const sprite = shulkerBoxSpriteFromItemId(itemId);
-        const template = await mergeModel('item/template_shulker_box', new Set());
-        const elements = [
-            shulkerBoxElementFromCuboid([0, 0, 0], [16, 12, 16], 0, 28, 16, 12, 16),
-            shulkerBoxElementFromCuboid([0, 12, 0], [16, 16, 16], 0, 0, 16, 4, 16)
-        ];
-        return {
-            elements,
-            layers: [],
-            textures: {
-                atlas: `minecraft:entity/shulker/${sprite}`
-            },
-            display: (template && template.display) || { gui: { ...DEFAULT_GUI } }
-        };
     }
 
     function modelCandidates(itemId) {
@@ -361,9 +301,6 @@
 
     async function resolveModel(itemId) {
         const id = normalizeId(itemId);
-        if (isMcShulkerBoxItemId(id)) {
-            return resolveShulkerBoxModel(itemId);
-        }
         const paths = iconForce2dFlatIcon(id) ? modelCandidatesFlatFirst(itemId) : modelCandidates(itemId);
         let flatModel = null;
         for (const path of paths) {
@@ -390,10 +327,6 @@
     async function prefers3d(itemId) {
         const id = normalizeId(itemId);
         if (use3dCache.has(id)) return use3dCache.get(id);
-        if (isMcShulkerBoxItemId(id)) {
-            use3dCache.set(id, true);
-            return true;
-        }
         if (iconForce2dFlatIcon(id) || isMcGlassPaneItemId(id)) {
             use3dCache.set(id, false);
             return false;

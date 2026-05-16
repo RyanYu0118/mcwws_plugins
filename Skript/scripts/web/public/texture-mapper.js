@@ -57,6 +57,9 @@ window.flatTextureUrlsForItem = function(itemId) {
     if (window.isMcCopperGolemStatueItemId && window.isMcCopperGolemStatueItemId(itemId)) {
         return window.copperGolemStatueInviconUrlsForItem(itemId);
     }
+    if (window.isMcShulkerBoxItemId && window.isMcShulkerBoxItemId(itemId)) {
+        return window.shulkerBoxWikiImageUrlsForItem(itemId);
+    }
     if (window.isMcCandleItemId && window.isMcCandleItemId(itemId)) {
         return [`${base}/item/${smartId}.png`, `${base}/item/barrier.png`];
     }
@@ -76,7 +79,7 @@ window.isMcDoorItemId = function(id) {
     return n.endsWith('_door') && !n.endsWith('_trapdoor');
 };
 
-/** 潜影盒（special shulker_box，贴图在 entity/shulker/ 展开图） */
+/** 潜影盒（special shulker_box；商店图标用 Wiki JE 渲染图） */
 window.isMcShulkerBoxItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
     return n === 'shulker_box' || n.endsWith('_shulker_box');
@@ -92,9 +95,48 @@ window.shulkerBoxSpriteFromItemId = function(itemId) {
     return 'shulker';
 };
 
+window.shulkerBoxLocalKeyFromItemId = function(itemId) {
+    const n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    if (n === 'shulker_box') return 'shulker';
+    if (n.endsWith('_shulker_box')) {
+        const color = n.slice(0, -12);
+        return color || 'shulker';
+    }
+    return 'shulker';
+};
+
 window.shulkerBoxAtlasTextureUrl = function(itemId) {
     const sprite = window.shulkerBoxSpriteFromItemId(itemId);
     return `${TextureConfig.getBasePath()}/entity/shulker/${sprite}.png`;
+};
+
+/** Wiki：未染色 Shulker_Box_JE1_BE1；有色 {Color}_Shulker_Box_JE2_BE2 */
+window.shulkerBoxWikiJeFilenameFromItemId = function(itemId) {
+    const n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    if (n === 'shulker_box') return 'Shulker_Box_JE1_BE1';
+    if (n.endsWith('_shulker_box')) {
+        const color = n.slice(0, -12);
+        const titled = color.split('_').map((s) => s.charAt(0).toUpperCase() + s.slice(1)).join('_');
+        return `${titled}_Shulker_Box_JE2_BE2`;
+    }
+    return 'Shulker_Box_JE1_BE1';
+};
+
+window.shulkerBoxWikiImageUrlForItem = function(itemId, wikiHost) {
+    const file = window.shulkerBoxWikiJeFilenameFromItemId(itemId);
+    const host = wikiHost || 'zh.minecraft.wiki';
+    return `https://${host}/images/${file}.png`;
+};
+
+window.shulkerBoxWikiImageUrlsForItem = function(itemId) {
+    const key = window.shulkerBoxLocalKeyFromItemId(itemId);
+    return [
+        `/assets/shulker-box-invicons/${key}.png`,
+        window.shulkerBoxWikiImageUrlForItem(itemId, 'zh.minecraft.wiki'),
+        window.shulkerBoxWikiImageUrlForItem(itemId, 'minecraft.wiki'),
+        window.shulkerBoxAtlasTextureUrl(itemId),
+        `${TextureConfig.getBasePath()}/item/barrier.png`
+    ];
 };
 
 /** 铜傀儡像（special copper_golem_statue，贴图在 entity/copper_golem/） */
@@ -347,6 +389,20 @@ window.handleTextureError = function(imgElement, originalId) {
         return;
     }
 
+    if (window.isMcShulkerBoxItemId && window.isMcShulkerBoxItemId(originalId)) {
+        if (step === 1) {
+            imgElement.dataset.step = "2";
+            imgElement.src = window.shulkerBoxWikiImageUrlForItem(originalId, 'minecraft.wiki');
+        } else if (step === 2) {
+            imgElement.dataset.step = "3";
+            imgElement.src = window.shulkerBoxAtlasTextureUrl(originalId);
+        } else if (step === 3) {
+            imgElement.dataset.step = "4";
+            imgElement.src = `${basePath}/item/barrier.png`;
+        }
+        return;
+    }
+
     if (step === 1) {
         imgElement.dataset.step = "2";
         imgElement.src = `${basePath}/block/${smartId}.png`;
@@ -405,6 +461,17 @@ window.getTextureHtml = function(itemId, itemName) {
         <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
             style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
             <img class="item-mc-wiki-invicon item-copper-golem-statue-wiki" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
+                style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
+                title="${safeName}" referrerpolicy="no-referrer" />
+            ${glintHtml}
+        </span>
+    `;
+    }
+    if (window.isMcShulkerBoxItemId && window.isMcShulkerBoxItemId(itemId)) {
+        return `
+        <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
+            style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
+            <img class="item-mc-wiki-invicon" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
                 style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
                 title="${safeName}" referrerpolicy="no-referrer" />
             ${glintHtml}

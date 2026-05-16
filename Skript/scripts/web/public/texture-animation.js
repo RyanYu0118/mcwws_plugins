@@ -98,6 +98,7 @@
         if (global.isMcDoorItemId && global.isMcDoorItemId(rawId)) return 0;
         if (global.isMcBedItemId && global.isMcBedItemId(rawId)) return 0;
         if (global.isMcCopperGolemStatueItemId && global.isMcCopperGolemStatueItemId(rawId)) return 0;
+        if (global.isMcShulkerBoxItemId && global.isMcShulkerBoxItemId(rawId)) return 0;
         return iconCfg().FLAT_PAD_RATIO || 0;
     }
 
