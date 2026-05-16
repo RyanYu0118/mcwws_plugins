@@ -60,6 +60,12 @@ window.flatTextureUrlsForItem = function(itemId) {
     if (window.isMcShulkerBoxItemId && window.isMcShulkerBoxItemId(itemId)) {
         return window.shulkerBoxWikiImageUrlsForItem(itemId);
     }
+    if (window.isMcChestBlockItemId && window.isMcChestBlockItemId(itemId)) {
+        return [
+            window.chestEntityTextureUrl(itemId),
+            `${base}/item/barrier.png`
+        ];
+    }
     if (window.isMcCandleItemId && window.isMcCandleItemId(itemId)) {
         return [`${base}/item/${smartId}.png`, `${base}/item/barrier.png`];
     }
@@ -77,6 +83,37 @@ window.isMcGlassPaneItemId = function(id) {
 window.isMcDoorItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
     return n.endsWith('_door') && !n.endsWith('_trapdoor');
+};
+
+/**
+ * 箱子方块（special chest；贴图 entity/chest/*.png）
+ * 排除胸甲、运输船、矿车箱。
+ */
+window.isMcChestBlockItemId = function(id) {
+    let n = String(id || '').toLowerCase().replace(/-/g, '_');
+    if (n.startsWith('waxed_')) n = n.slice(6);
+    if (n === 'chest_minecart' || n.endsWith('_chest_boat') || n.endsWith('_chestplate')) return false;
+    if (n === 'chest' || n === 'trapped_chest' || n === 'ender_chest') return true;
+    return /^(exposed_|weathered_|oxidized_)?copper_chest$/.test(n);
+};
+
+/** items/*.json 中 minecraft:chest 的 texture 键 → entity/chest 文件名（不含 .png） */
+window.chestEntityTextureKeyFromItemId = function(itemId) {
+    let n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    if (n.startsWith('waxed_')) n = n.slice(6);
+    if (n === 'chest') return 'normal';
+    if (n === 'trapped_chest') return 'trapped';
+    if (n === 'ender_chest') return 'ender';
+    if (n === 'copper_chest') return 'copper';
+    if (n === 'exposed_copper_chest') return 'copper_exposed';
+    if (n === 'weathered_copper_chest') return 'copper_weathered';
+    if (n === 'oxidized_copper_chest') return 'copper_oxidized';
+    return 'normal';
+};
+
+window.chestEntityTextureUrl = function(itemId) {
+    const key = window.chestEntityTextureKeyFromItemId(itemId);
+    return `${TextureConfig.getBasePath()}/entity/chest/${key}.png`;
 };
 
 /** 潜影盒（special shulker_box；商店图标用 Wiki JE 渲染图） */
