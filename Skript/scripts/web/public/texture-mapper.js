@@ -31,6 +31,10 @@ window.getSmartId = function(id) {
     // 涂蜡铜等无独立贴图/模型，与不涂蜡方块共用资源
     if (rawId.startsWith('waxed_')) rawId = rawId.slice(6);
     if (rawId.startsWith('enchanted_book')) return 'enchanted_book';
+    // 粗制药水在项目里是独立商品 ID，但材质与对应水瓶相同
+    if (rawId === 'awkward_potion') return 'potion';
+    if (rawId === 'awkward_splash_potion') return 'splash_potion';
+    if (rawId === 'awkward_lingering_potion') return 'lingering_potion';
     if (rawId.startsWith('potion')) return 'potion';
     if (rawId.startsWith('lingering_potion')) return 'lingering_potion';
     if (rawId.startsWith('splash_potion')) return 'splash_potion';
@@ -63,8 +67,17 @@ window.flatTextureUrlsForItem = function(itemId) {
     if (window.isMcChestBlockItemId && window.isMcChestBlockItemId(itemId)) {
         return window.chestWikiImageUrlsForItem(itemId);
     }
+    if (window.isMcSporeBlossomItemId && window.isMcSporeBlossomItemId(itemId)) {
+        return window.sporeBlossomWikiImageUrlsForItem(itemId);
+    }
     if (window.isMcTripwireHookItemId && window.isMcTripwireHookItemId(itemId)) {
         return [`${base}/block/tripwire_hook.png`, `${base}/item/barrier.png`];
+    }
+    if (window.isMcVineOrRootPlantItemId && window.isMcVineOrRootPlantItemId(itemId)) {
+        return window.vineOrRootPlantTextureUrlsForItem(itemId);
+    }
+    if (window.isMcDoubleTallPlantItemId && window.isMcDoubleTallPlantItemId(itemId)) {
+        return window.doubleTallPlantTextureUrlsForItem(itemId);
     }
     if (window.isMcCandleItemId && window.isMcCandleItemId(itemId)) {
         return [`${base}/item/${smartId}.png`, `${base}/item/barrier.png`];
@@ -89,6 +102,74 @@ window.isMcDoorItemId = function(id) {
 window.isMcTripwireHookItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
     return n === 'tripwire_hook';
+};
+
+/** 孢子花：使用 Wiki JE 渲染图，避免本地方块平面图过宽/角度不对 */
+window.isMcSporeBlossomItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'spore_blossom';
+};
+
+window.sporeBlossomWikiImageUrlForItem = function(itemId, wikiHost) {
+    const host = wikiHost || 'zh.minecraft.wiki';
+    return `https://${host}/images/Spore_Blossom_JE1.png`;
+};
+
+window.sporeBlossomWikiImageUrlsForItem = function(itemId) {
+    const base = TextureConfig.getBasePath();
+    return [
+        `/assets/spore-blossom-invicons/Spore_Blossom_JE1.png`,
+        window.sporeBlossomWikiImageUrlForItem(itemId, 'zh.minecraft.wiki'),
+        window.sporeBlossomWikiImageUrlForItem(itemId, 'minecraft.wiki'),
+        `${base}/block/spore_blossom.png`,
+        `${base}/item/barrier.png`
+    ];
+};
+
+/** 藤类、根须类植物：物品栏统一 2D，部分 ID 的贴图名与物品 ID 不一致 */
+window.isMcVineOrRootPlantItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'vine'
+        || n === 'glow_lichen'
+        || n === 'pale_hanging_moss'
+        || n.endsWith('_vines')
+        || n.endsWith('_roots')
+        || n === 'nether_sprouts';
+};
+
+window.vineOrRootPlantTextureRefFromItemId = function(itemId) {
+    const n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    const map = {
+        twisting_vines: 'block/twisting_vines_plant',
+        weeping_vines: 'block/weeping_vines_plant',
+        nether_sprouts: 'item/nether_sprouts'
+    };
+    return map[n] || `block/${n}`;
+};
+
+window.vineOrRootPlantTextureUrlsForItem = function(itemId) {
+    const base = TextureConfig.getBasePath();
+    const ref = window.vineOrRootPlantTextureRefFromItemId(itemId);
+    return [
+        `${base}/${ref}.png`,
+        `${base}/block/${window.getSmartId(itemId)}.png`,
+        `${base}/item/${window.getSmartId(itemId)}.png`,
+        `${base}/item/barrier.png`
+    ];
+};
+
+/** 双高草本：物品模型使用 *_top，而不是 block/{id}.png */
+window.isMcDoubleTallPlantItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'large_fern' || n === 'tall_grass' || n === 'tall_seagrass';
+};
+
+window.doubleTallPlantTextureUrlsForItem = function(itemId) {
+    const base = TextureConfig.getBasePath();
+    const n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    const top = `${base}/block/${n}_top.png`;
+    const bottom = `${base}/block/${n}_bottom.png`;
+    return [top, bottom, `${base}/item/barrier.png`];
 };
 
 /**
@@ -519,6 +600,20 @@ window.handleTextureError = function(imgElement, originalId) {
         return;
     }
 
+    if (window.isMcSporeBlossomItemId && window.isMcSporeBlossomItemId(originalId)) {
+        if (step === 1) {
+            imgElement.dataset.step = "2";
+            imgElement.src = window.sporeBlossomWikiImageUrlForItem(originalId, 'minecraft.wiki');
+        } else if (step === 2) {
+            imgElement.dataset.step = "3";
+            imgElement.src = `${basePath}/block/spore_blossom.png`;
+        } else if (step === 3) {
+            imgElement.dataset.step = "4";
+            imgElement.src = `${basePath}/item/barrier.png`;
+        }
+        return;
+    }
+
     if (window.isMcChestBlockItemId && window.isMcChestBlockItemId(originalId)) {
         if (step === 1) {
             imgElement.dataset.step = "2";
@@ -600,6 +695,17 @@ window.getTextureHtml = function(itemId, itemName) {
     `;
     }
     if (window.isMcShulkerBoxItemId && window.isMcShulkerBoxItemId(itemId)) {
+        return `
+        <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
+            style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
+            <img class="item-mc-wiki-invicon" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
+                style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
+                title="${safeName}" referrerpolicy="no-referrer" />
+            ${glintHtml}
+        </span>
+    `;
+    }
+    if (window.isMcSporeBlossomItemId && window.isMcSporeBlossomItemId(itemId)) {
         return `
         <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
             style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
