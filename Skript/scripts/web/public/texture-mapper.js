@@ -35,7 +35,27 @@ window.getSmartId = function(id) {
     if (rawId.startsWith('lingering_potion')) return 'lingering_potion';
     if (rawId.startsWith('splash_potion')) return 'splash_potion';
     if (rawId.startsWith('arrow_of_')) return 'tipped_arrow';
+    // 玻璃板无独立贴图，沿用对应玻璃方块的平面材质（block/glass.png 等）
+    if (rawId === 'glass_pane') return 'glass';
+    if (rawId.endsWith('_glass_pane')) return rawId.replace(/_glass_pane$/, '_glass');
     return rawId;
+};
+
+/** 2D 图标贴图 URL 列表（玻璃板仅 block，避免误请求 item/glass_pane 等） */
+window.flatTextureUrlsForItem = function(itemId) {
+    const base = TextureConfig.getBasePath();
+    const smartId = window.getSmartId(itemId);
+    if (window.isMcGlassPaneItemId && window.isMcGlassPaneItemId(itemId)) {
+        return [`${base}/block/${smartId}.png`];
+    }
+    return [`${base}/block/${smartId}.png`, `${base}/item/${smartId}.png`];
+};
+
+/** 玻璃板（非玻璃瓶）：物品栏 2D，贴图由 getSmartId 映射到 glass / *_stained_glass */
+window.isMcGlassPaneItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    if (n === 'glass_pane') return true;
+    return n.endsWith('_glass_pane') && !n.endsWith('glass_bottle');
 };
 
 /** 木门等（非活板门）：物品栏用 2D 平面，绘制时不加 FLAT_PAD（与先前 3D 满幅一致） */
@@ -71,12 +91,7 @@ window.markAsLoaded = function(el, itemId) {
 };
 
 window.getTextureHtml = function(itemId, itemName) {
-    const smartId = window.getSmartId(itemId);
-    const base = TextureConfig.getBasePath();
-    const texUrls = [
-        `${base}/block/${smartId}.png`,
-        `${base}/item/${smartId}.png`
-    ].join('|');
+    const texUrls = window.flatTextureUrlsForItem(itemId).join('|');
     const safeId = String(itemId).replace(/"/g, '&quot;');
     const safeName = String(itemName || itemId).replace(/"/g, '&quot;');
     const isCached = window.LoadedTextureCache.has(itemId);

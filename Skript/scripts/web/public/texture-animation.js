@@ -21,14 +21,9 @@
     const GRASS_TINT_2D_IDS = new Set([
         'grass_block', 'grass', 'short_grass', 'tall_grass', 'fern', 'large_fern',
         'sugar_cane', 'bamboo', 'moss_block', 'moss_carpet',
-        'small_dripleaf', 'big_dripleaf', 'seagrass', 'tall_seagrass',
-        'short_dry_grass', 'tall_dry_grass'
+        'small_dripleaf', 'big_dripleaf', 'seagrass', 'tall_seagrass'
     ]);
 
-    const GRASS_2D_BIOME_BY_ID = {
-        short_dry_grass: [0.92, 0.18],
-        tall_dry_grass: [0.92, 0.18]
-    };
     const GRASS_2D_DEFAULT_BIOME = [0.8, 0.4];
 
     function iconCfg() {
@@ -54,9 +49,7 @@
         return false;
     }
 
-    function grassBiomeParamsFor2d(itemIdRaw) {
-        const id = normalizeTintId(itemIdRaw);
-        if (GRASS_2D_BIOME_BY_ID[id]) return GRASS_2D_BIOME_BY_ID[id];
+    function grassBiomeParamsFor2d() {
         return GRASS_2D_DEFAULT_BIOME;
     }
 

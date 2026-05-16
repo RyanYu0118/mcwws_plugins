@@ -99,8 +99,8 @@
         if (n.y > 0.55) return 1.0;
 
         const sx = n.x;
-        if (sx > 0.12) return 0.2;
-        if (sx < -0.12) return 0.4;
+        if (sx > 0.12) return 0.15;
+        if (sx < -0.12) return 0.35;
         return 0.68;
     }
 
@@ -119,9 +119,15 @@
     const pendingRenders = new Map();
     const animatedSlots = [];
 
+    /** 物品自身 ID（勿映射到 glass 等，否则玻璃板会误走玻璃的 3D） */
     function normalizeId(id) {
-        if (global.getSmartId) return global.getSmartId(id);
         return String(id).toLowerCase().replace(/-/g, '_');
+    }
+
+    /** 资源包贴图/方块模型路径用（涂蜡→未涂蜡、玻璃板→玻璃等） */
+    function assetId(id) {
+        if (global.getSmartId) return global.getSmartId(id);
+        return normalizeId(id);
     }
 
     /** 草丛、草方块等（物品栏用 2D 平面贴图） */
@@ -152,15 +158,23 @@
         return !!(id && id.endsWith('_trapdoor'));
     }
 
+    function isMcGlassPaneItemId(id) {
+        if (global.isMcGlassPaneItemId) return global.isMcGlassPaneItemId(id);
+        const n = normalizeId(id);
+        return n === 'glass_pane' || (n.endsWith('_glass_pane') && n !== 'glass_bottle');
+    }
+
     function iconForce2dFlatIcon(id) {
         if (!id) return false;
-        if (isMcDoorBlockId(id)) return true;
-        if (GRASS_LIKE_IDS.has(id)) return true;
-        if (FLOWER_IDS.has(id)) return true;
-        if (BUSH_BLOCK_IDS.has(id)) return true;
-        if (id.endsWith('_sapling')) return true;
-        if (id.startsWith('potted_')) return true;
-        if (/_tulip$/.test(id) || /_orchid$/.test(id)) return true;
+        const nid = normalizeId(id);
+        if (isMcGlassPaneItemId(nid)) return true;
+        if (isMcDoorBlockId(nid)) return true;
+        if (GRASS_LIKE_IDS.has(nid)) return true;
+        if (FLOWER_IDS.has(nid)) return true;
+        if (BUSH_BLOCK_IDS.has(nid)) return true;
+        if (nid.endsWith('_sapling')) return true;
+        if (nid.startsWith('potted_')) return true;
+        if (/_tulip$/.test(nid) || /_orchid$/.test(nid)) return true;
         return false;
     }
 
@@ -168,6 +182,8 @@
     function modelCandidatesFlatFirst(itemId) {
         const id = normalizeId(itemId);
         const itemPath = `item/${id}`;
+        // 玻璃板只用 item/generated（layer0=block/glass），勿并入 block/glass 立方体模型
+        if (isMcGlassPaneItemId(id)) return [itemPath];
         const rest = modelCandidates(itemId).filter((p) => p !== itemPath);
         return [itemPath, ...rest];
     }
@@ -209,13 +225,14 @@
 
     function modelCandidates(itemId) {
         const id = normalizeId(itemId);
+        const asset = assetId(itemId);
         const trapdoorBlockParts = isMcTrapdoorBlockId(id)
             ? [`block/${id}_bottom`, `block/${id}_top`, `block/${id}_open`]
             : [];
         const list = [
-            `block/${id}_inventory`,
+            `block/${asset}_inventory`,
             ...trapdoorBlockParts,
-            `block/${id}`,
+            `block/${asset}`,
             `item/${id}`
         ];
         if (id.startsWith('enchanted_book')) list.unshift('item/enchanted_book');
@@ -304,7 +321,7 @@
     async function prefers3d(itemId) {
         const id = normalizeId(itemId);
         if (use3dCache.has(id)) return use3dCache.get(id);
-        if (iconForce2dFlatIcon(id)) {
+        if (iconForce2dFlatIcon(id) || isMcGlassPaneItemId(id)) {
             use3dCache.set(id, false);
             return false;
         }
@@ -405,8 +422,7 @@
     const GRASS_COLORMAP_IDS = new Set([
         'grass_block', 'grass', 'short_grass', 'tall_grass', 'fern', 'large_fern',
         'sugar_cane', 'tall_seagrass', 'seagrass', 'bamboo',
-        'moss_block', 'moss_carpet', 'small_dripleaf', 'big_dripleaf',
-        'short_dry_grass', 'tall_dry_grass'
+        'moss_block', 'moss_carpet', 'small_dripleaf', 'big_dripleaf'
     ]);
 
     /** 树叶等用 foliage 图上的 (温度, 湿度) 近似原版常见群系 */
@@ -426,10 +442,6 @@
 
     const FOLIAGE_DEFAULT_BIOME = [0.48, 0.62];
     const GRASS_DEFAULT_BIOME = [0.8, 0.4];
-    const GRASS_BIOME_BY_ID = {
-        short_dry_grass: [0.92, 0.18],
-        tall_dry_grass: [0.92, 0.18]
-    };
 
     function colormapKindForItem(itemId) {
         const id = normalizeId(itemId);
@@ -440,7 +452,6 @@
     function biomeParamsForItem(itemId, kind) {
         const id = normalizeId(itemId);
         if (kind === 'grass') {
-            if (GRASS_BIOME_BY_ID[id]) return GRASS_BIOME_BY_ID[id];
             return GRASS_DEFAULT_BIOME;
         }
         if (FOLIAGE_BIOME_BY_LEAVES[id]) return FOLIAGE_BIOME_BY_LEAVES[id];
