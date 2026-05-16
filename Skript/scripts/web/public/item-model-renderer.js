@@ -168,6 +168,8 @@
         if (!id) return false;
         const nid = normalizeId(id);
         if (global.isMcBedItemId && global.isMcBedItemId(nid)) return true;
+        if (global.isMcBannerItemId && global.isMcBannerItemId(nid)) return true;
+        if (global.isMcCopperGolemStatueItemId && global.isMcCopperGolemStatueItemId(nid)) return true;
         if (global.isMcCandleItemId && global.isMcCandleItemId(nid)) return true;
         if (isMcGlassPaneItemId(nid)) return true;
         if (isMcDoorBlockId(nid)) return true;

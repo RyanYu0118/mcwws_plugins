@@ -97,6 +97,7 @@
         const rawId = itemIdForCanvas(canvas);
         if (global.isMcDoorItemId && global.isMcDoorItemId(rawId)) return 0;
         if (global.isMcBedItemId && global.isMcBedItemId(rawId)) return 0;
+        if (global.isMcCopperGolemStatueItemId && global.isMcCopperGolemStatueItemId(rawId)) return 0;
         return iconCfg().FLAT_PAD_RATIO || 0;
     }
 
@@ -332,7 +333,9 @@
 
     function initInContainer(root) {
         if (!root) return;
-        if (global.initBedInviconImages) {
+        if (global.initMcWikiInviconImages) {
+            global.initMcWikiInviconImages(root);
+        } else if (global.initBedInviconImages) {
             global.initBedInviconImages(root);
         }
         root.querySelectorAll('canvas.item-tex-anim[data-tex-urls]').forEach((canvas) => {

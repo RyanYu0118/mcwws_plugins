@@ -51,6 +51,12 @@ window.flatTextureUrlsForItem = function(itemId) {
     if (window.isMcBedItemId && window.isMcBedItemId(itemId)) {
         return window.bedInviconUrlsForItem(itemId);
     }
+    if (window.isMcBannerItemId && window.isMcBannerItemId(itemId)) {
+        return window.bannerInviconUrlsForItem(itemId);
+    }
+    if (window.isMcCopperGolemStatueItemId && window.isMcCopperGolemStatueItemId(itemId)) {
+        return window.copperGolemStatueInviconUrlsForItem(itemId);
+    }
     if (window.isMcCandleItemId && window.isMcCandleItemId(itemId)) {
         return [`${base}/item/${smartId}.png`, `${base}/item/barrier.png`];
     }
@@ -70,11 +76,126 @@ window.isMcDoorItemId = function(id) {
     return n.endsWith('_door') && !n.endsWith('_trapdoor');
 };
 
+/** 铜傀儡像（special copper_golem_statue，贴图在 entity/copper_golem/） */
+window.isMcCopperGolemStatueItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'copper_golem_statue' || n.endsWith('_copper_golem_statue');
+};
+
+window.copperGolemStatueOxidationFromItemId = function(itemId) {
+    let n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    if (n.startsWith('waxed_')) n = n.slice(6);
+    if (n === 'copper_golem_statue') return 'copper';
+    if (n.startsWith('exposed_')) return 'exposed';
+    if (n.startsWith('weathered_')) return 'weathered';
+    if (n.startsWith('oxidized_')) return 'oxidized';
+    return 'copper';
+};
+
+window.copperGolemStatueTextureUrl = function(itemId) {
+    const basePath = TextureConfig.getBasePath();
+    const o = window.copperGolemStatueOxidationFromItemId(itemId);
+    const file = o === 'copper' ? 'copper_golem.png' : `copper_golem_${o}.png`;
+    return `${basePath}/entity/copper_golem/${file}`;
+};
+
+window.copperGolemStatueLocalKeyFromItemId = function(itemId) {
+    return window.copperGolemStatueOxidationFromItemId(itemId);
+};
+
+/** Wiki JE1 渲染图（清晰）；仅铜/斑驳/氧化三张，锈蚀暂同斑驳 */
+window.copperGolemStatueWikiJeFilename = function(oxidation) {
+    const map = {
+        copper: 'Copper_Golem_Statue_JE1',
+        exposed: 'Exposed_Copper_Golem_Statue_JE1',
+        weathered: 'Exposed_Copper_Golem_Statue_JE1',
+        oxidized: 'Oxidized_Copper_Golem_Statue_JE1'
+    };
+    return map[oxidation] || map.copper;
+};
+
+window.copperGolemStatueWikiImageUrlForItem = function(itemId, wikiHost) {
+    const o = window.copperGolemStatueOxidationFromItemId(itemId);
+    const file = window.copperGolemStatueWikiJeFilename(o);
+    const host = wikiHost || 'zh.minecraft.wiki';
+    return `https://${host}/images/${file}.png`;
+};
+
+window.copperGolemStatueInviconUrlForItem = window.copperGolemStatueWikiImageUrlForItem;
+
+window.copperGolemStatueInviconUrlsForItem = function(itemId) {
+    const key = window.copperGolemStatueLocalKeyFromItemId(itemId);
+    return [
+        `/assets/copper-golem-statue-invicons/${key}.png`,
+        window.copperGolemStatueWikiImageUrlForItem(itemId, 'zh.minecraft.wiki'),
+        window.copperGolemStatueWikiImageUrlForItem(itemId, 'minecraft.wiki'),
+        window.copperGolemStatueTextureUrl(itemId),
+        `${TextureConfig.getBasePath()}/item/barrier.png`
+    ];
+};
+
+/** Wiki JE1 为游戏左右镜像；本地 assets 图应为游戏朝向，勿翻转 */
+window.applyCopperGolemStatueImgMirror = function(img) {
+    if (!img) return;
+    const src = String(img.currentSrc || img.src || '');
+    if (src.indexOf('/assets/copper-golem-statue-invicons/') !== -1) {
+        img.style.transform = '';
+        return;
+    }
+    if (src.indexOf('_JE1.png') !== -1 || /minecraft\.wiki/i.test(src)) {
+        img.style.transform = 'scaleX(-1)';
+        return;
+    }
+    img.style.transform = '';
+};
+
 /** 蜡烛（非插蛋糕上的）：物品栏有独立 item/*_candle.png，勿用 block 方块贴图 */
 window.isMcCandleItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
     if (n === 'candle') return true;
     return /_candle$/.test(n) && !/_candle_cake$/.test(n);
+};
+
+/** 旗帜（template_banner / banner 特殊模型）；不含 *_banner_pattern */
+window.isMcBannerItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    if (n === 'banner') return true;
+    return /_banner$/.test(n) && !/_banner_pattern$/.test(n);
+};
+
+window.bannerLocalKeyFromItemId = function(itemId) {
+    const n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    if (n === 'banner' || n === 'white_banner') return 'banner';
+    if (n.endsWith('_banner')) return n.slice(0, -7);
+    return n;
+};
+
+/** Wiki：白旗 Invicon_Banner.png；有色 Invicon_Light_Gray_Banner.png 等 */
+window.bannerInviconTitleFromItemId = function(itemId) {
+    const n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    if (n === 'banner' || n === 'white_banner') return 'Banner';
+    const color = n.endsWith('_banner') ? n.slice(0, -7) : n;
+    const titled = color.split('_').map((s) => s.charAt(0).toUpperCase() + s.slice(1)).join('_');
+    return `${titled}_Banner`;
+};
+
+window.bannerInviconUrlForItem = function(itemId, wikiHost) {
+    const title = window.bannerInviconTitleFromItemId(itemId);
+    const host = wikiHost || 'zh.minecraft.wiki';
+    return `https://${host}/images/Invicon_${title}.png`;
+};
+
+window.bannerInviconUrlsForItem = function(itemId) {
+    const basePath = TextureConfig.getBasePath();
+    const key = window.bannerLocalKeyFromItemId(itemId);
+    const smartId = window.getSmartId(itemId);
+    return [
+        `/assets/banner-invicons/${key}.png`,
+        window.bannerInviconUrlForItem(itemId, 'zh.minecraft.wiki'),
+        window.bannerInviconUrlForItem(itemId, 'minecraft.wiki'),
+        `${basePath}/item/${smartId}.png`,
+        `${basePath}/item/barrier.png`
+    ];
 };
 
 /** 各色床（item/template_bed → builtin/entity，贴图在 entity/bed/） */
@@ -116,10 +237,10 @@ window.bedInviconUrlsForItem = function(itemId) {
     ];
 };
 
-/** 床用 <img> 直链 Wiki，避免 canvas + crossOrigin 因 CORS 无法绘制 */
-window.initBedInviconImages = function(root) {
+/** 床/旗等 Wiki Invicon：<img> 直链，避免 canvas + crossOrigin 因 CORS 失败 */
+window.initMcWikiInviconImages = function(root) {
     if (!root) return;
-    root.querySelectorAll('img.item-bed-invicon').forEach((img) => {
+    root.querySelectorAll('img.item-mc-wiki-invicon').forEach((img) => {
         if (img.dataset.texReady === '1') return;
         const urls = (img.dataset.texUrls || '').split('|').filter(Boolean);
         if (!urls.length) return;
@@ -132,6 +253,11 @@ window.initBedInviconImages = function(root) {
         };
         img.onerror = loadNext;
         img.onload = () => {
+            if (window.applyCopperGolemStatueImgMirror
+                && window.isMcCopperGolemStatueItemId
+                && window.isMcCopperGolemStatueItemId(itemId)) {
+                window.applyCopperGolemStatueImgMirror(img);
+            }
             img.dataset.texReady = '1';
             img.style.opacity = '1';
             if (itemId) window.markAsLoaded(img, itemId);
@@ -140,6 +266,7 @@ window.initBedInviconImages = function(root) {
         loadNext();
     });
 };
+window.initBedInviconImages = window.initMcWikiInviconImages;
 
 window.handleTextureError = function(imgElement, originalId) {
     const basePath = TextureConfig.getBasePath();
@@ -166,6 +293,34 @@ window.handleTextureError = function(imgElement, originalId) {
     if (window.isMcCandleItemId && window.isMcCandleItemId(originalId)) {
         if (step === 1) {
             imgElement.dataset.step = "2";
+            imgElement.src = `${basePath}/item/barrier.png`;
+        }
+        return;
+    }
+
+    if (window.isMcBannerItemId && window.isMcBannerItemId(originalId)) {
+        if (step === 1) {
+            imgElement.dataset.step = "2";
+            imgElement.src = window.bannerInviconUrlForItem(originalId, 'minecraft.wiki');
+        } else if (step === 2) {
+            imgElement.dataset.step = "3";
+            imgElement.src = `${basePath}/item/${smartId}.png`;
+        } else if (step === 3) {
+            imgElement.dataset.step = "4";
+            imgElement.src = `${basePath}/item/barrier.png`;
+        }
+        return;
+    }
+
+    if (window.isMcCopperGolemStatueItemId && window.isMcCopperGolemStatueItemId(originalId)) {
+        if (step === 1) {
+            imgElement.dataset.step = "2";
+            imgElement.src = window.copperGolemStatueWikiImageUrlForItem(originalId, 'minecraft.wiki');
+        } else if (step === 2) {
+            imgElement.dataset.step = "3";
+            imgElement.src = window.copperGolemStatueTextureUrl(originalId);
+        } else if (step === 3) {
+            imgElement.dataset.step = "4";
             imgElement.src = `${basePath}/item/barrier.png`;
         }
         return;
@@ -206,7 +361,29 @@ window.getTextureHtml = function(itemId, itemName) {
         return `
         <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
             style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
-            <img class="item-bed-invicon" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
+            <img class="item-mc-wiki-invicon" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
+                style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
+                title="${safeName}" referrerpolicy="no-referrer" />
+            ${glintHtml}
+        </span>
+    `;
+    }
+    if (window.isMcBannerItemId && window.isMcBannerItemId(itemId)) {
+        return `
+        <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
+            style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
+            <img class="item-mc-wiki-invicon" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
+                style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
+                title="${safeName}" referrerpolicy="no-referrer" />
+            ${glintHtml}
+        </span>
+    `;
+    }
+    if (window.isMcCopperGolemStatueItemId && window.isMcCopperGolemStatueItemId(itemId)) {
+        return `
+        <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
+            style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
+            <img class="item-mc-wiki-invicon item-copper-golem-statue-wiki" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
                 style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
                 title="${safeName}" referrerpolicy="no-referrer" />
             ${glintHtml}
