@@ -96,6 +96,7 @@
     function flatPadRatioForCanvas(canvas) {
         const rawId = itemIdForCanvas(canvas);
         if (global.isMcDoorItemId && global.isMcDoorItemId(rawId)) return 0;
+        if (global.isMcBedItemId && global.isMcBedItemId(rawId)) return 0;
         return iconCfg().FLAT_PAD_RATIO || 0;
     }
 
@@ -331,6 +332,9 @@
 
     function initInContainer(root) {
         if (!root) return;
+        if (global.initBedInviconImages) {
+            global.initBedInviconImages(root);
+        }
         root.querySelectorAll('canvas.item-tex-anim[data-tex-urls]').forEach((canvas) => {
             if (canvas.dataset.texReady === '1') return;
             const urls = (canvas.dataset.texUrls || '').split('|').filter(Boolean);

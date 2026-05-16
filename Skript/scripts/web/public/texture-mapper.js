@@ -49,8 +49,7 @@ window.flatTextureUrlsForItem = function(itemId) {
         return [`${base}/block/${smartId}.png`];
     }
     if (window.isMcBedItemId && window.isMcBedItemId(itemId)) {
-        const color = window.bedWoolColorFromItemId(itemId);
-        return [`${base}/entity/bed/${color}.png`];
+        return window.bedInviconUrlsForItem(itemId);
     }
     return [`${base}/block/${smartId}.png`, `${base}/item/${smartId}.png`];
 };
@@ -82,12 +81,77 @@ window.bedWoolColorFromItemId = function(itemId) {
     return 'red';
 };
 
+/** Minecraft Wiki Invicon 床图标（与 Invicon_White_Bed.png 等同命名） */
+window.bedInviconTitleFromItemId = function(itemId) {
+    const color = window.bedWoolColorFromItemId(itemId);
+    return color.split('_').map((s) => s.charAt(0).toUpperCase() + s.slice(1)).join('_');
+};
+
+window.bedInviconUrlForItem = function(itemId, wikiHost) {
+    const title = window.bedInviconTitleFromItemId(itemId);
+    const host = wikiHost || 'zh.minecraft.wiki';
+    return `https://${host}/images/Invicon_${title}_Bed.png`;
+};
+
+/** 床图标 URL 链：本地 Invicon → 中文 Wiki → 英文 Wiki → entity 贴图 → barrier */
+window.bedInviconUrlsForItem = function(itemId) {
+    const basePath = TextureConfig.getBasePath();
+    const color = window.bedWoolColorFromItemId(itemId);
+    return [
+        `/assets/bed-invicons/${color}.png`,
+        window.bedInviconUrlForItem(itemId, 'zh.minecraft.wiki'),
+        window.bedInviconUrlForItem(itemId, 'minecraft.wiki'),
+        `${basePath}/entity/bed/${color}.png`,
+        `${basePath}/item/barrier.png`
+    ];
+};
+
+/** 床用 <img> 直链 Wiki，避免 canvas + crossOrigin 因 CORS 无法绘制 */
+window.initBedInviconImages = function(root) {
+    if (!root) return;
+    root.querySelectorAll('img.item-bed-invicon').forEach((img) => {
+        if (img.dataset.texReady === '1') return;
+        const urls = (img.dataset.texUrls || '').split('|').filter(Boolean);
+        if (!urls.length) return;
+        let idx = 0;
+        const itemId = img.dataset.itemId || '';
+        const loadNext = () => {
+            if (idx >= urls.length) return;
+            img.src = urls[idx];
+            idx += 1;
+        };
+        img.onerror = loadNext;
+        img.onload = () => {
+            img.dataset.texReady = '1';
+            img.style.opacity = '1';
+            if (itemId) window.markAsLoaded(img, itemId);
+        };
+        idx = 0;
+        loadNext();
+    });
+};
+
 window.handleTextureError = function(imgElement, originalId) {
     const basePath = TextureConfig.getBasePath();
     const smartId = window.getSmartId(originalId);
 
     if (!imgElement.dataset.step) imgElement.dataset.step = "1";
     const step = parseInt(imgElement.dataset.step);
+
+    if (window.isMcBedItemId && window.isMcBedItemId(originalId)) {
+        if (step === 1) {
+            imgElement.dataset.step = "2";
+            imgElement.src = window.bedInviconUrlForItem(originalId, 'minecraft.wiki');
+        } else if (step === 2) {
+            imgElement.dataset.step = "3";
+            const color = window.bedWoolColorFromItemId(originalId);
+            imgElement.src = `${basePath}/entity/bed/${color}.png`;
+        } else if (step === 3) {
+            imgElement.dataset.step = "4";
+            imgElement.src = `${basePath}/item/barrier.png`;
+        }
+        return;
+    }
 
     if (step === 1) {
         imgElement.dataset.step = "2";
@@ -120,6 +184,17 @@ window.getTextureHtml = function(itemId, itemName) {
     const glintHtml = window.McEnchantGlint && window.McEnchantGlint.itemHasGlint(itemId)
         ? window.McEnchantGlint.glintOverlayHtml()
         : '';
+    if (window.isMcBedItemId && window.isMcBedItemId(itemId)) {
+        return `
+        <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
+            style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
+            <img class="item-bed-invicon" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
+                style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
+                title="${safeName}" referrerpolicy="no-referrer" />
+            ${glintHtml}
+        </span>
+    `;
+    }
     return `
         <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
             style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">

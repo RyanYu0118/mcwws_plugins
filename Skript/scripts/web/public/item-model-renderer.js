@@ -164,22 +164,10 @@
         return n === 'glass_pane' || (n.endsWith('_glass_pane') && n !== 'glass_bottle');
     }
 
-    function isMcBedItemId(id) {
-        if (global.isMcBedItemId) return global.isMcBedItemId(id);
-        const n = normalizeId(id);
-        if (n === 'bedrock' || n.startsWith('flower_bed')) return false;
-        return /_bed$/.test(n);
-    }
-
-    function bedColorFromItemId(itemId) {
-        if (global.bedWoolColorFromItemId) return global.bedWoolColorFromItemId(itemId);
-        const n = normalizeId(itemId);
-        return n.endsWith('_bed') ? n.slice(0, -4) : 'red';
-    }
-
     function iconForce2dFlatIcon(id) {
         if (!id) return false;
         const nid = normalizeId(id);
+        if (global.isMcBedItemId && global.isMcBedItemId(nid)) return true;
         if (isMcGlassPaneItemId(nid)) return true;
         if (isMcDoorBlockId(nid)) return true;
         if (GRASS_LIKE_IDS.has(nid)) return true;
@@ -338,34 +326,10 @@
             use3dCache.set(id, false);
             return false;
         }
-        if (isMcBedItemId(id)) {
-            use3dCache.set(id, true);
-            return true;
-        }
         const model = await resolveModel(itemId);
         const needs = modelNeeds3d(model);
         use3dCache.set(id, needs);
         return needs;
-    }
-
-    async function resolveBedDisplayModel(itemId) {
-        const id = normalizeId(itemId);
-        const merged = await mergeModel(`item/${id}`, new Set());
-        return merged || { display: { gui: { ...DEFAULT_GUI } } };
-    }
-
-    /** 床实体：头/脚两段立方体 + entity/bed 64×64 UV（与 BedModel 一致） */
-    async function buildBedItemGroup(itemId, displayModel) {
-        const color = bedColorFromItemId(itemId);
-        const url = `${ASSET_BASE}/textures/entity/bed/${color}.png`;
-        const root = new THREE.Group();
-        root.userData.mcItemId = normalizeId(itemId);
-        const model = displayModel || { display: { gui: { ...DEFAULT_GUI } } };
-        // 实体 Z∈[-22,-10] 映射到 0–16 模型空间（脚 0–6，头 6–12）
-        pushEntityCuboid(root, [0, 0, 0], [16, 16, 6], 0, 22, 16, 16, 6, url, model, 64);
-        pushEntityCuboid(root, [0, 0, 6], [16, 16, 12], 0, 0, 16, 16, 6, url, model, 64);
-        await finalizeGroup(root);
-        return root.children.length ? root : null;
     }
 
     async function itemUsesAnimatedTextures(model) {
@@ -501,82 +465,6 @@
             uv[0] / 16, 1 - uv[1] / 16,
             uv[2] / 16, 1 - uv[3] / 16
         ];
-    }
-
-    function mcUvPixels(uv, texW, texH) {
-        return [
-            uv[0] / texW, 1 - uv[3] / texH,
-            uv[2] / texW, 1 - uv[1] / texH
-        ];
-    }
-
-    /** 实体模型 CubeListBuilder 在 64×64 贴图上的各面 UV（像素坐标） */
-    function entityCuboidFaceUvs(texOffX, texOffY, sx, sy, sz) {
-        const u = texOffX;
-        const v = texOffY;
-        return {
-            down: [u, v + sz, u + sx, v + sz + sy],
-            up: [u + sx + sz, v + sz, u + sx + sz + sx, v + sz + sy],
-            north: [u + sx + sz, v, u + sx + sz + sx, v + sy],
-            south: [u + sx, v, u + sx + sz, v + sy],
-            west: [u, v, u + sz, v + sy],
-            east: [u + sz + sx, v, u + sz + sx + sx, v + sy]
-        };
-    }
-
-    function pushFaceDirect(group, from, to, faceName, pixelUv, url, model, texW, texH) {
-        if (faceName === 'down') return;
-        if (!url) return;
-
-        const [x1, y1, z1] = from.map((c) => c / 16 - 0.5);
-        const [x2, y2, z2] = to.map((c) => c / 16 - 0.5);
-        const uv = mcUvPixels(pixelUv, texW, texH);
-
-        let positions;
-        let uvs;
-        switch (faceName) {
-            case 'north':
-                positions = [x1, y1, z1, x2, y1, z1, x2, y2, z1, x1, y2, z1];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
-                break;
-            case 'south':
-                positions = [x2, y1, z2, x1, y1, z2, x1, y2, z2, x2, y2, z2];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
-                break;
-            case 'west':
-                positions = [x1, y1, z2, x1, y1, z1, x1, y2, z1, x1, y2, z2];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
-                break;
-            case 'east':
-                positions = [x2, y1, z1, x2, y1, z2, x2, y2, z2, x2, y2, z1];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
-                break;
-            case 'up':
-                positions = [x1, y2, z2, x2, y2, z2, x2, y2, z1, x1, y2, z1];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
-                break;
-            default:
-                return;
-        }
-
-        const geo = new THREE.BufferGeometry();
-        geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-        geo.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
-        const triIdx = faceName === 'up' ? [0, 1, 2, 0, 2, 3] : [0, 2, 1, 0, 3, 2];
-        geo.setIndex(triIdx);
-        geo.computeVertexNormals();
-
-        const shade = computeViewShade(faceName, model);
-        group.__meshes = group.__meshes || [];
-        group.__meshes.push({ geo, url, shade, tintindex: null });
-    }
-
-    function pushEntityCuboid(group, from, to, texOffX, texOffY, sx, sy, sz, url, model, texSize) {
-        const tw = texSize || 64;
-        const faceUvs = entityCuboidFaceUvs(texOffX, texOffY, sx, sy, sz);
-        Object.entries(faceUvs).forEach(([faceName, pixelUv]) => {
-            pushFaceDirect(group, from, to, faceName, pixelUv, url, model, tw, tw);
-        });
     }
 
     function pushFace(group, from, to, faceName, face, resolveTex, model) {
@@ -965,22 +853,14 @@
             return;
         }
 
-        let model;
-        let group;
-        if (isMcBedItemId(id)) {
-            use3dCache.set(id, true);
-            model = await resolveBedDisplayModel(itemId);
-            group = await buildBedItemGroup(itemId, model);
-        } else {
-            model = await resolveModel(itemId);
-            if (!model || !modelNeeds3d(model)) {
-                use3dCache.set(id, false);
-                applyIconToSlot(slot, null);
-                return;
-            }
-            use3dCache.set(id, true);
-            group = await buildFromElements(model, itemId);
+        const model = await resolveModel(itemId);
+        if (!model || !modelNeeds3d(model)) {
+            use3dCache.set(id, false);
+            applyIconToSlot(slot, null);
+            return;
         }
+        use3dCache.set(id, true);
+        const group = await buildFromElements(model, itemId);
         if (!group) {
             iconCache.set(id, null);
             applyIconToSlot(slot, null);
