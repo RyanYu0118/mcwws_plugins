@@ -340,9 +340,12 @@ function openTradeModal(item) {
 
     const offers = item.ultimateShopOffers || [];
     const blocks = offers.map((o, idx) => {
-        const shopLabel = o.shopTitle != null && String(o.shopTitle).trim() !== ''
-            ? escapeHtml(String(o.shopTitle))
+        const shopName = o.shopTitleResolved || o.shopTitle;
+        const shopLabel = shopName != null && String(shopName).trim() !== ''
+            ? escapeHtml(String(shopName))
             : escapeHtml(o.shopId);
+        const buyDisplay = o.buyAmountResolved != null ? o.buyAmountResolved : o.buyAmount;
+        const sellDisplay = o.sellAmountResolved != null ? o.sellAmountResolved : o.sellAmount;
         return `
             <div class="trade-offer-card">
                 <h4>上架位置 ${idx + 1}</h4>
@@ -353,10 +356,10 @@ function openTradeModal(item) {
                     <dd>${shopLabel}</dd>
                     <dt>商品槽位</dt>
                     <dd>${escapeHtml(o.slot)}</dd>
-                    <dt>买入价（配置）</dt>
-                    <dd>${escapeHtml(formatUltimateShopPrice(o.buyAmount))}</dd>
-                    <dt>卖出价（配置）</dt>
-                    <dd>${escapeHtml(formatUltimateShopPrice(o.sellAmount))}</dd>
+                    <dt>买入价</dt>
+                    <dd>${escapeHtml(formatUltimateShopPrice(buyDisplay))}</dd>
+                    <dt>卖出价</dt>
+                    <dd>${escapeHtml(formatUltimateShopPrice(sellDisplay))}</dd>
                 </dl>
             </div>
         `;
@@ -364,7 +367,7 @@ function openTradeModal(item) {
 
     body.innerHTML = `
         <p style="margin:0 0 16px 0; color:#94a3b8; font-size:0.9rem;">
-            以下为 UltimateShop 商店 YAML 中的报价（可能与游戏内占位符解析后的实际金额不同）。
+            以下为 UltimateShop 商店 YAML 中的报价；网页端会解析 {lang:...} 与 %mcwws.price_*% 占位符。
         </p>
         <div class="trade-offer-list">${blocks}</div>
     `;

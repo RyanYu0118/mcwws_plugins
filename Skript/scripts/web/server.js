@@ -27,6 +27,7 @@ app.get('/', (req, res) => {
 const DATA_PATH = path.join(__dirname, 'mcwws', 'economy', 'web_prices.yml');
 const MAPPING_PATH = path.join(__dirname, 'mcwws', 'ultimateshop_mappings.yml');
 const ULTIMATE_SHOP_SHOPS_DIR = path.join(__dirname, '..', '..', '..', 'UltimateShop', 'shops');
+const ULTIMATE_SHOP_LANG_FILE = path.join(__dirname, '..', '..', '..', 'UltimateShop', 'languages', 'zh_CN.yml');
 const DB_DIR = path.join(__dirname, 'data');
 const USER_DB_FILE = path.join(DB_DIR, 'users.json');
 const TRANSACTIONS_CSV = path.join(DB_DIR, 'transactions.csv');
@@ -126,16 +127,72 @@ function collectProductMaterials(products) {
     return out;
 }
 
+function stripMinecraftColorCodes(value) {
+    return String(value || '')
+        .replace(/&#[0-9a-fA-F]{6}/g, '')
+        .replace(/[&§][0-9a-fk-orA-FK-OR]/g, '')
+        .trim();
+}
+
+function flattenObject(obj, prefix = '', out = {}) {
+    if (!obj || typeof obj !== 'object') {
+        return out;
+    }
+    Object.keys(obj).forEach((key) => {
+        const fullKey = prefix ? `${prefix}.${key}` : key;
+        const val = obj[key];
+        if (val && typeof val === 'object' && !Array.isArray(val)) {
+            flattenObject(val, fullKey, out);
+        } else {
+            out[fullKey] = val;
+            out[key] = val;
+        }
+    });
+    return out;
+}
+
+function loadUltimateShopLangMap() {
+    return flattenObject(loadYamlFile(ULTIMATE_SHOP_LANG_FILE));
+}
+
+function resolveUltimateShopLangText(value, langMap) {
+    const raw = String(value == null ? '' : value);
+    const resolved = raw.replace(/\{lang:([^}]+)\}/g, (match, key) => {
+        const text = langMap[key];
+        return text == null ? match : String(text);
+    });
+    return stripMinecraftColorCodes(resolved);
+}
+
+function resolveMcwwsPricePlaceholder(value, priceData) {
+    if (typeof value === 'number') {
+        return value;
+    }
+    const raw = String(value == null ? '' : value).trim();
+    const match = raw.match(/^%mcwws\.price_(buy|sell)_(.+)%$/i);
+    if (!match) {
+        const num = Number(raw);
+        return Number.isFinite(num) ? num : null;
+    }
+    const kind = match[1].toLowerCase();
+    const itemId = normalizeMaterialId(match[2]);
+    const item = itemId && priceData ? priceData[itemId] : null;
+    const resolved = item && kind === 'buy' ? item.buy : item && item.sell;
+    const num = Number(resolved);
+    return Number.isFinite(num) ? num : null;
+}
+
 /**
  * 扫描 UltimateShop/shops/*.yml，按物品 material（与网页 itemId 小写一致）建立可交易报价列表。
  * @returns {Record<string, Array<{shopId: string, shopTitle: string|null, slot: string, buyAmount: *, sellAmount: *}>>}
  */
-function buildUltimateShopCatalogByMaterial() {
+function buildUltimateShopCatalogByMaterial(priceData = {}) {
     const catalog = {};
     if (!fs.existsSync(ULTIMATE_SHOP_SHOPS_DIR)) {
         return catalog;
     }
 
+    const langMap = loadUltimateShopLangMap();
     const files = fs.readdirSync(ULTIMATE_SHOP_SHOPS_DIR).filter((f) => f.endsWith('.yml'));
     files.forEach((file) => {
         const shopId = path.basename(file, '.yml');
@@ -160,9 +217,12 @@ function buildUltimateShopCatalogByMaterial() {
             const offer = {
                 shopId,
                 shopTitle,
+                shopTitleResolved: shopTitle == null ? null : resolveUltimateShopLangText(shopTitle, langMap),
                 slot,
                 buyAmount,
-                sellAmount
+                sellAmount,
+                buyAmountResolved: resolveMcwwsPricePlaceholder(buyAmount, priceData),
+                sellAmountResolved: resolveMcwwsPricePlaceholder(sellAmount, priceData)
             };
             materials.forEach((mat) => {
                 if (!catalog[mat]) {
@@ -321,7 +381,7 @@ app.get('/api/prices', (req, res) => {
         const fileContents = fs.readFileSync(DATA_PATH, 'utf8');
         const rawData = yaml.load(fileContents) || {};
         const mappings = loadYamlFile(MAPPING_PATH);
-        const usCatalog = buildUltimateShopCatalogByMaterial();
+        const usCatalog = buildUltimateShopCatalogByMaterial(rawData);
 
         const responseData = {};
         Object.keys(rawData).forEach(key => {

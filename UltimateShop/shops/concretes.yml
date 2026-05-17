@@ -1,5 +1,5 @@
 settings:
-  menu: 'example-shop-menu'
+  menu: example-shop-menu
   buy-more: true
   shop-name: '{lang:concretes-shop-name}'
   hide-message: false
@@ -11,17 +11,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: RED_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_red_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_red_concrete%'
         placeholder: '{amount}$'
@@ -30,17 +30,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: ORANGE_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_orange_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_orange_concrete%'
         placeholder: '{amount}$'
@@ -49,17 +49,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: YELLOW_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_yellow_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_yellow_concrete%'
         placeholder: '{amount}$'
@@ -68,17 +68,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: LIME_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_lime_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_lime_concrete%'
         placeholder: '{amount}$'
@@ -87,17 +87,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: GREEN_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_green_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_green_concrete%'
         placeholder: '{amount}$'
@@ -106,17 +106,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: LIGHT_BLUE_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_light_blue_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_light_blue_concrete%'
         placeholder: '{amount}$'
@@ -125,17 +125,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: CYAN_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_cyan_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_cyan_concrete%'
         placeholder: '{amount}$'
@@ -144,17 +144,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: BLUE_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_blue_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_blue_concrete%'
         placeholder: '{amount}$'
@@ -163,17 +163,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: PURPLE_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_purple_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_purple_concrete%'
         placeholder: '{amount}$'
@@ -182,17 +182,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: MAGENTA_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_magenta_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_magenta_concrete%'
         placeholder: '{amount}$'
@@ -201,17 +201,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: PINK_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_pink_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_pink_concrete%'
         placeholder: '{amount}$'
@@ -220,17 +220,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: BROWN_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_brown_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_brown_concrete%'
         placeholder: '{amount}$'
@@ -239,17 +239,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: BLACK_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_black_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_black_concrete%'
         placeholder: '{amount}$'
@@ -258,17 +258,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: GRAY_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_gray_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_gray_concrete%'
         placeholder: '{amount}$'
@@ -277,17 +277,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: LIGHT_GRAY_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_light_gray_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_light_gray_concrete%'
         placeholder: '{amount}$'
@@ -296,17 +296,17 @@ items:
     price-mode: CLASSIC_ALL
     product-mode: CLASSIC_ALL
     products:
-      1:
+      '1':
         material: WHITE_CONCRETE
         amount: 1
     buy-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_buy_white_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
     sell-prices:
-      1:
+      '1':
         economy-plugin: Vault
         amount: '%mcwws.price_sell_white_concrete%'
         placeholder: '{amount}$'
