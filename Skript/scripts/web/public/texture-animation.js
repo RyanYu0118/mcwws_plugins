@@ -401,6 +401,10 @@
                 }
             });
             domEntries.forEach((e) => {
+                if (!e.canvas || !e.canvas.isConnected) {
+                    domEntries.delete(e);
+                    return;
+                }
                 const state = frameStateAt(e.meta, e.frames, now - e.startMs);
                 const ctx = e.canvas.getContext('2d');
                 if (!ctx) return;

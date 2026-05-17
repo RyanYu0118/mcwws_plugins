@@ -903,6 +903,11 @@
         }
     }
 
+    function clearAnimatedSlots() {
+        animatedSlots.forEach((entry) => disposeObject(entry.group));
+        animatedSlots.length = 0;
+    }
+
     async function renderItemToSlot(slot, itemId) {
         const THREE = getThree();
         const id = normalizeId(itemId);
@@ -1035,20 +1040,29 @@
         async mountGrid(gridEl) {
             if (!gridEl || !global.McItemIcon.enabled) return;
             pruneAnimatedSlots();
-            animatedSlots.length = 0;
-            const mounts = [...gridEl.querySelectorAll('.item-icon-mount')];
+            clearAnimatedSlots();
+            const mounts = [...gridEl.querySelectorAll('.item-icon-mount, .item-icon-3d')];
             for (const wrap of mounts) {
+                if (!wrap.isConnected) continue;
                 const itemId = wrap.dataset.itemId;
                 if (!itemId) continue;
                 const itemName = wrap.dataset.itemName || itemId;
                 if (!(await prefers3d(itemId))) continue;
                 if (!getThree()) continue;
 
-                const holder = document.createElement('div');
-                holder.innerHTML = global.McItemIcon.getIconSlotHtml(itemId, itemName).trim();
-                const slot = holder.firstElementChild;
-                if (!slot) continue;
-                wrap.replaceWith(slot);
+                let slot = wrap;
+                if (!slot.classList || !slot.classList.contains('item-icon-3d')) {
+                    const holder = document.createElement('div');
+                    holder.innerHTML = global.McItemIcon.getIconSlotHtml(itemId, itemName).trim();
+                    slot = holder.firstElementChild;
+                    if (!slot) continue;
+                    wrap.replaceWith(slot);
+                } else {
+                    sync3dSlotCanvasSize(slot);
+                    delete slot.dataset.mcAnimated;
+                    const fallback = slot.querySelector('.item-icon-fallback');
+                    if (fallback) fallback.innerHTML = '';
+                }
 
                 const fallback = slot.querySelector('.item-icon-fallback');
                 if (
