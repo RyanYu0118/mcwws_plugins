@@ -178,6 +178,9 @@
         if (global.isMcCandleItemId && global.isMcCandleItemId(nid)) return true;
         if (global.isMcTripwireHookItemId && global.isMcTripwireHookItemId(nid)) return true;
         if (global.isMcVineOrRootPlantItemId && global.isMcVineOrRootPlantItemId(nid)) return true;
+        if (global.isMcHeadItemId && global.isMcHeadItemId(nid)) return true;
+        if (global.isMcRailItemId && global.isMcRailItemId(nid)) return true;
+        if (global.isMcShieldItemId && global.isMcShieldItemId(nid)) return true;
         if (isMcGlassPaneItemId(nid)) return true;
         if (isMcDoorBlockId(nid)) return true;
         if (GRASS_LIKE_IDS.has(nid)) return true;
@@ -199,6 +202,9 @@
         if (global.isMcCandleItemId && global.isMcCandleItemId(id)) return [itemPath];
         if (global.isMcTripwireHookItemId && global.isMcTripwireHookItemId(id)) return [itemPath];
         if (global.isMcVineOrRootPlantItemId && global.isMcVineOrRootPlantItemId(id)) return [itemPath];
+        if (global.isMcHeadItemId && global.isMcHeadItemId(id)) return [itemPath];
+        if (global.isMcRailItemId && global.isMcRailItemId(id)) return [itemPath];
+        if (global.isMcShieldItemId && global.isMcShieldItemId(id)) return [itemPath];
         const rest = modelCandidates(itemId).filter((p) => p !== itemPath);
         return [itemPath, ...rest];
     }

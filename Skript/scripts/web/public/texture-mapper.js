@@ -211,6 +211,12 @@ window.flatTextureUrlsForItem = function(itemId) {
     if (window.isMcHeavyCoreItemId && window.isMcHeavyCoreItemId(itemId)) {
         return window.heavyCoreWikiImageUrlsForItem(itemId);
     }
+    if (window.isMcHeadItemId && window.isMcHeadItemId(itemId)) {
+        return window.headWikiImageUrlsForItem(itemId);
+    }
+    if (window.isMcShieldItemId && window.isMcShieldItemId(itemId)) {
+        return window.shieldInviconUrlsForItem(itemId);
+    }
     if (window.isMcTripwireHookItemId && window.isMcTripwireHookItemId(itemId)) {
         return [`${base}/block/tripwire_hook.png`, `${base}/item/barrier.png`];
     }
@@ -231,6 +237,34 @@ window.isMcGlassPaneItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
     if (n === 'glass_pane') return true;
     return n.endsWith('_glass_pane') && !n.endsWith('glass_bottle');
+};
+
+/** 铁轨类：物品栏使用 item/generated 的 2D 贴图，不渲染倾斜 3D 方块模型 */
+window.isMcRailItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'rail'
+        || n === 'powered_rail'
+        || n === 'detector_rail'
+        || n === 'activator_rail';
+};
+
+/** 盾牌：item/template_shield 为 builtin/entity，商店图标用 Wiki Invicon */
+window.isMcShieldItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'shield' || n.endsWith('_shield');
+};
+
+window.shieldInviconUrlForItem = function(itemId, wikiHost) {
+    const host = wikiHost || 'zh.minecraft.wiki';
+    return `https://${host}/images/Invicon_Shield.png`;
+};
+
+window.shieldInviconUrlsForItem = function(itemId) {
+    return [
+        window.shieldInviconUrlForItem(itemId, 'zh.minecraft.wiki'),
+        window.shieldInviconUrlForItem(itemId, 'minecraft.wiki'),
+        `${TextureConfig.getBasePath()}/item/barrier.png`
+    ];
 };
 
 /** 木门等（非活板门）：物品栏用 2D 平面，绘制时不加 FLAT_PAD（与先前 3D 满幅一致） */
@@ -307,6 +341,71 @@ window.heavyCoreWikiImageUrlsForItem = function(itemId) {
         `${base}/block/heavy_core.png`,
         `${base}/item/barrier.png`
     ];
+};
+
+/** 头颅类（template_skull 为 builtin/entity），商店图标改用 Wiki 2D 渲染图 */
+window.isMcHeadItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'skeleton_skull'
+        || n === 'wither_skeleton_skull'
+        || n === 'zombie_head'
+        || n === 'creeper_head'
+        || n === 'dragon_head'
+        || n === 'piglin_head'
+        || n === 'player_head';
+};
+
+window.headWikiKeyFromItemId = function(itemId) {
+    const n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    const map = {
+        skeleton_skull: 'Skeleton_Skull_JE2_BE2',
+        wither_skeleton_skull: 'Wither_Skeleton_Skull_JE2_BE2',
+        zombie_head: 'Zombie_Head_JE2_BE2',
+        creeper_head: 'Creeper_Head_JE1_BE1',
+        dragon_head: 'Dragon_Head_JE1_BE1',
+        piglin_head: 'Piglin_Head_JE1_BE1',
+        player_head: 'Player_Head_JE2_BE2'
+    };
+    return map[n] || map.skeleton_skull;
+};
+
+window.headWikiImageUrlForItem = function(itemId, wikiHost) {
+    const host = wikiHost || 'zh.minecraft.wiki';
+    return `https://${host}/images/${window.headWikiKeyFromItemId(itemId)}.png`;
+};
+
+window.headFallbackTextureUrl = function(itemId) {
+    const base = TextureConfig.getBasePath();
+    const n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    const map = {
+        skeleton_skull: 'entity/skeleton/skeleton',
+        wither_skeleton_skull: 'entity/skeleton/wither_skeleton',
+        zombie_head: 'entity/zombie/zombie',
+        creeper_head: 'entity/creeper/creeper',
+        dragon_head: 'entity/enderdragon/dragon',
+        piglin_head: 'entity/piglin/piglin',
+        player_head: 'entity/player/wide/steve'
+    };
+    return `${base}/${map[n] || map.skeleton_skull}.png`;
+};
+
+window.headWikiImageUrlsForItem = function(itemId) {
+    return [
+        window.headWikiImageUrlForItem(itemId, 'zh.minecraft.wiki'),
+        window.headWikiImageUrlForItem(itemId, 'minecraft.wiki'),
+        window.headFallbackTextureUrl(itemId),
+        `${TextureConfig.getBasePath()}/item/barrier.png`
+    ];
+};
+
+window.applyHeadImgMirror = function(img) {
+    if (!img) return;
+    const src = String(img.currentSrc || img.src || '');
+    if (/minecraft\.wiki/i.test(src)) {
+        img.style.transform = 'scaleX(-1)';
+        return;
+    }
+    img.style.transform = '';
 };
 
 /** 藤类、根须类植物：物品栏统一 2D，部分 ID 的贴图名与物品 ID 不一致 */
@@ -700,6 +799,10 @@ window.initMcWikiInviconImages = function(root) {
                 && window.isMcCopperGolemStatueItemId
                 && window.isMcCopperGolemStatueItemId(itemId)) {
                 window.applyCopperGolemStatueImgMirror(img);
+            } else if (window.applyHeadImgMirror
+                && window.isMcHeadItemId
+                && window.isMcHeadItemId(itemId)) {
+                window.applyHeadImgMirror(img);
             }
             img.dataset.texReady = '1';
             img.style.opacity = '1';
@@ -778,6 +881,33 @@ window.handleTextureError = function(imgElement, originalId) {
             imgElement.src = window.shulkerBoxAtlasTextureUrl(originalId);
         } else if (step === 3) {
             imgElement.dataset.step = "4";
+            imgElement.src = `${basePath}/item/barrier.png`;
+        }
+        return;
+    }
+
+    if (window.isMcHeadItemId && window.isMcHeadItemId(originalId)) {
+        if (step === 1) {
+            imgElement.dataset.step = "2";
+            imgElement.src = window.headWikiImageUrlForItem(originalId, 'minecraft.wiki');
+        } else if (step === 2) {
+            imgElement.dataset.step = "3";
+            imgElement.src = window.headFallbackTextureUrl(originalId);
+            if (window.applyHeadImgMirror) window.applyHeadImgMirror(imgElement);
+        } else if (step === 3) {
+            imgElement.dataset.step = "4";
+            imgElement.src = `${basePath}/item/barrier.png`;
+            imgElement.style.transform = '';
+        }
+        return;
+    }
+
+    if (window.isMcShieldItemId && window.isMcShieldItemId(originalId)) {
+        if (step === 1) {
+            imgElement.dataset.step = "2";
+            imgElement.src = window.shieldInviconUrlForItem(originalId, 'minecraft.wiki');
+        } else if (step === 2) {
+            imgElement.dataset.step = "3";
             imgElement.src = `${basePath}/item/barrier.png`;
         }
         return;
@@ -911,6 +1041,28 @@ window.getTextureHtml = function(itemId, itemName) {
     `;
     }
     if (window.isMcHeavyCoreItemId && window.isMcHeavyCoreItemId(itemId)) {
+        return `
+        <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
+            style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
+            <img class="item-mc-wiki-invicon" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
+                style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
+                title="${safeName}" referrerpolicy="no-referrer" />
+            ${glintHtml}
+        </span>
+    `;
+    }
+    if (window.isMcHeadItemId && window.isMcHeadItemId(itemId)) {
+        return `
+        <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
+            style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
+            <img class="item-mc-wiki-invicon item-head-wiki" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
+                style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
+                title="${safeName}" referrerpolicy="no-referrer" />
+            ${glintHtml}
+        </span>
+    `;
+    }
+    if (window.isMcShieldItemId && window.isMcShieldItemId(itemId)) {
         return `
         <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
             style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
