@@ -166,10 +166,18 @@ window.mcTippedArrowTextureUrlsForItem = function() {
     ];
 };
 
+window.isMcCakeItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'cake';
+};
+
 /** 2D 图标贴图 URL 列表（玻璃板仅 block，避免误请求 item/glass_pane 等） */
 window.flatTextureUrlsForItem = function(itemId) {
     const base = TextureConfig.getBasePath();
     const smartId = window.getSmartId(itemId);
+    if (window.isMcCakeItemId && window.isMcCakeItemId(itemId)) {
+        return [`${base}/item/cake.png`, `${base}/item/barrier.png`];
+    }
     if (window.isMcTippedArrowItemId && window.isMcTippedArrowItemId(itemId)) {
         return window.mcTippedArrowTextureUrlsForItem(itemId);
     }
