@@ -447,36 +447,115 @@ function normalizePinyinNasal(value) {
         .replace(/ing/g, 'in');
 }
 
+function pinyinPrefixComboMatch(syllables, query) {
+    const parts = syllables.map((part) => String(part || '').toLowerCase()).filter(Boolean);
+    const q = String(query || '').toLowerCase().replace(/\s+/g, '');
+    if (!parts.length || !q) return false;
+
+    const canMatchFrom = (start) => {
+        const memo = new Set();
+        const dfs = (idx, rest) => {
+            if (!rest) return true;
+            if (idx >= parts.length) return false;
+            const key = `${idx}|${rest}`;
+            if (memo.has(key)) return false;
+            const part = parts[idx];
+            const maxLen = Math.min(part.length, rest.length);
+            for (let len = 1; len <= maxLen; len += 1) {
+                if (rest.startsWith(part.slice(0, len)) && dfs(idx + 1, rest.slice(len))) {
+                    return true;
+                }
+            }
+            memo.add(key);
+            return false;
+        };
+        return dfs(start, q);
+    };
+
+    for (let i = 0; i < parts.length; i += 1) {
+        if (canMatchFrom(i)) return true;
+    }
+    return false;
+}
+
+function splitSearchWords(value) {
+    return String(value || '')
+        .toLowerCase()
+        .split(/[\s_-]+/)
+        .map((part) => part.trim())
+        .filter(Boolean);
+}
+
+function prefixComboMatch(parts, query) {
+    const words = parts.map((part) => String(part || '').toLowerCase()).filter(Boolean);
+    const q = String(query || '').toLowerCase().replace(/[\s_-]+/g, '');
+    if (!words.length || !q) return false;
+
+    const canMatchFrom = (start) => {
+        const memo = new Set();
+        const dfs = (idx, rest) => {
+            if (!rest) return true;
+            if (idx >= words.length) return false;
+            const key = `${idx}|${rest}`;
+            if (memo.has(key)) return false;
+            const word = words[idx];
+            const maxLen = Math.min(word.length, rest.length);
+            for (let len = 1; len <= maxLen; len += 1) {
+                if (rest.startsWith(word.slice(0, len)) && dfs(idx + 1, rest.slice(len))) {
+                    return true;
+                }
+            }
+            memo.add(key);
+            return false;
+        };
+        return dfs(start, q);
+    };
+
+    for (let i = 0; i < words.length; i += 1) {
+        if (canMatchFrom(i)) return true;
+    }
+    return false;
+}
+
 function filterAndRenderItems() {
     filteredItems = allItems.filter(item => {
         const query = searchQuery.toLowerCase();
         if (!query) return true;
         
         // 原始匹配
-        const nameMatch = item.name.toLowerCase().includes(query);
-        const idMatch = item.id.toLowerCase().includes(query);
+        const compactQuery = query.replace(/[\s_-]+/g, '');
+        const itemNameLower = item.name.toLowerCase();
+        const itemIdLower = item.id.toLowerCase();
+        const nameMatch = itemNameLower.includes(query)
+            || itemNameLower.replace(/[\s_-]+/g, '').includes(compactQuery)
+            || prefixComboMatch(splitSearchWords(itemNameLower), query);
+        const idMatch = itemIdLower.includes(query)
+            || itemIdLower.replace(/[\s_-]+/g, '').includes(compactQuery)
+            || prefixComboMatch(splitSearchWords(itemIdLower), query);
         
         // 拼音匹配
         let pinyinMatch = false;
         try {
             const namePinyinSpaced = pinyinPro.pinyin(item.name, { toneType: 'none', type: 'string' }).toLowerCase();
+            const namePinyinSyllables = namePinyinSpaced.split(/\s+/).filter(Boolean);
             const namePinyin = namePinyinSpaced.replace(/\s+/g, '');
             const namePinyinInitial = pinyinPro.pinyin(item.name, { pattern: 'initial', toneType: 'none', type: 'string' }).toLowerCase().replace(/\s+/g, '');
-            const namePinyinComputedInitial = namePinyinSpaced
-                .split(/\s+/)
-                .filter(Boolean)
+            const namePinyinComputedInitial = namePinyinSyllables
                 .map((part) => part.charAt(0))
                 .join('');
             const fuzzyNamePinyin = normalizePinyinNasal(namePinyin);
             const fuzzyNamePinyinInitial = normalizePinyinNasal(namePinyinInitial);
             const fuzzyNamePinyinComputedInitial = normalizePinyinNasal(namePinyinComputedInitial);
+            const fuzzyNamePinyinSyllables = namePinyinSyllables.map(normalizePinyinNasal);
             const fuzzyQuery = normalizePinyinNasal(query);
             pinyinMatch = namePinyin.includes(query)
                 || namePinyinInitial.includes(query)
                 || namePinyinComputedInitial.includes(query)
                 || fuzzyNamePinyin.includes(fuzzyQuery)
                 || fuzzyNamePinyinInitial.includes(fuzzyQuery)
-                || fuzzyNamePinyinComputedInitial.includes(fuzzyQuery);
+                || fuzzyNamePinyinComputedInitial.includes(fuzzyQuery)
+                || pinyinPrefixComboMatch(namePinyinSyllables, query)
+                || pinyinPrefixComboMatch(fuzzyNamePinyinSyllables, fuzzyQuery);
         } catch (e) {
             // 如果拼音转换失败，使用原始匹配
         }
