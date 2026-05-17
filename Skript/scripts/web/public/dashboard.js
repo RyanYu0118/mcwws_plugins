@@ -74,6 +74,21 @@ function hydrateDashboardItemIcons(root) {
     }
 }
 
+function showDialog(modal) {
+    if (!modal) return;
+    modal.classList.remove('closing');
+    modal.classList.add('active');
+}
+
+function hideDialog(modal) {
+    if (!modal || !modal.classList.contains('active')) return;
+    modal.classList.add('closing');
+    modal.classList.remove('active');
+    window.setTimeout(() => {
+        modal.classList.remove('closing');
+    }, 190);
+}
+
 // ═══ INITIALIZATION ═══
 document.addEventListener('DOMContentLoaded', async () => {
     if (window.mcLangReady) {
@@ -636,7 +651,7 @@ async function showItemDetails(item) {
 
     modalTitle.textContent = itemDisplayName(item);
     modalBody.innerHTML = '<div class="loading-spinner"></div>';
-    modal.classList.add('active');
+    showDialog(modal);
 
     try {
         const [itemData, priceHistory] = await Promise.all([
@@ -737,7 +752,7 @@ async function showItemDetails(item) {
 
 function closeModal() {
     const modal = document.getElementById('itemModal');
-    if (modal) modal.classList.remove('active');
+    hideDialog(modal);
 }
 
 // ═══ FILTERS & SORTING ═══

@@ -319,13 +319,31 @@ function ensurePointerBearingTicker() {
     pointerBearingTimer = setInterval(() => updatePointerBearingDescriptions(document), 100);
 }
 
+function showDialog(modal) {
+    if (!modal) return;
+    modal.classList.remove('closing');
+    modal.classList.add('active');
+}
+
+function hideDialog(modal, afterClose) {
+    if (!modal || !modal.classList.contains('active')) {
+        if (typeof afterClose === 'function') afterClose();
+        return;
+    }
+    modal.classList.add('closing');
+    modal.classList.remove('active');
+    window.setTimeout(() => {
+        modal.classList.remove('closing');
+        if (typeof afterClose === 'function') afterClose();
+    }, 190);
+}
+
 function closeTradeModal() {
     const modal = document.getElementById('tradeModal');
-    if (modal) {
-        modal.classList.remove('active');
-        delete modal.dataset.tradeItemId;
-    }
-    syncItemsStateToUrl();
+    hideDialog(modal, () => {
+        if (modal) delete modal.dataset.tradeItemId;
+        syncItemsStateToUrl();
+    });
 }
 
 function openTradeModal(item) {
@@ -372,7 +390,7 @@ function openTradeModal(item) {
         <div class="trade-offer-list">${blocks}</div>
     `;
 
-    modal.classList.add('active');
+    showDialog(modal);
     modal.dataset.tradeItemId = item.id;
     syncItemsStateToUrl();
 }
@@ -897,16 +915,12 @@ function openAuthModal() {
     authMode = 'login';
     switchAuthMode('login');
     const modal = document.getElementById('authModal');
-    if (modal) {
-        modal.classList.add('active');
-    }
+    showDialog(modal);
 }
 
 function closeAuthModal() {
     const modal = document.getElementById('authModal');
-    if (modal) {
-        modal.classList.remove('active');
-    }
+    hideDialog(modal);
     const message = document.getElementById('authMessage');
     if (message) {
         message.textContent = '';

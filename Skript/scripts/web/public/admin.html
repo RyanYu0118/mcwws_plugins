@@ -554,14 +554,25 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0);
             z-index: 100;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+        }
+
+        .modal-overlay.active,
+        .modal-overlay.closing {
+            display: flex;
         }
 
         .modal-overlay.active {
-            display: flex;
+            animation: modalBackdropIn 0.22s ease forwards;
+        }
+
+        .modal-overlay.closing {
+            animation: modalBackdropOut 0.18s ease forwards;
+            pointer-events: none;
         }
 
         .modal {
@@ -572,18 +583,67 @@
             width: 560px;
             max-height: 90vh;
             overflow-y: auto;
-            animation: modalIn 0.2s ease-out;
+            transform-origin: center;
+            will-change: transform, opacity;
+        }
+
+        .modal-overlay.active .modal {
+            animation: modalIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .modal-overlay.closing .modal {
+            animation: modalOut 0.18s ease forwards;
         }
 
         @keyframes modalIn {
             from {
                 opacity: 0;
-                transform: scale(0.95);
+                transform: translateY(18px) scale(0.96);
+                filter: blur(4px);
             }
 
             to {
                 opacity: 1;
-                transform: scale(1);
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes modalOut {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(12px) scale(0.97);
+                filter: blur(3px);
+            }
+        }
+
+        @keyframes modalBackdropIn {
+            from {
+                opacity: 0;
+                background: rgba(0, 0, 0, 0);
+            }
+
+            to {
+                opacity: 1;
+                background: rgba(0, 0, 0, 0.7);
+            }
+        }
+
+        @keyframes modalBackdropOut {
+            from {
+                opacity: 1;
+                background: rgba(0, 0, 0, 0.7);
+            }
+
+            to {
+                opacity: 0;
+                background: rgba(0, 0, 0, 0);
             }
         }
 
@@ -1446,6 +1506,25 @@
             }
         });
 
+        function showDialog(modal) {
+            if (!modal) return;
+            modal.classList.remove('closing');
+            modal.classList.add('active');
+        }
+
+        function hideDialog(modal, afterClose) {
+            if (!modal || !modal.classList.contains('active')) {
+                if (typeof afterClose === 'function') afterClose();
+                return;
+            }
+            modal.classList.add('closing');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.classList.remove('closing');
+                if (typeof afterClose === 'function') afterClose();
+            }, 190);
+        }
+
         async function performBulkAction(actionType) {
             document.getElementById('bulkActionsMenu').style.display = 'none';
             const selectedBoxes = Array.from(document.querySelectorAll('.item-select-chk:checked'));
@@ -1520,9 +1599,9 @@
             document.getElementById('editBuyDisabled').checked = item.buyDisabled;
             document.getElementById('editSellDisabled').checked = item.sellDisabled;
             document.getElementById('editDisabled').checked = item.disabled;
-            document.getElementById('editModal').classList.add('active');
+            showDialog(document.getElementById('editModal'));
         }
-        function closeModal() { document.getElementById('editModal').classList.remove('active'); editingItem = null; }
+        function closeModal() { hideDialog(document.getElementById('editModal'), () => { editingItem = null; }); }
 
         function openCreateCategory() {
             const available = allCategories.find(c => c.hidden && c.isCustom);
@@ -1551,7 +1630,7 @@
             if (cat.isCustom) document.getElementById('btnDeleteCat').style.display = 'block';
             else document.getElementById('btnDeleteCat').style.display = 'none';
 
-            document.getElementById('editCategoryModal').classList.add('active');
+            showDialog(document.getElementById('editCategoryModal'));
             document.getElementById('editCategoryModal').dataset.catId = catId;
         }
 
@@ -1573,7 +1652,7 @@
                 }
             } catch (e) { toast('删除分类时出错', 'error'); }
         }
-        function closeCatModal() { document.getElementById('editCategoryModal').classList.remove('active'); }
+        function closeCatModal() { hideDialog(document.getElementById('editCategoryModal')); }
 
         async function saveCategory() {
             const catId = document.getElementById('editCategoryModal').dataset.catId;
@@ -1896,7 +1975,7 @@
             document.getElementById('siMaterial').value = '';
             document.getElementById('siRequiredPerm').value = '';
             onSiTypeChange();
-            document.getElementById('editSpecialModal').classList.add('active');
+            showDialog(document.getElementById('editSpecialModal'));
         }
 
         function openEditSpecialItem(id) {
@@ -1916,12 +1995,13 @@
             document.getElementById('siMaterial').value = item.displayMaterial || '';
             document.getElementById('siRequiredPerm').value = item.requiredPermission || '';
             onSiTypeChange();
-            document.getElementById('editSpecialModal').classList.add('active');
+            showDialog(document.getElementById('editSpecialModal'));
         }
 
         function closeSpecialModal() {
-            document.getElementById('editSpecialModal').classList.remove('active');
-            document.getElementById('siType').disabled = false;
+            hideDialog(document.getElementById('editSpecialModal'), () => {
+                document.getElementById('siType').disabled = false;
+            });
         }
 
         async function saveSpecialItem() {
@@ -2014,13 +2094,14 @@
             document.getElementById('addItemMaterial').value = '';
             document.getElementById('addItemPrice').value = '';
             document.getElementById('materialSuggestions').style.display = 'none';
-            document.getElementById('addItemModal').classList.add('active');
+            showDialog(document.getElementById('addItemModal'));
             setTimeout(() => document.getElementById('addItemMaterial').focus(), 100);
         }
 
         function closeAddItemModal() {
-            document.getElementById('addItemModal').classList.remove('active');
-            document.getElementById('materialSuggestions').style.display = 'none';
+            hideDialog(document.getElementById('addItemModal'), () => {
+                document.getElementById('materialSuggestions').style.display = 'none';
+            });
         }
 
         function filterMaterialSuggestions() {

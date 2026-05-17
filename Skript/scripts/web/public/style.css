@@ -1143,15 +1143,26 @@ body {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0);
     z-index: 2000;
     align-items: center;
     justify-content: center;
     padding: 1rem;
+    opacity: 0;
+}
+
+.modal.active,
+.modal.closing {
+    display: flex;
 }
 
 .modal.active {
-    display: flex;
+    animation: modal-backdrop-in 0.22s ease forwards;
+}
+
+.modal.closing {
+    animation: modal-backdrop-out 0.18s ease forwards;
+    pointer-events: none;
 }
 
 .modal-content {
@@ -1160,6 +1171,73 @@ body {
     max-height: 90vh;
     border-radius: var(--radius-xl);
     overflow: hidden;
+    transform-origin: center;
+    will-change: transform, opacity;
+}
+
+.modal.active .modal-content {
+    animation: modal-card-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal.closing .modal-content {
+    animation: modal-card-out 0.18s ease forwards;
+}
+
+@keyframes modal-backdrop-in {
+    from {
+        opacity: 0;
+        background: rgba(0, 0, 0, 0);
+    }
+    to {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.8);
+    }
+}
+
+@keyframes modal-backdrop-out {
+    from {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.8);
+    }
+    to {
+        opacity: 0;
+        background: rgba(0, 0, 0, 0);
+    }
+}
+
+@keyframes modal-card-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.96);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes modal-card-out {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+        filter: blur(3px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .modal.active,
+    .modal.closing,
+    .modal.active .modal-content,
+    .modal.closing .modal-content {
+        animation-duration: 1ms;
+    }
 }
 
 .modal-header {
