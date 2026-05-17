@@ -6,6 +6,8 @@
     const metaCache = new Map();
     const threeTextures = new Set();
     const domEntries = new Set();
+    const clockEntries = new Set();
+    const clockFrameCache = new Map();
     let rafId = null;
 
     const ASSET_VER = global.McTexturePackVersion || '26.1.2';
@@ -22,6 +24,11 @@
         'grass_block', 'grass', 'short_grass', 'tall_grass', 'fern', 'large_fern',
         'bamboo', 'moss_block', 'moss_carpet',
         'small_dripleaf', 'big_dripleaf', 'seagrass', 'tall_seagrass'
+    ]);
+
+    /** 2D 绘制后乘 foliage.png 色谱（藤蔓等普通叶色系） */
+    const FOLIAGE_TINT_2D_IDS = new Set([
+        'vine'
     ]);
 
     const FIXED_TINT_2D_RGB = {
@@ -43,13 +50,30 @@
         return (host && host.dataset && host.dataset.itemId) || '';
     }
 
+    function clockFrameUrl(frame) {
+        const idx = String(frame).padStart(2, '0');
+        return `/${ASSET_VER}/assets/minecraft/textures/item/clock_${idx}.png`;
+    }
+
+    function clockFrameForBrowserTime(date) {
+        const seconds = date.getHours() * 3600
+            + date.getMinutes() * 60
+            + date.getSeconds()
+            + date.getMilliseconds() / 1000;
+        const noon = 12 * 3600;
+        const sinceNoon = (seconds - noon + 24 * 3600) % (24 * 3600);
+        return Math.floor((sinceNoon / (24 * 3600)) * 64) % 64;
+    }
+
     function colormapKindFor2d(itemIdRaw) {
         const id = normalizeTintId(itemIdRaw);
         if (!id) return null;
         if (GRASS_TINT_2D_IDS.has(id)) return 'grass';
+        if (FOLIAGE_TINT_2D_IDS.has(id)) return 'foliage';
         if (global.getSmartId) {
             const sid = normalizeTintId(global.getSmartId(id));
             if (GRASS_TINT_2D_IDS.has(sid)) return 'grass';
+            if (FOLIAGE_TINT_2D_IDS.has(sid)) return 'foliage';
         }
         return null;
     }
@@ -426,6 +450,13 @@
                     multiplyColormapTintPixels(ctx, inset, inset, rw, rh, e.colormapTintRgb);
                 }
             });
+            clockEntries.forEach((e) => {
+                if (!e.canvas || !e.canvas.isConnected) {
+                    clockEntries.delete(e);
+                    return;
+                }
+                updateClockEntry(e);
+            });
             if (typeof global.McItemIcon !== 'undefined' && global.McItemIcon.renderAnimatedSlots) {
                 global.McItemIcon.renderAnimatedSlots();
             }
@@ -493,6 +524,42 @@
         });
     }
 
+    function loadClockFrame(frame) {
+        const normalized = ((frame % 64) + 64) % 64;
+        if (clockFrameCache.has(normalized)) return clockFrameCache.get(normalized);
+        const promise = loadImage(clockFrameUrl(normalized));
+        clockFrameCache.set(normalized, promise);
+        return promise;
+    }
+
+    function drawClockFrame(entry, frame) {
+        const targetFrame = ((frame % 64) + 64) % 64;
+        loadClockFrame(targetFrame).then((img) => {
+            if (!entry.canvas || !entry.canvas.isConnected || entry.frame !== targetFrame) return;
+            const ctx = entry.canvas.getContext('2d');
+            if (!ctx) return;
+            ctx.clearRect(0, 0, entry.canvas.width, entry.canvas.height);
+            ctx.imageSmoothingEnabled = false;
+            drawImageWithFlatPadding(ctx, img, 0, 0, img.width, img.height);
+        }).catch(() => {});
+    }
+
+    function updateClockEntry(entry) {
+        const frame = clockFrameForBrowserTime(new Date());
+        if (entry.frame === frame) return;
+        entry.frame = frame;
+        drawClockFrame(entry, frame);
+    }
+
+    function initClockCanvas(canvas) {
+        if (!canvas || !canvas.getContext) return false;
+        const entry = { canvas, frame: -1 };
+        clockEntries.add(entry);
+        updateClockEntry(entry);
+        ensureLoop();
+        return true;
+    }
+
     async function attachDomCanvas(canvas, pngUrl) {
         const meta = await fetchAnimationMeta(pngUrl);
         if (!meta) return false;
@@ -554,6 +621,10 @@
     }
 
     async function initCanvasFromUrls(canvas, urls) {
+        if (global.isMcClockItemId && global.isMcClockItemId(itemIdForCanvas(canvas))) {
+            const ok = initClockCanvas(canvas);
+            if (ok) return true;
+        }
         if (global.isMcTippedArrowItemId && global.isMcTippedArrowItemId(itemIdForCanvas(canvas))) {
             const ok = await renderTippedArrowCanvas(canvas);
             if (ok) return true;

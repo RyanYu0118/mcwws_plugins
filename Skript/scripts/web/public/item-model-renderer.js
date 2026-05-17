@@ -152,7 +152,7 @@
 
     const REDSTONE_2D_ITEM_IDS = new Set(['redstone', 'repeater', 'comparator']);
     const TORCH_2D_ITEM_IDS = new Set(['torch', 'soul_torch', 'redstone_torch', 'copper_torch']);
-    const ITEM_MODEL_2D_IDS = new Set(['lever', 'soul_campfire', 'hopper', 'brewing_stand']);
+    const ITEM_MODEL_2D_IDS = new Set(['lever', 'soul_campfire', 'hopper', 'brewing_stand', 'resin_clump']);
 
     function isMcDoorBlockId(id) {
         return !!(id && id.endsWith('_door') && !id.endsWith('_trapdoor'));
@@ -197,6 +197,7 @@
         if (global.isMcHeadItemId && global.isMcHeadItemId(nid)) return true;
         if (global.isMcRailItemId && global.isMcRailItemId(nid)) return true;
         if (global.isMcShieldItemId && global.isMcShieldItemId(nid)) return true;
+        if (global.isMcClockItemId && global.isMcClockItemId(nid)) return true;
         if (global.isMcMushroomOrFungusItemId && global.isMcMushroomOrFungusItemId(nid)) return true;
         if (isMcNonBlockCoralItemId(nid)) return true;
         if (isMcGlassPaneItemId(nid)) return true;

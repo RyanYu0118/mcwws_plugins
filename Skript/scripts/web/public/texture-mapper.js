@@ -98,7 +98,8 @@ const ITEM_MODEL_2D_TEXTURES = {
     hopper: 'item/hopper',
     rose_bush: 'block/rose_bush_top',
     peony: 'block/peony_top',
-    brewing_stand: 'item/brewing_stand'
+    brewing_stand: 'item/brewing_stand',
+    resin_clump: 'item/resin_clump'
 };
 
 window.isMcPotionItemId = function(id) {
@@ -183,6 +184,19 @@ window.mcTippedArrowTextureUrlsForItem = function() {
     ];
 };
 
+window.isMcClockItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'clock';
+};
+
+window.mcClockTextureUrlsForItem = function() {
+    const base = TextureConfig.getBasePath();
+    return [
+        `${base}/item/clock_00.png`,
+        `${base}/item/barrier.png`
+    ];
+};
+
 window.isMcCakeItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
     return n === 'cake';
@@ -200,6 +214,9 @@ window.flatTextureUrlsForItem = function(itemId) {
     }
     if (window.isMcPotionItemId && window.isMcPotionItemId(itemId)) {
         return window.mcPotionTextureUrlsForItem(itemId);
+    }
+    if (window.isMcClockItemId && window.isMcClockItemId(itemId)) {
+        return window.mcClockTextureUrlsForItem(itemId);
     }
     if (window.isMcGlassPaneItemId && window.isMcGlassPaneItemId(itemId)) {
         return [`${base}/block/${smartId}.png`];

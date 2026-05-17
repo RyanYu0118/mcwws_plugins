@@ -16,6 +16,7 @@ let currentPage = 1;
 const PAGE_SIZE = 60;
 let searchTimer = null;
 let pageBeforeSearch = null;
+let clockTimeTimer = null;
 
 const SORT_VALUES = new Set(['name', 'buyPrice', 'sellPrice', 'stock']);
 
@@ -121,6 +122,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadItems();
     setupEventListeners();
     loadUserProfile();
+    ensureClockTimeTicker();
 });
 
 // 绑定页面交互事件（新增逆序复选框监听）
@@ -196,6 +198,29 @@ function normalizeLoreLine(value) {
     if (value == null) return null;
     const text = String(value).replace(/§[0-9a-fk-or]/gi, '').trim();
     return text || null;
+}
+
+function formatClockSystemTime(date) {
+    const d = date || new Date();
+    const hh = String(d.getHours()).padStart(2, '0');
+    const mm = String(d.getMinutes()).padStart(2, '0');
+    const ss = String(d.getSeconds()).padStart(2, '0');
+    return `${hh}:${mm}:${ss}`;
+}
+
+function updateClockTimeDescriptions(root) {
+    const host = root || document;
+    const text = formatClockSystemTime();
+    host.querySelectorAll('[data-clock-time-desc]').forEach((el) => {
+        el.textContent = text;
+        const container = el.closest('.scrolling-text');
+        if (container) container.title = text;
+    });
+}
+
+function ensureClockTimeTicker() {
+    if (clockTimeTimer !== null) return;
+    clockTimeTimer = setInterval(() => updateClockTimeDescriptions(document), 1000);
 }
 
 function closeTradeModal() {
@@ -610,8 +635,12 @@ function renderCards() {
         const offers = item.ultimateShopOffers || [];
         const canTrade = offers.length > 0;
         const tradeBtnClass = canTrade ? 'trade-btn trade-btn--active' : 'trade-btn trade-btn--disabled';
-        const loreLine = duplicateNames.has(item.name) && item.loreLine
-            ? `<span class="scrolling-text" style="margin-top:2px; font-size:0.82rem; color:#94a3b8;" title="${escapeHtml(item.loreLine)}"><span class="scrolling-text-inner">${escapeHtml(item.loreLine)}</span></span>`
+        const isClock = item.id === 'clock';
+        const descriptionText = isClock
+            ? formatClockSystemTime()
+            : (duplicateNames.has(item.name) && item.loreLine ? item.loreLine : '');
+        const loreLine = descriptionText
+            ? `<span class="scrolling-text" style="margin-top:2px; font-size:0.82rem; color:#94a3b8;" title="${escapeHtml(descriptionText)}"><span class="scrolling-text-inner"${isClock ? ' data-clock-time-desc="1"' : ''}>${escapeHtml(descriptionText)}</span></span>`
             : '';
         const safeName = escapeHtml(item.name);
         const safeId = escapeHtml(item.id);
@@ -661,6 +690,8 @@ function renderCards() {
     if (window.McEnchantGlint) {
         window.McEnchantGlint.initInContainer(grid);
     }
+    updateClockTimeDescriptions(grid);
+    ensureClockTimeTicker();
     syncItemsStateToUrl();
 }
 
