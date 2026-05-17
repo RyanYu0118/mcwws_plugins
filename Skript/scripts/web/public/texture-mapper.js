@@ -248,6 +248,15 @@ window.isMcRailItemId = function(id) {
         || n === 'activator_rail';
 };
 
+/** 菌菇类小物品：只包含非完整方块形态，物品栏使用 2D 平面贴图 */
+window.isMcMushroomOrFungusItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'brown_mushroom'
+        || n === 'red_mushroom'
+        || n === 'crimson_fungus'
+        || n === 'warped_fungus';
+};
+
 /** 盾牌：item/template_shield 为 builtin/entity，商店图标用 Wiki Invicon */
 window.isMcShieldItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
