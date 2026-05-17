@@ -311,3 +311,22 @@ items:
         amount: '%mcwws.price_sell_white_concrete%'
         placeholder: '{amount}$'
         start-apply: 0
+  Q:
+    price-mode: CLASSIC_ALL
+    product-mode: CLASSIC_ALL
+    products:
+      '1':
+        material: ANDESITE
+        amount: 1
+    buy-prices:
+      '1':
+        economy-plugin: Vault
+        amount: 1.1
+        placeholder: '{amount}$'
+        start-apply: 0
+    sell-prices:
+      '1':
+        economy-plugin: Vault
+        amount: 1.089
+        placeholder: '{amount}$'
+        start-apply: 0
