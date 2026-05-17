@@ -15,6 +15,7 @@ let authMode = 'login';
 let currentPage = 1;
 const PAGE_SIZE = 60;
 let searchTimer = null;
+let pageBeforeSearch = null;
 
 const SORT_VALUES = new Set(['name', 'buyPrice', 'sellPrice', 'stock']);
 
@@ -335,14 +336,20 @@ function updateSearchClearButton() {
     btn.hidden = inp.value.length === 0;
 }
 
+function pageForClearedSearch() {
+    const fallback = pageBeforeSearch || currentPage || 1;
+    pageBeforeSearch = null;
+    return fallback;
+}
+
 function clearSearchInput() {
     const inp = document.getElementById('searchInput');
     if (!inp) return;
+    const restorePage = pageForClearedSearch();
     inp.value = '';
     searchQuery = '';
     updateSearchClearButton();
-    syncItemsStateToUrl();
-    currentPage = 1;
+    currentPage = restorePage;
     filterAndRenderItems();
     inp.focus();
 }
@@ -354,12 +361,16 @@ function setupEventListeners() {
     if (searchInput) {
         updateSearchClearButton();
         searchInput.addEventListener('input', (e) => {
-            searchQuery = e.target.value.toLowerCase();
+            const previousQuery = searchQuery;
+            const nextQuery = e.target.value.toLowerCase();
+            if (!previousQuery && nextQuery && pageBeforeSearch === null) {
+                pageBeforeSearch = currentPage;
+            }
+            searchQuery = nextQuery;
             updateSearchClearButton();
-            syncItemsStateToUrl();
             clearTimeout(searchTimer);
             searchTimer = setTimeout(() => {
-                currentPage = 1;
+                currentPage = searchQuery ? 1 : pageForClearedSearch();
                 filterAndRenderItems();
             }, 200);
         });
@@ -421,17 +432,31 @@ function setupEventListeners() {
         window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
     }
 
-    function bindPager(prevId, nextId, scrollAfter) {
+    function bindPager(firstId, prevId, nextId, lastId, scrollAfter) {
+        const pageFirst = document.getElementById(firstId);
         const pagePrev = document.getElementById(prevId);
         const pageNext = document.getElementById(nextId);
+        const pageLast = document.getElementById(lastId);
+        const afterPageChange = () => {
+            if (scrollAfter) {
+                scrollItemsGridIntoView();
+            }
+        };
+        if (pageFirst) {
+            pageFirst.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage = 1;
+                    renderCards();
+                    afterPageChange();
+                }
+            });
+        }
         if (pagePrev) {
             pagePrev.addEventListener('click', () => {
                 if (currentPage > 1) {
                     currentPage -= 1;
                     renderCards();
-                    if (scrollAfter) {
-                        scrollItemsGridIntoView();
-                    }
+                    afterPageChange();
                 }
             });
         }
@@ -441,16 +466,24 @@ function setupEventListeners() {
                 if (currentPage < pageCount) {
                     currentPage += 1;
                     renderCards();
-                    if (scrollAfter) {
-                        scrollItemsGridIntoView();
-                    }
+                    afterPageChange();
+                }
+            });
+        }
+        if (pageLast) {
+            pageLast.addEventListener('click', () => {
+                const pageCount = Math.max(1, Math.ceil(filteredItems.length / PAGE_SIZE));
+                if (currentPage < pageCount) {
+                    currentPage = pageCount;
+                    renderCards();
+                    afterPageChange();
                 }
             });
         }
     }
 
-    bindPager('pagePrev', 'pageNext', false);
-    bindPager('pagePrevBottom', 'pageNextBottom', true);
+    bindPager('pageFirst', 'pagePrev', 'pageNext', 'pageLast', false);
+    bindPager('pageFirstBottom', 'pagePrevBottom', 'pageNextBottom', 'pageLastBottom', true);
 
     // 绑定跳转功能
     function bindPageJump(inputId, btnId, scrollAfter) {
@@ -611,23 +644,31 @@ function renderPagination() {
     const nextDisabled = currentPage >= pageCount;
 
     const pairs = [
-        ['pageInfo', 'pagePrev', 'pageNext', 'pageJumpInput'],
-        ['pageInfoBottom', 'pagePrevBottom', 'pageNextBottom', 'pageJumpInputBottom']
+        ['pageInfo', 'pageFirst', 'pagePrev', 'pageNext', 'pageLast', 'pageJumpInput'],
+        ['pageInfoBottom', 'pageFirstBottom', 'pagePrevBottom', 'pageNextBottom', 'pageLastBottom', 'pageJumpInputBottom']
     ];
-    pairs.forEach(([infoId, prevId, nextId, inputId]) => {
+    pairs.forEach(([infoId, firstId, prevId, nextId, lastId, inputId]) => {
         const pageInfo = document.getElementById(infoId);
+        const pageFirst = document.getElementById(firstId);
         const pagePrev = document.getElementById(prevId);
         const pageNext = document.getElementById(nextId);
+        const pageLast = document.getElementById(lastId);
         const pageInput = document.getElementById(inputId);
         
         if (pageInfo) {
             pageInfo.textContent = label;
+        }
+        if (pageFirst) {
+            pageFirst.disabled = prevDisabled;
         }
         if (pagePrev) {
             pagePrev.disabled = prevDisabled;
         }
         if (pageNext) {
             pageNext.disabled = nextDisabled;
+        }
+        if (pageLast) {
+            pageLast.disabled = nextDisabled;
         }
         if (pageInput) {
             pageInput.max = pageCount;
