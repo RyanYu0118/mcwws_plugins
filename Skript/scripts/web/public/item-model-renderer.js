@@ -546,33 +546,34 @@
         const [x2, y2, z2] = to.map((c) => c / 16 - 0.5);
         const texSize = model.textureSize || model.texture_size || [16, 16];
         const uv = mcUv(face.uv || [0, 0, texSize[0], texSize[1]], texSize[0], texSize[1]);
+        const faceUvs = [uv[2], uv[3], uv[0], uv[3], uv[0], uv[1], uv[2], uv[1]];
 
         let positions;
         let uvs;
         switch (faceName) {
             case 'north':
                 positions = [x1, y1, z1, x2, y1, z1, x2, y2, z1, x1, y2, z1];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
+                uvs = faceUvs;
                 break;
             case 'south':
                 positions = [x2, y1, z2, x1, y1, z2, x1, y2, z2, x2, y2, z2];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
+                uvs = faceUvs;
                 break;
             case 'west':
                 positions = [x1, y1, z2, x1, y1, z1, x1, y2, z1, x1, y2, z2];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
+                uvs = faceUvs;
                 break;
             case 'east':
                 positions = [x2, y1, z1, x2, y1, z2, x2, y2, z2, x2, y2, z1];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
+                uvs = faceUvs;
                 break;
             case 'up':
                 positions = [x1, y2, z2, x2, y2, z2, x2, y2, z1, x1, y2, z1];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
+                uvs = faceUvs;
                 break;
             case 'down':
                 positions = [x1, y1, z1, x2, y1, z1, x2, y1, z2, x1, y1, z2];
-                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
+                uvs = faceUvs;
                 break;
             default:
                 return;
