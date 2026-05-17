@@ -234,7 +234,18 @@ function formatCompassBearingForElement(el) {
         ? window.McPointerCompass.getDeviceHeading()
         : null;
     if (typeof deviceHeading === 'number') {
-        return `系统指南针：${formatHeadingDegrees(deviceHeading)}`;
+        return formatHeadingDegrees(deviceHeading);
+    }
+    const deviceStatus = window.McPointerCompass && window.McPointerCompass.getDeviceStatus
+        ? window.McPointerCompass.getDeviceStatus()
+        : '';
+    if (isCoarsePointerDeviceForItems()) {
+        if (deviceStatus === 'insecure') return '浏览器未开放罗盘：需要 HTTPS';
+        if (deviceStatus === 'denied') return '系统指南针权限被拒绝';
+        if (deviceStatus === 'unsupported') return '浏览器不支持系统指南针';
+        if (deviceStatus === 'low-accuracy') return '罗盘精度较低，请校准手机';
+        if (deviceStatus === 'permission') return '点击允许后读取系统指南针';
+        return '等待系统指南针数据';
     }
     if (!el || pointerBearingX == null || pointerBearingY == null) return '移动鼠标查看方位';
     const card = el.closest('.glass');
@@ -263,16 +274,24 @@ function formatCompassBearingForElement(el) {
     return `${northSouth}偏${eastWest} ${fromNorthSouth.toFixed(1)} 度`;
 }
 
+function isCoarsePointerDeviceForItems() {
+    return window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+}
+
 function formatHeadingDegrees(heading) {
     const h = ((heading % 360) + 360) % 360;
     if (h < 0.05 || h >= 359.95) return '正北';
     if (Math.abs(h - 90) < 0.05) return '正东';
     if (Math.abs(h - 180) < 0.05) return '正南';
     if (Math.abs(h - 270) < 0.05) return '正西';
-    if (h < 90) return `北偏东 ${h.toFixed(1)} 度`;
-    if (h < 180) return `东偏南 ${(h - 90).toFixed(1)} 度`;
-    if (h < 270) return `南偏西 ${(h - 180).toFixed(1)} 度`;
-    return `西偏北 ${(h - 270).toFixed(1)} 度`;
+    if (h < 45) return `北偏东 ${h.toFixed(1)} 度`;
+    if (h < 90) return `东偏北 ${(90 - h).toFixed(1)} 度`;
+    if (h < 135) return `东偏南 ${(h - 90).toFixed(1)} 度`;
+    if (h < 180) return `南偏东 ${(180 - h).toFixed(1)} 度`;
+    if (h < 225) return `南偏西 ${(h - 180).toFixed(1)} 度`;
+    if (h < 270) return `西偏南 ${(270 - h).toFixed(1)} 度`;
+    if (h < 315) return `西偏北 ${(h - 270).toFixed(1)} 度`;
+    return `北偏西 ${(360 - h).toFixed(1)} 度`;
 }
 
 function updatePointerBearingDescriptions(root) {
@@ -297,7 +316,7 @@ function ensurePointerBearingTicker() {
     };
     window.addEventListener('pointermove', updatePointer, { passive: true });
     window.addEventListener('mousemove', updatePointer, { passive: true });
-    pointerBearingTimer = setInterval(() => updatePointerBearingDescriptions(document), 250);
+    pointerBearingTimer = setInterval(() => updatePointerBearingDescriptions(document), 100);
 }
 
 function closeTradeModal() {

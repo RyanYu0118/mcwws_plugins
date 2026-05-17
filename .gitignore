@@ -1,3 +1,6 @@
 # Ignore oversized plugin support files that are not suitable for GitHub
 ScreenInMC/Temp/
 ScreenInMC/Chromium/
+
+# Local HTTPS certificates for the web UI
+Skript/scripts/web/certs/

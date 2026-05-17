@@ -1,7 +1,11 @@
 {
+  "scripts": {
+    "generate-cert": "node tools/generate-self-signed-cert.js"
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
-    "js-yaml": "^4.1.1"
+    "js-yaml": "^4.1.1",
+    "selfsigned": "^5.5.0"
   }
 }

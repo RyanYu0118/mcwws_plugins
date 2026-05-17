@@ -1,7 +1,9 @@
 const express = require('express');
 const fs = require('fs');
+const https = require('https');
 const yaml = require('js-yaml');
 const cors = require('cors');
+const os = require('os');
 const path = require('path');
 const crypto = require('crypto');
 const { createAnalyticsService } = require('./analytics');
@@ -31,6 +33,8 @@ const TRANSACTIONS_CSV = path.join(DB_DIR, 'transactions.csv');
 const TRANSACTIONS_YAML = path.join(DB_DIR, 'transactions_store.yml');
 const LEGACY_TRANSACTIONS_CSV = path.join(__dirname, '..', '..', '..', 'DynamicShop', 'transactions', 'transactions.csv');
 const ITEMS_DB_PATH = path.join(__dirname, '..', 'mcwws', 'economy', 'database', 'items.yml');
+const HTTPS_KEY_PATH = path.join(__dirname, 'certs', 'server.key');
+const HTTPS_CERT_PATH = path.join(__dirname, 'certs', 'server.crt');
 
 if (!fs.existsSync(DB_DIR)) {
     fs.mkdirSync(DB_DIR, { recursive: true });
@@ -458,9 +462,35 @@ app.post('/api/buy', (req, res) => {
     }
 });
 
-app.listen(PORT, HOST, () => {
+function localIpv4Addresses() {
+    const addresses = [];
+    Object.values(os.networkInterfaces()).forEach((entries) => {
+        (entries || []).forEach((entry) => {
+            if (entry.family === 'IPv4' && !entry.internal) {
+                addresses.push(entry.address);
+            }
+        });
+    });
+    return addresses;
+}
+
+function logServerStart(protocol) {
     analytics.reload();
-    console.log(`✅ 高级版 UI 服务已启动！访问: http://${HOST}:${PORT}`);
-    console.log(`📱 局域网访问: http://192.168.0.101:${PORT}`);
+    console.log(`✅ 高级版 UI 服务已启动！访问: ${protocol}://${HOST}:${PORT}`);
+    localIpv4Addresses().forEach((ip) => {
+        console.log(`📱 局域网访问: ${protocol}://${ip}:${PORT}`);
+    });
     console.log(`📊 仪表板交易记录: ${TRANSACTIONS_YAML}`);
-});
+}
+
+if (fs.existsSync(HTTPS_KEY_PATH) && fs.existsSync(HTTPS_CERT_PATH)) {
+    https.createServer({
+        key: fs.readFileSync(HTTPS_KEY_PATH),
+        cert: fs.readFileSync(HTTPS_CERT_PATH)
+    }, app).listen(PORT, HOST, () => logServerStart('https'));
+} else {
+    app.listen(PORT, HOST, () => {
+        logServerStart('http');
+        console.log('ℹ️ 未找到 HTTPS 证书；运行 npm run generate-cert 后重启服务即可启用 HTTPS。');
+    });
+}

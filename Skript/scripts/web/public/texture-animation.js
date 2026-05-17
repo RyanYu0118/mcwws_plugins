@@ -14,13 +14,20 @@
     let pointerCompassTracking = false;
     let deviceCompassTracking = false;
     let deviceCompassPermissionRequested = false;
+    let deviceCompassRawHeading = null;
     let deviceCompassHeading = null;
+    let deviceCompassStatus = 'idle';
+    let deviceCompassSmoothMs = 0;
     let pointerX = null;
     let pointerY = null;
     let rafId = null;
 
     const ASSET_VER = global.McTexturePackVersion || '26.1.2';
     const POINTER_COMPASS_TILT_COS = Math.cos(Math.PI / 4);
+    const DEVICE_COMPASS_SMOOTH_MS = 260;
+    const DEVICE_COMPASS_MAX_DEG_PER_SEC = 180;
+    const DEVICE_COMPASS_MAX_ACCURACY_DEG = 45;
+    const DEVICE_COMPASS_FRAME_HYSTERESIS = 0.65;
 
     const colormapResolved = new Map();
     const colormapLoading = new Map();
@@ -109,16 +116,29 @@
         if (typeof event.webkitCompassHeading === 'number') {
             return ((event.webkitCompassHeading % 360) + 360) % 360;
         }
-        if (event.absolute && typeof event.alpha === 'number') {
+        // Some Android browsers expose alpha without marking the event as absolute.
+        // It is still the best available browser compass signal on mobile.
+        if (typeof event.alpha === 'number') {
             return ((360 - event.alpha) % 360 + 360) % 360;
         }
         return null;
     }
 
     function handleDeviceOrientation(event) {
+        deviceCompassStatus = 'listening';
+        if (typeof event.webkitCompassAccuracy === 'number'
+            && event.webkitCompassAccuracy > DEVICE_COMPASS_MAX_ACCURACY_DEG) {
+            deviceCompassStatus = 'low-accuracy';
+            return;
+        }
         const heading = normalizeDeviceHeading(event);
         if (heading == null) return;
-        deviceCompassHeading = heading;
+        deviceCompassRawHeading = heading;
+        if (deviceCompassHeading == null) {
+            deviceCompassHeading = heading;
+            deviceCompassSmoothMs = performance.now();
+        }
+        deviceCompassStatus = 'ready';
     }
 
     function shouldUseDeviceCompass() {
@@ -126,9 +146,51 @@
     }
 
     function deviceCompassFrame() {
+        return Math.round(deviceCompassFrameFloat()) % 32;
+    }
+
+    function deviceCompassFrameFloat() {
         const heading = typeof deviceCompassHeading === 'number' ? deviceCompassHeading : 0;
         const clockwiseFromSouth = ((180 - heading) % 360 + 360) % 360;
-        return Math.round((clockwiseFromSouth / 360) * 32) % 32;
+        return (clockwiseFromSouth / 360) * 32;
+    }
+
+    function quantizeDeviceCompassFrame(frameFloat, currentFrame) {
+        const normalized = ((frameFloat % 32) + 32) % 32;
+        if (typeof currentFrame !== 'number' || currentFrame < 0) {
+            return Math.round(normalized) % 32;
+        }
+        const delta = ((normalized - currentFrame + 48) % 32) - 16;
+        if (Math.abs(delta) <= DEVICE_COMPASS_FRAME_HYSTERESIS) {
+            return currentFrame;
+        }
+        return Math.round(normalized) % 32;
+    }
+
+    function normalizeDegrees(deg) {
+        return ((deg % 360) + 360) % 360;
+    }
+
+    function shortestAngleDeltaDeg(from, to) {
+        return ((to - from + 540) % 360) - 180;
+    }
+
+    function advanceDeviceCompassSmoothing(now) {
+        if (typeof deviceCompassRawHeading !== 'number') return;
+        if (typeof deviceCompassHeading !== 'number') {
+            deviceCompassHeading = deviceCompassRawHeading;
+            deviceCompassSmoothMs = now;
+            return;
+        }
+        const dt = Math.max(0, Math.min(100, now - (deviceCompassSmoothMs || now)));
+        deviceCompassSmoothMs = now;
+        if (dt <= 0) return;
+
+        const delta = shortestAngleDeltaDeg(deviceCompassHeading, deviceCompassRawHeading);
+        const alpha = 1 - Math.exp(-dt / DEVICE_COMPASS_SMOOTH_MS);
+        const maxStep = Math.max(1.2, DEVICE_COMPASS_MAX_DEG_PER_SEC * dt / 1000);
+        const step = Math.max(-maxStep, Math.min(maxStep, delta * alpha));
+        deviceCompassHeading = normalizeDegrees(deviceCompassHeading + step);
     }
 
     function colormapKindFor2d(itemIdRaw) {
@@ -594,6 +656,7 @@
                 }
                 updateClockEntry(e);
             });
+            advanceDeviceCompassSmoothing(now);
             pointerCompassEntries.forEach((e) => {
                 if (!e.canvas || !e.canvas.isConnected) {
                     pointerCompassEntries.delete(e);
@@ -698,6 +761,15 @@
     function ensureDeviceCompassTracking() {
         if (deviceCompassTracking || typeof window === 'undefined') return;
         deviceCompassTracking = true;
+        if (window.isSecureContext === false) {
+            deviceCompassStatus = 'insecure';
+            return;
+        }
+        if (!window.DeviceOrientationEvent) {
+            deviceCompassStatus = 'unsupported';
+            return;
+        }
+        deviceCompassStatus = 'listening';
         window.addEventListener('deviceorientationabsolute', handleDeviceOrientation, true);
         window.addEventListener('deviceorientation', handleDeviceOrientation, true);
 
@@ -706,12 +778,19 @@
             deviceCompassPermissionRequested = true;
             const evt = window.DeviceOrientationEvent;
             if (!evt || typeof evt.requestPermission !== 'function') return;
+            deviceCompassStatus = 'permission';
             evt.requestPermission()
                 .then((state) => {
-                    if (state !== 'granted') deviceCompassHeading = null;
+                    if (state !== 'granted') {
+                        deviceCompassHeading = null;
+                        deviceCompassStatus = 'denied';
+                    } else {
+                        deviceCompassStatus = 'listening';
+                    }
                 })
                 .catch(() => {
                     deviceCompassHeading = null;
+                    deviceCompassStatus = 'denied';
                 });
         };
         window.addEventListener('pointerdown', requestPermission, { passive: true, once: true });
@@ -726,6 +805,12 @@
         const promise = loadImage(pointerCompassFrameUrl(kind, normalized));
         pointerCompassFrameCache.set(key, promise);
         return promise;
+    }
+
+    function preloadPointerCompassFrames(kind) {
+        for (let i = 0; i < 32; i += 1) {
+            loadPointerCompassFrame(kind, i).catch(() => {});
+        }
     }
 
     function drawClockFrame(entry, frame) {
@@ -769,7 +854,9 @@
     }
 
     function updatePointerCompassEntry(entry) {
-        const frame = pointerCompassFrameForCanvas(entry.canvas);
+        const frame = shouldUseDeviceCompass()
+            ? quantizeDeviceCompassFrame(deviceCompassFrameFloat(), entry.frame)
+            : pointerCompassFrameForCanvas(entry.canvas);
         if (entry.frame === frame) return;
         entry.frame = frame;
         drawPointerCompassFrame(entry, frame);
@@ -780,6 +867,7 @@
         const itemId = normalizeTintId(itemIdForCanvas(canvas));
         if (itemId !== 'compass' && itemId !== 'recovery_compass') return false;
         ensurePointerCompassTracking();
+        preloadPointerCompassFrames(itemId);
         const entry = { canvas, kind: itemId, frame: -1 };
         pointerCompassEntries.add(entry);
         updatePointerCompassEntry(entry);
@@ -918,6 +1006,9 @@
         },
         isUsingDeviceCompass() {
             return shouldUseDeviceCompass();
+        },
+        getDeviceStatus() {
+            return deviceCompassStatus;
         },
         requestDeviceCompass() {
             ensureDeviceCompassTracking();
