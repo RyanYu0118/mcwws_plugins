@@ -417,6 +417,18 @@ function showToast(message, success = true) {
 }
 
 // 搜索过滤与排序逻辑（新增逆序处理和拼音搜索支持）
+function normalizePinyinNasal(value) {
+    return String(value || '')
+        .toLowerCase()
+        .replace(/\s+/g, '')
+        .replace(/zh/g, 'z')
+        .replace(/ch/g, 'c')
+        .replace(/sh/g, 's')
+        .replace(/ang/g, 'an')
+        .replace(/eng/g, 'en')
+        .replace(/ing/g, 'in');
+}
+
 function filterAndRenderItems() {
     filteredItems = allItems.filter(item => {
         const query = searchQuery.toLowerCase();
@@ -429,9 +441,24 @@ function filterAndRenderItems() {
         // 拼音匹配
         let pinyinMatch = false;
         try {
-            const namePinyin = pinyinPro.pinyin(item.name, { toneType: 'none', type: 'string' }).toLowerCase().replace(/\s+/g, '');
+            const namePinyinSpaced = pinyinPro.pinyin(item.name, { toneType: 'none', type: 'string' }).toLowerCase();
+            const namePinyin = namePinyinSpaced.replace(/\s+/g, '');
             const namePinyinInitial = pinyinPro.pinyin(item.name, { pattern: 'initial', toneType: 'none', type: 'string' }).toLowerCase().replace(/\s+/g, '');
-            pinyinMatch = namePinyin.includes(query) || namePinyinInitial.includes(query);
+            const namePinyinComputedInitial = namePinyinSpaced
+                .split(/\s+/)
+                .filter(Boolean)
+                .map((part) => part.charAt(0))
+                .join('');
+            const fuzzyNamePinyin = normalizePinyinNasal(namePinyin);
+            const fuzzyNamePinyinInitial = normalizePinyinNasal(namePinyinInitial);
+            const fuzzyNamePinyinComputedInitial = normalizePinyinNasal(namePinyinComputedInitial);
+            const fuzzyQuery = normalizePinyinNasal(query);
+            pinyinMatch = namePinyin.includes(query)
+                || namePinyinInitial.includes(query)
+                || namePinyinComputedInitial.includes(query)
+                || fuzzyNamePinyin.includes(fuzzyQuery)
+                || fuzzyNamePinyinInitial.includes(fuzzyQuery)
+                || fuzzyNamePinyinComputedInitial.includes(fuzzyQuery);
         } catch (e) {
             // 如果拼音转换失败，使用原始匹配
         }
