@@ -39,6 +39,8 @@ const TRANSACTIONS_CSV = path.join(DB_DIR, 'transactions.csv');
 const TRANSACTIONS_YAML = path.join(DB_DIR, 'transactions_store.yml');
 const LEGACY_TRANSACTIONS_CSV = path.join(__dirname, '..', '..', '..', 'DynamicShop', 'transactions', 'transactions.csv');
 const ITEMS_DB_PATH = path.join(__dirname, '..', 'mcwws', 'economy', 'database', 'items.yml');
+const OPS_PATH = path.join(__dirname, '..', '..', '..', '..', 'ops.json');
+const ADMIN_ACCESS_PATH = path.join(DB_DIR, 'admin_access.yml');
 const HTTPS_KEY_PATH = path.join(__dirname, 'certs', 'server.key');
 const HTTPS_CERT_PATH = path.join(__dirname, 'certs', 'server.crt');
 const HTTPS_ENABLED = process.env.HTTPS === '1';
@@ -116,6 +118,80 @@ function normalizeMaterialId(material) {
         return null;
     }
     return String(material).trim().toLowerCase().replace(/-/g, '_');
+}
+
+function normalizePlayerKey(value) {
+    return String(value == null ? '' : value).trim().toLowerCase();
+}
+
+function loadJsonFile(filePath, fallback) {
+    if (!fs.existsSync(filePath)) {
+        return fallback;
+    }
+    try {
+        return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    } catch (error) {
+        console.error(`读取 JSON 文件失败: ${filePath}`, error);
+        return fallback;
+    }
+}
+
+function userMatchesPlayerEntry(user, entryKey, entry = {}) {
+    const userKeys = new Set([
+        normalizePlayerKey(user && user.username),
+        normalizePlayerKey(user && user.playerId)
+    ].filter(Boolean));
+    const entryKeys = [
+        entryKey,
+        entry.name,
+        entry.username,
+        entry.playerId,
+        entry.uuid
+    ].map(normalizePlayerKey).filter(Boolean);
+    return entryKeys.some((key) => userKeys.has(key));
+}
+
+function userIsOp(user) {
+    const ops = loadJsonFile(OPS_PATH, []);
+    if (!Array.isArray(ops)) {
+        return false;
+    }
+    return ops.some((entry) => userMatchesPlayerEntry(user, entry.uuid || entry.name, entry));
+}
+
+function entryHasEditorPermission(entry = {}) {
+    const permissions = entry.permissions && typeof entry.permissions === 'object' ? entry.permissions : {};
+    return entry.ultimateshopEditor === true
+        || entry.ultimateshop_editor === true
+        || entry['ultimateshop.editor'] === true
+        || permissions['ultimateshop.editor'] === true;
+}
+
+function userHasEditorPermission(user) {
+    const accessData = loadYamlFile(ADMIN_ACCESS_PATH);
+    const players = accessData.players && typeof accessData.players === 'object'
+        ? accessData.players
+        : accessData;
+    if (!players || typeof players !== 'object') {
+        return false;
+    }
+    return Object.keys(players).some((key) => {
+        const entry = players[key];
+        return entry
+            && typeof entry === 'object'
+            && userMatchesPlayerEntry(user, key, entry)
+            && entryHasEditorPermission(entry);
+    });
+}
+
+function getAdminAccess(user) {
+    const isOp = userIsOp(user);
+    const hasEditorPermission = userHasEditorPermission(user);
+    return {
+        allowed: isOp || hasEditorPermission,
+        isOp,
+        hasEditorPermission
+    };
 }
 
 function firstEconomyPriceAmount(priceSection) {
@@ -390,6 +466,26 @@ app.get('/api/profile', (req, res) => {
     } catch (error) {
         console.error('获取用户信息失败:', error);
         res.status(500).json({ error: '获取用户信息失败。' });
+    }
+});
+
+app.get('/api/admin/access', (req, res) => {
+    try {
+        const user = authenticate(req);
+        if (!user) {
+            return res.status(401).json({ error: '需要登录。' });
+        }
+        const access = getAdminAccess(user);
+        if (!access.allowed) {
+            return res.status(403).json({
+                ...access,
+                error: '你没有进入管理系统的权限。需要 OP 或 ultimateshop.editor 权限。'
+            });
+        }
+        res.json(access);
+    } catch (error) {
+        console.error('检查管理权限失败:', error);
+        res.status(500).json({ error: '检查管理权限失败。' });
     }
 });
 

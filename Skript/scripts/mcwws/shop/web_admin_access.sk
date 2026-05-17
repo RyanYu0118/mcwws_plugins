@@ -1,0 +1,47 @@
+# 将 Minecraft 侧的管理权限导出给网页管理面板读取。
+# 网页端仍会直接读取 ops.json；此文件主要用于同步 LuckPerms/插件权限节点。
+
+function mcwwsInitWebAdminAccess():
+    load yaml "plugins/Skript/scripts/web/data/admin_access.yml" as "mcwws_admin_access"
+    if yaml value "players" from "mcwws_admin_access" is not set:
+        set yaml value "players" from "mcwws_admin_access" to ""
+    save yaml "mcwws_admin_access"
+    unload yaml "mcwws_admin_access"
+
+function mcwwsWriteWebAdminAccess(p: player):
+    load yaml "plugins/Skript/scripts/web/data/admin_access.yml" as "mcwws_admin_access"
+    set {_name} to name of {_p}
+    set {_uuid} to "%uuid of {_p}%"
+    set {_has_editor} to false
+    set {_is_op} to false
+    if {_p} has permission "ultimateshop.editor":
+        set {_has_editor} to true
+    if {_p} is op:
+        set {_is_op} to true
+
+    set yaml value "players.%{_name}%.name" from "mcwws_admin_access" to {_name}
+    set yaml value "players.%{_name}%.uuid" from "mcwws_admin_access" to {_uuid}
+    set yaml value "players.%{_name}%.op" from "mcwws_admin_access" to {_is_op}
+    set yaml value "players.%{_name}%.ultimateshopEditor" from "mcwws_admin_access" to {_has_editor}
+    set yaml value "players.%{_name}%.permissions.ultimateshop.editor" from "mcwws_admin_access" to {_has_editor}
+
+    set yaml value "players.%{_uuid}%.name" from "mcwws_admin_access" to {_name}
+    set yaml value "players.%{_uuid}%.uuid" from "mcwws_admin_access" to {_uuid}
+    set yaml value "players.%{_uuid}%.op" from "mcwws_admin_access" to {_is_op}
+    set yaml value "players.%{_uuid}%.ultimateshopEditor" from "mcwws_admin_access" to {_has_editor}
+    set yaml value "players.%{_uuid}%.permissions.ultimateshop.editor" from "mcwws_admin_access" to {_has_editor}
+
+    save yaml "mcwws_admin_access"
+    unload yaml "mcwws_admin_access"
+
+on load:
+    mcwwsInitWebAdminAccess()
+    loop all players:
+        mcwwsWriteWebAdminAccess(loop-player)
+
+on join:
+    mcwwsWriteWebAdminAccess(player)
+
+every 15 seconds:
+    loop all players:
+        mcwwsWriteWebAdminAccess(loop-player)

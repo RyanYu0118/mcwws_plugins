@@ -1,4 +1,4 @@
-<!-- DS-WEB-VERSION: 2.5.8 -->
+<!-- DS-WEB-VERSION: 2.5.9 -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -1037,7 +1037,7 @@
     <div id="authGate" class="auth-gate" style="display:none;">
         <div class="auth-gate-card">
             <h2>管理面板需要登录</h2>
-            <p>请使用和仪表盘、物品目录一致的账户系统登录。登录后即可进入管理功能。</p>
+            <p id="authGateMessage">请使用和仪表盘、物品目录一致的账户系统登录。登录后即可进入管理功能。</p>
             <button type="button" class="primary-btn" onclick="openAuthModal()">登录 / 注册</button>
         </div>
     </div>
@@ -1421,6 +1421,11 @@
                 await handleExpiredAuth();
                 throw new Error('未授权');
             }
+            if (res.status === 403) {
+                const result = await res.json();
+                showAuthGate(result.error || '你没有进入管理系统的权限。需要 OP 或 ultimateshop.editor 权限。');
+                throw new Error('权限不足');
+            }
             return res.json();
         }
 
@@ -1437,9 +1442,13 @@
             loadSpecialItems();
         }
 
-        function showAuthGate() {
+        function showAuthGate(message) {
             document.getElementById('app').style.display = 'none';
             document.getElementById('authGate').style.display = 'flex';
+            const messageEl = document.getElementById('authGateMessage');
+            if (messageEl) {
+                messageEl.textContent = message || '请使用和仪表盘、物品目录一致的账户系统登录。登录后即可进入管理功能。';
+            }
         }
 
         function updateAuthUi() {
@@ -1529,7 +1538,7 @@
                 updateAuthUi();
                 closeAuthModal();
                 toast(authMode === 'register' ? '注册成功，已登录。' : '登录成功！', 'success');
-                showApp();
+                await loadUserProfile();
             } catch (error) {
                 if (message) {
                     message.textContent = `网络错误：${error.message || '请检查服务器是否已启动。'}`;
@@ -1580,6 +1589,14 @@
                 }
                 currentUser = await response.json();
                 updateAuthUi();
+                const accessResponse = await fetch('/api/admin/access', {
+                    headers: { Authorization: `Bearer ${authToken}` }
+                });
+                const access = await accessResponse.json();
+                if (!accessResponse.ok || !access.allowed) {
+                    showAuthGate(access.error || '你没有进入管理系统的权限。需要 OP 或 ultimateshop.editor 权限。');
+                    return;
+                }
                 showApp();
             } catch (error) {
                 authToken = null;
