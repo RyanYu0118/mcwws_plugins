@@ -8,7 +8,7 @@ const { createAnalyticsService } = require('./analytics');
 
 const app = express();
 const PORT = 8002;
-const HOST = '127.0.0.1';
+const HOST = process.env.HOST || '0.0.0.0';
 
 app.use(cors());
 app.use(express.json());
@@ -461,5 +461,6 @@ app.post('/api/buy', (req, res) => {
 app.listen(PORT, HOST, () => {
     analytics.reload();
     console.log(`✅ 高级版 UI 服务已启动！访问: http://${HOST}:${PORT}`);
+    console.log(`📱 局域网访问: http://192.168.0.101:${PORT}`);
     console.log(`📊 仪表板交易记录: ${TRANSACTIONS_YAML}`);
 });

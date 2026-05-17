@@ -12,6 +12,9 @@
     const clockFrameCache = new Map();
     const pointerCompassFrameCache = new Map();
     let pointerCompassTracking = false;
+    let deviceCompassTracking = false;
+    let deviceCompassPermissionRequested = false;
+    let deviceCompassHeading = null;
     let pointerX = null;
     let pointerY = null;
     let rafId = null;
@@ -79,6 +82,9 @@
     }
 
     function pointerCompassFrameForCanvas(canvas) {
+        if (shouldUseDeviceCompass()) {
+            return deviceCompassFrame();
+        }
         if (!canvas || pointerX == null || pointerY == null) return 0;
         const rect = canvas.getBoundingClientRect();
         const cx = rect.left + rect.width / 2;
@@ -90,6 +96,39 @@
         const planeDy = dy / POINTER_COMPASS_TILT_COS;
         const clockwiseFromSouth = (Math.atan2(-dx, planeDy) + Math.PI * 2) % (Math.PI * 2);
         return Math.round((clockwiseFromSouth / (Math.PI * 2)) * 32) % 32;
+    }
+
+    function isCoarsePointerDevice() {
+        return typeof window !== 'undefined'
+            && window.matchMedia
+            && window.matchMedia('(pointer: coarse)').matches;
+    }
+
+    function normalizeDeviceHeading(event) {
+        if (!event) return null;
+        if (typeof event.webkitCompassHeading === 'number') {
+            return ((event.webkitCompassHeading % 360) + 360) % 360;
+        }
+        if (event.absolute && typeof event.alpha === 'number') {
+            return ((360 - event.alpha) % 360 + 360) % 360;
+        }
+        return null;
+    }
+
+    function handleDeviceOrientation(event) {
+        const heading = normalizeDeviceHeading(event);
+        if (heading == null) return;
+        deviceCompassHeading = heading;
+    }
+
+    function shouldUseDeviceCompass() {
+        return isCoarsePointerDevice() && typeof deviceCompassHeading === 'number';
+    }
+
+    function deviceCompassFrame() {
+        const heading = typeof deviceCompassHeading === 'number' ? deviceCompassHeading : 0;
+        const clockwiseFromSouth = ((180 - heading) % 360 + 360) % 360;
+        return Math.round((clockwiseFromSouth / 360) * 32) % 32;
     }
 
     function colormapKindFor2d(itemIdRaw) {
@@ -653,6 +692,31 @@
         };
         window.addEventListener('pointermove', updatePointer, { passive: true });
         window.addEventListener('mousemove', updatePointer, { passive: true });
+        ensureDeviceCompassTracking();
+    }
+
+    function ensureDeviceCompassTracking() {
+        if (deviceCompassTracking || typeof window === 'undefined') return;
+        deviceCompassTracking = true;
+        window.addEventListener('deviceorientationabsolute', handleDeviceOrientation, true);
+        window.addEventListener('deviceorientation', handleDeviceOrientation, true);
+
+        const requestPermission = () => {
+            if (deviceCompassPermissionRequested) return;
+            deviceCompassPermissionRequested = true;
+            const evt = window.DeviceOrientationEvent;
+            if (!evt || typeof evt.requestPermission !== 'function') return;
+            evt.requestPermission()
+                .then((state) => {
+                    if (state !== 'granted') deviceCompassHeading = null;
+                })
+                .catch(() => {
+                    deviceCompassHeading = null;
+                });
+        };
+        window.addEventListener('pointerdown', requestPermission, { passive: true, once: true });
+        window.addEventListener('touchstart', requestPermission, { passive: true, once: true });
+        window.addEventListener('click', requestPermission, { passive: true, once: true });
     }
 
     function loadPointerCompassFrame(kind, frame) {
@@ -846,6 +910,17 @@
             const meta = await fetchAnimationMeta(url);
             if (!meta) return false;
             return true;
+        }
+    };
+    global.McPointerCompass = {
+        getDeviceHeading() {
+            return typeof deviceCompassHeading === 'number' ? deviceCompassHeading : null;
+        },
+        isUsingDeviceCompass() {
+            return shouldUseDeviceCompass();
+        },
+        requestDeviceCompass() {
+            ensureDeviceCompassTracking();
         }
     };
 })(typeof window !== 'undefined' ? window : globalThis);

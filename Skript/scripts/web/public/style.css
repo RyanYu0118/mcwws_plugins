@@ -1907,3 +1907,228 @@ body {
     font-family: ui-monospace, monospace;
     word-break: break-all;
 }
+
+/* 手机浏览器专项适配：桌面端保持原布局 */
+@media (max-width: 640px) {
+    body {
+        font-size: 14px;
+    }
+
+    .navbar {
+        height: auto;
+        min-height: 56px;
+        padding: 0.5rem 0.75rem;
+        gap: 0.5rem;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .nav-brand {
+        min-width: 0;
+        flex: 1 1 auto;
+        gap: 0.45rem;
+        padding-top: 0.35rem;
+    }
+
+    .brand-text {
+        max-width: 42vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 0.95rem;
+    }
+
+    .nav-links {
+        order: 3;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        gap: 0.4rem;
+    }
+
+    .nav-link {
+        justify-content: center;
+        min-height: 38px;
+        padding: 0.45rem 0.35rem;
+        font-size: 0.82rem;
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .nav-icon {
+        font-size: 0.95rem;
+    }
+
+    .nav-actions {
+        flex: 0 0 auto;
+        justify-content: flex-end;
+        gap: 0.45rem;
+        flex-wrap: wrap;
+        max-width: 54vw;
+    }
+
+    .item-count,
+    .user-status {
+        display: none;
+    }
+
+    .refresh-btn {
+        width: 2.25rem;
+        height: 2.25rem;
+        min-width: 2.25rem;
+        padding: 0;
+    }
+
+    .auth-button {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.82rem;
+    }
+
+    .hero {
+        padding: 7.7rem 0.85rem 1.4rem;
+    }
+
+    .items-hero {
+        padding-bottom: 1.25rem;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.92rem;
+    }
+
+    .search-container {
+        max-width: none;
+        margin-top: 1rem;
+    }
+
+    .hero-search {
+        max-width: none;
+        min-height: 44px;
+        padding: 0.8rem 2.4rem 0.8rem 1rem;
+        font-size: 1rem;
+    }
+
+    .container {
+        padding: 0.85rem;
+    }
+
+    .category-section {
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+    }
+
+    .category-tabs,
+    .filter-options,
+    .items-header {
+        width: 100%;
+    }
+
+    .category-btn,
+    .filter-select,
+    .filter-checkbox {
+        width: 100%;
+    }
+
+    .filter-options {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+    }
+
+    .filter-checkbox {
+        min-height: 42px;
+        margin-left: 0 !important;
+        padding: 0.6rem 0.7rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .filter-select {
+        min-height: 42px;
+    }
+
+    .page-controls.items-pagination {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.55rem;
+    }
+
+    .pagination-info,
+    .page-jump {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .page-jump {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    .pagination-btn {
+        min-width: 0;
+        width: 100%;
+        min-height: 42px;
+        padding: 0.6rem 0.75rem;
+        font-size: 0.92rem;
+    }
+
+    .page-jump-input {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .items-grid {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+    }
+
+    .items-grid > .glass {
+        padding: 14px !important;
+        border-radius: 10px !important;
+    }
+
+    .items-grid > .glass .trade-btn {
+        width: 100%;
+        min-height: 42px;
+    }
+
+    .modal {
+        padding: 0.75rem;
+        align-items: flex-start;
+    }
+
+    .modal-content {
+        width: min(100%, 96vw);
+        max-height: calc(100vh - 1.5rem);
+        margin-top: 0.75rem;
+        overflow-y: auto;
+        border-radius: var(--radius-lg);
+    }
+
+    .modal-header {
+        gap: 0.75rem;
+    }
+
+    .modal-header h2 {
+        font-size: 1.15rem;
+    }
+
+    .modal-close {
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+    }
+
+    .trade-offer-meta {
+        grid-template-columns: 1fr;
+        gap: 3px;
+    }
+
+    .footer {
+        padding: 1.25rem 0.85rem;
+        font-size: 0.82rem;
+    }
+}

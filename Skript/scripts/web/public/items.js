@@ -230,6 +230,12 @@ function ensureClockTimeTicker() {
 }
 
 function formatCompassBearingForElement(el) {
+    const deviceHeading = window.McPointerCompass && window.McPointerCompass.getDeviceHeading
+        ? window.McPointerCompass.getDeviceHeading()
+        : null;
+    if (typeof deviceHeading === 'number') {
+        return `系统指南针：${formatHeadingDegrees(deviceHeading)}`;
+    }
     if (!el || pointerBearingX == null || pointerBearingY == null) return '移动鼠标查看方位';
     const card = el.closest('.glass');
     const icon = card && card.querySelector('[data-item-id="compass"], [data-item-id="recovery_compass"]');
@@ -252,9 +258,21 @@ function formatCompassBearingForElement(el) {
     const fromEastWest = Math.atan(absS / absE) * 180 / Math.PI;
     const fromNorthSouth = 90 - fromEastWest;
     if (fromEastWest <= 45) {
-        return `${eastWest}偏${northSouth}${fromEastWest.toFixed(1)}°`;
+        return `${eastWest}偏${northSouth} ${fromEastWest.toFixed(1)} 度`;
     }
-    return `${northSouth}偏${eastWest}${fromNorthSouth.toFixed(1)}°`;
+    return `${northSouth}偏${eastWest} ${fromNorthSouth.toFixed(1)} 度`;
+}
+
+function formatHeadingDegrees(heading) {
+    const h = ((heading % 360) + 360) % 360;
+    if (h < 0.05 || h >= 359.95) return '正北';
+    if (Math.abs(h - 90) < 0.05) return '正东';
+    if (Math.abs(h - 180) < 0.05) return '正南';
+    if (Math.abs(h - 270) < 0.05) return '正西';
+    if (h < 90) return `北偏东 ${h.toFixed(1)} 度`;
+    if (h < 180) return `东偏南 ${(h - 90).toFixed(1)} 度`;
+    if (h < 270) return `南偏西 ${(h - 180).toFixed(1)} 度`;
+    return `西偏北 ${(h - 270).toFixed(1)} 度`;
 }
 
 function updatePointerBearingDescriptions(root) {
@@ -269,6 +287,9 @@ function updatePointerBearingDescriptions(root) {
 
 function ensurePointerBearingTicker() {
     if (pointerBearingTimer !== null) return;
+    if (window.McPointerCompass && window.McPointerCompass.requestDeviceCompass) {
+        window.McPointerCompass.requestDeviceCompass();
+    }
     const updatePointer = (event) => {
         pointerBearingX = event.clientX;
         pointerBearingY = event.clientY;
