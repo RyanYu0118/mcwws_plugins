@@ -152,7 +152,11 @@
 
     const REDSTONE_2D_ITEM_IDS = new Set(['redstone', 'repeater', 'comparator']);
     const TORCH_2D_ITEM_IDS = new Set(['torch', 'soul_torch', 'redstone_torch', 'copper_torch']);
-    const ITEM_MODEL_2D_IDS = new Set(['lever', 'soul_campfire', 'hopper', 'brewing_stand', 'resin_clump']);
+    const ITEM_MODEL_2D_IDS = new Set([
+        'lever', 'ladder', 'lily_pad', 'soul_campfire', 'hopper', 'brewing_stand', 'resin_clump',
+        'iron_chain', 'copper_chain', 'exposed_copper_chain', 'weathered_copper_chain', 'oxidized_copper_chain',
+        'waxed_copper_chain', 'waxed_exposed_copper_chain', 'waxed_weathered_copper_chain', 'waxed_oxidized_copper_chain'
+    ]);
 
     function isMcDoorBlockId(id) {
         return !!(id && id.endsWith('_door') && !id.endsWith('_trapdoor'));

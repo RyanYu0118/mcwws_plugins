@@ -94,12 +94,20 @@ const TORCH_2D_TEXTURES = {
 };
 const ITEM_MODEL_2D_TEXTURES = {
     lever: 'block/lever',
+    ladder: 'block/ladder',
+    lily_pad: 'block/lily_pad',
     soul_campfire: 'item/soul_campfire',
     hopper: 'item/hopper',
+    sunflower: 'block/sunflower_front',
     rose_bush: 'block/rose_bush_top',
     peony: 'block/peony_top',
     brewing_stand: 'item/brewing_stand',
-    resin_clump: 'item/resin_clump'
+    resin_clump: 'item/resin_clump',
+    iron_chain: 'item/iron_chain',
+    copper_chain: 'item/copper_chain',
+    exposed_copper_chain: 'item/exposed_copper_chain',
+    weathered_copper_chain: 'item/weathered_copper_chain',
+    oxidized_copper_chain: 'item/oxidized_copper_chain'
 };
 
 window.isMcPotionItemId = function(id) {

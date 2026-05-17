@@ -32,7 +32,8 @@
     ]);
 
     const FIXED_TINT_2D_RGB = {
-        leaf_litter: [130, 94, 54]
+        leaf_litter: [130, 94, 54],
+        lily_pad: [113, 195, 92]
     };
 
     const GRASS_2D_DEFAULT_BIOME = [0.8, 0.4];
