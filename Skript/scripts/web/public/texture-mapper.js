@@ -31,7 +31,10 @@ window.getSmartId = function(id) {
     // 涂蜡铜等无独立贴图/模型，与不涂蜡方块共用资源
     if (rawId.startsWith('waxed_')) rawId = rawId.slice(6);
     if (rawId.startsWith('enchanted_book')) return 'enchanted_book';
-    // 粗制药水在项目里是独立商品 ID，但材质与对应水瓶相同
+    // 项目里的药水按效果拆成独立商品 ID，材质仍复用三种原版瓶型。
+    if (rawId === 'water_bottle' || rawId === 'mundane_potion' || rawId === 'thick_potion') return 'potion';
+    if (rawId === 'splash_water_bottle') return 'splash_potion';
+    if (rawId === 'lingering_water_bottle') return 'lingering_potion';
     if (rawId === 'awkward_potion') return 'potion';
     if (rawId === 'awkward_splash_potion') return 'splash_potion';
     if (rawId === 'awkward_lingering_potion') return 'lingering_potion';
@@ -45,10 +48,116 @@ window.getSmartId = function(id) {
     return rawId;
 };
 
+const POTION_BASE_COLOR = '#385dc6';
+const POTION_EFFECT_ALIASES = {
+    infestation: 'infested',
+    the_turtle_master: 'turtle_master',
+    wind_charging: 'wind_charged'
+};
+const POTION_EFFECT_COLORS = {
+    water: POTION_BASE_COLOR,
+    awkward: POTION_BASE_COLOR,
+    mundane: POTION_BASE_COLOR,
+    thick: POTION_BASE_COLOR,
+    // Minecraft Wiki "Effect colors" current Java colors; water uses item JSON default tint -13083194.
+    fire_resistance: '#ff9900',
+    harming: '#a9656a',
+    healing: '#f82423',
+    infested: '#8c9b8c',
+    invisibility: '#f6f6f6',
+    leaping: '#fdff84',
+    levitation: '#ceffff',
+    luck: '#339900',
+    night_vision: '#c2ff66',
+    oozing: '#99ffa3',
+    poison: '#87a363',
+    regeneration: '#cd5cab',
+    slow_falling: '#f3cfb9',
+    slowness: '#8bafe0',
+    strength: '#ffc700',
+    swiftness: '#33ebff',
+    turtle_master: '#8d82e6',
+    turtle_master_strong: '#8d85e6',
+    water_breathing: '#98dac0',
+    weakness: '#484d48',
+    weaving: '#78695a',
+    wind_charged: '#bdc9ff'
+};
+
+window.isMcPotionItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'potion'
+        || n === 'splash_potion'
+        || n === 'lingering_potion'
+        || n === 'water_bottle'
+        || n === 'splash_water_bottle'
+        || n === 'lingering_water_bottle'
+        || n === 'awkward_potion'
+        || n === 'awkward_splash_potion'
+        || n === 'awkward_lingering_potion'
+        || n === 'mundane_potion'
+        || n === 'thick_potion'
+        || n.startsWith('potion_of_')
+        || n.startsWith('splash_potion_of_')
+        || n.startsWith('lingering_potion_of_');
+};
+
+window.mcPotionKindFromItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    if (n.startsWith('splash_') || n.startsWith('splash_potion')) return 'splash_potion';
+    if (n.startsWith('lingering_') || n.startsWith('lingering_potion')) return 'lingering_potion';
+    return 'potion';
+};
+
+window.mcPotionEffectFromItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    const standalone = {
+        potion: 'water',
+        splash_potion: 'water',
+        lingering_potion: 'water',
+        water_bottle: 'water',
+        splash_water_bottle: 'water',
+        lingering_water_bottle: 'water',
+        awkward_potion: 'awkward',
+        awkward_splash_potion: 'awkward',
+        awkward_lingering_potion: 'awkward',
+        mundane_potion: 'mundane',
+        thick_potion: 'thick'
+    };
+    if (standalone[n]) return standalone[n];
+
+    let m = n.match(/^(?:potion|splash_potion|lingering_potion)_of_(.+?)(?:_(?:extended|[0-9]+))?$/);
+    if (!m) return 'water';
+    const effect = m[1];
+    return POTION_EFFECT_ALIASES[effect] || effect;
+};
+
+window.mcPotionColorHexForItem = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    if (/^(?:potion|splash_potion|lingering_potion)_of_the_turtle_master_2$/.test(n)) {
+        return POTION_EFFECT_COLORS.turtle_master_strong;
+    }
+    const effect = window.mcPotionEffectFromItemId(id);
+    return POTION_EFFECT_COLORS[effect] || POTION_BASE_COLOR;
+};
+
+window.mcPotionTextureUrlsForItem = function(itemId) {
+    const base = TextureConfig.getBasePath();
+    const kind = window.mcPotionKindFromItemId(itemId);
+    return [
+        `${base}/item/potion_overlay.png`,
+        `${base}/item/${kind}.png`,
+        `${base}/item/barrier.png`
+    ];
+};
+
 /** 2D 图标贴图 URL 列表（玻璃板仅 block，避免误请求 item/glass_pane 等） */
 window.flatTextureUrlsForItem = function(itemId) {
     const base = TextureConfig.getBasePath();
     const smartId = window.getSmartId(itemId);
+    if (window.isMcPotionItemId && window.isMcPotionItemId(itemId)) {
+        return window.mcPotionTextureUrlsForItem(itemId);
+    }
     if (window.isMcGlassPaneItemId && window.isMcGlassPaneItemId(itemId)) {
         return [`${base}/block/${smartId}.png`];
     }

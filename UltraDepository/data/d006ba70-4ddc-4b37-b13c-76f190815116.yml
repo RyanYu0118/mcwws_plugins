@@ -54,13 +54,13 @@ depositories:
     ARROW:
       amount: 749
     GUNPOWDER:
-      amount: 409
+      amount: 411
     CHICKEN:
       amount: 10
     SLIME_BALL:
       amount: 91
     STRING:
-      amount: 548
+      amount: 550
     LEATHER:
       amount: 542
     RABBIT:
@@ -78,7 +78,7 @@ depositories:
     IRON_ORE:
       amount: 64
     REDSTONE:
-      amount: 260
+      amount: 268
     DIAMOND:
       amount: 62
     IRON_INGOT:

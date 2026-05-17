@@ -156,6 +156,77 @@
         ctx.drawImage(img, sx, sy, sw, sh, inset, inset, sizeW, sizeH);
     }
 
+    function hexToRgb(hex) {
+        const raw = String(hex || '').replace('#', '');
+        if (!/^[0-9a-f]{6}$/i.test(raw)) return [56, 93, 198];
+        return [
+            parseInt(raw.slice(0, 2), 16),
+            parseInt(raw.slice(2, 4), 16),
+            parseInt(raw.slice(4, 6), 16)
+        ];
+    }
+
+    function tintedPotionOverlayCanvas(img, rgb) {
+        const c = document.createElement('canvas');
+        c.width = img.naturalWidth || img.width;
+        c.height = img.naturalHeight || img.height;
+        const ctx = c.getContext('2d');
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(img, 0, 0);
+        const data = ctx.getImageData(0, 0, c.width, c.height);
+        const d = data.data;
+        const tr = rgb[0] / 255;
+        const tg = rgb[1] / 255;
+        const tb = rgb[2] / 255;
+        for (let i = 0; i < d.length; i += 4) {
+            if (d[i + 3] <= 6) continue;
+            d[i] = Math.min(255, Math.round(d[i] * tr));
+            d[i + 1] = Math.min(255, Math.round(d[i + 1] * tg));
+            d[i + 2] = Math.min(255, Math.round(d[i + 2] * tb));
+        }
+        ctx.putImageData(data, 0, 0);
+        return c;
+    }
+
+    async function renderPotionCanvas(canvas) {
+        if (!canvas || !canvas.getContext || !global.isMcPotionItemId) return false;
+        const itemId = itemIdForCanvas(canvas);
+        if (!global.isMcPotionItemId(itemId)) return false;
+
+        const urls = global.mcPotionTextureUrlsForItem
+            ? global.mcPotionTextureUrlsForItem(itemId)
+            : [];
+        if (urls.length < 2) return false;
+
+        try {
+            const [overlay, bottle] = await Promise.all([
+                loadImage(urls[0]),
+                loadImage(urls[1])
+            ]);
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.imageSmoothingEnabled = false;
+
+            const colorHex = global.mcPotionColorHexForItem
+                ? global.mcPotionColorHexForItem(itemId)
+                : '#385dc6';
+            const tintedOverlay = tintedPotionOverlayCanvas(overlay, hexToRgb(colorHex));
+
+            drawImageWithFlatPadding(ctx, tintedOverlay, 0, 0, tintedOverlay.width, tintedOverlay.height);
+            drawImageWithFlatPadding(
+                ctx,
+                bottle,
+                0,
+                0,
+                bottle.naturalWidth || bottle.width,
+                bottle.naturalHeight || bottle.height
+            );
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
     async function fetchAnimationMeta(pngUrl) {
         if (metaCache.has(pngUrl)) return metaCache.get(pngUrl);
         try {
@@ -326,6 +397,10 @@
     }
 
     async function initCanvasFromUrls(canvas, urls) {
+        if (global.isMcPotionItemId && global.isMcPotionItemId(itemIdForCanvas(canvas))) {
+            const ok = await renderPotionCanvas(canvas);
+            if (ok) return true;
+        }
         for (const url of urls) {
             if (await attachDomCanvas(canvas, url)) return true;
         }
