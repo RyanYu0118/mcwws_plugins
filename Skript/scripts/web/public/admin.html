@@ -1,4 +1,4 @@
-<!-- DS-WEB-VERSION: 2.5.9 -->
+<!-- DS-WEB-VERSION: 2.5.10 -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -1036,9 +1036,9 @@
 
     <div id="authGate" class="auth-gate" style="display:none;">
         <div class="auth-gate-card">
-            <h2>管理面板需要登录</h2>
+            <h2 id="authGateTitle">管理面板需要登录</h2>
             <p id="authGateMessage">请使用和仪表盘、物品目录一致的账户系统登录。登录后即可进入管理功能。</p>
-            <button type="button" class="primary-btn" onclick="openAuthModal()">登录 / 注册</button>
+            <button id="authGateButton" type="button" class="primary-btn" onclick="openAuthModal()">登录 / 注册</button>
         </div>
     </div>
 
@@ -1423,7 +1423,7 @@
             }
             if (res.status === 403) {
                 const result = await res.json();
-                showAuthGate(result.error || '你没有进入管理系统的权限。需要 OP 或 ultimateshop.editor 权限。');
+                showAuthGate(result.error || '你没有进入管理系统的权限。需要 OP 或 ultimateshop.editor 权限。', true);
                 throw new Error('权限不足');
             }
             return res.json();
@@ -1442,12 +1442,25 @@
             loadSpecialItems();
         }
 
-        function showAuthGate(message) {
+        function exitAdminPage() {
+            window.location.href = 'index.html';
+        }
+
+        function showAuthGate(message, accessDenied = false) {
             document.getElementById('app').style.display = 'none';
             document.getElementById('authGate').style.display = 'flex';
+            const titleEl = document.getElementById('authGateTitle');
             const messageEl = document.getElementById('authGateMessage');
+            const buttonEl = document.getElementById('authGateButton');
+            if (titleEl) {
+                titleEl.textContent = accessDenied ? '权限不足' : '管理面板需要登录';
+            }
             if (messageEl) {
                 messageEl.textContent = message || '请使用和仪表盘、物品目录一致的账户系统登录。登录后即可进入管理功能。';
+            }
+            if (buttonEl) {
+                buttonEl.textContent = accessDenied ? '确认并退出' : '登录 / 注册';
+                buttonEl.onclick = accessDenied ? exitAdminPage : openAuthModal;
             }
         }
 
@@ -1594,7 +1607,7 @@
                 });
                 const access = await accessResponse.json();
                 if (!accessResponse.ok || !access.allowed) {
-                    showAuthGate(access.error || '你没有进入管理系统的权限。需要 OP 或 ultimateshop.editor 权限。');
+                    showAuthGate(access.error || '你没有进入管理系统的权限。需要 OP 或 ultimateshop.editor 权限。', true);
                     return;
                 }
                 showApp();
