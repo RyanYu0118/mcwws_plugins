@@ -92,6 +92,14 @@ const TORCH_2D_TEXTURES = {
     redstone_torch: 'redstone_torch',
     copper_torch: 'copper_torch'
 };
+const ITEM_MODEL_2D_TEXTURES = {
+    lever: 'block/lever',
+    soul_campfire: 'item/soul_campfire',
+    hopper: 'item/hopper',
+    rose_bush: 'block/rose_bush_top',
+    peony: 'block/peony_top',
+    brewing_stand: 'item/brewing_stand'
+};
 
 window.isMcPotionItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
@@ -243,6 +251,9 @@ window.flatTextureUrlsForItem = function(itemId) {
     }
     if (TORCH_2D_TEXTURES[smartId]) {
         return [`${base}/block/${TORCH_2D_TEXTURES[smartId]}.png`, `${base}/item/barrier.png`];
+    }
+    if (ITEM_MODEL_2D_TEXTURES[smartId]) {
+        return [`${base}/${ITEM_MODEL_2D_TEXTURES[smartId]}.png`, `${base}/item/barrier.png`];
     }
     if (smartId === 'sugar_cane') {
         return [`${base}/item/sugar_cane.png`, `${base}/item/barrier.png`];

@@ -152,6 +152,7 @@
 
     const REDSTONE_2D_ITEM_IDS = new Set(['redstone', 'repeater', 'comparator']);
     const TORCH_2D_ITEM_IDS = new Set(['torch', 'soul_torch', 'redstone_torch', 'copper_torch']);
+    const ITEM_MODEL_2D_IDS = new Set(['lever', 'soul_campfire', 'hopper', 'brewing_stand']);
 
     function isMcDoorBlockId(id) {
         return !!(id && id.endsWith('_door') && !id.endsWith('_trapdoor'));
@@ -200,6 +201,7 @@
         if (isMcDoorBlockId(nid)) return true;
         if (REDSTONE_2D_ITEM_IDS.has(nid)) return true;
         if (TORCH_2D_ITEM_IDS.has(nid)) return true;
+        if (ITEM_MODEL_2D_IDS.has(nid)) return true;
         if (GRASS_LIKE_IDS.has(nid)) return true;
         if (FLOWER_IDS.has(nid)) return true;
         if (BUSH_BLOCK_IDS.has(nid)) return true;
@@ -226,6 +228,7 @@
         if (isMcNonBlockCoralItemId(id)) return [itemPath];
         if (REDSTONE_2D_ITEM_IDS.has(id)) return [itemPath];
         if (TORCH_2D_ITEM_IDS.has(id)) return [itemPath];
+        if (ITEM_MODEL_2D_IDS.has(id)) return [itemPath];
         const rest = modelCandidates(itemId).filter((p) => p !== itemPath);
         return [itemPath, ...rest];
     }
