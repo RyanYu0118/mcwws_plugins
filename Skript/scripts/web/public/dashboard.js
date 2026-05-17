@@ -48,6 +48,32 @@ function trendTextureHtml(itemId) {
     return '';
 }
 
+function itemIconHtml(itemId) {
+    return `<span class="dashboard-item-icon">${trendTextureHtml(itemId)}</span>`;
+}
+
+function itemLabelHtml(itemId) {
+    return `
+        <span class="dashboard-item-label">
+            ${itemIconHtml(itemId)}
+            <span>${escapeHtml(itemDisplayName(itemId))}</span>
+        </span>
+    `;
+}
+
+function hydrateDashboardItemIcons(root) {
+    if (!root) return;
+    if (window.McItemIcon) {
+        window.McItemIcon.mountGrid(root);
+    }
+    if (window.McTextureAnim) {
+        window.McTextureAnim.initInContainer(root);
+    }
+    if (window.McEnchantGlint) {
+        window.McEnchantGlint.initInContainer(root);
+    }
+}
+
 // ═══ INITIALIZATION ═══
 document.addEventListener('DOMContentLoaded', async () => {
     if (window.mcLangReady) {
@@ -230,9 +256,9 @@ function renderTrends(items) {
         const isPositive = item.changePercent >= 0;
         return `
             <div class="trend-item" onclick="showItemDetails('${escapeHtml(item.item)}')">
-                <div class="trend-icon">${trendTextureHtml(item.item)}</div>
+                <div class="trend-icon">${itemIconHtml(item.item)}</div>
                 <div class="trend-info">
-                    <div class="trend-name">${itemDisplayName(item.item)}</div>
+                    <div class="trend-name">${escapeHtml(itemDisplayName(item.item))}</div>
                     <div class="trend-stats">${item.recentCount} 笔近期  ${formatCurrency(item.avgPrice)}/件</div>
                 </div>
                 <span class="trend-change ${isPositive ? 'positive' : 'negative'}">
@@ -241,6 +267,7 @@ function renderTrends(items) {
             </div>
         `;
     }).join('');
+    hydrateDashboardItemIcons(container);
 }
 
 function renderTransactions() {
@@ -263,11 +290,12 @@ function renderTransactions() {
             <td>${formatTime(tx.timestamp)}</td>
             <td>${escapeHtml(tx.playerName)}</td>
             <td><span class="type-badge ${tx.type.toLowerCase()}">${txTypeLabel(tx.type)}</span></td>
-            <td>${itemDisplayName(tx.item)}</td>
+            <td>${itemLabelHtml(tx.item)}</td>
             <td>${tx.amount.toLocaleString()}</td>
             <td>${formatCurrency(tx.price)}</td>
         </tr>
     `).join('');
+    hydrateDashboardItemIcons(tbody);
 
     // Update pagination
     setText('currentPage', currentPage);
@@ -545,10 +573,11 @@ function updateTopItems() {
 
     container.innerHTML = sorted.map(([item, data]) => `
         <div class="insight-item" onclick="showItemDetails('${escapeHtml(item)}')">
-            <span class="insight-name">${itemDisplayName(item)}</span>
+            <span class="insight-name">${itemLabelHtml(item)}</span>
             <span class="insight-value">${formatCurrency(data.volume)}</span>
         </div>
     `).join('') || '<div class="loading">暂无数据</div>';
+    hydrateDashboardItemIcons(container);
 }
 
 function renderCategoryChart() {
@@ -619,11 +648,9 @@ async function showItemDetails(item) {
 
         modalBody.innerHTML = `
             <div class="modal-item-info">
-                <img src="${itemData.imageUrl}" alt="${itemDisplayName(item)}" 
-                     style="width: 64px; height: 64px; margin-right: 1rem;"
-                     onerror="this.style.display='none'">
+                <div class="modal-item-icon">${itemIconHtml(item)}</div>
                 <div>
-                    <div style="font-size: 1.25rem; font-weight: 600;">${itemDisplayName(item)}</div>
+                    <div style="font-size: 1.25rem; font-weight: 600;">${escapeHtml(itemDisplayName(item))}</div>
                     <div style="color: var(--text-muted); margin-bottom: 0.5rem;">${categoryDisplayName(itemData.category)}</div>
                     <div style="display: flex; gap: 1rem;">
                         <span style="color: var(--success);">买入：${formatCurrency(itemData.buyPrice)}</span>
@@ -661,6 +688,7 @@ async function showItemDetails(item) {
                 `).join('') || '<div class="loading">暂无最近交易</div>'}
             </div>
         `;
+        hydrateDashboardItemIcons(modalBody);
 
         // Render price chart
         setTimeout(() => {

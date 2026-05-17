@@ -761,8 +761,31 @@ body {
     justify-content: center;
 }
 
-.trend-icon > div {
+.trend-icon > div,
+.dashboard-item-icon > *,
+.dashboard-item-icon .item-icon-mount {
     margin-right: 0 !important;
+}
+
+.dashboard-item-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.dashboard-item-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+    vertical-align: middle;
+}
+
+.dashboard-item-label > span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .trend-info {
@@ -842,11 +865,14 @@ body {
 
 .insight-name {
     font-weight: 500;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .insight-value {
     color: var(--primary-light);
     font-weight: 600;
+    flex-shrink: 0;
 }
 
 /* ═══ TRANSACTIONS SECTION ═══ */
@@ -1040,6 +1066,10 @@ body {
     border-bottom: 1px solid var(--border);
 }
 
+.transactions-table .dashboard-item-label {
+    max-width: 18rem;
+}
+
 .transactions-table tbody tr {
     transition: var(--transition-fast);
     cursor: pointer;
@@ -1168,6 +1198,21 @@ body {
     padding: 1.5rem;
     max-height: 70vh;
     overflow-y: auto;
+}
+
+.modal-item-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.modal-item-icon {
+    flex: 0 0 auto;
+}
+
+.modal-item-icon .item-icon-mount,
+.modal-item-icon > * {
+    margin-right: 0 !important;
 }
 
 /* ═══ LOADING SPINNER ═══ */

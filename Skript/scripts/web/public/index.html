@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="https://www.ryanstudio.work/upload/Icon.png">
     <title>动态商店仪表板</title>
     <meta name="description" content="流浪世界服务器商店系统实时商店分析与交易监控面板">
-    <link rel="stylesheet" href="style.css?v=2.5.8">
+    <link rel="stylesheet" href="style.css?v=2.5.49">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -267,8 +267,22 @@
         </div>
     </div>
 
-    <script src="lang.js"></script>
-    <script src="texture-mapper.js"></script>
-    <script src="dashboard.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "./vendor/three.module.min.js?v=2"
+        }
+    }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        window.THREE = THREE;
+    </script>
+    <script src="lang.js?v=2.5.9" defer></script>
+    <script src="texture-mapper.js?v=2.5.71" defer></script>
+    <script src="enchant-glint.js?v=2.5.28" defer></script>
+    <script src="texture-animation.js?v=2.5.64" defer></script>
+    <script src="item-model-renderer.js?v=2.5.69" defer></script>
+    <script src="dashboard.js?v=2.5.8" defer></script>
 </body>
 </html>
