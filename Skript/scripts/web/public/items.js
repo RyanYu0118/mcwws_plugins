@@ -887,19 +887,38 @@ async function loadUserProfile() {
 function initScrollingText(root) {
     const host = root || document;
     const OVERFLOW_SAFETY_RATIO = 1.2;
+    const EDGE_PAUSE_MS = 1000;
     host.querySelectorAll('.scrolling-text, .scrolling-id').forEach(container => {
         const text = container.querySelector('.scrolling-text-inner, .scrolling-id-text');
         if (!text) return;
 
+        text.getAnimations().forEach(animation => animation.cancel());
         text.style.animation = 'none';
+        text.style.transform = '';
         text.style.removeProperty('--scroll-distance');
 
         const safeScrollWidth = text.scrollWidth * OVERFLOW_SAFETY_RATIO;
         if (safeScrollWidth > container.clientWidth) {
             const distance = Math.max(1, safeScrollWidth - container.clientWidth);
-            const duration = Math.max(5, distance / 30);
-            text.style.animation = `scroll-text ${duration}s linear infinite`;
-            text.style.setProperty('--scroll-distance', `-${distance}px`);
+            const forwardMs = Math.max(5000, (distance / 30) * 1000);
+            const returnMs = forwardMs / 5;
+            const totalMs = EDGE_PAUSE_MS + forwardMs + EDGE_PAUSE_MS + returnMs;
+            const leftPauseEnd = EDGE_PAUSE_MS / totalMs;
+            const rightArrive = (EDGE_PAUSE_MS + forwardMs) / totalMs;
+            const rightPauseEnd = (EDGE_PAUSE_MS + forwardMs + EDGE_PAUSE_MS) / totalMs;
+            const rightTransform = `translateX(-${distance}px)`;
+
+            text.animate([
+                { transform: 'translateX(0)', offset: 0 },
+                { transform: 'translateX(0)', offset: leftPauseEnd },
+                { transform: rightTransform, offset: rightArrive },
+                { transform: rightTransform, offset: rightPauseEnd },
+                { transform: 'translateX(0)', offset: 1 }
+            ], {
+                duration: totalMs,
+                iterations: Infinity,
+                easing: 'linear'
+            });
         }
     });
 }
