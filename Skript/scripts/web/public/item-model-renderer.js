@@ -143,7 +143,7 @@
         'red_tulip', 'orange_tulip', 'white_tulip', 'pink_tulip', 'oxeye_daisy',
         'cornflower', 'lily_of_the_valley', 'torchflower', 'wither_rose', 'spore_blossom',
         'open_eyeblossom', 'closed_eyeblossom', 'sunflower', 'lilac', 'rose_bush', 'peony',
-        'pitcher_plant', 'pitcher_pod', 'pink_petals', 'wildflowers', 'chorus_flower',
+        'pitcher_plant', 'pitcher_pod', 'pink_petals', 'wildflowers',
         'azalea', 'flowering_azalea', 'mangrove_propagule', 'cactus_flower',
         'firefly_bush'
     ]);
@@ -153,7 +153,7 @@
     const REDSTONE_2D_ITEM_IDS = new Set(['redstone', 'repeater', 'comparator']);
     const TORCH_2D_ITEM_IDS = new Set(['torch', 'soul_torch', 'redstone_torch', 'copper_torch']);
     const ITEM_MODEL_2D_IDS = new Set([
-        'lever', 'ladder', 'lily_pad', 'soul_campfire', 'hopper', 'brewing_stand', 'resin_clump',
+        'lever', 'ladder', 'lily_pad', 'cobweb', 'amethyst_cluster', 'soul_campfire', 'hopper', 'brewing_stand', 'resin_clump',
         'item_frame', 'glow_item_frame',
         'iron_chain', 'copper_chain', 'exposed_copper_chain', 'weathered_copper_chain', 'oxidized_copper_chain',
         'waxed_copper_chain', 'waxed_exposed_copper_chain', 'waxed_weathered_copper_chain', 'waxed_oxidized_copper_chain'
