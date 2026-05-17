@@ -228,6 +228,9 @@ window.flatTextureUrlsForItem = function(itemId) {
     if (window.isMcConduitItemId && window.isMcConduitItemId(itemId)) {
         return window.conduitWikiImageUrlsForItem(itemId);
     }
+    if (window.isMcDriedGhastItemId && window.isMcDriedGhastItemId(itemId)) {
+        return window.driedGhastWikiImageUrlsForItem(itemId);
+    }
     if (window.isMcHeavyCoreItemId && window.isMcHeavyCoreItemId(itemId)) {
         return window.heavyCoreWikiImageUrlsForItem(itemId);
     }
@@ -393,6 +396,37 @@ window.conduitWikiImageUrlsForItem = function(itemId) {
         `${base}/block/conduit.png`,
         `${base}/item/barrier.png`
     ];
+};
+
+/** 干涸恶魂：使用 Wiki 脱水帧渲染图，并按商店朝向左右镜像 */
+window.isMcDriedGhastItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'dried_ghast';
+};
+
+window.driedGhastWikiImageUrlForItem = function(itemId, wikiHost) {
+    const host = wikiHost || 'zh.minecraft.wiki';
+    return `https://${host}/images/Dried_Ghast_Rehydration_0_%28S%29_JE1_BE1.png`;
+};
+
+window.driedGhastWikiImageUrlsForItem = function(itemId) {
+    const base = TextureConfig.getBasePath();
+    return [
+        window.driedGhastWikiImageUrlForItem(itemId, 'zh.minecraft.wiki'),
+        window.driedGhastWikiImageUrlForItem(itemId, 'minecraft.wiki'),
+        `${base}/block/dried_ghast.png`,
+        `${base}/item/barrier.png`
+    ];
+};
+
+window.applyDriedGhastImgMirror = function(img) {
+    if (!img) return;
+    const src = String(img.currentSrc || img.src || '');
+    if (/minecraft\.wiki/i.test(src) && src.indexOf('Dried_Ghast_Rehydration_0_') !== -1) {
+        img.style.transform = 'scaleX(-1)';
+        return;
+    }
+    img.style.transform = '';
 };
 
 /** 沉重核心：使用 Wiki 物品栏渲染图，避免特殊方块被普通 3D 方块模型处理 */
@@ -876,6 +910,10 @@ window.initMcWikiInviconImages = function(root) {
                 && window.isMcHeadItemId
                 && window.isMcHeadItemId(itemId)) {
                 window.applyHeadImgMirror(img);
+            } else if (window.applyDriedGhastImgMirror
+                && window.isMcDriedGhastItemId
+                && window.isMcDriedGhastItemId(itemId)) {
+                window.applyDriedGhastImgMirror(img);
             }
             img.dataset.texReady = '1';
             img.style.opacity = '1';
@@ -1118,6 +1156,17 @@ window.getTextureHtml = function(itemId, itemName) {
         <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
             style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
             <img class="item-mc-wiki-invicon" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
+                style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
+                title="${safeName}" referrerpolicy="no-referrer" />
+            ${glintHtml}
+        </span>
+    `;
+    }
+    if (window.isMcDriedGhastItemId && window.isMcDriedGhastItemId(itemId)) {
+        return `
+        <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
+            style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
+            <img class="item-mc-wiki-invicon item-dried-ghast-wiki" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
                 style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
                 title="${safeName}" referrerpolicy="no-referrer" />
             ${glintHtml}

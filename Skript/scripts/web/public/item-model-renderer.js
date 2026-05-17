@@ -188,6 +188,7 @@
         if (global.isMcShulkerBoxItemId && global.isMcShulkerBoxItemId(nid)) return true;
         if (global.isMcChestBlockItemId && global.isMcChestBlockItemId(nid)) return true;
         if (global.isMcConduitItemId && global.isMcConduitItemId(nid)) return true;
+        if (global.isMcDriedGhastItemId && global.isMcDriedGhastItemId(nid)) return true;
         if (global.isMcHeavyCoreItemId && global.isMcHeavyCoreItemId(nid)) return true;
         if (global.isMcCakeItemId && global.isMcCakeItemId(nid)) return true;
         if (global.isMcCandleItemId && global.isMcCandleItemId(nid)) return true;
