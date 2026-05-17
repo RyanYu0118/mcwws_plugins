@@ -1,4 +1,4 @@
-<!-- DS-WEB-VERSION: 2.5.10 -->
+<!-- DS-WEB-VERSION: 2.5.12 -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -7,9 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="https://www.ryanstudio.work/upload/Icon.png">
     <title>流浪世界服务器商店系统管理面板</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'MinecraftAE';
+            src: url('5_Minecraft AE.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            unicode-range: U+0000-00D6, U+00D8-10FFFF;
+        }
+
         :root {
             --bg-primary: #0a0e17;
             --bg-secondary: #111827;
@@ -38,10 +44,36 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'MinecraftAE', 'Segoe UI', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
+        }
+
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        span,
+        div,
+        input,
+        button,
+        select,
+        textarea,
+        table,
+        th,
+        td,
+        label,
+        a,
+        strong,
+        b,
+        code {
+            font-family: 'MinecraftAE', 'Segoe UI', sans-serif !important;
+            font-weight: normal !important;
         }
 
         .navbar {
@@ -1072,6 +1104,18 @@
         </div>
     </div>
 
+    <div id="accessDeniedModal" class="modal-overlay">
+        <div class="modal auth-modal">
+            <h2>权限已失效</h2>
+            <p id="accessDeniedMessage" style="color:var(--text-secondary);line-height:1.8;margin-bottom:20px;">
+                你已不再满足进入管理系统的条件。需要 OP 或 ultimateshop.editor 权限。
+            </p>
+            <div class="form-actions">
+                <button type="button" class="primary-btn" onclick="exitAdminPage()">确认并退出</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ═══════ 主应用 ═══════ -->
     <div id="app" style="display:none;">
         <div class="header">
@@ -1408,6 +1452,8 @@
         let authToken = localStorage.getItem('authToken') || null;
         let currentUser = null;
         let authMode = 'login';
+        let adminAccessTimer = null;
+        let accessDeniedActive = false;
         let allItems = [], allCategories = [], currentConfig = {}, editingItem = null, currentCategory = null;
 
         // ─── API 辅助 ───
@@ -1437,6 +1483,7 @@
         async function showApp() {
             document.getElementById('authGate').style.display = 'none';
             document.getElementById('app').style.display = 'block';
+            startAdminAccessPolling();
             loadCategories();
             loadConfig();
             loadSpecialItems();
@@ -1446,7 +1493,59 @@
             window.location.href = 'index.html';
         }
 
+        function stopAdminAccessPolling() {
+            if (adminAccessTimer) {
+                clearInterval(adminAccessTimer);
+                adminAccessTimer = null;
+            }
+        }
+
+        function showAccessDeniedDialog(message) {
+            if (accessDeniedActive) return;
+            accessDeniedActive = true;
+            stopAdminAccessPolling();
+            document.getElementById('app').style.display = 'none';
+            const messageEl = document.getElementById('accessDeniedMessage');
+            if (messageEl) {
+                messageEl.textContent = message || '你已不再满足进入管理系统的条件。需要 OP 或 ultimateshop.editor 权限。';
+            }
+            showDialog(document.getElementById('accessDeniedModal'));
+        }
+
+        async function checkAdminAccess({ forceDialog = false } = {}) {
+            if (!authToken || !currentUser) return false;
+            try {
+                const response = await fetch('/api/admin/access', {
+                    headers: { Authorization: `Bearer ${authToken}` }
+                });
+                const result = await response.json();
+                if (!response.ok || !result.allowed) {
+                    const message = result.error || '你已不再满足进入管理系统的条件。需要 OP 或 ultimateshop.editor 权限。';
+                    if (forceDialog) {
+                        showAccessDeniedDialog(message);
+                    } else {
+                        showAuthGate(message, true);
+                    }
+                    return false;
+                }
+                return true;
+            } catch (error) {
+                if (forceDialog) {
+                    showAccessDeniedDialog('无法确认管理权限，请退出后重新进入管理系统。');
+                }
+                return false;
+            }
+        }
+
+        function startAdminAccessPolling() {
+            stopAdminAccessPolling();
+            adminAccessTimer = setInterval(() => {
+                checkAdminAccess({ forceDialog: true });
+            }, 10000);
+        }
+
         function showAuthGate(message, accessDenied = false) {
+            stopAdminAccessPolling();
             document.getElementById('app').style.display = 'none';
             document.getElementById('authGate').style.display = 'flex';
             const titleEl = document.getElementById('authGateTitle');
@@ -1572,6 +1671,7 @@
             authToken = null;
             currentUser = null;
             localStorage.removeItem('authToken');
+            stopAdminAccessPolling();
             updateAuthUi();
             showAuthGate();
             toast('已退出登录。', 'success');
@@ -1581,6 +1681,7 @@
             authToken = null;
             currentUser = null;
             localStorage.removeItem('authToken');
+            stopAdminAccessPolling();
             updateAuthUi();
             showAuthGate();
             toast('登录已过期，请重新登录。', 'error');
@@ -1602,12 +1703,7 @@
                 }
                 currentUser = await response.json();
                 updateAuthUi();
-                const accessResponse = await fetch('/api/admin/access', {
-                    headers: { Authorization: `Bearer ${authToken}` }
-                });
-                const access = await accessResponse.json();
-                if (!accessResponse.ok || !access.allowed) {
-                    showAuthGate(access.error || '你没有进入管理系统的权限。需要 OP 或 ultimateshop.editor 权限。', true);
+                if (!await checkAdminAccess()) {
                     return;
                 }
                 showApp();
@@ -1615,6 +1711,7 @@
                 authToken = null;
                 currentUser = null;
                 localStorage.removeItem('authToken');
+                stopAdminAccessPolling();
                 updateAuthUi();
                 showAuthGate();
             }
@@ -2101,6 +2198,7 @@
 
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
+                if (accessDeniedActive) return;
                 closeAuthModal();
                 closeModal();
             }

@@ -1,10 +1,19 @@
-# Bilingual Git Commit Message Generation Rules (Chinese First)
+# Bilingual Git Commit Message Generation Rules (Chinese First, Detailed Body)
 
 You are an expert developer. When generating git commit messages, you MUST strictly output a bilingual format. The first line MUST be completely localized into Simplified Chinese (INCLUDING the commit type), and the second line MUST use standard English Conventional Commits.
 
 ## 1. Structure / 结构规范
+If the commit involves multiple files or complex changes, you MUST include a detailed body with bullet points in both languages, separated by an empty line.
+如果提交涉及多个文件或复杂变更，必须在标题下方空一行，并使用列表分条说明具体改动（先中文列表，后英文列表）。
+
 <中文类型>(<scope>): <中文简述>
 <english_type>(<scope>): <English Subject>
+
+- <中文变更详情 1>
+- <中文变更详情 2>
+
+- <English detailed change 1>
+- <English detailed change 2>
 
 ## 2. Type Mapping / 类型严格映射表
 You MUST translate the standard `<english_type>` into the `<中文类型>` for the first line exactly as follows:
@@ -19,17 +28,20 @@ You MUST translate the standard `<english_type>` into the `<中文类型>` for t
 - build -> 构建
 
 ## 3. Core Rules / 核心规则
-- No chit-chat. DIRECT OUTPUT ONLY. Only output the two lines of the commit message.
+- No chit-chat. DIRECT OUTPUT ONLY. Only output the commit message itself.
 - The `<scope>` (if present) should remain exactly the same in both lines.
-- ALWAYS provide the Chinese version first, followed immediately by the English version on the next line.
+- ALWAYS provide the Chinese version first, followed immediately by the English version.
+- When summarizing multiple files, extract the core logic changes rather than just listing file names. / 在总结多文件修改时，提取核心逻辑变更，而不是仅仅罗列文件名。
 
 ## 4. Examples / 参考范例
 
-新功能(vision): 引入 YOLO v11 模型以实现双目果实识别
-feat(vision): integrate YOLO v11 model for binocular fruit recognition
+新功能(vision): 重构果实识别模块并升级至 YOLO v11 模型
+feat(vision): refactor fruit recognition module and upgrade to YOLO v11 model
 
-修复(point-cloud): 解决 3D 扫描数据转换时的坐标偏移问题
-fix(point-cloud): resolve coordinate offset during 3D scan data conversion
+- 引入 YOLO v11 权重文件，替换旧版目标检测逻辑
+- 优化双目相机的标定算法，修复点云数据映射偏移问题
+- 新增模型推理结果的可视化输出脚本
 
-杂项(server): 更新 Paper 服务端配置与 1Panel Docker 节点
-chore(server): update Paper server config and 1Panel Docker node
+- Introduced YOLO v11 weights to replace the legacy object detection logic
+- Optimized binocular camera calibration to fix point cloud data mapping offset
+- Added visualization output scripts for model inference results
