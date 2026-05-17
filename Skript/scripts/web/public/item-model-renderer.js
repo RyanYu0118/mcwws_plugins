@@ -164,6 +164,10 @@
         return n === 'glass_pane' || (n.endsWith('_glass_pane') && n !== 'glass_bottle');
     }
 
+    function iconRenderAllFacesItemId(id) {
+        return normalizeId(id) === 'composter';
+    }
+
     function iconForce2dFlatIcon(id) {
         if (!id) return false;
         const nid = normalizeId(id);
@@ -493,7 +497,8 @@
 
     function pushFace(group, from, to, faceName, face, resolveTex, model) {
         // GUI 斜视机位下底面不可见，不生成 mesh（减绘制、透明块少一层）
-        if (faceName === 'down') return;
+        const renderAllFaces = iconRenderAllFacesItemId(group.userData.mcItemId || '');
+        if (faceName === 'down' && !renderAllFaces) return;
         const url = resolveTex(face.texture);
         if (!url) return;
 
@@ -525,6 +530,10 @@
                 positions = [x1, y2, z2, x2, y2, z2, x2, y2, z1, x1, y2, z1];
                 uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
                 break;
+            case 'down':
+                positions = [x1, y1, z1, x2, y1, z1, x2, y1, z2, x1, y1, z2];
+                uvs = [uv[0], uv[3], uv[2], uv[3], uv[2], uv[1], uv[0], uv[1]];
+                break;
             default:
                 return;
         }
@@ -533,13 +542,15 @@
         geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
         geo.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
         // FrontSide：正面为 CCW。当前顶点序里仅 up 与 Three 外法向一致，其余面需反转索引以免被背面剔除误删
-        const triIdx = faceName === 'up' ? [0, 1, 2, 0, 2, 3] : [0, 2, 1, 0, 3, 2];
+        const triIdx = faceName === 'up' || faceName === 'down'
+            ? [0, 1, 2, 0, 2, 3]
+            : [0, 2, 1, 0, 3, 2];
         geo.setIndex(triIdx);
         geo.computeVertexNormals();
 
         const shade = computeViewShade(faceName, model);
         const tintindex = face.tintindex;
-        const meshHolder = { geo, url, shade, tintindex };
+        const meshHolder = { geo, url, shade, tintindex, doubleSide: renderAllFaces };
         group.__meshes = group.__meshes || [];
         group.__meshes.push(meshHolder);
     }
@@ -585,7 +596,7 @@
                 color: new THREE.Color(r, g, b),
                 transparent: true,
                 // 单面绘制：背对机位的面不渲染（立方体约一半面被剔除，玻璃少画内侧面、减轻透明叠层）
-                side: THREE.FrontSide
+                side: h.doubleSide ? THREE.DoubleSide : THREE.FrontSide
             });
             const mesh = new THREE.Mesh(h.geo, mat);
             group.add(mesh);
