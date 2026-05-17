@@ -1,0 +1,12 @@
+# Git Commit Message Rules
+When generating git commit messages, you MUST always use Chinese (Simplified).
+Please follow the Conventional Commits specification.
+
+Format:
+<类型>: <简短的中文描述>
+
+类型包含: feat(新特性), fix(修复bug), docs(文档), style(格式), refactor(重构), perf(性能), test(测试), chore(构建过程或辅助工具的变动)
+
+Example:
+新特性: 新增了用户登录的校验逻辑
+修复bug: 修复了商品列表下拉刷新的闪退问题
