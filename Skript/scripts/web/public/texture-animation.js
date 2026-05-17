@@ -20,7 +20,7 @@
     /** 2D 绘制后乘 grass.png 色谱（与 Java 草类方块一致） */
     const GRASS_TINT_2D_IDS = new Set([
         'grass_block', 'grass', 'short_grass', 'tall_grass', 'fern', 'large_fern',
-        'sugar_cane', 'bamboo', 'moss_block', 'moss_carpet',
+        'bamboo', 'moss_block', 'moss_carpet',
         'small_dripleaf', 'big_dripleaf', 'seagrass', 'tall_seagrass'
     ]);
 
@@ -293,19 +293,61 @@
         }
     }
 
-    function frameCount(img, meta) {
-        if (meta.frames && meta.frames.length) return meta.frames.length;
+    function physicalFrameCount(img) {
         if (!img.width) return 1;
         return Math.max(1, Math.round(img.height / img.width));
     }
 
-    function frameIndexAt(meta, frames, elapsedMs) {
-        const msPer = (meta.frametime || 1) * TICK_MS;
-        if (meta.frames && meta.frames.length) {
-            const idx = Math.floor(elapsedMs / msPer) % meta.frames.length;
-            return meta.frames[idx];
+    function frameEntryIndex(entry, physicalFrames) {
+        const frameIndex = typeof entry === 'number' ? entry : entry && entry.index;
+        return Math.min(physicalFrames - 1, Math.max(0, Number(frameIndex) || 0));
+    }
+
+    function frameEntryDurationTicks(entry, meta) {
+        if (entry && typeof entry === 'object' && Number(entry.time) > 0) {
+            return Number(entry.time);
         }
-        return Math.floor(elapsedMs / msPer) % frames;
+        return meta.frametime || 1;
+    }
+
+    function frameStateAt(meta, physicalFrames, elapsedMs) {
+        if (meta.frames && meta.frames.length) {
+            const frameDurations = meta.frames.map((entry) => frameEntryDurationTicks(entry, meta) * TICK_MS);
+            const totalMs = frameDurations.reduce((sum, ms) => sum + ms, 0) || TICK_MS;
+            let t = elapsedMs % totalMs;
+            let seq = 0;
+            while (seq < frameDurations.length - 1 && t >= frameDurations[seq]) {
+                t -= frameDurations[seq];
+                seq += 1;
+            }
+            const duration = frameDurations[seq] || TICK_MS;
+            const nextSeq = (seq + 1) % meta.frames.length;
+            return {
+                frame: frameEntryIndex(meta.frames[seq], physicalFrames),
+                nextFrame: frameEntryIndex(meta.frames[nextSeq], physicalFrames),
+                progress: Math.min(1, Math.max(0, t / duration))
+            };
+        }
+        const msPer = (meta.frametime || 1) * TICK_MS;
+        const frame = Math.floor(elapsedMs / msPer) % physicalFrames;
+        return {
+            frame,
+            nextFrame: (frame + 1) % physicalFrames,
+            progress: Math.min(1, Math.max(0, (elapsedMs % msPer) / msPer))
+        };
+    }
+
+    function drawAnimationFrame(ctx, img, frameW, frameH, frame, nextFrame, progress, interpolate, drawFn) {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.imageSmoothingEnabled = false;
+        ctx.globalAlpha = 1;
+        drawFn(ctx, img, 0, frame * frameH, frameW, frameH);
+        if (interpolate && nextFrame !== frame && progress > 0) {
+            ctx.globalAlpha = progress;
+            drawFn(ctx, img, 0, nextFrame * frameH, frameW, frameH);
+            ctx.globalAlpha = 1;
+        }
     }
 
     function ensureLoop() {
@@ -314,19 +356,38 @@
             threeTextures.forEach((tex) => {
                 const a = tex.userData.mcAnim;
                 if (!a) return;
-                const fi = frameIndexAt(a.meta, a.frames, now - a.startMs);
-                tex.offset.y = 1 - (fi + 1) / a.frames;
+                const state = frameStateAt(a.meta, a.frames, now - a.startMs);
+                if (a.ctx && a.img) {
+                    drawAnimationFrame(
+                        a.ctx,
+                        a.img,
+                        a.frameW,
+                        a.frameH,
+                        state.frame,
+                        state.nextFrame,
+                        state.progress,
+                        a.meta.interpolate,
+                        (ctx, img, sx, sy, sw, sh) => ctx.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh)
+                    );
+                    tex.needsUpdate = true;
+                } else {
+                    tex.offset.y = 1 - (state.frame + 1) / a.frames;
+                }
             });
             domEntries.forEach((e) => {
-                const fi = frameIndexAt(e.meta, e.frames, now - e.startMs);
+                const state = frameStateAt(e.meta, e.frames, now - e.startMs);
                 const ctx = e.canvas.getContext('2d');
                 if (!ctx) return;
-                ctx.clearRect(0, 0, e.canvas.width, e.canvas.height);
-                ctx.imageSmoothingEnabled = false;
-                drawImageWithFlatPadding(
+                drawAnimationFrame(
                     ctx,
                     e.img,
-                    0, fi * e.frameH, e.frameW, e.frameH
+                    e.frameW,
+                    e.frameH,
+                    state.frame,
+                    state.nextFrame,
+                    state.progress,
+                    e.meta.interpolate,
+                    drawImageWithFlatPadding
                 );
                 if (e.grassTintRgb) {
                     const inset = padInsetForCanvas(e.canvas);
@@ -346,21 +407,47 @@
     function setupThreeTexture(tex, img, meta) {
         const THREE = global.THREE;
         if (!THREE) return false;
-        const frames = frameCount(img, meta);
+        const frames = physicalFrameCount(img);
         if (frames <= 1) return false;
 
         tex.wrapS = THREE.ClampToEdgeWrapping;
         tex.wrapT = THREE.RepeatWrapping;
-        tex.repeat.set(1, 1 / frames);
-        tex.offset.set(0, 1 - 1 / frames);
         tex.magFilter = THREE.NearestFilter;
         tex.minFilter = THREE.NearestFilter;
         tex.colorSpace = THREE.SRGBColorSpace;
-        tex.userData.mcAnim = {
+        const anim = {
             meta,
             frames,
             startMs: performance.now()
         };
+        if (meta.interpolate) {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.width;
+            tex.image = canvas;
+            tex.repeat.set(1, 1);
+            tex.offset.set(0, 0);
+            anim.img = img;
+            anim.ctx = canvas.getContext('2d');
+            anim.frameW = img.width;
+            anim.frameH = img.width;
+            drawAnimationFrame(
+                anim.ctx,
+                img,
+                anim.frameW,
+                anim.frameH,
+                0,
+                0,
+                0,
+                false,
+                (ctx, source, sx, sy, sw, sh) => ctx.drawImage(source, sx, sy, sw, sh, 0, 0, sw, sh)
+            );
+            tex.needsUpdate = true;
+        } else {
+            tex.repeat.set(1, 1 / frames);
+            tex.offset.set(0, 1 - 1 / frames);
+        }
+        tex.userData.mcAnim = anim;
         threeTextures.add(tex);
         ensureLoop();
         return true;
@@ -385,7 +472,7 @@
         } catch {
             return false;
         }
-        const frames = frameCount(img, meta);
+        const frames = physicalFrameCount(img);
         if (frames <= 1) return false;
 
         const frameW = img.width;

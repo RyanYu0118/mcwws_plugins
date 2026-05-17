@@ -230,6 +230,15 @@ window.flatTextureUrlsForItem = function(itemId) {
     if (window.isMcCandleItemId && window.isMcCandleItemId(itemId)) {
         return [`${base}/item/${smartId}.png`, `${base}/item/barrier.png`];
     }
+    if (smartId === 'sugar_cane') {
+        return [`${base}/item/sugar_cane.png`, `${base}/item/barrier.png`];
+    }
+    if (smartId === 'kelp') {
+        return [`${base}/item/kelp.png`, `${base}/item/barrier.png`];
+    }
+    if (window.isMcAnimatedPrismarineBlockItemId && window.isMcAnimatedPrismarineBlockItemId(itemId)) {
+        return [`${base}/block/prismarine.png`, `${base}/item/barrier.png`];
+    }
     return [`${base}/block/${smartId}.png`, `${base}/item/${smartId}.png`];
 };
 
@@ -238,6 +247,14 @@ window.isMcGlassPaneItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
     if (n === 'glass_pane') return true;
     return n.endsWith('_glass_pane') && !n.endsWith('glass_bottle');
+};
+
+window.isMcAnimatedPrismarineBlockItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'prismarine'
+        || n === 'prismarine_slab'
+        || n === 'prismarine_stairs'
+        || n === 'prismarine_wall';
 };
 
 /** 铁轨类：物品栏使用 item/generated 的 2D 贴图，不渲染倾斜 3D 方块模型 */

@@ -134,7 +134,7 @@
     const GRASS_LIKE_IDS = new Set([
         'grass', 'short_grass', 'tall_grass', 'fern', 'large_fern', 'dead_bush',
         'seagrass', 'tall_seagrass', 'crimson_roots', 'warped_roots', 'nether_sprouts',
-        'short_dry_grass', 'tall_dry_grass', 'leaf_litter'
+        'short_dry_grass', 'tall_dry_grass', 'leaf_litter', 'sugar_cane', 'kelp'
     ]);
 
     /** 花类（含盆栽前缀），物品栏用 2D */
@@ -164,6 +164,12 @@
         return n === 'glass_pane' || (n.endsWith('_glass_pane') && n !== 'glass_bottle');
     }
 
+    function isMcNonBlockCoralItemId(id) {
+        const n = normalizeId(id);
+        if (n.endsWith('_coral_block')) return false;
+        return /^(dead_)?(tube|brain|bubble|fire|horn)_coral(_fan)?$/.test(n);
+    }
+
     function iconRenderAllFacesItemId(id) {
         return normalizeId(id) === 'composter';
     }
@@ -186,6 +192,7 @@
         if (global.isMcRailItemId && global.isMcRailItemId(nid)) return true;
         if (global.isMcShieldItemId && global.isMcShieldItemId(nid)) return true;
         if (global.isMcMushroomOrFungusItemId && global.isMcMushroomOrFungusItemId(nid)) return true;
+        if (isMcNonBlockCoralItemId(nid)) return true;
         if (isMcGlassPaneItemId(nid)) return true;
         if (isMcDoorBlockId(nid)) return true;
         if (GRASS_LIKE_IDS.has(nid)) return true;
@@ -211,6 +218,7 @@
         if (global.isMcRailItemId && global.isMcRailItemId(id)) return [itemPath];
         if (global.isMcShieldItemId && global.isMcShieldItemId(id)) return [itemPath];
         if (global.isMcMushroomOrFungusItemId && global.isMcMushroomOrFungusItemId(id)) return [itemPath];
+        if (isMcNonBlockCoralItemId(id)) return [itemPath];
         const rest = modelCandidates(itemId).filter((p) => p !== itemPath);
         return [itemPath, ...rest];
     }
@@ -358,7 +366,19 @@
         return needs;
     }
 
-    async function itemUsesAnimatedTextures(model) {
+    function isMcAnimatedPrismarineBlockItemId(id) {
+        if (global.isMcAnimatedPrismarineBlockItemId) {
+            return global.isMcAnimatedPrismarineBlockItemId(id);
+        }
+        const n = normalizeId(id);
+        return n === 'prismarine'
+            || n === 'prismarine_slab'
+            || n === 'prismarine_stairs'
+            || n === 'prismarine_wall';
+    }
+
+    async function itemUsesAnimatedTextures(model, itemId) {
+        if (isMcAnimatedPrismarineBlockItemId(itemId)) return true;
         if (!global.McTextureAnim || !model || !model.textures) return false;
         const urls = new Set();
         Object.values(model.textures).forEach((ref) => {
@@ -907,7 +927,7 @@
         setupMcItemCamera();
         fitModelToGuiCell(group, camera);
 
-        const hasAnimation = await itemUsesAnimatedTextures(model);
+        const hasAnimation = await itemUsesAnimatedTextures(model, itemId);
         if (hasAnimation) {
             iconCache.set(id, 'ANIMATED');
             mountAnimatedSlot(slot, group);
