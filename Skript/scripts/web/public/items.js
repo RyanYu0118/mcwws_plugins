@@ -17,6 +17,11 @@ const PAGE_SIZE = 60;
 let searchTimer = null;
 let pageBeforeSearch = null;
 let clockTimeTimer = null;
+let pointerBearingTimer = null;
+let pointerBearingX = null;
+let pointerBearingY = null;
+
+const POINTER_COMPASS_TILT_COS = Math.cos(Math.PI / 4);
 
 const SORT_VALUES = new Set(['name', 'buyPrice', 'sellPrice', 'stock']);
 
@@ -123,6 +128,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupEventListeners();
     loadUserProfile();
     ensureClockTimeTicker();
+    ensurePointerBearingTicker();
 });
 
 // 绑定页面交互事件（新增逆序复选框监听）
@@ -221,6 +227,56 @@ function updateClockTimeDescriptions(root) {
 function ensureClockTimeTicker() {
     if (clockTimeTimer !== null) return;
     clockTimeTimer = setInterval(() => updateClockTimeDescriptions(document), 1000);
+}
+
+function formatCompassBearingForElement(el) {
+    if (!el || pointerBearingX == null || pointerBearingY == null) return '移动鼠标查看方位';
+    const card = el.closest('.glass');
+    const icon = card && card.querySelector('[data-item-id="compass"], [data-item-id="recovery_compass"]');
+    if (!icon || !icon.getBoundingClientRect) return '移动鼠标查看方位';
+
+    const rect = icon.getBoundingClientRect();
+    const dx = pointerBearingX - (rect.left + rect.width / 2);
+    const dy = pointerBearingY - (rect.top + rect.height / 2);
+    if (Math.abs(dx) < 0.001 && Math.abs(dy) < 0.001) return '中心';
+
+    const east = dx;
+    const south = dy / POINTER_COMPASS_TILT_COS;
+    const absE = Math.abs(east);
+    const absS = Math.abs(south);
+    if (absE < 0.001) return south >= 0 ? '正南' : '正北';
+    if (absS < 0.001) return east >= 0 ? '正东' : '正西';
+
+    const eastWest = east >= 0 ? '东' : '西';
+    const northSouth = south >= 0 ? '南' : '北';
+    const fromEastWest = Math.atan(absS / absE) * 180 / Math.PI;
+    const fromNorthSouth = 90 - fromEastWest;
+    if (fromEastWest <= 45) {
+        return `${eastWest}偏${northSouth}${fromEastWest.toFixed(1)}°`;
+    }
+    return `${northSouth}偏${eastWest}${fromNorthSouth.toFixed(1)}°`;
+}
+
+function updatePointerBearingDescriptions(root) {
+    const host = root || document;
+    host.querySelectorAll('[data-pointer-bearing-desc]').forEach((el) => {
+        const text = formatCompassBearingForElement(el);
+        el.textContent = text;
+        const container = el.closest('.scrolling-text');
+        if (container) container.title = text;
+    });
+}
+
+function ensurePointerBearingTicker() {
+    if (pointerBearingTimer !== null) return;
+    const updatePointer = (event) => {
+        pointerBearingX = event.clientX;
+        pointerBearingY = event.clientY;
+        updatePointerBearingDescriptions(document);
+    };
+    window.addEventListener('pointermove', updatePointer, { passive: true });
+    window.addEventListener('mousemove', updatePointer, { passive: true });
+    pointerBearingTimer = setInterval(() => updatePointerBearingDescriptions(document), 250);
 }
 
 function closeTradeModal() {
@@ -636,11 +692,14 @@ function renderCards() {
         const canTrade = offers.length > 0;
         const tradeBtnClass = canTrade ? 'trade-btn trade-btn--active' : 'trade-btn trade-btn--disabled';
         const isClock = item.id === 'clock';
+        const isPointerCompass = item.id === 'compass' || item.id === 'recovery_compass';
         const descriptionText = isClock
             ? formatClockSystemTime()
+            : isPointerCompass
+                ? '移动鼠标查看方位'
             : (duplicateNames.has(item.name) && item.loreLine ? item.loreLine : '');
         const loreLine = descriptionText
-            ? `<span class="scrolling-text" style="margin-top:2px; font-size:0.82rem; color:#94a3b8;" title="${escapeHtml(descriptionText)}"><span class="scrolling-text-inner"${isClock ? ' data-clock-time-desc="1"' : ''}>${escapeHtml(descriptionText)}</span></span>`
+            ? `<span class="scrolling-text" style="margin-top:2px; font-size:0.82rem; color:#94a3b8;" title="${escapeHtml(descriptionText)}"><span class="scrolling-text-inner"${isClock ? ' data-clock-time-desc="1"' : ''}${isPointerCompass ? ' data-pointer-bearing-desc="1"' : ''}>${escapeHtml(descriptionText)}</span></span>`
             : '';
         const safeName = escapeHtml(item.name);
         const safeId = escapeHtml(item.id);
@@ -692,6 +751,8 @@ function renderCards() {
     }
     updateClockTimeDescriptions(grid);
     ensureClockTimeTicker();
+    updatePointerBearingDescriptions(grid);
+    ensurePointerBearingTicker();
     syncItemsStateToUrl();
 }
 

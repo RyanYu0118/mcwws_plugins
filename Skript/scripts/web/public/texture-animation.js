@@ -7,11 +7,17 @@
     const threeTextures = new Set();
     const domEntries = new Set();
     const clockEntries = new Set();
+    const pointerCompassEntries = new Set();
     const rainbowLayerEntries = new Set();
     const clockFrameCache = new Map();
+    const pointerCompassFrameCache = new Map();
+    let pointerCompassTracking = false;
+    let pointerX = null;
+    let pointerY = null;
     let rafId = null;
 
     const ASSET_VER = global.McTexturePackVersion || '26.1.2';
+    const POINTER_COMPASS_TILT_COS = Math.cos(Math.PI / 4);
 
     const colormapResolved = new Map();
     const colormapLoading = new Map();
@@ -57,6 +63,11 @@
         return `/${ASSET_VER}/assets/minecraft/textures/item/clock_${idx}.png`;
     }
 
+    function pointerCompassFrameUrl(kind, frame) {
+        const idx = String(frame).padStart(2, '0');
+        return `/${ASSET_VER}/assets/minecraft/textures/item/${kind}_${idx}.png`;
+    }
+
     function clockFrameForBrowserTime(date) {
         const seconds = date.getHours() * 3600
             + date.getMinutes() * 60
@@ -65,6 +76,20 @@
         const noon = 12 * 3600;
         const sinceNoon = (seconds - noon + 24 * 3600) % (24 * 3600);
         return Math.floor((sinceNoon / (24 * 3600)) * 64) % 64;
+    }
+
+    function pointerCompassFrameForCanvas(canvas) {
+        if (!canvas || pointerX == null || pointerY == null) return 0;
+        const rect = canvas.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = pointerX - cx;
+        const dy = pointerY - cy;
+        if (Math.abs(dx) < 0.001 && Math.abs(dy) < 0.001) return 0;
+        // The compass sprite is viewed at an angled pitch, so its north/south axis is foreshortened on screen.
+        const planeDy = dy / POINTER_COMPASS_TILT_COS;
+        const clockwiseFromSouth = (Math.atan2(-dx, planeDy) + Math.PI * 2) % (Math.PI * 2);
+        return Math.round((clockwiseFromSouth / (Math.PI * 2)) * 32) % 32;
     }
 
     function colormapKindFor2d(itemIdRaw) {
@@ -530,6 +555,13 @@
                 }
                 updateClockEntry(e);
             });
+            pointerCompassEntries.forEach((e) => {
+                if (!e.canvas || !e.canvas.isConnected) {
+                    pointerCompassEntries.delete(e);
+                    return;
+                }
+                updatePointerCompassEntry(e);
+            });
             rainbowLayerEntries.forEach((e) => {
                 if (!e.canvas || !e.canvas.isConnected) {
                     rainbowLayerEntries.delete(e);
@@ -612,6 +644,26 @@
         return promise;
     }
 
+    function ensurePointerCompassTracking() {
+        if (pointerCompassTracking || typeof window === 'undefined') return;
+        pointerCompassTracking = true;
+        const updatePointer = (event) => {
+            pointerX = event.clientX;
+            pointerY = event.clientY;
+        };
+        window.addEventListener('pointermove', updatePointer, { passive: true });
+        window.addEventListener('mousemove', updatePointer, { passive: true });
+    }
+
+    function loadPointerCompassFrame(kind, frame) {
+        const normalized = ((frame % 32) + 32) % 32;
+        const key = `${kind}:${normalized}`;
+        if (pointerCompassFrameCache.has(key)) return pointerCompassFrameCache.get(key);
+        const promise = loadImage(pointerCompassFrameUrl(kind, normalized));
+        pointerCompassFrameCache.set(key, promise);
+        return promise;
+    }
+
     function drawClockFrame(entry, frame) {
         const targetFrame = ((frame % 64) + 64) % 64;
         loadClockFrame(targetFrame).then((img) => {
@@ -636,6 +688,37 @@
         const entry = { canvas, frame: -1 };
         clockEntries.add(entry);
         updateClockEntry(entry);
+        ensureLoop();
+        return true;
+    }
+
+    function drawPointerCompassFrame(entry, frame) {
+        const targetFrame = ((frame % 32) + 32) % 32;
+        loadPointerCompassFrame(entry.kind, targetFrame).then((img) => {
+            if (!entry.canvas || !entry.canvas.isConnected || entry.frame !== targetFrame) return;
+            const ctx = entry.canvas.getContext('2d');
+            if (!ctx) return;
+            ctx.clearRect(0, 0, entry.canvas.width, entry.canvas.height);
+            ctx.imageSmoothingEnabled = false;
+            drawImageWithFlatPadding(ctx, img, 0, 0, img.width, img.height);
+        }).catch(() => {});
+    }
+
+    function updatePointerCompassEntry(entry) {
+        const frame = pointerCompassFrameForCanvas(entry.canvas);
+        if (entry.frame === frame) return;
+        entry.frame = frame;
+        drawPointerCompassFrame(entry, frame);
+    }
+
+    function initPointerCompassCanvas(canvas) {
+        if (!canvas || !canvas.getContext) return false;
+        const itemId = normalizeTintId(itemIdForCanvas(canvas));
+        if (itemId !== 'compass' && itemId !== 'recovery_compass') return false;
+        ensurePointerCompassTracking();
+        const entry = { canvas, kind: itemId, frame: -1 };
+        pointerCompassEntries.add(entry);
+        updatePointerCompassEntry(entry);
         ensureLoop();
         return true;
     }
@@ -711,6 +794,10 @@
         }
         if (global.isMcClockItemId && global.isMcClockItemId(itemIdForCanvas(canvas))) {
             const ok = initClockCanvas(canvas);
+            if (ok) return true;
+        }
+        if (global.isMcMouseCompassItemId && global.isMcMouseCompassItemId(itemIdForCanvas(canvas))) {
+            const ok = initPointerCompassCanvas(canvas);
             if (ok) return true;
         }
         if (global.isMcTippedArrowItemId && global.isMcTippedArrowItemId(itemIdForCanvas(canvas))) {

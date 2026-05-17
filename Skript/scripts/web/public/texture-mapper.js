@@ -242,6 +242,20 @@ window.mcClockTextureUrlsForItem = function() {
     ];
 };
 
+window.isMcMouseCompassItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'compass' || n === 'recovery_compass';
+};
+
+window.mcMouseCompassTextureUrlsForItem = function(itemId) {
+    const base = TextureConfig.getBasePath();
+    const n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    return [
+        `${base}/item/${n}_00.png`,
+        `${base}/item/barrier.png`
+    ];
+};
+
 window.isMcCakeItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
     return n === 'cake';
@@ -268,6 +282,9 @@ window.flatTextureUrlsForItem = function(itemId) {
     }
     if (window.isMcClockItemId && window.isMcClockItemId(itemId)) {
         return window.mcClockTextureUrlsForItem(itemId);
+    }
+    if (window.isMcMouseCompassItemId && window.isMcMouseCompassItemId(itemId)) {
+        return window.mcMouseCompassTextureUrlsForItem(itemId);
     }
     if (window.isMcGlassPaneItemId && window.isMcGlassPaneItemId(itemId)) {
         return [`${base}/block/${smartId}.png`];
