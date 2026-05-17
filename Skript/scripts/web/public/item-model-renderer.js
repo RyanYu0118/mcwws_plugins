@@ -150,6 +150,9 @@
 
     const BUSH_BLOCK_IDS = new Set(['bush', 'sweet_berry_bush']);
 
+    const REDSTONE_2D_ITEM_IDS = new Set(['redstone', 'repeater', 'comparator']);
+    const TORCH_2D_ITEM_IDS = new Set(['torch', 'soul_torch', 'redstone_torch', 'copper_torch']);
+
     function isMcDoorBlockId(id) {
         return !!(id && id.endsWith('_door') && !id.endsWith('_trapdoor'));
     }
@@ -195,6 +198,8 @@
         if (isMcNonBlockCoralItemId(nid)) return true;
         if (isMcGlassPaneItemId(nid)) return true;
         if (isMcDoorBlockId(nid)) return true;
+        if (REDSTONE_2D_ITEM_IDS.has(nid)) return true;
+        if (TORCH_2D_ITEM_IDS.has(nid)) return true;
         if (GRASS_LIKE_IDS.has(nid)) return true;
         if (FLOWER_IDS.has(nid)) return true;
         if (BUSH_BLOCK_IDS.has(nid)) return true;
@@ -219,6 +224,8 @@
         if (global.isMcShieldItemId && global.isMcShieldItemId(id)) return [itemPath];
         if (global.isMcMushroomOrFungusItemId && global.isMcMushroomOrFungusItemId(id)) return [itemPath];
         if (isMcNonBlockCoralItemId(id)) return [itemPath];
+        if (REDSTONE_2D_ITEM_IDS.has(id)) return [itemPath];
+        if (TORCH_2D_ITEM_IDS.has(id)) return [itemPath];
         const rest = modelCandidates(itemId).filter((p) => p !== itemPath);
         return [itemPath, ...rest];
     }

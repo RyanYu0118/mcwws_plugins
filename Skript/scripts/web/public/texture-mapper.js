@@ -85,6 +85,14 @@ const POTION_EFFECT_COLORS = {
     wind_charged: '#bdc9ff'
 };
 
+const REDSTONE_2D_TEXTURE_ITEMS = new Set(['redstone', 'repeater', 'comparator']);
+const TORCH_2D_TEXTURES = {
+    torch: 'torch',
+    soul_torch: 'soul_torch',
+    redstone_torch: 'redstone_torch',
+    copper_torch: 'copper_torch'
+};
+
 window.isMcPotionItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
     return n === 'potion'
@@ -229,6 +237,12 @@ window.flatTextureUrlsForItem = function(itemId) {
     }
     if (window.isMcCandleItemId && window.isMcCandleItemId(itemId)) {
         return [`${base}/item/${smartId}.png`, `${base}/item/barrier.png`];
+    }
+    if (REDSTONE_2D_TEXTURE_ITEMS.has(smartId)) {
+        return [`${base}/item/${smartId}.png`, `${base}/item/barrier.png`];
+    }
+    if (TORCH_2D_TEXTURES[smartId]) {
+        return [`${base}/block/${TORCH_2D_TEXTURES[smartId]}.png`, `${base}/item/barrier.png`];
     }
     if (smartId === 'sugar_cane') {
         return [`${base}/item/sugar_cane.png`, `${base}/item/barrier.png`];
