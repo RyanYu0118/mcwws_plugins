@@ -906,6 +906,7 @@ body {
     border-color: var(--primary);
 }
 
+.scrolling-text,
 .scrolling-id {
     display: block;
     width: 100%;
@@ -914,6 +915,7 @@ body {
     vertical-align: middle;
 }
 
+.scrolling-text-inner,
 .scrolling-id-text {
     display: inline-block;
     white-space: nowrap;
@@ -930,6 +932,7 @@ body {
     }
 }
 
+.scrolling-text-inner,
 .scrolling-id-text {
     animation-fill-mode: forwards;
 }

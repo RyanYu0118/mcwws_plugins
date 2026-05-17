@@ -144,6 +144,10 @@ async function loadItems() {
             shopItem: rawData[key].item || null,
             buyAmount: rawData[key].amount || 1,
             displayName: rawData[key].displayName || null,
+            loreLine: normalizeLoreLine(rawData[key].loreLine
+                || rawData[key].description
+                || rawData[key].lore
+                || (window.getItemLoreLine ? window.getItemLoreLine(key) : null)),
             ultimateShopOffers: Array.isArray(rawData[key].ultimateShopOffers)
                 ? rawData[key].ultimateShopOffers
                 : []
@@ -178,6 +182,20 @@ function escapeHtml(str) {
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;');
+}
+
+function normalizeLoreLine(value) {
+    if (Array.isArray(value)) {
+        return value.map(normalizeLoreLine).find(Boolean) || null;
+    }
+    if (value && typeof value === 'object') {
+        if (value.text != null) return normalizeLoreLine(value.text);
+        if (value.translate != null) return normalizeLoreLine(value.translate);
+        return null;
+    }
+    if (value == null) return null;
+    const text = String(value).replace(/§[0-9a-fk-or]/gi, '').trim();
+    return text || null;
 }
 
 function closeTradeModal() {
@@ -579,11 +597,24 @@ function renderCards() {
     const pageCount = Math.max(1, Math.ceil(filteredItems.length / PAGE_SIZE));
     const startIndex = (currentPage - 1) * PAGE_SIZE;
     const pageItems = filteredItems.slice(startIndex, startIndex + PAGE_SIZE);
+    const duplicateNames = new Set();
+    const nameCounts = new Map();
+    allItems.forEach(item => {
+        nameCounts.set(item.name, (nameCounts.get(item.name) || 0) + 1);
+    });
+    nameCounts.forEach((count, name) => {
+        if (count > 1) duplicateNames.add(name);
+    });
 
     grid.innerHTML = pageItems.map(item => {
         const offers = item.ultimateShopOffers || [];
         const canTrade = offers.length > 0;
         const tradeBtnClass = canTrade ? 'trade-btn trade-btn--active' : 'trade-btn trade-btn--disabled';
+        const loreLine = duplicateNames.has(item.name) && item.loreLine
+            ? `<span class="scrolling-text" style="margin-top:2px; font-size:0.82rem; color:#94a3b8;" title="${escapeHtml(item.loreLine)}"><span class="scrolling-text-inner">${escapeHtml(item.loreLine)}</span></span>`
+            : '';
+        const safeName = escapeHtml(item.name);
+        const safeId = escapeHtml(item.id);
 
         return `
         <div class="glass card-hover" style="border-radius:12px; padding:20px; transition:all 0.3s ease; position:relative; overflow:hidden; border:1px solid rgba(255,255,255,0.05); background: var(--bg-card);">
@@ -593,8 +624,9 @@ function renderCards() {
             <div style="display:flex; align-items:center; margin-bottom:15px; margin-top: 5px;">
                 ${getItemIconHtml(item.id, item.name)}
                 <div style="min-width:0; width:100%;">
-                    <h3 style="margin:0; font-size:1.1rem; color:#F1F5F9; font-weight: 600;">${item.name}</h3>
-                    <span class="scrolling-id" style="font-size:0.75rem; color:#64748b; text-transform: lowercase;"><span class="scrolling-id-text">${item.id}</span></span>
+                    <h3 class="scrolling-text" style="margin:0; font-size:1.1rem; color:#F1F5F9; font-weight: 600;" title="${safeName}"><span class="scrolling-text-inner">${safeName}</span></h3>
+                    ${loreLine}
+                    <span class="scrolling-text scrolling-id" style="font-size:0.75rem; color:#64748b; text-transform: lowercase;" title="${safeId}"><span class="scrolling-text-inner scrolling-id-text">${safeId}</span></span>
                 </div>
             </div>
             
@@ -614,7 +646,13 @@ function renderCards() {
         </div>
     `;
     }).join('');
-    initScrollingIds();
+    initScrollingText(grid);
+    requestAnimationFrame(() => initScrollingText(grid));
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+            if (grid.isConnected) initScrollingText(grid);
+        });
+    }
     renderPagination();
     mountItemIcons();
     if (window.McTextureAnim) {
@@ -846,18 +884,26 @@ async function loadUserProfile() {
     updateAuthUi();
 }
 
-function initScrollingIds() {
-    document.querySelectorAll('.scrolling-id').forEach(container => {
-        const text = container.querySelector('.scrolling-id-text');
+function initScrollingText(root) {
+    const host = root || document;
+    const OVERFLOW_SAFETY_RATIO = 1.2;
+    host.querySelectorAll('.scrolling-text, .scrolling-id').forEach(container => {
+        const text = container.querySelector('.scrolling-text-inner, .scrolling-id-text');
         if (!text) return;
 
-        if (text.scrollWidth > container.clientWidth) {
-            const distance = text.scrollWidth - container.clientWidth;
+        text.style.animation = 'none';
+        text.style.removeProperty('--scroll-distance');
+
+        const safeScrollWidth = text.scrollWidth * OVERFLOW_SAFETY_RATIO;
+        if (safeScrollWidth > container.clientWidth) {
+            const distance = Math.max(1, safeScrollWidth - container.clientWidth);
             const duration = Math.max(5, distance / 30);
             text.style.animation = `scroll-text ${duration}s linear infinite`;
             text.style.setProperty('--scroll-distance', `-${distance}px`);
-        } else {
-            text.style.animation = 'none';
         }
     });
+}
+
+function initScrollingIds() {
+    initScrollingText(document);
 }

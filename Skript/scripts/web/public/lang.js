@@ -25,7 +25,7 @@ function buildMcLangMaps(lang) {
             blockByKey[k.slice('block.minecraft.'.length)] = v;
         }
     }
-    return { itemByKey, blockByKey };
+    return { itemByKey, blockByKey, lang };
 }
 
 function romanLevelSuffix(level) {
@@ -311,6 +311,45 @@ window.getChineseName = function(itemId) {
     }
     
     return id.split('_').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+};
+
+function stripMcFormatting(text) {
+    return String(text || '').replace(/§[0-9a-fk-or]/gi, '').trim();
+}
+
+function goatHornInstrumentKeyFromItemId(id) {
+    const direct = id.match(/^(admire|call|dream|feel|ponder|seek|sing|yearn)_goat_horn$/);
+    if (direct) return `instrument.minecraft.${direct[1]}_goat_horn`;
+
+    const suffix = id.match(/^goat_horn_(admire|call|dream|feel|ponder|seek|sing|yearn)$/);
+    if (suffix) return `instrument.minecraft.${suffix[1]}_goat_horn`;
+
+    return null;
+}
+
+/**
+ * 物品第二行描述：用于区分“锻造模板/音乐唱片/旗帜图案”等同名物品。
+ */
+window.getItemLoreLine = function(itemId) {
+    if (!mcLangMaps || !mcLangMaps.lang) return null;
+    const id = String(itemId).toLowerCase().replace(/-/g, '_');
+    const itemByKey = mcLangMaps.itemByKey;
+    const lang = mcLangMaps.lang;
+
+    const instrumentKey = goatHornInstrumentKeyFromItemId(id);
+    const candidates = [
+        `${id}.desc`,
+        `${id}.new`,
+        instrumentKey
+    ].filter(Boolean);
+
+    for (const key of candidates) {
+        const raw = key.startsWith('instrument.minecraft.') ? lang[key] : itemByKey[key];
+        const clean = stripMcFormatting(raw);
+        if (clean) return clean;
+    }
+
+    return null;
 };
 
 
