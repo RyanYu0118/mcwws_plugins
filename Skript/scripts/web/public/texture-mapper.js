@@ -31,6 +31,7 @@ window.getSmartId = function(id) {
     // 涂蜡铜等无独立贴图/模型，与不涂蜡方块共用资源
     if (rawId.startsWith('waxed_')) rawId = rawId.slice(6);
     if (rawId.startsWith('enchanted_book')) return 'enchanted_book';
+    if (rawId === 'enchanted_golden_apple') return 'golden_apple';
     // 项目里的药水按效果拆成独立商品 ID，材质仍复用三种原版瓶型。
     if (rawId === 'water_bottle' || rawId === 'mundane_potion' || rawId === 'thick_potion') return 'potion';
     if (rawId === 'splash_water_bottle') return 'splash_potion';
