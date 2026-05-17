@@ -24,7 +24,9 @@
         'small_dripleaf', 'big_dripleaf', 'seagrass', 'tall_seagrass'
     ]);
 
-    const FOLIAGE_TINT_2D_IDS = new Set(['leaf_litter']);
+    const FIXED_TINT_2D_RGB = {
+        leaf_litter: [130, 94, 54]
+    };
 
     const GRASS_2D_DEFAULT_BIOME = [0.8, 0.4];
     const FOLIAGE_2D_DEFAULT_BIOME = [0.48, 0.62];
@@ -45,11 +47,19 @@
         const id = normalizeTintId(itemIdRaw);
         if (!id) return null;
         if (GRASS_TINT_2D_IDS.has(id)) return 'grass';
-        if (FOLIAGE_TINT_2D_IDS.has(id)) return 'foliage';
         if (global.getSmartId) {
             const sid = normalizeTintId(global.getSmartId(id));
             if (GRASS_TINT_2D_IDS.has(sid)) return 'grass';
-            if (FOLIAGE_TINT_2D_IDS.has(sid)) return 'foliage';
+        }
+        return null;
+    }
+
+    function fixedTintRgbFor2d(itemIdRaw) {
+        const id = normalizeTintId(itemIdRaw);
+        if (FIXED_TINT_2D_RGB[id]) return FIXED_TINT_2D_RGB[id];
+        if (global.getSmartId) {
+            const sid = normalizeTintId(global.getSmartId(id));
+            if (FIXED_TINT_2D_RGB[sid]) return FIXED_TINT_2D_RGB[sid];
         }
         return null;
     }
@@ -139,6 +149,15 @@
     async function applyColormapTint2dIfNeeded(canvas) {
         if (!canvas || !canvas.getContext) return;
         const rawId = itemIdForCanvas(canvas);
+        const fixedRgb = fixedTintRgbFor2d(rawId);
+        if (fixedRgb) {
+            const ctx = canvas.getContext('2d');
+            const inset = padInsetForCanvas(canvas);
+            const rw = canvas.width - inset * 2;
+            const rh = canvas.height - inset * 2;
+            multiplyColormapTintPixels(ctx, inset, inset, rw, rh, fixedRgb);
+            return;
+        }
         const kind = colormapKindFor2d(rawId);
         if (!kind) return;
         const buf = await loadColormapBuffer(kind);
@@ -484,9 +503,10 @@
 
         const frameW = img.width;
         const frameH = img.width;
-        let colormapTintRgb = null;
-        const colormapKind = colormapKindFor2d(itemIdForCanvas(canvas));
-        if (colormapKind) {
+        const itemId = itemIdForCanvas(canvas);
+        let colormapTintRgb = fixedTintRgbFor2d(itemId);
+        const colormapKind = colormapKindFor2d(itemId);
+        if (!colormapTintRgb && colormapKind) {
             const buf = await loadColormapBuffer(colormapKind);
             if (buf) {
                 const [t, hum] = biomeParamsFor2d(colormapKind);
