@@ -1,4 +1,4 @@
-next_id: 21
+next_id: 23
 
 entry:
     '1': 09725eb5-2c4a-4198-a774-42077bf718ce,e381cb28-d93f-49aa-ac73-f8b57420d181,Song_zi,BUY,farming,A,1,2026-05-15 16:39:30
@@ -21,3 +21,5 @@ entry:
     '18': c7da29bb-6a20-458f-ae23-bfc8c38f0726,d006ba70-4ddc-4b37-b13c-76f190815116,Ryan_yu__,BUY,minerals,A,1,2026-05-15 23:07:00
     '19': 3e75d433-f065-4b5b-9b9b-2783c3919c0a,d006ba70-4ddc-4b37-b13c-76f190815116,Ryan_yu__,BUY,minerals,A,1,2026-05-15 23:07:13
     '20': c9966dd0-1e99-4ceb-adfa-58ba22985dd7,d006ba70-4ddc-4b37-b13c-76f190815116,Ryan_yu__,BUY,drops,E,1,2026-05-18 00:53:27
+    '21': 3353dfa1-672b-4fb4-a827-c85d4e13c361,d006ba70-4ddc-4b37-b13c-76f190815116,Ryan_yu__,BUY,blocks,A,1,2026-05-18 02:24:12
+    '22': 3f350569-0ad4-46cc-8281-0c0053a68ab8,d006ba70-4ddc-4b37-b13c-76f190815116,Ryan_yu__,SELL,blocks,A,1,2026-05-18 02:24:14
