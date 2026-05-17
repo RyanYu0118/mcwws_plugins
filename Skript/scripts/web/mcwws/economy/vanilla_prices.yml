@@ -1,0 +1,6655 @@
+angler_pottery_sherd:
+    buy: 50.0
+    sell: 54.45
+
+archer_pottery_sherd:
+    buy: 50.0
+    sell: 54.45
+
+arms_up_pottery_sherd:
+    buy: 50.0
+    sell: 54.45
+
+blade_pottery_sherd:
+    buy: 70.0
+    sell: 76.23
+
+brewer_pottery_sherd:
+    buy: 70.0
+    sell: 76.23
+
+brush:
+    buy: 9.0
+    sell: 9.8
+
+burn_pottery_sherd:
+    buy: 70.0
+    sell: 76.23
+
+danger_pottery_sherd:
+    buy: 90.0
+    sell: 98.01
+
+decorated_pot:
+    buy: 16.0
+    sell: 17.42
+
+explorer_pottery_sherd:
+    buy: 50.0
+    sell: 54.45
+
+flow_pottery_sherd:
+    buy: 70.0
+    sell: 76.23
+
+friend_pottery_sherd:
+    buy: 90.0
+    sell: 98.01
+
+guster_pottery_sherd:
+    buy: 70.0
+    sell: 76.23
+
+heart_pottery_sherd:
+    buy: 90.0
+    sell: 98.01
+
+heartbreak_pottery_sherd:
+    buy: 90.0
+    sell: 98.01
+
+howl_pottery_sherd:
+    buy: 90.0
+    sell: 98.01
+
+miner_pottery_sherd:
+    buy: 50.0
+    sell: 54.45
+
+mourner_pottery_sherd:
+    buy: 90.0
+    sell: 98.01
+
+plenty_pottery_sherd:
+    buy: 90.0
+    sell: 98.01
+
+prize_pottery_sherd:
+    buy: 50.0
+    sell: 54.45
+
+scrape_pottery_sherd:
+    buy: 70.0
+    sell: 76.23
+
+sheaf_pottery_sherd:
+    buy: 90.0
+    sell: 98.01
+
+shelter_pottery_sherd:
+    buy: 70.0
+    sell: 76.23
+
+skull_pottery_sherd:
+    buy: 50.0
+    sell: 54.45
+
+sniffer_egg:
+    buy: 400.0
+    sell: 435.6
+
+snort_pottery_sherd:
+    buy: 70.0
+    sell: 76.23
+
+armor_stand:
+    buy: 8.0
+    sell: 7.92
+
+chainmail_boots:
+    buy: 65.0
+    sell: 64.35
+
+chainmail_chestplate:
+    buy: 120.0
+    sell: 118.8
+
+chainmail_helmet:
+    buy: 70.0
+    sell: 69.3
+
+chainmail_leggings:
+    buy: 105.0
+    sell: 103.95
+
+copper_boots:
+    buy: 12.0
+    sell: 11.88
+
+copper_chestplate:
+    buy: 24.0
+    sell: 23.76
+
+copper_helmet:
+    buy: 15.0
+    sell: 14.85
+
+copper_leggings:
+    buy: 21.0
+    sell: 20.79
+
+diamond_boots:
+    buy: 1120.0
+    sell: 1109.0
+
+diamond_chestplate:
+    buy: 2240.0
+    sell: 2218.0
+
+diamond_helmet:
+    buy: 1400.0
+    sell: 1386.0
+
+diamond_leggings:
+    buy: 1960.0
+    sell: 1940.0
+
+golden_boots:
+    buy: 240.0
+    sell: 237.6
+
+golden_chestplate:
+    buy: 480.0
+    sell: 475.2
+
+golden_helmet:
+    buy: 300.0
+    sell: 297.0
+
+golden_leggings:
+    buy: 420.0
+    sell: 415.8
+
+iron_boots:
+    buy: 60.0
+    sell: 59.4
+
+iron_chestplate:
+    buy: 120.0
+    sell: 118.8
+
+iron_helmet:
+    buy: 75.0
+    sell: 74.25
+
+iron_leggings:
+    buy: 105.0
+    sell: 103.95
+
+leather_boots:
+    buy: 32.0
+    sell: 31.68
+
+leather_helmet:
+    buy: 40.0
+    sell: 39.6
+
+leather_leggings:
+    buy: 56.0
+    sell: 55.44
+
+leather_chestplate:
+    buy: 64.0
+    sell: 63.36
+
+netherite_boots:
+    buy: 3340.0
+    sell: 3307.0
+
+netherite_chestplate:
+    buy: 4340.0
+    sell: 4297.0
+
+netherite_helmet:
+    buy: 3640.0
+    sell: 3604.0
+
+netherite_leggings:
+    buy: 4140.0
+    sell: 4099.0
+
+shield:
+    buy: 27.0
+    sell: 26.73
+
+turtle_helmet:
+    buy: 150.0
+    sell: 148.5
+
+copper_horse_armor:
+    buy: 90.0
+    sell: 89.1
+
+diamond_horse_armor:
+    buy: 1000.0
+    sell: 990.0
+
+golden_horse_armor:
+    buy: 300.0
+    sell: 297.0
+
+iron_horse_armor:
+    buy: 180.0
+    sell: 178.2
+
+leather_horse_armor:
+    buy: 56.0
+    sell: 55.44
+
+netherite_horse_armor:
+    buy: 3340.0
+    sell: 3307.0
+
+copper_nautilus_armor:
+    buy: 235.0
+    sell: 232.65
+
+diamond_nautilus_armor:
+    buy: 2300.0
+    sell: 2277.0
+
+golden_nautilus_armor:
+    buy: 940.0
+    sell: 930.6
+
+iron_nautilus_armor:
+    buy: 470.0
+    sell: 465.3
+
+netherite_nautilus_armor:
+    buy: 4640.0
+    sell: 4594.0
+
+bolt_armor_trim_smithing_template:
+    buy: 2000.0
+    sell: 1980.0
+
+coast_armor_trim_smithing_template:
+    buy: 850.0
+    sell: 841.5
+
+dune_armor_trim_smithing_template:
+    buy: 850.0
+    sell: 841.5
+
+eye_armor_trim_smithing_template:
+    buy: 1700.0
+    sell: 1683.0
+
+flow_armor_trim_smithing_template:
+    buy: 2000.0
+    sell: 1980.0
+
+host_armor_trim_smithing_template:
+    buy: 1700.0
+    sell: 1683.0
+
+raiser_armor_trim_smithing_template:
+    buy: 1100.0
+    sell: 1089.0
+
+rib_armor_trim_smithing_template:
+    buy: 1300.0
+    sell: 1287.0
+
+sentry_armor_trim_smithing_template:
+    buy: 1300.0
+    sell: 1287.0
+
+shaper_armor_trim_smithing_template:
+    buy: 1100.0
+    sell: 1089.0
+
+silence_armor_trim_smithing_template:
+    buy: 2200.0
+    sell: 2178.0
+
+snout_armor_trim_smithing_template:
+    buy: 1300.0
+    sell: 1287.0
+
+spire_armor_trim_smithing_template:
+    buy: 1700.0
+    sell: 1683.0
+
+tide_armor_trim_smithing_template:
+    buy: 2200.0
+    sell: 2178.0
+
+vex_armor_trim_smithing_template:
+    buy: 1700.0
+    sell: 1683.0
+
+ward_armor_trim_smithing_template:
+    buy: 2200.0
+    sell: 2178.0
+
+wayfinder_armor_trim_smithing_template:
+    buy: 1100.0
+    sell: 1089.0
+
+wild_armor_trim_smithing_template:
+    buy: 1300.0
+    sell: 1287.0
+
+wolf_armor:
+    buy: 180.0
+    sell: 178.2
+
+water_bottle:
+    buy: 3.0
+    sell: 2.97
+
+lingering_water_bottle:
+    buy: 21.0
+    sell: 20.79
+
+splash_water_bottle:
+    buy: 7.0
+    sell: 6.93
+
+awkward_potion:
+    buy: 4.0
+    sell: 3.96
+
+mundane_potion:
+    buy: 1.0
+    sell: 0.99
+
+potion_of_fire_resistance_1:
+    buy: 13.0
+    sell: 12.87
+
+potion_of_fire_resistance_extended:
+    buy: 14.0
+    sell: 13.86
+
+potion_of_harming_1:
+    buy: 26.0
+    sell: 25.74
+
+potion_of_harming_2:
+    buy: 27.0
+    sell: 26.73
+
+potion_of_healing_1:
+    buy: 23.0
+    sell: 22.77
+
+potion_of_healing_2:
+    buy: 24.0
+    sell: 23.76
+
+potion_of_infestation_1:
+    buy: 5.0
+    sell: 4.95
+
+potion_of_invisibility_1:
+    buy: 26.0
+    sell: 25.74
+
+potion_of_invisibility_extended:
+    buy: 27.0
+    sell: 26.73
+
+potion_of_leaping_1:
+    buy: 8.0
+    sell: 7.92
+
+potion_of_leaping_extended:
+    buy: 9.0
+    sell: 8.91
+
+potion_of_leaping_2:
+    buy: 9.0
+    sell: 8.91
+
+potion_of_night_vision_1:
+    buy: 23.0
+    sell: 22.77
+
+potion_of_night_vision_extended:
+    buy: 24.0
+    sell: 23.76
+
+potion_of_oozing_1:
+    buy: 34.0
+    sell: 33.66
+
+potion_of_poison_1:
+    buy: 6.0
+    sell: 5.94
+
+potion_of_poison_extended:
+    buy: 7.0
+    sell: 6.93
+
+potion_of_poison_2:
+    buy: 7.0
+    sell: 6.93
+
+potion_of_regeneration_1:
+    buy: 31.0
+    sell: 30.69
+
+potion_of_regeneration_extended:
+    buy: 32.0
+    sell: 31.68
+
+potion_of_regeneration_2:
+    buy: 32.0
+    sell: 31.68
+
+potion_of_slow_falling_1:
+    buy: 11.0
+    sell: 10.89
+
+potion_of_slow_falling_extended:
+    buy: 12.0
+    sell: 11.88
+
+potion_of_slowness_1:
+    buy: 8.0
+    sell: 7.92
+
+potion_of_slowness_extended:
+    buy: 9.0
+    sell: 8.91
+
+potion_of_slowness_2:
+    buy: 9.0
+    sell: 8.91
+
+potion_of_strength_1:
+    buy: 9.0
+    sell: 8.91
+
+potion_of_strength_extended:
+    buy: 10.0
+    sell: 9.9
+
+potion_of_strength_2:
+    buy: 10.0
+    sell: 9.9
+
+potion_of_swiftness_1:
+    buy: 5.0
+    sell: 4.95
+
+potion_of_swiftness_extended:
+    buy: 6.0
+    sell: 5.94
+
+potion_of_swiftness_2:
+    buy: 6.0
+    sell: 5.94
+
+potion_of_the_turtle_master_1:
+    buy: 14.0
+    sell: 13.86
+
+potion_of_the_turtle_master_extended:
+    buy: 15.0
+    sell: 14.85
+
+potion_of_the_turtle_master_2:
+    buy: 15.0
+    sell: 14.85
+
+potion_of_water_breathing_1:
+    buy: 5.0
+    sell: 4.95
+
+potion_of_water_breathing_extended:
+    buy: 6.0
+    sell: 5.94
+
+potion_of_weakness:
+    buy: 6.0
+    sell: 5.94
+
+potion_of_weakness_extended:
+    buy: 7.0
+    sell: 6.93
+
+potion_of_weaving_1:
+    buy: 6.0
+    sell: 5.94
+
+potion_of_wind_charging_1:
+    buy: 28.0
+    sell: 27.72
+
+thick_potion:
+    buy: 1.0
+    sell: 0.99
+
+awkward_lingering_potion:
+    buy: 22.0
+    sell: 21.78
+
+lingering_potion_of_fire_resistance_1:
+    buy: 31.0
+    sell: 30.69
+
+lingering_potion_of_fire_resistance_extended:
+    buy: 32.0
+    sell: 31.68
+
+lingering_potion_of_harming_1:
+    buy: 44.0
+    sell: 43.56
+
+lingering_potion_of_harming_2:
+    buy: 45.0
+    sell: 44.55
+
+lingering_potion_of_healing_1:
+    buy: 41.0
+    sell: 40.59
+
+lingering_potion_of_healing_2:
+    buy: 42.0
+    sell: 41.58
+
+lingering_potion_of_infestation_1:
+    buy: 23.0
+    sell: 22.77
+
+lingering_potion_of_invisibility_1:
+    buy: 44.0
+    sell: 43.56
+
+lingering_potion_of_invisibility_extended:
+    buy: 45.0
+    sell: 44.55
+
+lingering_potion_of_leaping_1:
+    buy: 26.0
+    sell: 25.74
+
+lingering_potion_of_leaping_extended:
+    buy: 27.0
+    sell: 26.73
+
+lingering_potion_of_leaping_2:
+    buy: 27.0
+    sell: 26.73
+
+lingering_potion_of_night_vision_1:
+    buy: 41.0
+    sell: 40.59
+
+lingering_potion_of_night_vision_extended:
+    buy: 42.0
+    sell: 41.58
+
+lingering_potion_of_oozing_1:
+    buy: 52.0
+    sell: 51.48
+
+lingering_potion_of_poison_1:
+    buy: 24.0
+    sell: 23.76
+
+lingering_potion_of_poison_extended:
+    buy: 25.0
+    sell: 24.75
+
+lingering_potion_of_poison_2:
+    buy: 25.0
+    sell: 24.75
+
+lingering_potion_of_regeneration_1:
+    buy: 49.0
+    sell: 48.51
+
+lingering_potion_of_regeneration_extended:
+    buy: 50.0
+    sell: 49.5
+
+lingering_potion_of_regeneration_2:
+    buy: 50.0
+    sell: 49.5
+
+lingering_potion_of_slow_falling_1:
+    buy: 29.0
+    sell: 28.71
+
+lingering_potion_of_slow_falling_extended:
+    buy: 30.0
+    sell: 29.7
+
+lingering_potion_of_slowness_1:
+    buy: 26.0
+    sell: 25.74
+
+lingering_potion_of_slowness_extended:
+    buy: 27.0
+    sell: 26.73
+
+lingering_potion_of_slowness_2:
+    buy: 27.0
+    sell: 26.73
+
+lingering_potion_of_strength_1:
+    buy: 27.0
+    sell: 26.73
+
+lingering_potion_of_strength_extended:
+    buy: 28.0
+    sell: 27.72
+
+lingering_potion_of_strength_2:
+    buy: 28.0
+    sell: 27.72
+
+lingering_potion_of_swiftness_1:
+    buy: 23.0
+    sell: 22.77
+
+lingering_potion_of_swiftness_extended:
+    buy: 24.0
+    sell: 23.76
+
+lingering_potion_of_swiftness_2:
+    buy: 24.0
+    sell: 23.76
+
+lingering_potion_of_the_turtle_master_1:
+    buy: 32.0
+    sell: 31.68
+
+lingering_potion_of_the_turtle_master_extended:
+    buy: 33.0
+    sell: 32.67
+
+lingering_potion_of_the_turtle_master_2:
+    buy: 33.0
+    sell: 32.67
+
+lingering_potion_of_water_breathing_1:
+    buy: 23.0
+    sell: 22.77
+
+lingering_potion_of_water_breathing_extended:
+    buy: 24.0
+    sell: 23.76
+
+lingering_potion_of_weakness_1:
+    buy: 24.0
+    sell: 23.76
+
+lingering_potion_of_weakness_extended:
+    buy: 25.0
+    sell: 24.75
+
+lingering_potion_of_weaving_1:
+    buy: 24.0
+    sell: 23.76
+
+lingering_potion_of_wind_charging_1:
+    buy: 46.0
+    sell: 45.54
+
+awkward_splash_potion:
+    buy: 8.0
+    sell: 7.92
+
+splash_potion_of_fire_resistance_1:
+    buy: 17.0
+    sell: 16.83
+
+splash_potion_of_fire_resistance_extended:
+    buy: 18.0
+    sell: 17.82
+
+splash_potion_of_harming_1:
+    buy: 30.0
+    sell: 29.7
+
+splash_potion_of_harming_2:
+    buy: 31.0
+    sell: 30.69
+
+splash_potion_of_healing_1:
+    buy: 27.0
+    sell: 26.73
+
+splash_potion_of_healing_2:
+    buy: 28.0
+    sell: 27.72
+
+splash_potion_of_infestation_1:
+    buy: 9.0
+    sell: 8.91
+
+splash_potion_of_invisibility_1:
+    buy: 30.0
+    sell: 29.7
+
+splash_potion_of_invisibility_extended:
+    buy: 31.0
+    sell: 30.69
+
+splash_potion_of_leaping_1:
+    buy: 12.0
+    sell: 11.88
+
+splash_potion_of_leaping_extended:
+    buy: 13.0
+    sell: 12.87
+
+splash_potion_of_leaping_2:
+    buy: 13.0
+    sell: 12.87
+
+splash_potion_of_night_vision_1:
+    buy: 27.0
+    sell: 26.73
+
+splash_potion_of_night_vision_extended:
+    buy: 28.0
+    sell: 27.72
+
+splash_potion_of_oozing_1:
+    buy: 38.0
+    sell: 37.62
+
+splash_potion_of_poison_1:
+    buy: 10.0
+    sell: 9.9
+
+splash_potion_of_poison_extended:
+    buy: 11.0
+    sell: 10.89
+
+splash_potion_of_poison_2:
+    buy: 11.0
+    sell: 10.89
+
+splash_potion_of_regeneration_1:
+    buy: 35.0
+    sell: 34.65
+
+splash_potion_of_regeneration_extended:
+    buy: 36.0
+    sell: 35.64
+
+splash_potion_of_regeneration_2:
+    buy: 36.0
+    sell: 35.64
+
+splash_potion_of_slow_falling_1:
+    buy: 15.0
+    sell: 14.85
+
+splash_potion_of_slow_falling_extended:
+    buy: 16.0
+    sell: 15.84
+
+splash_potion_of_slowness_1:
+    buy: 12.0
+    sell: 11.88
+
+splash_potion_of_slowness_extended:
+    buy: 13.0
+    sell: 12.87
+
+splash_potion_of_slowness_2:
+    buy: 13.0
+    sell: 12.87
+
+splash_potion_of_strength_1:
+    buy: 13.0
+    sell: 12.87
+
+splash_potion_of_strength_extended:
+    buy: 14.0
+    sell: 13.86
+
+splash_potion_of_strength_2:
+    buy: 14.0
+    sell: 13.86
+
+splash_potion_of_swiftness_1:
+    buy: 9.0
+    sell: 8.91
+
+splash_potion_of_swiftness_extended:
+    buy: 10.0
+    sell: 9.9
+
+splash_potion_of_swiftness_2:
+    buy: 10.0
+    sell: 9.9
+
+splash_potion_of_the_turtle_master_1:
+    buy: 18.0
+    sell: 17.82
+
+splash_potion_of_the_turtle_master_extended:
+    buy: 19.0
+    sell: 18.81
+
+splash_potion_of_the_turtle_master_2:
+    buy: 19.0
+    sell: 18.81
+
+splash_potion_of_water_breathing_1:
+    buy: 9.0
+    sell: 8.91
+
+splash_potion_of_water_breathing_extended:
+    buy: 10.0
+    sell: 9.9
+
+splash_potion_of_weakness_1:
+    buy: 10.0
+    sell: 9.9
+
+splash_potion_of_weakness_extended:
+    buy: 11.0
+    sell: 10.89
+
+splash_potion_of_weaving_1:
+    buy: 10.0
+    sell: 9.9
+
+splash_potion_of_wind_charging_1:
+    buy: 32.0
+    sell: 31.68
+
+arrow_of_fire_resistance_1:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_fire_resistance_extended:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_harming_1:
+    buy: 9.0
+    sell: 8.91
+
+arrow_of_harming_2:
+    buy: 9.0
+    sell: 8.91
+
+arrow_of_healing_1:
+    buy: 8.0
+    sell: 7.92
+
+arrow_of_healing_2:
+    buy: 8.0
+    sell: 7.92
+
+arrow_of_infestation_1:
+    buy: 6.0
+    sell: 5.94
+
+arrow_of_invisibility_1:
+    buy: 9.0
+    sell: 8.91
+
+arrow_of_invisibility_extended:
+    buy: 9.0
+    sell: 8.91
+
+arrow_of_leaping_1:
+    buy: 6.0
+    sell: 5.94
+
+arrow_of_leaping_extended:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_leaping_2:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_night_vision_1:
+    buy: 8.0
+    sell: 7.92
+
+arrow_of_night_vision_extended:
+    buy: 8.0
+    sell: 7.92
+
+arrow_of_oozing_1:
+    buy: 10.0
+    sell: 9.9
+
+arrow_of_poison_1:
+    buy: 6.0
+    sell: 5.94
+
+arrow_of_poison_extended:
+    buy: 6.0
+    sell: 5.94
+
+arrow_of_poison_2:
+    buy: 6.0
+    sell: 5.94
+
+arrow_of_regeneration_1:
+    buy: 9.0
+    sell: 8.91
+
+arrow_of_regeneration_extended:
+    buy: 9.0
+    sell: 8.91
+
+arrow_of_regeneration_2:
+    buy: 9.0
+    sell: 8.91
+
+arrow_of_slow_falling_1:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_slow_falling_extended:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_slowness_1:
+    buy: 6.0
+    sell: 5.94
+
+arrow_of_slowness_extended:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_slowness_2:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_strength_1:
+    buy: 6.0
+    sell: 5.94
+
+arrow_of_strength_extended:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_strength_2:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_swiftness_1:
+    buy: 6.0
+    sell: 5.94
+
+arrow_of_swiftness_extended:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_swiftness_2:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_the_turtle_master_1:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_the_turtle_master_extended:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_the_turtle_master_2:
+    buy: 7.0
+    sell: 6.93
+
+arrow_of_water_breathing_1:
+    buy: 6.0
+    sell: 5.94
+
+arrow_of_water_breathing_extended:
+    buy: 6.0
+    sell: 5.94
+
+arrow_of_weakness_1:
+    buy: 6.0
+    sell: 5.94
+
+arrow_of_weakness_extended:
+    buy: 6.0
+    sell: 5.94
+
+arrow_of_weaving_1:
+    buy: 6.0
+    sell: 5.94
+
+arrow_of_wind_charging_1:
+    buy: 9.0
+    sell: 8.91
+
+brick:
+    buy: 4.0
+    sell: 3.96
+
+brick_slab:
+    buy: 8.0
+    sell: 7.92
+
+brick_stairs:
+    buy: 24.0
+    sell: 23.76
+
+brick_wall:
+    buy: 16.0
+    sell: 15.84
+
+bricks:
+    buy: 16.0
+    sell: 15.84
+
+chiseled_nether_bricks:
+    buy: 4.0
+    sell: 3.96
+
+cracked_nether_bricks:
+    buy: 5.0
+    sell: 4.95
+
+nether_brick:
+    buy: 1.0
+    sell: 0.99
+
+nether_brick_fence:
+    buy: 3.0
+    sell: 2.97
+
+nether_brick_slab:
+    buy: 2.0
+    sell: 1.98
+
+nether_brick_stairs:
+    buy: 6.0
+    sell: 5.94
+
+nether_brick_wall:
+    buy: 4.0
+    sell: 3.96
+
+nether_bricks:
+    buy: 4.0
+    sell: 3.96
+
+red_nether_brick_slab:
+    buy: 3.0
+    sell: 2.97
+
+red_nether_brick_stairs:
+    buy: 9.0
+    sell: 8.91
+
+red_nether_brick_wall:
+    buy: 6.0
+    sell: 5.94
+
+red_nether_bricks:
+    buy: 6.0
+    sell: 5.94
+
+chiseled_resin_bricks:
+    buy: 144.0
+    sell: 142.56
+
+resin_brick:
+    buy: 36.0
+    sell: 35.64
+
+resin_brick_slab:
+    buy: 72.0
+    sell: 71.28
+
+resin_brick_stairs:
+    buy: 216.0
+    sell: 213.84
+
+resin_brick_wall:
+    buy: 144.0
+    sell: 142.56
+
+resin_bricks:
+    buy: 144.0
+    sell: 142.56
+
+copper_block:
+    buy: 27.0
+    sell: 26.73
+
+chiseled_copper:
+    buy: 27.0
+    sell: 26.73
+
+cut_copper:
+    buy: 27.0
+    sell: 26.73
+
+cut_copper_slab:
+    buy: 14.0
+    sell: 13.86
+
+cut_copper_stairs:
+    buy: 41.0
+    sell: 40.59
+
+exposed_chiseled_copper:
+    buy: 29.0
+    sell: 28.71
+
+exposed_copper:
+    buy: 29.0
+    sell: 28.71
+
+exposed_cut_copper:
+    buy: 29.0
+    sell: 28.71
+
+exposed_cut_copper_slab:
+    buy: 15.0
+    sell: 14.85
+
+exposed_cut_copper_stairs:
+    buy: 44.0
+    sell: 43.56
+
+oxidized_chiseled_copper:
+    buy: 32.0
+    sell: 31.68
+
+oxidized_copper:
+    buy: 32.0
+    sell: 31.68
+
+oxidized_cut_copper:
+    buy: 32.0
+    sell: 31.68
+
+oxidized_cut_copper_slab:
+    buy: 16.0
+    sell: 15.84
+
+oxidized_cut_copper_stairs:
+    buy: 48.0
+    sell: 47.52
+
+waxed_copper_block:
+    buy: 29.0
+    sell: 28.71
+
+waxed_chiseled_copper:
+    buy: 29.0
+    sell: 28.71
+
+waxed_cut_copper:
+    buy: 29.0
+    sell: 28.71
+
+waxed_cut_copper_slab:
+    buy: 16.0
+    sell: 15.84
+
+waxed_cut_copper_stairs:
+    buy: 43.0
+    sell: 42.57
+
+waxed_exposed_chiseled_copper:
+    buy: 31.0
+    sell: 30.69
+
+waxed_exposed_copper:
+    buy: 31.0
+    sell: 30.69
+
+waxed_exposed_cut_copper:
+    buy: 31.0
+    sell: 30.69
+
+waxed_exposed_cut_copper_slab:
+    buy: 17.0
+    sell: 16.83
+
+waxed_exposed_cut_copper_stairs:
+    buy: 46.0
+    sell: 45.54
+
+waxed_oxidized_chiseled_copper:
+    buy: 34.0
+    sell: 33.66
+
+waxed_oxidized_copper:
+    buy: 34.0
+    sell: 33.66
+
+waxed_oxidized_cut_copper:
+    buy: 34.0
+    sell: 33.66
+
+waxed_oxidized_cut_copper_slab:
+    buy: 18.0
+    sell: 17.82
+
+waxed_oxidized_cut_copper_stairs:
+    buy: 50.0
+    sell: 49.5
+
+waxed_weathered_chiseled_copper:
+    buy: 32.0
+    sell: 31.68
+
+waxed_weathered_copper:
+    buy: 32.0
+    sell: 31.68
+
+waxed_weathered_cut_copper:
+    buy: 32.0
+    sell: 31.68
+
+waxed_weathered_cut_copper_slab:
+    buy: 17.0
+    sell: 16.83
+
+waxed_weathered_cut_copper_stairs:
+    buy: 47.0
+    sell: 46.53
+
+weathered_chiseled_copper:
+    buy: 30.0
+    sell: 29.7
+
+weathered_copper:
+    buy: 30.0
+    sell: 29.7
+
+weathered_cut_copper:
+    buy: 30.0
+    sell: 29.7
+
+weathered_cut_copper_slab:
+    buy: 15.0
+    sell: 14.85
+
+weathered_cut_copper_stairs:
+    buy: 45.0
+    sell: 44.55
+
+copper_bars:
+    buy: 1.2
+    sell: 1.19
+
+exposed_copper_bars:
+    buy: 2.0
+    sell: 1.98
+
+oxidized_copper_bars:
+    buy: 3.0
+    sell: 2.97
+
+waxed_copper_bars:
+    buy: 3.2
+    sell: 3.17
+
+waxed_exposed_copper_bars:
+    buy: 4.0
+    sell: 3.96
+
+waxed_oxidized_copper_bars:
+    buy: 5.0
+    sell: 4.95
+
+waxed_weathered_copper_bars:
+    buy: 4.5
+    sell: 4.46
+
+weathered_copper_bars:
+    buy: 2.5
+    sell: 2.48
+
+copper_chain:
+    buy: 4.0
+    sell: 3.96
+
+exposed_copper_chain:
+    buy: 5.0
+    sell: 4.95
+
+oxidized_copper_chain:
+    buy: 7.0
+    sell: 6.93
+
+waxed_copper_chain:
+    buy: 6.0
+    sell: 5.94
+
+waxed_exposed_copper_chain:
+    buy: 7.0
+    sell: 6.93
+
+waxed_oxidized_copper_chain:
+    buy: 9.0
+    sell: 8.91
+
+waxed_weathered_copper_chain:
+    buy: 8.0
+    sell: 7.92
+
+weathered_copper_chain:
+    buy: 6.0
+    sell: 5.94
+
+copper_grate:
+    buy: 27.0
+    sell: 26.73
+
+exposed_copper_grate:
+    buy: 29.0
+    sell: 28.71
+
+oxidized_copper_grate:
+    buy: 32.0
+    sell: 31.68
+
+waxed_copper_grate:
+    buy: 29.0
+    sell: 28.71
+
+waxed_exposed_copper_grate:
+    buy: 31.0
+    sell: 30.69
+
+waxed_oxidized_copper_grate:
+    buy: 34.0
+    sell: 33.66
+
+waxed_weathered_copper_grate:
+    buy: 32.0
+    sell: 31.68
+
+weathered_copper_grate:
+    buy: 30.0
+    sell: 29.7
+
+copper_golem_statue:
+    buy: 200.0
+    sell: 198.0
+
+exposed_copper_golem_statue:
+    buy: 210.0
+    sell: 207.9
+
+oxidized_copper_golem_statue:
+    buy: 230.0
+    sell: 227.7
+
+weathered_copper_golem_statue:
+    buy: 220.0
+    sell: 217.8
+
+waxed_copper_golem_statue:
+    buy: 202.0
+    sell: 199.98
+
+waxed_exposed_copper_golem_statue:
+    buy: 212.0
+    sell: 209.88
+
+waxed_oxidized_copper_golem_statue:
+    buy: 232.0
+    sell: 229.68
+
+waxed_weathered_copper_golem_statue:
+    buy: 222.0
+    sell: 219.78
+
+calibrated_sculk_sensor:
+    buy: 70.0
+    sell: 69.3
+
+echo_shard:
+    buy: 35.0
+    sell: 34.65
+
+sculk:
+    buy: 20.0
+    sell: 19.8
+
+sculk_catalyst:
+    buy: 60.0
+    sell: 59.4
+
+sculk_sensor:
+    buy: 40.0
+    sell: 39.6
+
+sculk_shrieker:
+    buy: 50.0
+    sell: 49.5
+
+sculk_vein:
+    buy: 10.0
+    sell: 9.9
+
+music_disc_11:
+    buy: 100.0
+    sell: 99.0
+
+music_disc_13:
+    buy: 100.0
+    sell: 99.0
+
+music_disc_5:
+    buy: 162.0
+    sell: 160.38
+
+disc_fragment_5:
+    buy: 18.0
+    sell: 17.82
+
+music_disc_blocks:
+    buy: 110.0
+    sell: 108.9
+
+music_disc_cat:
+    buy: 100.0
+    sell: 99.0
+
+music_disc_chirp:
+    buy: 110.0
+    sell: 108.9
+
+music_disc_creator:
+    buy: 130.0
+    sell: 128.7
+
+music_disc_far:
+    buy: 110.0
+    sell: 108.9
+
+music_disc_lava_chicken:
+    buy: 130.0
+    sell: 128.7
+
+music_disc_mall:
+    buy: 110.0
+    sell: 108.9
+
+music_disc_mellohi:
+    buy: 120.0
+    sell: 118.8
+
+music_disc_creator_music_box:
+    buy: 140.0
+    sell: 138.6
+
+music_disc_otherside:
+    buy: 140.0
+    sell: 138.6
+
+music_disc_pigstep:
+    buy: 100.0
+    sell: 99.0
+
+music_disc_precipice:
+    buy: 130.0
+    sell: 128.7
+
+music_disc_relic:
+    buy: 150.0
+    sell: 148.5
+
+music_disc_stal:
+    buy: 110.0
+    sell: 108.9
+
+music_disc_strad:
+    buy: 110.0
+    sell: 108.9
+
+music_disc_tears:
+    buy: 150.0
+    sell: 148.5
+
+music_disc_wait:
+    buy: 130.0
+    sell: 128.7
+
+music_disc_ward:
+    buy: 110.0
+    sell: 108.9
+
+armadillo_scute:
+    buy: 30.0
+    sell: 29.7
+
+bee_nest:
+    buy: 35.0
+    sell: 34.65
+
+blaze_powder:
+    buy: 15.0
+    sell: 14.85
+
+blaze_rod:
+    buy: 30.0
+    sell: 29.7
+
+bone:
+    buy: 5.0
+    sell: 4.95
+
+breeze_rod:
+    buy: 70.0
+    sell: 69.3
+
+creeper_head:
+    buy: 1500.0
+    sell: 1485.0
+
+ender_pearl:
+    buy: 16.0
+    sell: 15.84
+
+feather:
+    buy: 5.0
+    sell: 4.95
+
+ghast_tear:
+    buy: 80.0
+    sell: 79.2
+
+goat_horn:
+    buy: 50.0
+    sell: 49.5
+
+gunpowder:
+    buy: 10.0
+    sell: 9.9
+
+honey_block:
+    buy: 12.0
+    sell: 11.88
+
+honey_bottle:
+    buy: 3.0
+    sell: 2.97
+
+honeycomb:
+    buy: 2.0
+    sell: 1.98
+
+honeycomb_block:
+    buy: 8.0
+    sell: 7.92
+
+leather:
+    buy: 8.0
+    sell: 7.92
+
+magma_cream:
+    buy: 25.0
+    sell: 24.75
+
+nautilus_shell:
+    buy: 80.0
+    sell: 79.2
+
+nether_star:
+    buy: 3000.0
+    sell: 2970.0
+
+ominous_bottle:
+    buy: 150.0
+    sell: 148.5
+
+phantom_membrane:
+    buy: 20.0
+    sell: 19.8
+
+piglin_head:
+    buy: 1500.0
+    sell: 1485.0
+
+rabbit_hide:
+    buy: 2.0
+    sell: 1.98
+
+rotten_flesh:
+    buy: 1.0
+    sell: 0.99
+
+skeleton_skull:
+    buy: 1500.0
+    sell: 1485.0
+
+slime_block:
+    buy: 90.0
+    sell: 89.1
+
+slime_ball:
+    buy: 10.0
+    sell: 9.9
+
+spider_eye:
+    buy: 5.0
+    sell: 4.95
+
+string:
+    buy: 2.0
+    sell: 1.98
+
+turtle_scute:
+    buy: 30.0
+    sell: 29.7
+
+wind_charge:
+    buy: 18.0
+    sell: 17.82
+
+wither_rose:
+    buy: 30.0
+    sell: 29.7
+
+wither_skeleton_skull:
+    buy: 600.0
+    sell: 594.0
+
+zombie_head:
+    buy: 1500.0
+    sell: 1485.0
+
+glow_ink_sac:
+    buy: 10.0
+    sell: 9.9
+
+ink_sac:
+    buy: 5.0
+    sell: 4.95
+
+ominous_trial_key:
+    buy: 300.0
+    sell: 297.0
+
+trial_key:
+    buy: 100.0
+    sell: 99.0
+
+resin_block:
+    buy: 315.0
+    sell: 311.85
+
+resin_clump:
+    buy: 35.0
+    sell: 34.65
+
+black_banner:
+    buy: 55.0
+    sell: 54.45
+
+blue_banner:
+    buy: 31.0
+    sell: 30.69
+
+brown_banner:
+    buy: 37.0
+    sell: 36.63
+
+cyan_banner:
+    buy: 34.0
+    sell: 33.66
+
+gray_banner:
+    buy: 46.0
+    sell: 45.54
+
+green_banner:
+    buy: 37.0
+    sell: 36.63
+
+light_blue_banner:
+    buy: 49.0
+    sell: 48.51
+
+light_gray_banner:
+    buy: 31.0
+    sell: 30.69
+
+lime_banner:
+    buy: 37.0
+    sell: 36.63
+
+magenta_banner:
+    buy: 49.0
+    sell: 48.51
+
+orange_banner:
+    buy: 37.0
+    sell: 36.63
+
+pink_banner:
+    buy: 31.0
+    sell: 30.69
+
+purple_banner:
+    buy: 31.0
+    sell: 30.69
+
+red_banner:
+    buy: 31.0
+    sell: 30.69
+
+white_banner:
+    buy: 25.0
+    sell: 24.75
+
+yellow_banner:
+    buy: 31.0
+    sell: 30.69
+
+black_bed:
+    buy: 33.0
+    sell: 32.67
+
+blue_bed:
+    buy: 21.0
+    sell: 20.79
+
+brown_bed:
+    buy: 24.0
+    sell: 23.76
+
+cyan_bed:
+    buy: 23.0
+    sell: 22.77
+
+gray_bed:
+    buy: 29.0
+    sell: 28.71
+
+green_bed:
+    buy: 24.0
+    sell: 23.76
+
+light_blue_bed:
+    buy: 30.0
+    sell: 29.7
+
+light_gray_bed:
+    buy: 21.0
+    sell: 20.79
+
+lime_bed:
+    buy: 24.0
+    sell: 23.76
+
+magenta_bed:
+    buy: 30.0
+    sell: 29.7
+
+orange_bed:
+    buy: 24.0
+    sell: 23.76
+
+pink_bed:
+    buy: 21.0
+    sell: 20.79
+
+purple_bed:
+    buy: 21.0
+    sell: 20.79
+
+red_bed:
+    buy: 21.0
+    sell: 20.79
+
+yellow_bed:
+    buy: 21.0
+    sell: 20.79
+
+black_bundle:
+    buy: 15.0
+    sell: 14.85
+
+blue_bundle:
+    buy: 11.0
+    sell: 10.89
+
+brown_bundle:
+    buy: 12.0
+    sell: 11.88
+
+cyan_bundle:
+    buy: 12.0
+    sell: 11.88
+
+gray_bundle:
+    buy: 14.0
+    sell: 13.86
+
+green_bundle:
+    buy: 12.0
+    sell: 11.88
+
+light_blue_bundle:
+    buy: 14.0
+    sell: 13.86
+
+light_gray_bundle:
+    buy: 11.0
+    sell: 10.89
+
+lime_bundle:
+    buy: 12.0
+    sell: 11.88
+
+magenta_bundle:
+    buy: 14.0
+    sell: 13.86
+
+orange_bundle:
+    buy: 12.0
+    sell: 11.88
+
+pink_bundle:
+    buy: 11.0
+    sell: 10.89
+
+purple_bundle:
+    buy: 11.0
+    sell: 10.89
+
+red_bundle:
+    buy: 11.0
+    sell: 10.89
+
+white_bundle:
+    buy: 12.0
+    sell: 11.88
+
+yellow_bundle:
+    buy: 11.0
+    sell: 10.89
+
+black_candle:
+    buy: 9.0
+    sell: 8.91
+
+blue_candle:
+    buy: 5.0
+    sell: 4.95
+
+brown_candle:
+    buy: 6.0
+    sell: 5.94
+
+cyan_candle:
+    buy: 6.0
+    sell: 5.94
+
+gray_candle:
+    buy: 8.0
+    sell: 7.92
+
+green_candle:
+    buy: 6.0
+    sell: 5.94
+
+light_blue_candle:
+    buy: 8.0
+    sell: 7.92
+
+light_gray_candle:
+    buy: 5.0
+    sell: 4.95
+
+lime_candle:
+    buy: 6.0
+    sell: 5.94
+
+magenta_candle:
+    buy: 8.0
+    sell: 7.92
+
+orange_candle:
+    buy: 6.0
+    sell: 5.94
+
+pink_candle:
+    buy: 5.0
+    sell: 4.95
+
+purple_candle:
+    buy: 5.0
+    sell: 4.95
+
+red_candle:
+    buy: 5.0
+    sell: 4.95
+
+white_candle:
+    buy: 6.0
+    sell: 5.94
+
+yellow_candle:
+    buy: 5.0
+    sell: 4.95
+
+black_concrete:
+    buy: 2.0
+    sell: 1.98
+
+black_concrete_powder:
+    buy: 2.2
+    sell: 2.18
+
+blue_concrete:
+    buy: 2.0
+    sell: 1.98
+
+blue_concrete_powder:
+    buy: 1.7
+    sell: 1.68
+
+brown_concrete:
+    buy: 2.0
+    sell: 1.98
+
+brown_concrete_powder:
+    buy: 1.8
+    sell: 1.78
+
+cyan_concrete:
+    buy: 2.0
+    sell: 1.98
+
+cyan_concrete_powder:
+    buy: 1.7
+    sell: 1.68
+
+gray_concrete:
+    buy: 2.0
+    sell: 1.98
+
+gray_concrete_powder:
+    buy: 2.0
+    sell: 1.98
+
+green_concrete:
+    buy: 2.0
+    sell: 1.98
+
+green_concrete_powder:
+    buy: 1.8
+    sell: 1.78
+
+light_blue_concrete:
+    buy: 2.0
+    sell: 1.98
+
+light_blue_concrete_powder:
+    buy: 2.0
+    sell: 1.98
+
+light_gray_concrete:
+    buy: 2.0
+    sell: 1.98
+
+light_gray_concrete_powder:
+    buy: 1.7
+    sell: 1.68
+
+lime_concrete:
+    buy: 2.0
+    sell: 1.98
+
+lime_concrete_powder:
+    buy: 1.8
+    sell: 1.78
+
+magenta_concrete:
+    buy: 2.0
+    sell: 1.98
+
+magenta_concrete_powder:
+    buy: 2.0
+    sell: 1.98
+
+orange_concrete:
+    buy: 2.0
+    sell: 1.98
+
+orange_concrete_powder:
+    buy: 1.8
+    sell: 1.78
+
+pink_concrete:
+    buy: 2.0
+    sell: 1.98
+
+pink_concrete_powder:
+    buy: 1.7
+    sell: 1.68
+
+purple_concrete:
+    buy: 2.0
+    sell: 1.98
+
+purple_concrete_powder:
+    buy: 1.7
+    sell: 1.68
+
+red_concrete:
+    buy: 2.0
+    sell: 1.98
+
+red_concrete_powder:
+    buy: 1.7
+    sell: 1.68
+
+white_concrete:
+    buy: 2.0
+    sell: 1.98
+
+white_concrete_powder:
+    buy: 1.8
+    sell: 1.78
+
+yellow_concrete:
+    buy: 2.0
+    sell: 1.98
+
+yellow_concrete_powder:
+    buy: 1.7
+    sell: 1.68
+
+black_dye:
+    buy: 5.0
+    sell: 4.95
+
+blue_dye:
+    buy: 1.0
+    sell: 0.99
+
+brown_dye:
+    buy: 2.0
+    sell: 1.98
+
+cyan_dye:
+    buy: 1.5
+    sell: 1.48
+
+gray_dye:
+    buy: 3.5
+    sell: 3.46
+
+green_dye:
+    buy: 2.0
+    sell: 1.98
+
+light_blue_dye:
+    buy: 4.0
+    sell: 3.96
+
+light_gray_dye:
+    buy: 1.0
+    sell: 0.99
+
+lime_dye:
+    buy: 2.0
+    sell: 1.98
+
+magenta_dye:
+    buy: 4.0
+    sell: 3.96
+
+orange_dye:
+    buy: 2.0
+    sell: 1.98
+
+pink_dye:
+    buy: 1.0
+    sell: 0.99
+
+purple_dye:
+    buy: 1.0
+    sell: 0.99
+
+red_dye:
+    buy: 1.0
+    sell: 0.99
+
+white_dye:
+    buy: 2.0
+    sell: 1.98
+
+yellow_dye:
+    buy: 1.0
+    sell: 0.99
+
+black_stained_glass:
+    buy: 2.7
+    sell: 2.67
+
+blue_stained_glass:
+    buy: 2.2
+    sell: 2.18
+
+brown_stained_glass:
+    buy: 2.3
+    sell: 2.28
+
+cyan_stained_glass:
+    buy: 2.2
+    sell: 2.18
+
+glass:
+    buy: 2.0
+    sell: 1.98
+
+gray_stained_glass:
+    buy: 2.5
+    sell: 2.48
+
+green_stained_glass:
+    buy: 2.3
+    sell: 2.28
+
+light_blue_stained_glass:
+    buy: 2.5
+    sell: 2.48
+
+light_gray_stained_glass:
+    buy: 2.2
+    sell: 2.18
+
+lime_stained_glass:
+    buy: 2.3
+    sell: 2.28
+
+magenta_stained_glass:
+    buy: 2.5
+    sell: 2.48
+
+orange_stained_glass:
+    buy: 2.3
+    sell: 2.28
+
+pink_stained_glass:
+    buy: 2.2
+    sell: 2.18
+
+purple_stained_glass:
+    buy: 2.2
+    sell: 2.18
+
+red_stained_glass:
+    buy: 2.2
+    sell: 2.18
+
+white_stained_glass:
+    buy: 2.3
+    sell: 2.28
+
+yellow_stained_glass:
+    buy: 2.2
+    sell: 2.18
+
+black_stained_glass_pane:
+    buy: 1.4
+    sell: 1.39
+
+blue_stained_glass_pane:
+    buy: 0.9
+    sell: 0.89
+
+brown_stained_glass_pane:
+    buy: 1.0
+    sell: 0.99
+
+cyan_stained_glass_pane:
+    buy: 1.0
+    sell: 0.99
+
+glass_pane:
+    buy: 0.8
+    sell: 0.79
+
+gray_stained_glass_pane:
+    buy: 1.2
+    sell: 1.19
+
+green_stained_glass_pane:
+    buy: 1.0
+    sell: 0.99
+
+light_blue_stained_glass_pane:
+    buy: 1.3
+    sell: 1.29
+
+light_gray_stained_glass_pane:
+    buy: 0.9
+    sell: 0.89
+
+lime_stained_glass_pane:
+    buy: 1.0
+    sell: 0.99
+
+magenta_stained_glass_pane:
+    buy: 1.3
+    sell: 1.29
+
+orange_stained_glass_pane:
+    buy: 1.0
+    sell: 0.99
+
+pink_stained_glass_pane:
+    buy: 0.9
+    sell: 0.89
+
+purple_stained_glass_pane:
+    buy: 0.9
+    sell: 0.89
+
+red_stained_glass_pane:
+    buy: 0.9
+    sell: 0.89
+
+white_stained_glass_pane:
+    buy: 1.0
+    sell: 0.99
+
+yellow_stained_glass_pane:
+    buy: 0.9
+    sell: 0.89
+
+black_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+blue_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+brown_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+cyan_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+gray_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+green_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+light_blue_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+light_gray_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+lime_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+magenta_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+orange_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+pink_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+purple_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+red_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+white_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+yellow_shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+black_terracotta:
+    buy: 4.7
+    sell: 4.65
+
+blue_terracotta:
+    buy: 4.2
+    sell: 4.16
+
+brown_terracotta:
+    buy: 4.3
+    sell: 4.26
+
+cyan_terracotta:
+    buy: 4.2
+    sell: 4.16
+
+gray_terracotta:
+    buy: 4.5
+    sell: 4.46
+
+green_terracotta:
+    buy: 4.3
+    sell: 4.26
+
+light_blue_terracotta:
+    buy: 4.5
+    sell: 4.46
+
+light_gray_terracotta:
+    buy: 4.2
+    sell: 4.16
+
+lime_terracotta:
+    buy: 4.3
+    sell: 4.26
+
+magenta_terracotta:
+    buy: 4.5
+    sell: 4.46
+
+orange_terracotta:
+    buy: 4.3
+    sell: 4.26
+
+pink_terracotta:
+    buy: 4.2
+    sell: 4.16
+
+purple_terracotta:
+    buy: 4.2
+    sell: 4.16
+
+red_terracotta:
+    buy: 4.2
+    sell: 4.16
+
+terracotta:
+    buy: 4.0
+    sell: 3.96
+
+white_terracotta:
+    buy: 4.3
+    sell: 4.26
+
+yellow_terracotta:
+    buy: 4.2
+    sell: 4.16
+
+black_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+blue_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+brown_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+cyan_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+gray_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+green_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+light_blue_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+light_gray_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+lime_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+magenta_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+orange_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+pink_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+purple_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+red_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+white_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+yellow_glazed_terracotta:
+    buy: 10.0
+    sell: 9.9
+
+black_wool:
+    buy: 9.0
+    sell: 8.91
+
+blue_wool:
+    buy: 5.0
+    sell: 4.95
+
+brown_wool:
+    buy: 6.0
+    sell: 5.94
+
+cyan_wool:
+    buy: 6.0
+    sell: 5.94
+
+gray_wool:
+    buy: 8.0
+    sell: 7.92
+
+green_wool:
+    buy: 6.0
+    sell: 5.94
+
+light_blue_wool:
+    buy: 8.0
+    sell: 7.92
+
+light_gray_wool:
+    buy: 5.0
+    sell: 4.95
+
+lime_wool:
+    buy: 6.0
+    sell: 5.94
+
+magenta_wool:
+    buy: 8.0
+    sell: 7.92
+
+orange_wool:
+    buy: 6.0
+    sell: 5.94
+
+pink_wool:
+    buy: 5.0
+    sell: 4.95
+
+purple_wool:
+    buy: 5.0
+    sell: 4.95
+
+red_wool:
+    buy: 5.0
+    sell: 4.95
+
+white_wool:
+    buy: 4.0
+    sell: 3.96
+
+yellow_wool:
+    buy: 5.0
+    sell: 4.95
+
+black_carpet:
+    buy: 6.0
+    sell: 5.94
+
+blue_carpet:
+    buy: 3.4
+    sell: 3.37
+
+brown_carpet:
+    buy: 4.0
+    sell: 3.96
+
+cyan_carpet:
+    buy: 3.7
+    sell: 3.66
+
+gray_carpet:
+    buy: 5.0
+    sell: 4.95
+
+green_carpet:
+    buy: 4.0
+    sell: 3.96
+
+light_blue_carpet:
+    buy: 6.0
+    sell: 5.94
+
+light_gray_carpet:
+    buy: 3.4
+    sell: 3.37
+
+lime_carpet:
+    buy: 4.0
+    sell: 3.96
+
+magenta_carpet:
+    buy: 6.0
+    sell: 5.94
+
+orange_carpet:
+    buy: 4.0
+    sell: 3.96
+
+pink_carpet:
+    buy: 3.4
+    sell: 3.37
+
+purple_carpet:
+    buy: 3.4
+    sell: 3.37
+
+red_carpet:
+    buy: 3.4
+    sell: 3.37
+
+white_carpet:
+    buy: 2.7
+    sell: 2.67
+
+yellow_carpet:
+    buy: 3.4
+    sell: 3.37
+
+coarse_dirt:
+    buy: 1.5
+    sell: 1.48
+
+dirt:
+    buy: 1.0
+    sell: 0.99
+
+grass_block:
+    buy: 2.0
+    sell: 1.98
+
+gravel:
+    buy: 2.0
+    sell: 1.98
+
+mycelium:
+    buy: 5.0
+    sell: 4.95
+
+podzol:
+    buy: 3.0
+    sell: 2.97
+
+rooted_dirt:
+    buy: 3.0
+    sell: 2.97
+
+mud:
+    buy: 2.0
+    sell: 1.98
+
+mud_brick_slab:
+    buy: 2.0
+    sell: 1.98
+
+mud_brick_stairs:
+    buy: 6.0
+    sell: 5.94
+
+mud_brick_wall:
+    buy: 4.0
+    sell: 3.96
+
+mud_bricks:
+    buy: 4.0
+    sell: 3.96
+
+packed_mud:
+    buy: 4.0
+    sell: 3.96
+
+enchanted_book_aqua_affinity_1:
+    buy: 400.0
+    sell: 396.0
+
+enchanted_book_blast_protection_1:
+    buy: 125.0
+    sell: 123.75
+
+enchanted_book_blast_protection_2:
+    buy: 250.0
+    sell: 247.5
+
+enchanted_book_blast_protection_3:
+    buy: 375.0
+    sell: 371.25
+
+enchanted_book_blast_protection_4:
+    buy: 500.0
+    sell: 495.0
+
+enchanted_book_depth_strider_1:
+    buy: 284.0
+    sell: 281.16
+
+enchanted_book_depth_strider_2:
+    buy: 567.0
+    sell: 561.33
+
+enchanted_book_depth_strider_3:
+    buy: 850.0
+    sell: 841.5
+
+enchanted_book_feather_falling_1:
+    buy: 200.0
+    sell: 198.0
+
+enchanted_book_feather_falling_2:
+    buy: 400.0
+    sell: 396.0
+
+enchanted_book_feather_falling_3:
+    buy: 600.0
+    sell: 594.0
+
+enchanted_book_feather_falling_4:
+    buy: 800.0
+    sell: 792.0
+
+enchanted_book_fire_protection_1:
+    buy: 150.0
+    sell: 148.5
+
+enchanted_book_fire_protection_2:
+    buy: 300.0
+    sell: 297.0
+
+enchanted_book_fire_protection_3:
+    buy: 450.0
+    sell: 445.5
+
+enchanted_book_fire_protection_4:
+    buy: 600.0
+    sell: 594.0
+
+enchanted_book_frost_walker_1:
+    buy: 450.0
+    sell: 445.5
+
+enchanted_book_frost_walker_2:
+    buy: 900.0
+    sell: 891.0
+
+enchanted_book_projectile_protection_1:
+    buy: 125.0
+    sell: 123.75
+
+enchanted_book_projectile_protection_2:
+    buy: 250.0
+    sell: 247.5
+
+enchanted_book_projectile_protection_3:
+    buy: 375.0
+    sell: 371.25
+
+enchanted_book_projectile_protection_4:
+    buy: 500.0
+    sell: 495.0
+
+enchanted_book_protection_1:
+    buy: 275.0
+    sell: 272.25
+
+enchanted_book_protection_2:
+    buy: 550.0
+    sell: 544.5
+
+enchanted_book_protection_3:
+    buy: 825.0
+    sell: 816.75
+
+enchanted_book_protection_4:
+    buy: 1100.0
+    sell: 1089.0
+
+enchanted_book_respiration_1:
+    buy: 267.0
+    sell: 264.33
+
+enchanted_book_respiration_2:
+    buy: 534.0
+    sell: 528.66
+
+enchanted_book_respiration_3:
+    buy: 800.0
+    sell: 792.0
+
+enchanted_book_soul_speed_1:
+    buy: 367.0
+    sell: 363.33
+
+enchanted_book_soul_speed_2:
+    buy: 734.0
+    sell: 726.66
+
+enchanted_book_soul_speed_3:
+    buy: 1100.0
+    sell: 1089.0
+
+enchanted_book_swift_sneak_1:
+    buy: 900.0
+    sell: 891.0
+
+enchanted_book_swift_sneak_2:
+    buy: 1000.0
+    sell: 990.0
+
+enchanted_book_swift_sneak_3:
+    buy: 1200.0
+    sell: 1188.0
+
+enchanted_book_thorns_1:
+    buy: 234.0
+    sell: 231.66
+
+enchanted_book_thorns_2:
+    buy: 467.0
+    sell: 462.33
+
+enchanted_book_thorns_3:
+    buy: 700.0
+    sell: 693.0
+
+enchanted_book_flame_1:
+    buy: 500.0
+    sell: 495.0
+
+enchanted_book_infinity_1:
+    buy: 1200.0
+    sell: 1188.0
+
+enchanted_book_power_1:
+    buy: 220.0
+    sell: 217.8
+
+enchanted_book_power_2:
+    buy: 440.0
+    sell: 435.6
+
+enchanted_book_power_3:
+    buy: 660.0
+    sell: 653.4
+
+enchanted_book_power_4:
+    buy: 880.0
+    sell: 871.2
+
+enchanted_book_power_5:
+    buy: 1100.0
+    sell: 1089.0
+
+enchanted_book_punch_1:
+    buy: 200.0
+    sell: 198.0
+
+enchanted_book_punch_2:
+    buy: 400.0
+    sell: 396.0
+
+enchanted_book_multishot_1:
+    buy: 700.0
+    sell: 693.0
+
+enchanted_book_piercing_1:
+    buy: 150.0
+    sell: 148.5
+
+enchanted_book_piercing_2:
+    buy: 300.0
+    sell: 297.0
+
+enchanted_book_piercing_3:
+    buy: 450.0
+    sell: 445.5
+
+enchanted_book_piercing_4:
+    buy: 600.0
+    sell: 594.0
+
+enchanted_book_quick_charge_1:
+    buy: 200.0
+    sell: 198.0
+
+enchanted_book_quick_charge_2:
+    buy: 400.0
+    sell: 396.0
+
+enchanted_book_quick_charge_3:
+    buy: 600.0
+    sell: 594.0
+
+enchanted_book_luck_of_the_sea_1:
+    buy: 167.0
+    sell: 165.33
+
+enchanted_book_luck_of_the_sea_2:
+    buy: 334.0
+    sell: 330.66
+
+enchanted_book_luck_of_the_sea_3:
+    buy: 500.0
+    sell: 495.0
+
+enchanted_book_lure_1:
+    buy: 167.0
+    sell: 165.33
+
+enchanted_book_lure_2:
+    buy: 334.0
+    sell: 330.66
+
+enchanted_book_lure_3:
+    buy: 500.0
+    sell: 495.0
+
+enchanted_book_curse_of_binding_1:
+    buy: 150.0
+    sell: 148.5
+
+enchanted_book_curse_of_vanishing_1:
+    buy: 100.0
+    sell: 99.0
+
+enchanted_book_efficiency_1:
+    buy: 200.0
+    sell: 198.0
+
+enchanted_book_efficiency_2:
+    buy: 400.0
+    sell: 396.0
+
+enchanted_book_efficiency_3:
+    buy: 600.0
+    sell: 594.0
+
+enchanted_book_efficiency_4:
+    buy: 800.0
+    sell: 792.0
+
+enchanted_book_efficiency_5:
+    buy: 1000.0
+    sell: 990.0
+
+enchanted_book_fortune_1:
+    buy: 400.0
+    sell: 396.0
+
+enchanted_book_fortune_2:
+    buy: 800.0
+    sell: 792.0
+
+enchanted_book_fortune_3:
+    buy: 1200.0
+    sell: 1188.0
+
+enchanted_book_mending_1:
+    buy: 1400.0
+    sell: 1386.0
+
+enchanted_book_silk_touch_1:
+    buy: 1300.0
+    sell: 1287.0
+
+enchanted_book_unbreaking_1:
+    buy: 250.0
+    sell: 247.5
+
+enchanted_book_unbreaking_2:
+    buy: 500.0
+    sell: 495.0
+
+enchanted_book_unbreaking_3:
+    buy: 750.0
+    sell: 742.5
+
+enchanted_book_channeling_1:
+    buy: 800.0
+    sell: 792.0
+
+enchanted_book_impaling_1:
+    buy: 140.0
+    sell: 138.6
+
+enchanted_book_impaling_2:
+    buy: 280.0
+    sell: 277.2
+
+enchanted_book_impaling_3:
+    buy: 420.0
+    sell: 415.8
+
+enchanted_book_impaling_4:
+    buy: 560.0
+    sell: 554.4
+
+enchanted_book_impaling_5:
+    buy: 700.0
+    sell: 693.0
+
+enchanted_book_loyalty_1:
+    buy: 200.0
+    sell: 198.0
+
+enchanted_book_loyalty_2:
+    buy: 400.0
+    sell: 396.0
+
+enchanted_book_loyalty_3:
+    buy: 600.0
+    sell: 594.0
+
+enchanted_book_riptide_1:
+    buy: 200.0
+    sell: 198.0
+
+enchanted_book_riptide_2:
+    buy: 400.0
+    sell: 396.0
+
+enchanted_book_riptide_3:
+    buy: 600.0
+    sell: 594.0
+
+enchanted_book_bane_of_arthropods_1:
+    buy: 80.0
+    sell: 79.2
+
+enchanted_book_bane_of_arthropods_2:
+    buy: 160.0
+    sell: 158.4
+
+enchanted_book_bane_of_arthropods_3:
+    buy: 240.0
+    sell: 237.6
+
+enchanted_book_bane_of_arthropods_4:
+    buy: 320.0
+    sell: 316.8
+
+enchanted_book_bane_of_arthropods_5:
+    buy: 400.0
+    sell: 396.0
+
+enchanted_book_breach_1:
+    buy: 800.0
+    sell: 792.0
+
+enchanted_book_breach_2:
+    buy: 1000.0
+    sell: 990.0
+
+enchanted_book_breach_3:
+    buy: 1200.0
+    sell: 1188.0
+
+enchanted_book_density_1:
+    buy: 500.0
+    sell: 495.0
+
+enchanted_book_density_2:
+    buy: 650.0
+    sell: 643.5
+
+enchanted_book_density_3:
+    buy: 800.0
+    sell: 792.0
+
+enchanted_book_density_4:
+    buy: 950.0
+    sell: 940.5
+
+enchanted_book_density_5:
+    buy: 1100.0
+    sell: 1089.0
+
+enchanted_book_fire_aspect_1:
+    buy: 250.0
+    sell: 247.5
+
+enchanted_book_fire_aspect_2:
+    buy: 500.0
+    sell: 495.0
+
+enchanted_book_knockback_1:
+    buy: 200.0
+    sell: 198.0
+
+enchanted_book_knockback_2:
+    buy: 400.0
+    sell: 396.0
+
+enchanted_book_looting_1:
+    buy: 334.0
+    sell: 330.66
+
+enchanted_book_looting_2:
+    buy: 667.0
+    sell: 660.33
+
+enchanted_book_looting_3:
+    buy: 1000.0
+    sell: 990.0
+
+enchanted_book_sharpness_1:
+    buy: 240.0
+    sell: 237.6
+
+enchanted_book_sharpness_2:
+    buy: 480.0
+    sell: 475.2
+
+enchanted_book_sharpness_3:
+    buy: 720.0
+    sell: 712.8
+
+enchanted_book_sharpness_4:
+    buy: 960.0
+    sell: 950.4
+
+enchanted_book_sharpness_5:
+    buy: 1200.0
+    sell: 1188.0
+
+enchanted_book_smite_1:
+    buy: 140.0
+    sell: 138.6
+
+enchanted_book_smite_2:
+    buy: 280.0
+    sell: 277.2
+
+enchanted_book_smite_3:
+    buy: 420.0
+    sell: 415.8
+
+enchanted_book_smite_4:
+    buy: 560.0
+    sell: 554.4
+
+enchanted_book_smite_5:
+    buy: 700.0
+    sell: 693.0
+
+enchanted_book_sweeping_edge_1:
+    buy: 300.0
+    sell: 297.0
+
+enchanted_book_sweeping_edge_2:
+    buy: 600.0
+    sell: 594.0
+
+enchanted_book_sweeping_edge_3:
+    buy: 900.0
+    sell: 891.0
+
+dragon_egg:
+    buy: 20000.0
+    sell: 19800.0
+
+dragon_head:
+    buy: 5000.0
+    sell: 4950.0
+
+dragon_breath:
+    buy: 40.0
+    sell: 39.6
+
+end_crystal:
+    buy: 125.0
+    sell: 123.75
+
+end_stone:
+    buy: 2.0
+    sell: 1.98
+
+end_stone_brick_slab:
+    buy: 1.0
+    sell: 0.99
+
+end_stone_brick_stairs:
+    buy: 3.0
+    sell: 2.97
+
+end_stone_brick_wall:
+    buy: 2.0
+    sell: 1.98
+
+end_stone_bricks:
+    buy: 2.0
+    sell: 1.98
+
+ender_chest:
+    buy: 231.0
+    sell: 228.69
+
+purpur_block:
+    buy: 6.0
+    sell: 5.94
+
+purpur_pillar:
+    buy: 6.0
+    sell: 5.94
+
+purpur_slab:
+    buy: 3.0
+    sell: 2.97
+
+purpur_stairs:
+    buy: 9.0
+    sell: 8.91
+
+shulker_shell:
+    buy: 250.0
+    sell: 247.5
+
+shulker_box:
+    buy: 500.0
+    sell: 495.0
+
+beetroot:
+    buy: 1.0
+    sell: 0.99
+
+beetroot_soup:
+    buy: 8.0
+    sell: 7.92
+
+blue_egg:
+    buy: 2.0
+    sell: 1.98
+
+bread:
+    buy: 6.0
+    sell: 5.94
+
+brown_egg:
+    buy: 2.0
+    sell: 1.98
+
+cake:
+    buy: 205.0
+    sell: 202.95
+
+cookie:
+    buy: 0.8
+    sell: 0.79
+
+dried_kelp:
+    buy: 2.0
+    sell: 1.98
+
+dried_kelp_block:
+    buy: 18.0
+    sell: 17.82
+
+egg:
+    buy: 2.0
+    sell: 1.98
+
+glow_berries:
+    buy: 3.0
+    sell: 2.97
+
+hay_block:
+    buy: 18.0
+    sell: 17.82
+
+poisonous_potato:
+    buy: 1.0
+    sell: 0.99
+
+sugar:
+    buy: 1.0
+    sell: 0.99
+
+sweet_berries:
+    buy: 3.0
+    sell: 2.97
+
+wheat:
+    buy: 2.0
+    sell: 1.98
+
+apple:
+    buy: 10.0
+    sell: 9.9
+
+enchanted_golden_apple:
+    buy: 500.0
+    sell: 495.0
+
+golden_apple:
+    buy: 490.0
+    sell: 485.1
+
+beef:
+    buy: 7.0
+    sell: 6.93
+
+cooked_beef:
+    buy: 8.0
+    sell: 7.92
+
+carrot:
+    buy: 2.0
+    sell: 1.98
+
+golden_carrot:
+    buy: 56.0
+    sell: 55.44
+
+cooked_chicken:
+    buy: 6.0
+    sell: 5.94
+
+chicken:
+    buy: 5.0
+    sell: 4.95
+
+chorus_fruit:
+    buy: 5.0
+    sell: 4.95
+
+popped_chorus_fruit:
+    buy: 6.0
+    sell: 5.94
+
+pufferfish:
+    buy: 3.0
+    sell: 2.97
+
+tropical_fish:
+    buy: 3.0
+    sell: 2.97
+
+cooked_cod:
+    buy: 4.0
+    sell: 3.96
+
+cod:
+    buy: 3.0
+    sell: 2.97
+
+cooked_salmon:
+    buy: 5.0
+    sell: 4.95
+
+salmon:
+    buy: 4.0
+    sell: 3.96
+
+glistering_melon_slice:
+    buy: 56.0
+    sell: 55.44
+
+melon:
+    buy: 18.0
+    sell: 17.82
+
+melon_slice:
+    buy: 2.0
+    sell: 1.98
+
+cooked_mutton:
+    buy: 6.0
+    sell: 5.94
+
+mutton:
+    buy: 5.0
+    sell: 4.95
+
+cooked_porkchop:
+    buy: 8.0
+    sell: 7.92
+
+porkchop:
+    buy: 7.0
+    sell: 6.93
+
+baked_potato:
+    buy: 3.0
+    sell: 2.97
+
+potato:
+    buy: 2.0
+    sell: 1.98
+
+pumpkin_pie:
+    buy: 9.0
+    sell: 8.91
+
+cooked_rabbit:
+    buy: 4.0
+    sell: 3.96
+
+rabbit:
+    buy: 3.0
+    sell: 2.97
+
+fermented_spider_eye:
+    buy: 9.0
+    sell: 8.91
+
+mushroom_stew:
+    buy: 8.0
+    sell: 7.92
+
+rabbit_stew:
+    buy: 14.0
+    sell: 13.86
+
+suspicious_stew:
+    buy: 9.0
+    sell: 8.91
+
+blue_ice:
+    buy: 162.0
+    sell: 160.38
+
+ice:
+    buy: 2.0
+    sell: 1.98
+
+packed_ice:
+    buy: 18.0
+    sell: 17.82
+
+snow:
+    buy: 2.0
+    sell: 1.98
+
+snow_block:
+    buy: 4.0
+    sell: 3.96
+
+snowball:
+    buy: 1.0
+    sell: 0.99
+
+candle:
+    buy: 4.0
+    sell: 3.96
+
+end_rod:
+    buy: 9.0
+    sell: 8.91
+
+jack_o_lantern:
+    buy: 8.0
+    sell: 7.92
+
+redstone_lamp:
+    buy: 20.0
+    sell: 19.8
+
+sea_lantern:
+    buy: 320.0
+    sell: 316.8
+
+shroomlight:
+    buy: 6.0
+    sell: 5.94
+
+copper_bulb:
+    buy: 29.0
+    sell: 28.71
+
+exposed_copper_bulb:
+    buy: 30.0
+    sell: 29.7
+
+oxidized_copper_bulb:
+    buy: 33.0
+    sell: 32.67
+
+waxed_copper_bulb:
+    buy: 30.0
+    sell: 29.7
+
+waxed_exposed_copper_bulb:
+    buy: 32.0
+    sell: 31.68
+
+waxed_oxidized_copper_bulb:
+    buy: 34.0
+    sell: 33.66
+
+waxed_weathered_copper_bulb:
+    buy: 33.0
+    sell: 32.67
+
+weathered_copper_bulb:
+    buy: 31.0
+    sell: 30.69
+
+campfire:
+    buy: 32.0
+    sell: 31.68
+
+soul_campfire:
+    buy: 28.0
+    sell: 27.72
+
+ochre_froglight:
+    buy: 20.0
+    sell: 19.8
+
+pearlescent_froglight:
+    buy: 20.0
+    sell: 19.8
+
+verdant_froglight:
+    buy: 20.0
+    sell: 19.8
+
+glowstone:
+    buy: 8.0
+    sell: 7.92
+
+glowstone_dust:
+    buy: 2.0
+    sell: 1.98
+
+lantern:
+    buy: 15.0
+    sell: 14.85
+
+soul_lantern:
+    buy: 16.0
+    sell: 15.84
+
+copper_lantern:
+    buy: 6.0
+    sell: 5.94
+
+exposed_copper_lantern:
+    buy: 5.0
+    sell: 4.95
+
+oxidized_copper_lantern:
+    buy: 7.0
+    sell: 6.93
+
+weathered_copper_lantern:
+    buy: 6.0
+    sell: 5.94
+
+waxed_copper_lantern:
+    buy: 8.0
+    sell: 7.92
+
+waxed_exposed_copper_lantern:
+    buy: 7.0
+    sell: 6.93
+
+waxed_oxidized_copper_lantern:
+    buy: 9.0
+    sell: 8.91
+
+waxed_weathered_copper_lantern:
+    buy: 8.0
+    sell: 7.92
+
+copper_torch:
+    buy: 1.7
+    sell: 1.68
+
+redstone_torch:
+    buy: 4.0
+    sell: 3.96
+
+soul_torch:
+    buy: 1.8
+    sell: 1.78
+
+torch:
+    buy: 1.5
+    sell: 1.48
+
+dried_ghast:
+    buy: 641.0
+    sell: 634.59
+
+magma_block:
+    buy: 100.0
+    sell: 99.0
+
+nether_sprouts:
+    buy: 3.0
+    sell: 2.97
+
+netherite_upgrade_smithing_template:
+    buy: 1500.0
+    sell: 1485.0
+
+respawn_anchor:
+    buy: 204.0
+    sell: 201.96
+
+basalt:
+    buy: 1.0
+    sell: 0.99
+
+polished_basalt:
+    buy: 1.0
+    sell: 0.99
+
+smooth_basalt:
+    buy: 3.0
+    sell: 2.97
+
+blackstone:
+    buy: 2.0
+    sell: 1.98
+
+blackstone_slab:
+    buy: 1.0
+    sell: 0.99
+
+blackstone_stairs:
+    buy: 3.0
+    sell: 2.97
+
+blackstone_wall:
+    buy: 2.0
+    sell: 1.98
+
+chiseled_polished_blackstone:
+    buy: 2.0
+    sell: 1.98
+
+gilded_blackstone:
+    buy: 1.0
+    sell: 0.99
+
+polished_blackstone:
+    buy: 2.0
+    sell: 1.98
+
+polished_blackstone_slab:
+    buy: 1.0
+    sell: 0.99
+
+polished_blackstone_stairs:
+    buy: 3.0
+    sell: 2.97
+
+polished_blackstone_wall:
+    buy: 2.0
+    sell: 1.98
+
+cracked_polished_blackstone_bricks:
+    buy: 3.0
+    sell: 2.97
+
+polished_blackstone_brick_slab:
+    buy: 1.0
+    sell: 0.99
+
+polished_blackstone_brick_stairs:
+    buy: 3.0
+    sell: 2.97
+
+polished_blackstone_brick_wall:
+    buy: 2.0
+    sell: 1.98
+
+polished_blackstone_bricks:
+    buy: 2.0
+    sell: 1.98
+
+crimson_fungus:
+    buy: 4.0
+    sell: 3.96
+
+crimson_nylium:
+    buy: 1.0
+    sell: 0.99
+
+crimson_roots:
+    buy: 2.0
+    sell: 1.98
+
+nether_wart:
+    buy: 2.0
+    sell: 1.98
+
+nether_wart_block:
+    buy: 18.0
+    sell: 17.82
+
+warped_fungus:
+    buy: 4.0
+    sell: 3.96
+
+warped_nylium:
+    buy: 1.0
+    sell: 0.99
+
+warped_roots:
+    buy: 2.0
+    sell: 1.98
+
+warped_wart_block:
+    buy: 2.0
+    sell: 1.98
+
+crying_obsidian:
+    buy: 30.0
+    sell: 29.7
+
+obsidian:
+    buy: 25.0
+    sell: 24.75
+
+quartz_block:
+    buy: 12.0
+    sell: 11.88
+
+chiseled_quartz_block:
+    buy: 12.0
+    sell: 11.88
+
+quartz:
+    buy: 3.0
+    sell: 2.97
+
+nether_quartz_ore:
+    buy: 7.0
+    sell: 6.93
+
+quartz_bricks:
+    buy: 12.0
+    sell: 11.88
+
+quartz_pillar:
+    buy: 12.0
+    sell: 11.88
+
+quartz_slab:
+    buy: 6.0
+    sell: 5.94
+
+quartz_stairs:
+    buy: 18.0
+    sell: 17.82
+
+smooth_quartz:
+    buy: 13.0
+    sell: 12.87
+
+smooth_quartz_slab:
+    buy: 7.0
+    sell: 6.93
+
+smooth_quartz_stairs:
+    buy: 20.0
+    sell: 19.8
+
+netherrack:
+    buy: 1.0
+    sell: 0.99
+
+soul_sand:
+    buy: 1.0
+    sell: 0.99
+
+soul_soil:
+    buy: 1.0
+    sell: 0.99
+
+conduit:
+    buy: 1140.0
+    sell: 1129.0
+
+heart_of_the_sea:
+    buy: 500.0
+    sell: 495.0
+
+kelp:
+    buy: 1.0
+    sell: 0.99
+
+sea_pickle:
+    buy: 5.0
+    sell: 4.95
+
+seagrass:
+    buy: 2.0
+    sell: 1.98
+
+sponge:
+    buy: 300.0
+    sell: 297.0
+
+turtle_egg:
+    buy: 60.0
+    sell: 59.4
+
+wet_sponge:
+    buy: 300.0
+    sell: 297.0
+
+brain_coral:
+    buy: 20.0
+    sell: 19.8
+
+brain_coral_block:
+    buy: 30.0
+    sell: 29.7
+
+brain_coral_fan:
+    buy: 25.0
+    sell: 24.75
+
+dead_brain_coral:
+    buy: 15.0
+    sell: 14.85
+
+dead_brain_coral_block:
+    buy: 20.0
+    sell: 19.8
+
+dead_brain_coral_fan:
+    buy: 15.0
+    sell: 14.85
+
+bubble_coral:
+    buy: 20.0
+    sell: 19.8
+
+bubble_coral_block:
+    buy: 30.0
+    sell: 29.7
+
+bubble_coral_fan:
+    buy: 25.0
+    sell: 24.75
+
+dead_bubble_coral:
+    buy: 15.0
+    sell: 14.85
+
+dead_bubble_coral_block:
+    buy: 20.0
+    sell: 19.8
+
+dead_bubble_coral_fan:
+    buy: 15.0
+    sell: 14.85
+
+dead_fire_coral:
+    buy: 15.0
+    sell: 14.85
+
+dead_fire_coral_block:
+    buy: 20.0
+    sell: 19.8
+
+dead_fire_coral_fan:
+    buy: 15.0
+    sell: 14.85
+
+fire_coral:
+    buy: 20.0
+    sell: 19.8
+
+fire_coral_block:
+    buy: 30.0
+    sell: 29.7
+
+fire_coral_fan:
+    buy: 25.0
+    sell: 24.75
+
+dead_horn_coral:
+    buy: 15.0
+    sell: 14.85
+
+dead_horn_coral_block:
+    buy: 20.0
+    sell: 19.8
+
+dead_horn_coral_fan:
+    buy: 15.0
+    sell: 14.85
+
+horn_coral:
+    buy: 20.0
+    sell: 19.8
+
+horn_coral_block:
+    buy: 30.0
+    sell: 29.7
+
+horn_coral_fan:
+    buy: 25.0
+    sell: 24.75
+
+dead_tube_coral:
+    buy: 15.0
+    sell: 14.85
+
+dead_tube_coral_block:
+    buy: 20.0
+    sell: 19.8
+
+dead_tube_coral_fan:
+    buy: 15.0
+    sell: 14.85
+
+tube_coral:
+    buy: 20.0
+    sell: 19.8
+
+tube_coral_block:
+    buy: 30.0
+    sell: 29.7
+
+tube_coral_fan:
+    buy: 25.0
+    sell: 24.75
+
+prismarine_crystals:
+    buy: 40.0
+    sell: 39.6
+
+prismarine_shard:
+    buy: 30.0
+    sell: 29.7
+
+prismarine_brick_slab:
+    buy: 135.0
+    sell: 133.65
+
+prismarine_brick_stairs:
+    buy: 405.0
+    sell: 400.95
+
+prismarine_bricks:
+    buy: 270.0
+    sell: 267.3
+
+dark_prismarine:
+    buy: 245.0
+    sell: 242.55
+
+dark_prismarine_slab:
+    buy: 123.0
+    sell: 121.77
+
+dark_prismarine_stairs:
+    buy: 368.0
+    sell: 364.32
+
+prismarine:
+    buy: 120.0
+    sell: 118.8
+
+prismarine_slab:
+    buy: 60.0
+    sell: 59.4
+
+prismarine_stairs:
+    buy: 180.0
+    sell: 178.2
+
+prismarine_wall:
+    buy: 120.0
+    sell: 118.8
+
+amethyst_cluster:
+    buy: 24.0
+    sell: 23.76
+
+amethyst_shard:
+    buy: 10.0
+    sell: 9.9
+
+amethyst_block:
+    buy: 40.0
+    sell: 39.6
+
+coal_block:
+    buy: 45.0
+    sell: 44.55
+
+coal:
+    buy: 5.0
+    sell: 4.95
+
+coal_ore:
+    buy: 10.0
+    sell: 9.9
+
+deepslate_coal_ore:
+    buy: 12.0
+    sell: 11.88
+
+raw_copper_block:
+    buy: 27.0
+    sell: 26.73
+
+copper_ingot:
+    buy: 3.0
+    sell: 2.97
+
+copper_nugget:
+    buy: 0.5
+    sell: 0.49
+
+copper_ore:
+    buy: 10.0
+    sell: 9.9
+
+deepslate_copper_ore:
+    buy: 12.0
+    sell: 11.88
+
+raw_copper:
+    buy: 3.0
+    sell: 2.97
+
+diamond_block:
+    buy: 2520.0
+    sell: 2495.0
+
+deepslate_diamond_ore:
+    buy: 1100.0
+    sell: 1089.0
+
+diamond:
+    buy: 280.0
+    sell: 277.2
+
+diamond_ore:
+    buy: 1000.0
+    sell: 990.0
+
+emerald_block:
+    buy: 900.0
+    sell: 891.0
+
+deepslate_emerald_ore:
+    buy: 310.0
+    sell: 306.9
+
+emerald:
+    buy: 100.0
+    sell: 99.0
+
+emerald_ore:
+    buy: 300.0
+    sell: 297.0
+
+gold_block:
+    buy: 540.0
+    sell: 534.6
+
+raw_gold_block:
+    buy: 540.0
+    sell: 534.6
+
+deepslate_gold_ore:
+    buy: 88.0
+    sell: 87.12
+
+gold_ingot:
+    buy: 60.0
+    sell: 59.4
+
+gold_nugget:
+    buy: 7.0
+    sell: 6.93
+
+gold_ore:
+    buy: 85.0
+    sell: 84.15
+
+nether_gold_ore:
+    buy: 30.0
+    sell: 29.7
+
+raw_gold:
+    buy: 60.0
+    sell: 59.4
+
+iron_block:
+    buy: 135.0
+    sell: 133.65
+
+raw_iron_block:
+    buy: 135.0
+    sell: 133.65
+
+deepslate_iron_ore:
+    buy: 20.0
+    sell: 19.8
+
+iron_ingot:
+    buy: 15.0
+    sell: 14.85
+
+iron_nugget:
+    buy: 1.7
+    sell: 1.68
+
+iron_ore:
+    buy: 19.0
+    sell: 18.81
+
+raw_iron:
+    buy: 15.0
+    sell: 14.85
+
+deepslate_lapis_ore:
+    buy: 37.0
+    sell: 36.63
+
+lapis_lazuli:
+    buy: 5.0
+    sell: 4.95
+
+lapis_block:
+    buy: 45.0
+    sell: 44.55
+
+lapis_ore:
+    buy: 35.0
+    sell: 34.65
+
+ancient_debris:
+    buy: 160.0
+    sell: 158.4
+
+netherite_block:
+    buy: 7560.0
+    sell: 7484.0
+
+netherite_ingot:
+    buy: 840.0
+    sell: 831.6
+
+netherite_scrap:
+    buy: 150.0
+    sell: 148.5
+
+redstone_block:
+    buy: 27.0
+    sell: 26.73
+
+deepslate_redstone_ore:
+    buy: 32.0
+    sell: 31.68
+
+redstone:
+    buy: 3.0
+    sell: 2.97
+
+redstone_ore:
+    buy: 30.0
+    sell: 29.7
+
+bamboo:
+    buy: 1.0
+    sell: 0.99
+
+bone_block:
+    buy: 15.0
+    sell: 14.85
+
+bone_meal:
+    buy: 1.7
+    sell: 1.68
+
+bush:
+    buy: 1.0
+    sell: 0.99
+
+cactus:
+    buy: 1.0
+    sell: 0.99
+
+cactus_flower:
+    buy: 2.0
+    sell: 1.98
+
+carved_pumpkin:
+    buy: 6.0
+    sell: 5.94
+
+chorus_flower:
+    buy: 5.0
+    sell: 4.95
+
+closed_eyeblossom:
+    buy: 2.0
+    sell: 1.98
+
+cocoa_beans:
+    buy: 2.0
+    sell: 1.98
+
+dead_bush:
+    buy: 1.0
+    sell: 0.99
+
+fern:
+    buy: 2.0
+    sell: 1.98
+
+firefly_bush:
+    buy: 2.0
+    sell: 1.98
+
+flower_pot:
+    buy: 12.0
+    sell: 11.88
+
+glow_lichen:
+    buy: 2.0
+    sell: 1.98
+
+hanging_roots:
+    buy: 2.0
+    sell: 1.98
+
+large_fern:
+    buy: 3.0
+    sell: 2.97
+
+leaf_litter:
+    buy: 0.5
+    sell: 0.49
+
+lily_pad:
+    buy: 3.0
+    sell: 2.97
+
+moss_block:
+    buy: 4.0
+    sell: 3.96
+
+moss_carpet:
+    buy: 2.7
+    sell: 2.67
+
+open_eyeblossom:
+    buy: 2.0
+    sell: 1.98
+
+pale_hanging_moss:
+    buy: 4.0
+    sell: 3.96
+
+pale_moss_block:
+    buy: 4.0
+    sell: 3.96
+
+pale_moss_carpet:
+    buy: 2.7
+    sell: 2.67
+
+pink_petals:
+    buy: 3.0
+    sell: 2.97
+
+pitcher_plant:
+    buy: 50.0
+    sell: 49.5
+
+short_dry_grass:
+    buy: 1.0
+    sell: 0.99
+
+short_grass:
+    buy: 1.0
+    sell: 0.99
+
+spore_blossom:
+    buy: 50.0
+    sell: 49.5
+
+sugar_cane:
+    buy: 1.0
+    sell: 0.99
+
+tall_dry_grass:
+    buy: 1.0
+    sell: 0.99
+
+torchflower:
+    buy: 40.0
+    sell: 39.6
+
+twisting_vines:
+    buy: 4.0
+    sell: 3.96
+
+vine:
+    buy: 2.0
+    sell: 1.98
+
+weeping_vines:
+    buy: 4.0
+    sell: 3.96
+
+wildflowers:
+    buy: 1.0
+    sell: 0.99
+
+azalea:
+    buy: 2.0
+    sell: 1.98
+
+azalea_leaves:
+    buy: 1.0
+    sell: 0.99
+
+flowering_azalea:
+    buy: 2.0
+    sell: 1.98
+
+flowering_azalea_leaves:
+    buy: 1.0
+    sell: 0.99
+
+big_dripleaf:
+    buy: 3.0
+    sell: 2.97
+
+small_dripleaf:
+    buy: 2.0
+    sell: 1.98
+
+allium:
+    buy: 4.0
+    sell: 3.96
+
+azure_bluet:
+    buy: 1.0
+    sell: 0.99
+
+blue_orchid:
+    buy: 4.0
+    sell: 3.96
+
+cornflower:
+    buy: 1.0
+    sell: 0.99
+
+dandelion:
+    buy: 1.0
+    sell: 0.99
+
+lilac:
+    buy: 2.0
+    sell: 1.98
+
+lily_of_the_valley:
+    buy: 2.0
+    sell: 1.98
+
+orange_tulip:
+    buy: 2.0
+    sell: 1.98
+
+oxeye_daisy:
+    buy: 1.0
+    sell: 0.99
+
+peony:
+    buy: 2.0
+    sell: 1.98
+
+pink_tulip:
+    buy: 2.0
+    sell: 1.98
+
+poppy:
+    buy: 1.0
+    sell: 0.99
+
+red_tulip:
+    buy: 1.0
+    sell: 0.99
+
+rose_bush:
+    buy: 2.0
+    sell: 1.98
+
+sunflower:
+    buy: 2.0
+    sell: 1.98
+
+white_tulip:
+    buy: 2.0
+    sell: 1.98
+
+acacia_leaves:
+    buy: 1.0
+    sell: 0.99
+
+birch_leaves:
+    buy: 1.0
+    sell: 0.99
+
+cherry_leaves:
+    buy: 1.0
+    sell: 0.99
+
+dark_oak_leaves:
+    buy: 1.0
+    sell: 0.99
+
+jungle_leaves:
+    buy: 1.0
+    sell: 0.99
+
+mangrove_leaves:
+    buy: 1.0
+    sell: 0.99
+
+oak_leaves:
+    buy: 1.0
+    sell: 0.99
+
+pale_oak_leaves:
+    buy: 1.0
+    sell: 0.99
+
+spruce_leaves:
+    buy: 1.0
+    sell: 0.99
+
+brown_mushroom:
+    buy: 3.0
+    sell: 2.97
+
+brown_mushroom_block:
+    buy: 4.0
+    sell: 3.96
+
+mushroom_stem:
+    buy: 5.0
+    sell: 4.95
+
+red_mushroom:
+    buy: 3.0
+    sell: 2.97
+
+red_mushroom_block:
+    buy: 4.0
+    sell: 3.96
+
+pumpkin:
+    buy: 6.0
+    sell: 5.94
+
+mangrove_roots:
+    buy: 1.0
+    sell: 0.99
+
+muddy_mangrove_roots:
+    buy: 3.0
+    sell: 2.97
+
+acacia_sapling:
+    buy: 2.0
+    sell: 1.98
+
+birch_sapling:
+    buy: 2.0
+    sell: 1.98
+
+cherry_sapling:
+    buy: 2.0
+    sell: 1.98
+
+dark_oak_sapling:
+    buy: 2.0
+    sell: 1.98
+
+jungle_sapling:
+    buy: 2.0
+    sell: 1.98
+
+mangrove_propagule:
+    buy: 3.0
+    sell: 2.97
+
+oak_sapling:
+    buy: 2.0
+    sell: 1.98
+
+pale_oak_sapling:
+    buy: 1.0
+    sell: 0.99
+
+spruce_sapling:
+    buy: 2.0
+    sell: 1.98
+
+beetroot_seeds:
+    buy: 2.0
+    sell: 1.98
+
+melon_seeds:
+    buy: 2.0
+    sell: 1.98
+
+pitcher_pod:
+    buy: 30.0
+    sell: 29.7
+
+pumpkin_seeds:
+    buy: 1.5
+    sell: 1.48
+
+torchflower_seeds:
+    buy: 25.0
+    sell: 24.75
+
+wheat_seeds:
+    buy: 1.0
+    sell: 0.99
+
+daylight_detector:
+    buy: 18.0
+    sell: 17.82
+
+dispenser:
+    buy: 19.0
+    sell: 18.81
+
+dropper:
+    buy: 10.0
+    sell: 9.9
+
+lever:
+    buy: 2.0
+    sell: 1.98
+
+note_block:
+    buy: 19.0
+    sell: 18.81
+
+observer:
+    buy: 15.0
+    sell: 14.85
+
+piston:
+    buy: 28.0
+    sell: 27.72
+
+comparator:
+    buy: 21.0
+    sell: 20.79
+
+repeater:
+    buy: 17.0
+    sell: 16.83
+
+sticky_piston:
+    buy: 38.0
+    sell: 37.62
+
+target:
+    buy: 30.0
+    sell: 29.7
+
+trapped_chest:
+    buy: 25.0
+    sell: 24.75
+
+tripwire_hook:
+    buy: 9.0
+    sell: 8.91
+
+acacia_button:
+    buy: 2.0
+    sell: 1.98
+
+bamboo_button:
+    buy: 4.5
+    sell: 4.46
+
+birch_button:
+    buy: 2.0
+    sell: 1.98
+
+cherry_button:
+    buy: 2.0
+    sell: 1.98
+
+crimson_button:
+    buy: 3.4
+    sell: 3.37
+
+dark_oak_button:
+    buy: 2.0
+    sell: 1.98
+
+jungle_button:
+    buy: 2.0
+    sell: 1.98
+
+mangrove_button:
+    buy: 2.5
+    sell: 2.48
+
+oak_button:
+    buy: 2.0
+    sell: 1.98
+
+pale_oak_button:
+    buy: 2.3
+    sell: 2.28
+
+polished_blackstone_button:
+    buy: 2.0
+    sell: 1.98
+
+spruce_button:
+    buy: 2.0
+    sell: 1.98
+
+stone_button:
+    buy: 2.0
+    sell: 1.98
+
+warped_button:
+    buy: 3.4
+    sell: 3.37
+
+acacia_door:
+    buy: 4.0
+    sell: 3.96
+
+bamboo_door:
+    buy: 9.0
+    sell: 8.91
+
+birch_door:
+    buy: 4.0
+    sell: 3.96
+
+cherry_door:
+    buy: 4.0
+    sell: 3.96
+
+crimson_door:
+    buy: 7.0
+    sell: 6.93
+
+dark_oak_door:
+    buy: 4.0
+    sell: 3.96
+
+iron_door:
+    buy: 30.0
+    sell: 29.7
+
+jungle_door:
+    buy: 4.0
+    sell: 3.96
+
+mangrove_door:
+    buy: 5.0
+    sell: 4.95
+
+oak_door:
+    buy: 4.0
+    sell: 3.96
+
+pale_oak_door:
+    buy: 4.5
+    sell: 4.46
+
+spruce_door:
+    buy: 4.0
+    sell: 3.96
+
+warped_door:
+    buy: 7.0
+    sell: 6.93
+
+copper_door:
+    buy: 6.0
+    sell: 5.94
+
+exposed_copper_door:
+    buy: 8.0
+    sell: 7.92
+
+oxidized_copper_door:
+    buy: 12.0
+    sell: 11.88
+
+waxed_copper_door:
+    buy: 8.0
+    sell: 7.92
+
+waxed_exposed_copper_door:
+    buy: 10.0
+    sell: 9.9
+
+waxed_oxidized_copper_door:
+    buy: 14.0
+    sell: 13.86
+
+waxed_weathered_copper_door:
+    buy: 12.0
+    sell: 11.88
+
+weathered_copper_door:
+    buy: 10.0
+    sell: 9.9
+
+acacia_pressure_plate:
+    buy: 4.0
+    sell: 3.96
+
+bamboo_pressure_plate:
+    buy: 9.0
+    sell: 8.91
+
+birch_pressure_plate:
+    buy: 4.0
+    sell: 3.96
+
+cherry_pressure_plate:
+    buy: 4.0
+    sell: 3.96
+
+crimson_pressure_plate:
+    buy: 7.0
+    sell: 6.93
+
+dark_oak_pressure_plate:
+    buy: 4.0
+    sell: 3.96
+
+heavy_weighted_pressure_plate:
+    buy: 30.0
+    sell: 29.7
+
+jungle_pressure_plate:
+    buy: 4.0
+    sell: 3.96
+
+light_weighted_pressure_plate:
+    buy: 120.0
+    sell: 118.8
+
+mangrove_pressure_plate:
+    buy: 5.0
+    sell: 4.95
+
+oak_pressure_plate:
+    buy: 4.0
+    sell: 3.96
+
+pale_oak_pressure_plate:
+    buy: 4.5
+    sell: 4.46
+
+polished_blackstone_pressure_plate:
+    buy: 4.0
+    sell: 3.96
+
+spruce_pressure_plate:
+    buy: 4.0
+    sell: 3.96
+
+stone_pressure_plate:
+    buy: 4.0
+    sell: 3.96
+
+warped_pressure_plate:
+    buy: 7.0
+    sell: 6.93
+
+acacia_trapdoor:
+    buy: 6.0
+    sell: 5.94
+
+bamboo_trapdoor:
+    buy: 14.0
+    sell: 13.86
+
+birch_trapdoor:
+    buy: 6.0
+    sell: 5.94
+
+cherry_trapdoor:
+    buy: 6.0
+    sell: 5.94
+
+crimson_trapdoor:
+    buy: 10.0
+    sell: 9.9
+
+dark_oak_trapdoor:
+    buy: 6.0
+    sell: 5.94
+
+iron_trapdoor:
+    buy: 60.0
+    sell: 59.4
+
+jungle_trapdoor:
+    buy: 6.0
+    sell: 5.94
+
+mangrove_trapdoor:
+    buy: 8.0
+    sell: 7.92
+
+oak_trapdoor:
+    buy: 6.0
+    sell: 5.94
+
+pale_oak_trapdoor:
+    buy: 7.0
+    sell: 6.93
+
+spruce_trapdoor:
+    buy: 6.0
+    sell: 5.94
+
+warped_trapdoor:
+    buy: 10.0
+    sell: 9.9
+
+copper_trapdoor:
+    buy: 9.0
+    sell: 8.91
+
+exposed_copper_trapdoor:
+    buy: 11.0
+    sell: 10.89
+
+oxidized_copper_trapdoor:
+    buy: 15.0
+    sell: 14.85
+
+waxed_copper_trapdoor:
+    buy: 11.0
+    sell: 10.89
+
+waxed_exposed_copper_trapdoor:
+    buy: 13.0
+    sell: 12.87
+
+waxed_oxidized_copper_trapdoor:
+    buy: 17.0
+    sell: 16.83
+
+waxed_weathered_copper_trapdoor:
+    buy: 15.0
+    sell: 14.85
+
+weathered_copper_trapdoor:
+    buy: 13.0
+    sell: 12.87
+
+chiseled_red_sandstone:
+    buy: 4.0
+    sell: 3.96
+
+cut_red_sandstone:
+    buy: 4.0
+    sell: 3.96
+
+cut_red_sandstone_slab:
+    buy: 2.0
+    sell: 1.98
+
+red_sand:
+    buy: 1.0
+    sell: 0.99
+
+red_sandstone:
+    buy: 4.0
+    sell: 3.96
+
+red_sandstone_slab:
+    buy: 2.0
+    sell: 1.98
+
+red_sandstone_stairs:
+    buy: 6.0
+    sell: 5.94
+
+red_sandstone_wall:
+    buy: 4.0
+    sell: 3.96
+
+smooth_red_sandstone:
+    buy: 5.0
+    sell: 4.95
+
+smooth_red_sandstone_slab:
+    buy: 2.5
+    sell: 2.48
+
+smooth_red_sandstone_stairs:
+    buy: 8.0
+    sell: 7.92
+
+chiseled_sandstone:
+    buy: 4.0
+    sell: 3.96
+
+cut_sandstone:
+    buy: 4.0
+    sell: 3.96
+
+cut_sandstone_slab:
+    buy: 2.0
+    sell: 1.98
+
+sand:
+    buy: 1.0
+    sell: 0.99
+
+sandstone:
+    buy: 4.0
+    sell: 3.96
+
+sandstone_slab:
+    buy: 2.0
+    sell: 1.98
+
+sandstone_stairs:
+    buy: 6.0
+    sell: 5.94
+
+sandstone_wall:
+    buy: 4.0
+    sell: 3.96
+
+smooth_sandstone:
+    buy: 5.0
+    sell: 4.95
+
+smooth_sandstone_slab:
+    buy: 2.5
+    sell: 2.48
+
+smooth_sandstone_stairs:
+    buy: 8.0
+    sell: 7.92
+
+calcite:
+    buy: 6.0
+    sell: 5.94
+
+clay:
+    buy: 12.0
+    sell: 11.88
+
+clay_ball:
+    buy: 3.0
+    sell: 2.97
+
+cobblestone:
+    buy: 1.0
+    sell: 0.99
+
+cobblestone_slab:
+    buy: 0.5
+    sell: 0.49
+
+cobblestone_stairs:
+    buy: 1.5
+    sell: 1.48
+
+cobblestone_wall:
+    buy: 1.0
+    sell: 0.99
+
+smooth_stone:
+    buy: 3.0
+    sell: 2.97
+
+smooth_stone_slab:
+    buy: 1.5
+    sell: 1.48
+
+stone:
+    buy: 2.0
+    sell: 1.98
+
+stone_slab:
+    buy: 1.0
+    sell: 0.99
+
+stone_stairs:
+    buy: 3.0
+    sell: 2.97
+
+andesite:
+    buy: 1.0
+    sell: 0.99
+
+andesite_slab:
+    buy: 0.5
+    sell: 0.49
+
+andesite_stairs:
+    buy: 1.5
+    sell: 1.48
+
+andesite_wall:
+    buy: 1.0
+    sell: 0.99
+
+polished_andesite:
+    buy: 1.0
+    sell: 0.99
+
+polished_andesite_slab:
+    buy: 0.5
+    sell: 0.49
+
+polished_andesite_stairs:
+    buy: 1.5
+    sell: 1.48
+
+chiseled_stone_bricks:
+    buy: 2.0
+    sell: 1.98
+
+cracked_stone_bricks:
+    buy: 2.0
+    sell: 1.98
+
+stone_brick_slab:
+    buy: 1.0
+    sell: 0.99
+
+stone_brick_stairs:
+    buy: 3.0
+    sell: 2.97
+
+stone_brick_wall:
+    buy: 2.0
+    sell: 1.98
+
+stone_bricks:
+    buy: 2.0
+    sell: 1.98
+
+chiseled_deepslate:
+    buy: 1.0
+    sell: 0.99
+
+deepslate:
+    buy: 2.0
+    sell: 1.98
+
+cracked_deepslate_bricks:
+    buy: 2.0
+    sell: 1.98
+
+deepslate_brick_slab:
+    buy: 0.5
+    sell: 0.49
+
+deepslate_brick_stairs:
+    buy: 1.5
+    sell: 1.48
+
+deepslate_brick_wall:
+    buy: 1.0
+    sell: 0.99
+
+deepslate_bricks:
+    buy: 1.0
+    sell: 0.99
+
+cobbled_deepslate:
+    buy: 1.0
+    sell: 0.99
+
+cobbled_deepslate_slab:
+    buy: 0.5
+    sell: 0.49
+
+cobbled_deepslate_stairs:
+    buy: 1.5
+    sell: 1.48
+
+cobbled_deepslate_wall:
+    buy: 1.0
+    sell: 0.99
+
+polished_deepslate:
+    buy: 1.0
+    sell: 0.99
+
+polished_deepslate_slab:
+    buy: 0.5
+    sell: 0.49
+
+polished_deepslate_stairs:
+    buy: 1.5
+    sell: 1.48
+
+polished_deepslate_wall:
+    buy: 1.0
+    sell: 0.99
+
+cracked_deepslate_tiles:
+    buy: 2.0
+    sell: 1.98
+
+deepslate_tile_slab:
+    buy: 0.5
+    sell: 0.49
+
+deepslate_tile_stairs:
+    buy: 1.5
+    sell: 1.48
+
+deepslate_tile_wall:
+    buy: 1.0
+    sell: 0.99
+
+deepslate_tiles:
+    buy: 1.0
+    sell: 0.99
+
+diorite:
+    buy: 1.0
+    sell: 0.99
+
+diorite_slab:
+    buy: 0.5
+    sell: 0.49
+
+diorite_stairs:
+    buy: 1.5
+    sell: 1.48
+
+diorite_wall:
+    buy: 1.0
+    sell: 0.99
+
+polished_diorite:
+    buy: 1.0
+    sell: 0.99
+
+polished_diorite_slab:
+    buy: 0.5
+    sell: 0.49
+
+polished_diorite_stairs:
+    buy: 1.5
+    sell: 1.48
+
+dripstone_block:
+    buy: 12.0
+    sell: 11.88
+
+pointed_dripstone:
+    buy: 3.0
+    sell: 2.97
+
+granite:
+    buy: 1.0
+    sell: 0.99
+
+granite_slab:
+    buy: 0.5
+    sell: 0.49
+
+granite_stairs:
+    buy: 1.5
+    sell: 1.48
+
+granite_wall:
+    buy: 1.0
+    sell: 0.99
+
+polished_granite:
+    buy: 1.0
+    sell: 0.99
+
+polished_granite_slab:
+    buy: 0.5
+    sell: 0.49
+
+polished_granite_stairs:
+    buy: 1.5
+    sell: 1.48
+
+mossy_cobblestone:
+    buy: 3.0
+    sell: 2.97
+
+mossy_cobblestone_slab:
+    buy: 1.5
+    sell: 1.48
+
+mossy_cobblestone_stairs:
+    buy: 4.5
+    sell: 4.46
+
+mossy_cobblestone_wall:
+    buy: 3.0
+    sell: 2.97
+
+mossy_stone_brick_slab:
+    buy: 2.0
+    sell: 1.98
+
+mossy_stone_brick_stairs:
+    buy: 6.0
+    sell: 5.94
+
+mossy_stone_brick_wall:
+    buy: 4.0
+    sell: 3.96
+
+mossy_stone_bricks:
+    buy: 4.0
+    sell: 3.96
+
+chiseled_tuff:
+    buy: 2.0
+    sell: 1.98
+
+chiseled_tuff_bricks:
+    buy: 2.0
+    sell: 1.98
+
+polished_tuff:
+    buy: 2.0
+    sell: 1.98
+
+polished_tuff_slab:
+    buy: 1.0
+    sell: 0.99
+
+polished_tuff_stairs:
+    buy: 3.0
+    sell: 2.97
+
+polished_tuff_wall:
+    buy: 2.0
+    sell: 1.98
+
+tuff:
+    buy: 2.0
+    sell: 1.98
+
+tuff_brick_slab:
+    buy: 1.0
+    sell: 0.99
+
+tuff_brick_stairs:
+    buy: 3.0
+    sell: 2.97
+
+tuff_brick_wall:
+    buy: 2.0
+    sell: 1.98
+
+tuff_bricks:
+    buy: 2.0
+    sell: 1.98
+
+tuff_slab:
+    buy: 1.0
+    sell: 0.99
+
+tuff_stairs:
+    buy: 3.0
+    sell: 2.97
+
+tuff_wall:
+    buy: 2.0
+    sell: 1.98
+
+fishing_rod:
+    buy: 7.0
+    sell: 6.93
+
+shears:
+    buy: 30.0
+    sell: 29.7
+
+copper_axe:
+    buy: 11.0
+    sell: 10.89
+
+diamond_axe:
+    buy: 842.0
+    sell: 833.58
+
+golden_axe:
+    buy: 182.0
+    sell: 180.18
+
+iron_axe:
+    buy: 47.0
+    sell: 46.53
+
+netherite_axe:
+    buy: 3092.0
+    sell: 3061.0
+
+stone_axe:
+    buy: 5.0
+    sell: 4.95
+
+wooden_axe:
+    buy: 8.0
+    sell: 7.92
+
+copper_hoe:
+    buy: 8.0
+    sell: 7.92
+
+diamond_hoe:
+    buy: 562.0
+    sell: 556.38
+
+golden_hoe:
+    buy: 122.0
+    sell: 120.78
+
+iron_hoe:
+    buy: 32.0
+    sell: 31.68
+
+netherite_hoe:
+    buy: 2842.0
+    sell: 2814.0
+
+stone_hoe:
+    buy: 4.0
+    sell: 3.96
+
+wooden_hoe:
+    buy: 6.0
+    sell: 5.94
+
+copper_pickaxe:
+    buy: 11.0
+    sell: 10.89
+
+diamond_pickaxe:
+    buy: 842.0
+    sell: 833.58
+
+golden_pickaxe:
+    buy: 182.0
+    sell: 180.18
+
+iron_pickaxe:
+    buy: 47.0
+    sell: 46.53
+
+netherite_pickaxe:
+    buy: 3092.0
+    sell: 3061.0
+
+stone_pickaxe:
+    buy: 5.0
+    sell: 4.95
+
+wooden_pickaxe:
+    buy: 8.0
+    sell: 7.92
+
+copper_shovel:
+    buy: 5.0
+    sell: 4.95
+
+diamond_shovel:
+    buy: 282.0
+    sell: 279.18
+
+golden_shovel:
+    buy: 62.0
+    sell: 61.38
+
+iron_shovel:
+    buy: 17.0
+    sell: 16.83
+
+netherite_shovel:
+    buy: 2592.0
+    sell: 2566.0
+
+stone_shovel:
+    buy: 3.0
+    sell: 2.97
+
+wooden_shovel:
+    buy: 4.0
+    sell: 3.96
+
+carrot_on_a_stick:
+    buy: 9.0
+    sell: 8.91
+
+warped_fungus_on_a_stick:
+    buy: 11.0
+    sell: 10.89
+
+elytra:
+    buy: 3500.0
+    sell: 3465.0
+
+saddle:
+    buy: 39.0
+    sell: 38.61
+
+acacia_boat:
+    buy: 10.0
+    sell: 9.9
+
+acacia_chest_boat:
+    buy: 26.0
+    sell: 25.74
+
+bamboo_raft:
+    buy: 23.0
+    sell: 22.77
+
+bamboo_chest_raft:
+    buy: 39.0
+    sell: 38.61
+
+birch_boat:
+    buy: 10.0
+    sell: 9.9
+
+birch_chest_boat:
+    buy: 26.0
+    sell: 25.74
+
+cherry_boat:
+    buy: 10.0
+    sell: 9.9
+
+cherry_chest_boat:
+    buy: 26.0
+    sell: 25.74
+
+dark_oak_boat:
+    buy: 10.0
+    sell: 9.9
+
+dark_oak_chest_boat:
+    buy: 26.0
+    sell: 25.74
+
+jungle_boat:
+    buy: 10.0
+    sell: 9.9
+
+jungle_chest_boat:
+    buy: 26.0
+    sell: 25.74
+
+mangrove_boat:
+    buy: 13.0
+    sell: 12.87
+
+mangrove_chest_boat:
+    buy: 29.0
+    sell: 28.71
+
+oak_boat:
+    buy: 10.0
+    sell: 9.9
+
+oak_chest_boat:
+    buy: 26.0
+    sell: 25.74
+
+pale_oak_boat:
+    buy: 12.0
+    sell: 11.88
+
+pale_oak_chest_boat:
+    buy: 28.0
+    sell: 27.72
+
+spruce_boat:
+    buy: 10.0
+    sell: 9.9
+
+spruce_chest_boat:
+    buy: 26.0
+    sell: 25.74
+
+minecart:
+    buy: 75.0
+    sell: 74.25
+
+chest_minecart:
+    buy: 91.0
+    sell: 90.09
+
+furnace_minecart:
+    buy: 83.0
+    sell: 82.17
+
+hopper_minecart:
+    buy: 191.0
+    sell: 189.09
+
+tnt_minecart:
+    buy: 129.0
+    sell: 127.71
+
+black_harness:
+    buy: 37.0
+    sell: 36.63
+
+blue_harness:
+    buy: 33.0
+    sell: 32.67
+
+brown_harness:
+    buy: 34.0
+    sell: 33.66
+
+cyan_harness:
+    buy: 34.0
+    sell: 33.66
+
+gray_harness:
+    buy: 36.0
+    sell: 35.64
+
+green_harness:
+    buy: 34.0
+    sell: 33.66
+
+light_blue_harness:
+    buy: 36.0
+    sell: 35.64
+
+light_gray_harness:
+    buy: 33.0
+    sell: 32.67
+
+lime_harness:
+    buy: 34.0
+    sell: 33.66
+
+magenta_harness:
+    buy: 36.0
+    sell: 35.64
+
+orange_harness:
+    buy: 34.0
+    sell: 33.66
+
+pink_harness:
+    buy: 33.0
+    sell: 32.67
+
+purple_harness:
+    buy: 33.0
+    sell: 32.67
+
+red_harness:
+    buy: 33.0
+    sell: 32.67
+
+white_harness:
+    buy: 32.0
+    sell: 31.68
+
+yellow_harness:
+    buy: 33.0
+    sell: 32.67
+
+activator_rail:
+    buy: 16.0
+    sell: 15.84
+
+detector_rail:
+    buy: 17.0
+    sell: 16.83
+
+powered_rail:
+    buy: 61.0
+    sell: 60.39
+
+rail:
+    buy: 6.0
+    sell: 5.94
+
+anvil:
+    buy: 465.0
+    sell: 460.35
+
+barrel:
+    buy: 14.0
+    sell: 13.86
+
+beacon:
+    buy: 3085.0
+    sell: 3054.0
+
+beehive:
+    buy: 18.0
+    sell: 17.82
+
+bell:
+    buy: 320.0
+    sell: 316.8
+
+blast_furnace:
+    buy: 92.0
+    sell: 91.08
+
+book:
+    buy: 11.0
+    sell: 10.89
+
+writable_book:
+    buy: 21.0
+    sell: 20.79
+
+experience_bottle:
+    buy: 100.0
+    sell: 99.0
+
+bowl:
+    buy: 1.5
+    sell: 1.48
+
+brewing_stand:
+    buy: 33.0
+    sell: 32.67
+
+bucket:
+    buy: 45.0
+    sell: 44.55
+
+bundle:
+    buy: 10.0
+    sell: 9.9
+
+cartography_table:
+    buy: 10.0
+    sell: 9.9
+
+cauldron:
+    buy: 105.0
+    sell: 103.95
+
+charcoal:
+    buy: 6.0
+    sell: 5.94
+
+chipped_anvil:
+    buy: 308.0
+    sell: 304.92
+
+clock:
+    buy: 243.0
+    sell: 240.57
+
+cobweb:
+    buy: 4.0
+    sell: 3.96
+
+compass:
+    buy: 83.0
+    sell: 82.17
+
+composter:
+    buy: 7.0
+    sell: 6.93
+
+crafter:
+    buy: 99.0
+    sell: 98.01
+
+crafting_table:
+    buy: 8.0
+    sell: 7.92
+
+creaking_heart:
+    buy: 333.0
+    sell: 329.67
+
+damaged_anvil:
+    buy: 154.0
+    sell: 152.46
+
+map:
+    buy: 91.0
+    sell: 90.09
+
+enchanting_table:
+    buy: 671.0
+    sell: 664.29
+
+ender_eye:
+    buy: 31.0
+    sell: 30.69
+
+fire_charge:
+    buy: 10.0
+    sell: 9.9
+
+firework_rocket:
+    buy: 3.7
+    sell: 3.66
+
+firework_star:
+    buy: 13.0
+    sell: 12.87
+
+fletching_table:
+    buy: 18.0
+    sell: 17.82
+
+flint:
+    buy: 5.0
+    sell: 4.95
+
+flint_and_steel:
+    buy: 25.0
+    sell: 24.75
+
+furnace:
+    buy: 8.0
+    sell: 7.92
+
+glass_bottle:
+    buy: 2.0
+    sell: 1.98
+
+grindstone:
+    buy: 7.0
+    sell: 6.93
+
+heavy_core:
+    buy: 3500.0
+    sell: 3465.0
+
+hopper:
+    buy: 116.0
+    sell: 114.84
+
+jukebox:
+    buy: 296.0
+    sell: 293.04
+
+ladder:
+    buy: 2.4
+    sell: 2.38
+
+lava_bucket:
+    buy: 62.0
+    sell: 61.38
+
+lead:
+    buy: 9.0
+    sell: 8.91
+
+lectern:
+    buy: 49.0
+    sell: 48.51
+
+lodestone:
+    buy: 31.0
+    sell: 30.69
+
+loom:
+    buy: 8.0
+    sell: 7.92
+
+milk_bucket:
+    buy: 65.0
+    sell: 64.35
+
+name_tag:
+    buy: 50.0
+    sell: 49.5
+
+painting:
+    buy: 12.0
+    sell: 11.88
+
+paper:
+    buy: 1.0
+    sell: 0.99
+
+powder_snow_bucket:
+    buy: 62.0
+    sell: 61.38
+
+rabbit_foot:
+    buy: 12.0
+    sell: 11.88
+
+recovery_compass:
+    buy: 363.0
+    sell: 359.37
+
+scaffolding:
+    buy: 1.4
+    sell: 1.39
+
+smithing_table:
+    buy: 38.0
+    sell: 37.62
+
+smoker:
+    buy: 40.0
+    sell: 39.6
+
+spyglass:
+    buy: 16.0
+    sell: 15.84
+
+stick:
+    buy: 1.0
+    sell: 0.99
+
+stonecutter:
+    buy: 21.0
+    sell: 20.79
+
+tinted_glass:
+    buy: 21.0
+    sell: 20.79
+
+tnt:
+    buy: 54.0
+    sell: 53.46
+
+totem_of_undying:
+    buy: 500.0
+    sell: 495.0
+
+water_bucket:
+    buy: 60.0
+    sell: 59.4
+
+white_bed:
+    buy: 18.0
+    sell: 17.82
+
+iron_bars:
+    buy: 6.0
+    sell: 5.94
+
+bookshelf:
+    buy: 45.0
+    sell: 44.55
+
+chiseled_bookshelf:
+    buy: 15.0
+    sell: 14.85
+
+iron_chain:
+    buy: 19.0
+    sell: 18.81
+
+chest:
+    buy: 16.0
+    sell: 15.84
+
+copper_chest:
+    buy: 40.0
+    sell: 39.6
+
+exposed_copper_chest:
+    buy: 42.0
+    sell: 41.58
+
+oxidized_copper_chest:
+    buy: 46.0
+    sell: 45.54
+
+weathered_copper_chest:
+    buy: 44.0
+    sell: 43.56
+
+waxed_copper_chest:
+    buy: 42.0
+    sell: 41.58
+
+waxed_exposed_copper_chest:
+    buy: 44.0
+    sell: 43.56
+
+waxed_oxidized_copper_chest:
+    buy: 48.0
+    sell: 47.52
+
+waxed_weathered_copper_chest:
+    buy: 46.0
+    sell: 45.54
+
+acacia_fence:
+    buy: 3.4
+    sell: 3.37
+
+bamboo_fence:
+    buy: 7.0
+    sell: 6.93
+
+birch_fence:
+    buy: 3.4
+    sell: 3.37
+
+cherry_fence:
+    buy: 3.4
+    sell: 3.37
+
+crimson_fence:
+    buy: 6.0
+    sell: 5.94
+
+dark_oak_fence:
+    buy: 3.4
+    sell: 3.37
+
+jungle_fence:
+    buy: 3.4
+    sell: 3.37
+
+mangrove_fence:
+    buy: 4.0
+    sell: 3.96
+
+oak_fence:
+    buy: 3.4
+    sell: 3.37
+
+pale_oak_fence:
+    buy: 3.7
+    sell: 3.66
+
+spruce_fence:
+    buy: 3.4
+    sell: 3.37
+
+warped_fence:
+    buy: 6.0
+    sell: 5.94
+
+acacia_fence_gate:
+    buy: 8.0
+    sell: 7.92
+
+bamboo_fence_gate:
+    buy: 13.0
+    sell: 12.87
+
+birch_fence_gate:
+    buy: 8.0
+    sell: 7.92
+
+cherry_fence_gate:
+    buy: 8.0
+    sell: 7.92
+
+crimson_fence_gate:
+    buy: 11.0
+    sell: 10.89
+
+dark_oak_fence_gate:
+    buy: 8.0
+    sell: 7.92
+
+jungle_fence_gate:
+    buy: 8.0
+    sell: 7.92
+
+mangrove_fence_gate:
+    buy: 9.0
+    sell: 8.91
+
+oak_fence_gate:
+    buy: 8.0
+    sell: 7.92
+
+pale_oak_fence_gate:
+    buy: 9.0
+    sell: 8.91
+
+spruce_fence_gate:
+    buy: 8.0
+    sell: 7.92
+
+warped_fence_gate:
+    buy: 11.0
+    sell: 10.89
+
+axolotl_bucket:
+    buy: 75.0
+    sell: 74.25
+
+cod_bucket:
+    buy: 63.0
+    sell: 62.37
+
+pufferfish_bucket:
+    buy: 63.0
+    sell: 62.37
+
+salmon_bucket:
+    buy: 64.0
+    sell: 63.36
+
+tadpole_bucket:
+    buy: 132.0
+    sell: 130.68
+
+tropical_fish_bucket:
+    buy: 63.0
+    sell: 62.37
+
+acacia_hanging_sign:
+    buy: 15.0
+    sell: 14.85
+
+bamboo_hanging_sign:
+    buy: 16.0
+    sell: 15.84
+
+birch_hanging_sign:
+    buy: 15.0
+    sell: 14.85
+
+cherry_hanging_sign:
+    buy: 15.0
+    sell: 14.85
+
+crimson_hanging_sign:
+    buy: 17.0
+    sell: 16.83
+
+dark_oak_hanging_sign:
+    buy: 15.0
+    sell: 14.85
+
+jungle_hanging_sign:
+    buy: 15.0
+    sell: 14.85
+
+mangrove_hanging_sign:
+    buy: 25.0
+    sell: 24.75
+
+oak_hanging_sign:
+    buy: 15.0
+    sell: 14.85
+
+pale_oak_hanging_sign:
+    buy: 16.0
+    sell: 15.84
+
+spruce_hanging_sign:
+    buy: 15.0
+    sell: 14.85
+
+warped_hanging_sign:
+    buy: 17.0
+    sell: 16.83
+
+glow_item_frame:
+    buy: 26.0
+    sell: 25.74
+
+item_frame:
+    buy: 16.0
+    sell: 15.84
+
+globe_banner_pattern:
+    buy: 800.0
+    sell: 792.0
+
+bordure_indented_banner_pattern:
+    buy: 3.0
+    sell: 2.97
+
+creeper_banner_pattern:
+    buy: 1501.0
+    sell: 1486.0
+
+field_masoned_banner_pattern:
+    buy: 17.0
+    sell: 16.83
+
+flow_banner_pattern:
+    buy: 150.0
+    sell: 148.5
+
+flower_banner_pattern:
+    buy: 2.0
+    sell: 1.98
+
+guster_banner_pattern:
+    buy: 150.0
+    sell: 148.5
+
+skull_banner_pattern:
+    buy: 601.0
+    sell: 594.99
+
+piglin_banner_pattern:
+    buy: 600.0
+    sell: 594.0
+
+mojang_banner_pattern:
+    buy: 501.0
+    sell: 495.99
+
+exposed_lightning_rod:
+    buy: 11.0
+    sell: 10.89
+
+lightning_rod:
+    buy: 9.0
+    sell: 8.91
+
+oxidized_lightning_rod:
+    buy: 14.0
+    sell: 13.86
+
+weathered_lightning_rod:
+    buy: 12.0
+    sell: 11.88
+
+waxed_exposed_lightning_rod:
+    buy: 13.0
+    sell: 12.87
+
+waxed_lightning_rod:
+    buy: 11.0
+    sell: 10.89
+
+waxed_oxidized_lightning_rod:
+    buy: 16.0
+    sell: 15.84
+
+waxed_weathered_lightning_rod:
+    buy: 14.0
+    sell: 13.86
+
+acacia_shelf:
+    buy: 8.0
+    sell: 7.92
+
+bamboo_shelf:
+    buy: 9.0
+    sell: 8.91
+
+birch_shelf:
+    buy: 8.0
+    sell: 7.92
+
+cherry_shelf:
+    buy: 8.0
+    sell: 7.92
+
+crimson_shelf:
+    buy: 10.0
+    sell: 9.9
+
+dark_oak_shelf:
+    buy: 8.0
+    sell: 7.92
+
+jungle_shelf:
+    buy: 8.0
+    sell: 7.92
+
+mangrove_shelf:
+    buy: 18.0
+    sell: 17.82
+
+oak_shelf:
+    buy: 8.0
+    sell: 7.92
+
+pale_oak_shelf:
+    buy: 9.0
+    sell: 8.91
+
+spruce_shelf:
+    buy: 8.0
+    sell: 7.92
+
+warped_shelf:
+    buy: 10.0
+    sell: 9.9
+
+acacia_sign:
+    buy: 4.4
+    sell: 4.36
+
+bamboo_sign:
+    buy: 10.0
+    sell: 9.9
+
+birch_sign:
+    buy: 4.4
+    sell: 4.36
+
+cherry_sign:
+    buy: 4.4
+    sell: 4.36
+
+crimson_sign:
+    buy: 7.0
+    sell: 6.93
+
+dark_oak_sign:
+    buy: 4.4
+    sell: 4.36
+
+jungle_sign:
+    buy: 4.4
+    sell: 4.36
+
+mangrove_sign:
+    buy: 6.0
+    sell: 5.94
+
+oak_sign:
+    buy: 4.4
+    sell: 4.36
+
+pale_oak_sign:
+    buy: 4.9
+    sell: 4.85
+
+spruce_sign:
+    buy: 4.4
+    sell: 4.36
+
+warped_sign:
+    buy: 7.0
+    sell: 6.93
+
+arrow:
+    buy: 2.8
+    sell: 2.77
+
+bow:
+    buy: 9.0
+    sell: 8.91
+
+crossbow:
+    buy: 31.0
+    sell: 30.69
+
+mace:
+    buy: 3570.0
+    sell: 3534.0
+
+spectral_arrow:
+    buy: 6.0
+    sell: 5.94
+
+trident:
+    buy: 500.0
+    sell: 495.0
+
+copper_spear:
+    buy: 5.0
+    sell: 4.95
+
+diamond_spear:
+    buy: 282.0
+    sell: 279.18
+
+golden_spear:
+    buy: 62.0
+    sell: 61.38
+
+iron_spear:
+    buy: 17.0
+    sell: 16.83
+
+netherite_spear:
+    buy: 2622.0
+    sell: 2596.0
+
+stone_spear:
+    buy: 3.0
+    sell: 2.97
+
+wooden_spear:
+    buy: 4.0
+    sell: 3.96
+
+copper_sword:
+    buy: 7.0
+    sell: 6.93
+
+diamond_sword:
+    buy: 561.0
+    sell: 555.39
+
+golden_sword:
+    buy: 121.0
+    sell: 119.79
+
+iron_sword:
+    buy: 31.0
+    sell: 30.69
+
+netherite_sword:
+    buy: 2841.0
+    sell: 2813.0
+
+stone_sword:
+    buy: 3.0
+    sell: 2.97
+
+wooden_sword:
+    buy: 5.0
+    sell: 4.95
+
+acacia_planks:
+    buy: 1.8
+    sell: 1.98
+
+acacia_slab:
+    buy: 0.9
+    sell: 0.99
+
+acacia_stairs:
+    buy: 2.7
+    sell: 2.97
+
+acacia_wood:
+    buy: 9.9
+    sell: 10.89
+
+stripped_acacia_log:
+    buy: 7.2
+    sell: 7.92
+
+stripped_acacia_wood:
+    buy: 9.9
+    sell: 10.89
+
+acacia_log:
+    buy: 7.2
+    sell: 7.92
+
+bamboo_mosaic:
+    buy: 4.05
+    sell: 4.46
+
+bamboo_mosaic_slab:
+    buy: 2.07
+    sell: 2.28
+
+bamboo_mosaic_stairs:
+    buy: 6.3
+    sell: 6.93
+
+bamboo_planks:
+    buy: 4.05
+    sell: 4.46
+
+bamboo_slab:
+    buy: 2.07
+    sell: 2.28
+
+bamboo_stairs:
+    buy: 6.3
+    sell: 6.93
+
+bamboo_block:
+    buy: 8.1
+    sell: 8.91
+
+stripped_bamboo_block:
+    buy: 8.1
+    sell: 8.91
+
+birch_log:
+    buy: 7.2
+    sell: 7.92
+
+birch_planks:
+    buy: 1.8
+    sell: 1.98
+
+birch_slab:
+    buy: 0.9
+    sell: 0.99
+
+birch_stairs:
+    buy: 2.7
+    sell: 2.97
+
+birch_wood:
+    buy: 9.9
+    sell: 10.89
+
+stripped_birch_log:
+    buy: 7.2
+    sell: 7.92
+
+stripped_birch_wood:
+    buy: 9.9
+    sell: 10.89
+
+cherry_log:
+    buy: 7.2
+    sell: 7.92
+
+cherry_planks:
+    buy: 1.8
+    sell: 1.98
+
+cherry_slab:
+    buy: 0.9
+    sell: 0.99
+
+cherry_stairs:
+    buy: 2.7
+    sell: 2.97
+
+cherry_wood:
+    buy: 9.9
+    sell: 10.89
+
+stripped_cherry_log:
+    buy: 7.2
+    sell: 7.92
+
+stripped_cherry_wood:
+    buy: 9.9
+    sell: 10.89
+
+crimson_hyphae:
+    buy: 12.6
+    sell: 13.86
+
+crimson_planks:
+    buy: 3.06
+    sell: 3.37
+
+crimson_slab:
+    buy: 1.53
+    sell: 1.68
+
+crimson_stairs:
+    buy: 4.5
+    sell: 4.95
+
+crimson_stem:
+    buy: 9.0
+    sell: 9.9
+
+stripped_crimson_hyphae:
+    buy: 12.6
+    sell: 13.86
+
+stripped_crimson_stem:
+    buy: 9.0
+    sell: 9.9
+
+dark_oak_log:
+    buy: 7.2
+    sell: 7.92
+
+dark_oak_planks:
+    buy: 1.8
+    sell: 1.98
+
+dark_oak_slab:
+    buy: 0.9
+    sell: 0.99
+
+dark_oak_stairs:
+    buy: 2.7
+    sell: 2.97
+
+dark_oak_wood:
+    buy: 9.9
+    sell: 10.89
+
+stripped_dark_oak_log:
+    buy: 7.2
+    sell: 7.92
+
+stripped_dark_oak_wood:
+    buy: 9.9
+    sell: 10.89
+
+jungle_log:
+    buy: 7.2
+    sell: 7.92
+
+jungle_planks:
+    buy: 1.8
+    sell: 1.98
+
+jungle_slab:
+    buy: 0.9
+    sell: 0.99
+
+jungle_stairs:
+    buy: 2.7
+    sell: 2.97
+
+jungle_wood:
+    buy: 9.9
+    sell: 10.89
+
+stripped_jungle_log:
+    buy: 7.2
+    sell: 7.92
+
+stripped_jungle_wood:
+    buy: 9.9
+    sell: 10.89
+
+mangrove_log:
+    buy: 9.0
+    sell: 9.9
+
+mangrove_planks:
+    buy: 2.25
+    sell: 2.48
+
+mangrove_slab:
+    buy: 1.17
+    sell: 1.29
+
+mangrove_stairs:
+    buy: 3.42
+    sell: 3.76
+
+mangrove_wood:
+    buy: 12.6
+    sell: 13.86
+
+stripped_mangrove_log:
+    buy: 16.2
+    sell: 17.82
+
+stripped_mangrove_wood:
+    buy: 21.6
+    sell: 23.76
+
+oak_log:
+    buy: 7.2
+    sell: 7.92
+
+oak_planks:
+    buy: 1.8
+    sell: 1.98
+
+oak_slab:
+    buy: 0.9
+    sell: 0.99
+
+oak_stairs:
+    buy: 2.7
+    sell: 2.97
+
+oak_wood:
+    buy: 9.9
+    sell: 10.89
+
+stripped_oak_log:
+    buy: 7.2
+    sell: 7.92
+
+stripped_oak_wood:
+    buy: 9.9
+    sell: 10.89
+
+pale_oak_log:
+    buy: 8.1
+    sell: 8.91
+
+pale_oak_planks:
+    buy: 2.07
+    sell: 2.28
+
+pale_oak_slab:
+    buy: 1.08
+    sell: 1.19
+
+pale_oak_stairs:
+    buy: 3.06
+    sell: 3.37
+
+pale_oak_wood:
+    buy: 10.8
+    sell: 11.88
+
+stripped_pale_oak_log:
+    buy: 8.1
+    sell: 8.91
+
+stripped_pale_oak_wood:
+    buy: 10.8
+    sell: 11.88
+
+spruce_log:
+    buy: 7.2
+    sell: 7.92
+
+spruce_planks:
+    buy: 1.8
+    sell: 1.98
+
+spruce_slab:
+    buy: 0.9
+    sell: 0.99
+
+spruce_stairs:
+    buy: 2.7
+    sell: 2.97
+
+spruce_wood:
+    buy: 9.9
+    sell: 10.89
+
+stripped_spruce_log:
+    buy: 7.2
+    sell: 7.92
+
+stripped_spruce_wood:
+    buy: 9.9
+    sell: 10.89
+
+stripped_warped_hyphae:
+    buy: 12.6
+    sell: 13.86
+
+stripped_warped_stem:
+    buy: 9.0
+    sell: 9.9
+
+warped_hyphae:
+    buy: 12.6
+    sell: 13.86
+
+warped_planks:
+    buy: 3.06
+    sell: 3.37
+
+warped_slab:
+    buy: 1.53
+    sell: 1.68
+
+warped_stairs:
+    buy: 4.5
+    sell: 4.95
+
+warped_stem:
+    buy: 9.0
+    sell: 9.9

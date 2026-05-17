@@ -23,8 +23,13 @@ app.get('/', (req, res) => {
     res.redirect('/items.html');
 });
 
-// 数据文件路径保持不变
-const DATA_PATH = path.join(__dirname, 'mcwws', 'economy', 'web_prices.yml');
+// 价格表：原版物品与自定义物品分开存放，接口层合并输出。
+const VANILLA_PRICES_PATH = path.join(__dirname, 'mcwws', 'economy', 'vanilla_prices.yml');
+const CUSTOM_PRICES_PATH = path.join(__dirname, 'mcwws', 'economy', 'custom_prices.yml');
+const PRICE_TABLE_PATHS = [
+    { path: VANILLA_PRICES_PATH, source: 'vanilla', custom: false },
+    { path: CUSTOM_PRICES_PATH, source: 'custom', custom: true }
+];
 const MAPPING_PATH = path.join(__dirname, 'mcwws', 'ultimateshop_mappings.yml');
 const ULTIMATE_SHOP_SHOPS_DIR = path.join(__dirname, '..', '..', '..', 'UltimateShop', 'shops');
 const ULTIMATE_SHOP_LANG_FILE = path.join(__dirname, '..', '..', '..', 'UltimateShop', 'languages', 'zh_CN.yml');
@@ -54,7 +59,7 @@ const analytics = createAnalyticsService({
     transactionsCsvPath: TRANSACTIONS_CSV,
     transactionsYamlPath: TRANSACTIONS_YAML,
     legacyCsvPath: LEGACY_TRANSACTIONS_CSV,
-    webPricesPath: DATA_PATH,
+    webPricePaths: PRICE_TABLE_PATHS,
     itemsDbPath: ITEMS_DB_PATH,
     ultimateShopShopsDir: ULTIMATE_SHOP_SHOPS_DIR
 });
@@ -87,6 +92,23 @@ function loadYamlFile(filePath) {
         console.error(`读取 YAML 文件失败: ${filePath}`, error);
         return {};
     }
+}
+
+function loadPriceTables() {
+    const merged = {};
+    PRICE_TABLE_PATHS.forEach((table) => {
+        const data = loadYamlFile(table.path);
+        Object.keys(data).forEach((key) => {
+            const row = data[key];
+            if (!row || typeof row !== 'object') return;
+            merged[key] = {
+                ...row,
+                source: table.source,
+                custom: table.custom
+            };
+        });
+    });
+    return merged;
 }
 
 function normalizeMaterialId(material) {
@@ -374,12 +396,11 @@ app.get('/api/profile', (req, res) => {
 // 提供数据接口，同时返回 UltimateShop 映射配置
 app.get('/api/prices', (req, res) => {
     try {
-        if (!fs.existsSync(DATA_PATH)) {
+        if (!PRICE_TABLE_PATHS.some((table) => fs.existsSync(table.path))) {
             return res.status(404).json({ error: '暂无数据' });
         }
 
-        const fileContents = fs.readFileSync(DATA_PATH, 'utf8');
-        const rawData = yaml.load(fileContents) || {};
+        const rawData = loadPriceTables();
         const mappings = loadYamlFile(MAPPING_PATH);
         const usCatalog = buildUltimateShopCatalogByMaterial(rawData);
 
@@ -391,10 +412,14 @@ app.get('/api/prices', (req, res) => {
             responseData[key] = {
                 buy: rawData[key].buy,
                 sell: rawData[key].sell,
+                source: rawData[key].source || 'vanilla',
+                custom: rawData[key].custom === true,
                 shop: mapping.shop || null,
                 item: mapping.item || null,
                 amount: mapping.amount || 1,
                 displayName: mapping.displayName || null,
+                customDisplayName: rawData[key].displayName || null,
+                loreLine: rawData[key].loreLine || rawData[key].description || rawData[key].lore || null,
                 ultimateShopOffers
             };
         });
@@ -485,12 +510,11 @@ app.post('/api/buy', (req, res) => {
             return res.status(400).json({ error: '缺少 itemId 参数' });
         }
 
-        if (!fs.existsSync(DATA_PATH)) {
+        if (!PRICE_TABLE_PATHS.some((table) => fs.existsSync(table.path))) {
             return res.status(404).json({ error: '暂无数据' });
         }
 
-        const fileContents = fs.readFileSync(DATA_PATH, 'utf8');
-        const rawData = yaml.load(fileContents) || {};
+        const rawData = loadPriceTables();
         const itemData = rawData[itemId];
         if (!itemData) {
             return res.status(404).json({ error: '未找到该商品' });

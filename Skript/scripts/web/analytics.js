@@ -10,7 +10,8 @@ const MAX_TRANSACTIONS = 10000;
  * @param {string} opts.transactionsCsvPath
  * @param {string} opts.transactionsYamlPath
  * @param {string} opts.legacyCsvPath
- * @param {string} opts.webPricesPath
+ * @param {string} [opts.webPricesPath]
+ * @param {Array<{path:string, source?:string, custom?:boolean}>} [opts.webPricePaths]
  * @param {string} opts.itemsDbPath
  * @param {string} opts.ultimateShopShopsDir
  */
@@ -20,6 +21,7 @@ function createAnalyticsService(opts) {
         transactionsYamlPath,
         legacyCsvPath,
         webPricesPath,
+        webPricePaths,
         itemsDbPath,
         ultimateShopShopsDir
     } = opts;
@@ -42,6 +44,27 @@ function createAnalyticsService(opts) {
             console.error(`读取 YAML 失败: ${filePath}`, error);
             return {};
         }
+    }
+
+    function loadPriceTables() {
+        const tables = Array.isArray(webPricePaths) && webPricePaths.length
+            ? webPricePaths
+            : [{ path: webPricesPath, source: 'vanilla', custom: false }];
+        const merged = {};
+        tables.forEach((table) => {
+            if (!table || !table.path) return;
+            const data = loadYamlFile(table.path);
+            Object.keys(data).forEach((key) => {
+                const row = data[key];
+                if (!row || typeof row !== 'object') return;
+                merged[key] = {
+                    ...row,
+                    source: table.source || row.source || 'vanilla',
+                    custom: table.custom === true || row.custom === true
+                };
+            });
+        });
+        return merged;
     }
 
     function normalizeMaterialId(material) {
@@ -245,7 +268,7 @@ function createAnalyticsService(opts) {
     function loadTransactions() {
         const shopProductIndex = buildShopProductIndex();
         const itemMeta = loadItemMeta();
-        const prices = loadYamlFile(webPricesPath);
+        const prices = loadPriceTables();
         const rows = [];
         const seen = new Set();
 

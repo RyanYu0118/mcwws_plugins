@@ -1,0 +1,5 @@
+ryan_crystal:
+    displayName: "Ryan 水晶"
+    loreLine: "示例自定义物品，用于测试自定义物品价格表。"
+    buy: 128.0
+    sell: 96.0

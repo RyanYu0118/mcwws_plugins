@@ -13,6 +13,7 @@ let currentUser = null;
 let authToken = localStorage.getItem('authToken') || null;
 let authMode = 'login';
 let currentPage = 1;
+let itemScope = 'all';
 const PAGE_SIZE = 60;
 let searchTimer = null;
 let pageBeforeSearch = null;
@@ -24,6 +25,7 @@ let pointerBearingY = null;
 const POINTER_COMPASS_TILT_COS = Math.cos(Math.PI / 4);
 
 const SORT_VALUES = new Set(['name', 'buyPrice', 'sellPrice', 'stock']);
+const ITEM_SCOPE_VALUES = new Set(['all', 'vanilla', 'custom']);
 
 function replaceUrlIfChanged(params) {
     const qs = params.toString();
@@ -55,6 +57,10 @@ function hydrateItemsStateFromUrl() {
         if (sortSelect) sortSelect.value = sortVal;
     }
 
+    const scopeVal = params.get('scope');
+    itemScope = scopeVal && ITEM_SCOPE_VALUES.has(scopeVal) ? scopeVal : 'all';
+    updateCategoryScopeButtons();
+
     sortReverse = params.get('rev') === '1';
     const revEl = document.getElementById('sortReverse');
     if (revEl) revEl.checked = sortReverse;
@@ -80,6 +86,9 @@ function syncItemsStateToUrl() {
 
     if (currentSort && currentSort !== 'name') params.set('sort', currentSort);
     else params.delete('sort');
+
+    if (itemScope && itemScope !== 'all') params.set('scope', itemScope);
+    else params.delete('scope');
 
     if (sortReverse) params.set('rev', '1');
     else params.delete('rev');
@@ -145,13 +154,17 @@ async function loadItems() {
         // 核心转换逻辑
         allItems = Object.keys(rawData).map(key => ({
             id: key,
-            name: window.getChineseName ? window.getChineseName(key) : key,
+            name: rawData[key].displayName
+                || rawData[key].customDisplayName
+                || (window.getChineseName ? window.getChineseName(key) : key),
             buyPrice: rawData[key].buy,
             sellPrice: rawData[key].sell,
+            source: rawData[key].source || 'vanilla',
+            custom: rawData[key].custom === true,
             shop: rawData[key].shop || null,
             shopItem: rawData[key].item || null,
             buyAmount: rawData[key].amount || 1,
-            displayName: rawData[key].displayName || null,
+            displayName: rawData[key].displayName || rawData[key].customDisplayName || null,
             loreLine: normalizeLoreLine(rawData[key].loreLine
                 || rawData[key].description
                 || rawData[key].lore
@@ -204,6 +217,23 @@ function normalizeLoreLine(value) {
     if (value == null) return null;
     const text = String(value).replace(/§[0-9a-fk-or]/gi, '').trim();
     return text || null;
+}
+
+function isCustomCatalogItem(item) {
+    if (!item || typeof item !== 'object') return false;
+    return item.custom === true
+        || item.isCustom === true
+        || item.source === 'custom'
+        || item.kind === 'custom'
+        || item.type === 'custom';
+}
+
+function updateCategoryScopeButtons() {
+    const tabs = document.getElementById('categoryTabs');
+    if (!tabs) return;
+    tabs.querySelectorAll('.category-btn[data-scope]').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.scope === itemScope);
+    });
 }
 
 function formatClockSystemTime(date) {
@@ -563,6 +593,12 @@ function filterAndRenderItems() {
         return nameMatch || idMatch || pinyinMatch;
     });
 
+    if (itemScope === 'vanilla') {
+        filteredItems = filteredItems.filter(item => !isCustomCatalogItem(item));
+    } else if (itemScope === 'custom') {
+        filteredItems = filteredItems.filter(item => isCustomCatalogItem(item));
+    }
+
     if (hideUntradable) {
         filteredItems = filteredItems.filter(item => (item.ultimateShopOffers || []).length > 0);
     }
@@ -804,6 +840,21 @@ function setupEventListeners() {
                 handleTradeClick(itemId);
             }
         });
+    }
+
+    const categoryTabs = document.getElementById('categoryTabs');
+    if (categoryTabs) {
+        categoryTabs.addEventListener('click', (e) => {
+            const btn = e.target.closest('.category-btn[data-scope]');
+            if (!btn) return;
+            const nextScope = btn.dataset.scope || 'all';
+            if (!ITEM_SCOPE_VALUES.has(nextScope) || nextScope === itemScope) return;
+            itemScope = nextScope;
+            currentPage = 1;
+            updateCategoryScopeButtons();
+            filterAndRenderItems();
+        });
+        updateCategoryScopeButtons();
     }
 
     const tradeModal = document.getElementById('tradeModal');
