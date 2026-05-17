@@ -227,6 +227,45 @@
         }
     }
 
+    async function renderTippedArrowCanvas(canvas) {
+        if (!canvas || !canvas.getContext || !global.isMcTippedArrowItemId) return false;
+        const itemId = itemIdForCanvas(canvas);
+        if (!global.isMcTippedArrowItemId(itemId)) return false;
+
+        const urls = global.mcTippedArrowTextureUrlsForItem
+            ? global.mcTippedArrowTextureUrlsForItem(itemId)
+            : [];
+        if (urls.length < 2) return false;
+
+        try {
+            const [head, base] = await Promise.all([
+                loadImage(urls[0]),
+                loadImage(urls[1])
+            ]);
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.imageSmoothingEnabled = false;
+
+            const colorHex = global.mcPotionColorHexForItem
+                ? global.mcPotionColorHexForItem(itemId)
+                : '#385dc6';
+            const tintedHead = tintedPotionOverlayCanvas(head, hexToRgb(colorHex));
+
+            drawImageWithFlatPadding(ctx, tintedHead, 0, 0, tintedHead.width, tintedHead.height);
+            drawImageWithFlatPadding(
+                ctx,
+                base,
+                0,
+                0,
+                base.naturalWidth || base.width,
+                base.naturalHeight || base.height
+            );
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
     async function fetchAnimationMeta(pngUrl) {
         if (metaCache.has(pngUrl)) return metaCache.get(pngUrl);
         try {
@@ -397,6 +436,10 @@
     }
 
     async function initCanvasFromUrls(canvas, urls) {
+        if (global.isMcTippedArrowItemId && global.isMcTippedArrowItemId(itemIdForCanvas(canvas))) {
+            const ok = await renderTippedArrowCanvas(canvas);
+            if (ok) return true;
+        }
         if (global.isMcPotionItemId && global.isMcPotionItemId(itemIdForCanvas(canvas))) {
             const ok = await renderPotionCanvas(canvas);
             if (ok) return true;

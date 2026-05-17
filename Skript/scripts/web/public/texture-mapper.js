@@ -127,6 +127,7 @@ window.mcPotionEffectFromItemId = function(id) {
     if (standalone[n]) return standalone[n];
 
     let m = n.match(/^(?:potion|splash_potion|lingering_potion)_of_(.+?)(?:_(?:extended|[0-9]+))?$/);
+    if (!m) m = n.match(/^arrow_of_(.+?)(?:_(?:extended|[0-9]+))?$/);
     if (!m) return 'water';
     const effect = m[1];
     return POTION_EFFECT_ALIASES[effect] || effect;
@@ -134,7 +135,7 @@ window.mcPotionEffectFromItemId = function(id) {
 
 window.mcPotionColorHexForItem = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
-    if (/^(?:potion|splash_potion|lingering_potion)_of_the_turtle_master_2$/.test(n)) {
+    if (/^(?:(?:potion|splash_potion|lingering_potion)_of_the_turtle_master|arrow_of_the_turtle_master)_2$/.test(n)) {
         return POTION_EFFECT_COLORS.turtle_master_strong;
     }
     const effect = window.mcPotionEffectFromItemId(id);
@@ -151,10 +152,27 @@ window.mcPotionTextureUrlsForItem = function(itemId) {
     ];
 };
 
+window.isMcTippedArrowItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'tipped_arrow' || n.startsWith('arrow_of_');
+};
+
+window.mcTippedArrowTextureUrlsForItem = function() {
+    const base = TextureConfig.getBasePath();
+    return [
+        `${base}/item/tipped_arrow_head.png`,
+        `${base}/item/tipped_arrow_base.png`,
+        `${base}/item/barrier.png`
+    ];
+};
+
 /** 2D 图标贴图 URL 列表（玻璃板仅 block，避免误请求 item/glass_pane 等） */
 window.flatTextureUrlsForItem = function(itemId) {
     const base = TextureConfig.getBasePath();
     const smartId = window.getSmartId(itemId);
+    if (window.isMcTippedArrowItemId && window.isMcTippedArrowItemId(itemId)) {
+        return window.mcTippedArrowTextureUrlsForItem(itemId);
+    }
     if (window.isMcPotionItemId && window.isMcPotionItemId(itemId)) {
         return window.mcPotionTextureUrlsForItem(itemId);
     }
