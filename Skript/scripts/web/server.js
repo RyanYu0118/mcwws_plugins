@@ -35,6 +35,7 @@ const LEGACY_TRANSACTIONS_CSV = path.join(__dirname, '..', '..', '..', 'DynamicS
 const ITEMS_DB_PATH = path.join(__dirname, '..', 'mcwws', 'economy', 'database', 'items.yml');
 const HTTPS_KEY_PATH = path.join(__dirname, 'certs', 'server.key');
 const HTTPS_CERT_PATH = path.join(__dirname, 'certs', 'server.crt');
+const HTTPS_ENABLED = process.env.HTTPS === '1';
 
 if (!fs.existsSync(DB_DIR)) {
     fs.mkdirSync(DB_DIR, { recursive: true });
@@ -483,7 +484,7 @@ function logServerStart(protocol) {
     console.log(`📊 仪表板交易记录: ${TRANSACTIONS_YAML}`);
 }
 
-if (fs.existsSync(HTTPS_KEY_PATH) && fs.existsSync(HTTPS_CERT_PATH)) {
+if (HTTPS_ENABLED && fs.existsSync(HTTPS_KEY_PATH) && fs.existsSync(HTTPS_CERT_PATH)) {
     https.createServer({
         key: fs.readFileSync(HTTPS_KEY_PATH),
         cert: fs.readFileSync(HTTPS_CERT_PATH)
@@ -491,6 +492,10 @@ if (fs.existsSync(HTTPS_KEY_PATH) && fs.existsSync(HTTPS_CERT_PATH)) {
 } else {
     app.listen(PORT, HOST, () => {
         logServerStart('http');
-        console.log('ℹ️ 未找到 HTTPS 证书；运行 npm run generate-cert 后重启服务即可启用 HTTPS。');
+        if (!HTTPS_ENABLED) {
+            console.log('ℹ️ 当前为 HTTP 模式；如需 HTTPS，可设置 HTTPS=1 后重启服务。');
+        } else {
+            console.log('ℹ️ 未找到 HTTPS 证书；运行 npm run generate-cert 后重启服务即可启用 HTTPS。');
+        }
     });
 }

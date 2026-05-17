@@ -299,11 +299,15 @@ body {
 
 .refresh-btn:hover {
     background: var(--primary);
-    transform: rotate(180deg);
 }
 
 .refresh-icon {
     font-size: 1.2rem;
+    transition: var(--transition-normal);
+}
+
+.refresh-btn:hover .refresh-icon {
+    transform: rotate(180deg);
 }
 
 .last-updated {

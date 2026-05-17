@@ -526,7 +526,7 @@ function setupEventListeners() {
             refreshButton.textContent = '刷新中...';
             await loadItems();
             refreshButton.disabled = false;
-            refreshButton.textContent = '⟳';
+            refreshButton.innerHTML = '<span class="refresh-icon">⟳</span>';
         });
     }
 
