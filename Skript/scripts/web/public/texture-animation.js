@@ -7,6 +7,7 @@
     const threeTextures = new Set();
     const domEntries = new Set();
     const clockEntries = new Set();
+    const rainbowLayerEntries = new Set();
     const clockFrameCache = new Map();
     let rafId = null;
 
@@ -217,6 +218,30 @@
         ];
     }
 
+    function hslToRgb(h, s, l) {
+        const hue = ((h % 360) + 360) % 360 / 360;
+        const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        const p = 2 * l - q;
+        const channel = (tRaw) => {
+            let t = tRaw;
+            if (t < 0) t += 1;
+            if (t > 1) t -= 1;
+            if (t < 1 / 6) return p + (q - p) * 6 * t;
+            if (t < 1 / 2) return q;
+            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+            return p;
+        };
+        return [
+            Math.round(channel(hue + 1 / 3) * 255),
+            Math.round(channel(hue) * 255),
+            Math.round(channel(hue - 1 / 3) * 255)
+        ];
+    }
+
+    function rainbowRgbAt(now) {
+        return hslToRgb((now / 5000) * 360, 0.9, 0.58);
+    }
+
     function tintedPotionOverlayCanvas(img, rgb) {
         const c = document.createElement('canvas');
         c.width = img.naturalWidth || img.width;
@@ -311,6 +336,53 @@
                 base.naturalWidth || base.width,
                 base.naturalHeight || base.height
             );
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    function drawRainbowLayerEntry(entry, now) {
+        if (!entry || !entry.canvas || !entry.base || !entry.overlay) return;
+        const ctx = entry.canvas.getContext('2d');
+        if (!ctx) return;
+        const rgb = rainbowRgbAt(now);
+        const tinted = tintedPotionOverlayCanvas(entry.tintTarget, rgb);
+        ctx.clearRect(0, 0, entry.canvas.width, entry.canvas.height);
+        ctx.imageSmoothingEnabled = false;
+        if (entry.mode === 'leather') {
+            drawImageWithFlatPadding(ctx, tinted, 0, 0, tinted.width, tinted.height);
+            drawImageWithFlatPadding(ctx, entry.overlay, 0, 0, entry.overlay.width, entry.overlay.height);
+        } else {
+            drawImageWithFlatPadding(ctx, entry.base, 0, 0, entry.base.width, entry.base.height);
+            drawImageWithFlatPadding(ctx, tinted, 0, 0, tinted.width, tinted.height);
+        }
+    }
+
+    async function renderRainbowLayerCanvas(canvas, mode) {
+        if (!canvas || !canvas.getContext) return false;
+        const itemId = itemIdForCanvas(canvas);
+        const urls = mode === 'leather' && global.mcLeatherArmorTextureUrlsForItem
+            ? global.mcLeatherArmorTextureUrlsForItem(itemId)
+            : mode === 'firework' && global.mcFireworkStarTextureUrlsForItem
+                ? global.mcFireworkStarTextureUrlsForItem(itemId)
+                : [];
+        if (urls.length < 2) return false;
+        try {
+            const [base, overlay] = await Promise.all([
+                loadImage(urls[0]),
+                loadImage(urls[1])
+            ]);
+            const entry = {
+                canvas,
+                base,
+                overlay,
+                tintTarget: mode === 'leather' ? base : overlay,
+                mode
+            };
+            rainbowLayerEntries.add(entry);
+            drawRainbowLayerEntry(entry, performance.now());
+            ensureLoop();
             return true;
         } catch {
             return false;
@@ -457,6 +529,13 @@
                     return;
                 }
                 updateClockEntry(e);
+            });
+            rainbowLayerEntries.forEach((e) => {
+                if (!e.canvas || !e.canvas.isConnected) {
+                    rainbowLayerEntries.delete(e);
+                    return;
+                }
+                drawRainbowLayerEntry(e, now);
             });
             if (typeof global.McItemIcon !== 'undefined' && global.McItemIcon.renderAnimatedSlots) {
                 global.McItemIcon.renderAnimatedSlots();
@@ -622,6 +701,14 @@
     }
 
     async function initCanvasFromUrls(canvas, urls) {
+        if (global.isMcFireworkStarItemId && global.isMcFireworkStarItemId(itemIdForCanvas(canvas))) {
+            const ok = await renderRainbowLayerCanvas(canvas, 'firework');
+            if (ok) return true;
+        }
+        if (global.isMcLeatherArmorItemId && global.isMcLeatherArmorItemId(itemIdForCanvas(canvas))) {
+            const ok = await renderRainbowLayerCanvas(canvas, 'leather');
+            if (ok) return true;
+        }
         if (global.isMcClockItemId && global.isMcClockItemId(itemIdForCanvas(canvas))) {
             const ok = initClockCanvas(canvas);
             if (ok) return true;

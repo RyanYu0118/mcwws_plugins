@@ -194,6 +194,38 @@ window.mcTippedArrowTextureUrlsForItem = function() {
     ];
 };
 
+window.isMcFireworkStarItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'firework_star';
+};
+
+window.mcFireworkStarTextureUrlsForItem = function() {
+    const base = TextureConfig.getBasePath();
+    return [
+        `${base}/item/firework_star.png`,
+        `${base}/item/firework_star_overlay.png`,
+        `${base}/item/barrier.png`
+    ];
+};
+
+window.isMcLeatherArmorItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'leather_helmet'
+        || n === 'leather_chestplate'
+        || n === 'leather_leggings'
+        || n === 'leather_boots';
+};
+
+window.mcLeatherArmorTextureUrlsForItem = function(itemId) {
+    const base = TextureConfig.getBasePath();
+    const n = String(itemId || '').toLowerCase().replace(/-/g, '_');
+    return [
+        `${base}/item/${n}.png`,
+        `${base}/item/${n}_overlay.png`,
+        `${base}/item/barrier.png`
+    ];
+};
+
 window.isMcClockItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
     return n === 'clock';
@@ -224,6 +256,12 @@ window.flatTextureUrlsForItem = function(itemId) {
     }
     if (window.isMcPotionItemId && window.isMcPotionItemId(itemId)) {
         return window.mcPotionTextureUrlsForItem(itemId);
+    }
+    if (window.isMcFireworkStarItemId && window.isMcFireworkStarItemId(itemId)) {
+        return window.mcFireworkStarTextureUrlsForItem(itemId);
+    }
+    if (window.isMcLeatherArmorItemId && window.isMcLeatherArmorItemId(itemId)) {
+        return window.mcLeatherArmorTextureUrlsForItem(itemId);
     }
     if (window.isMcClockItemId && window.isMcClockItemId(itemId)) {
         return window.mcClockTextureUrlsForItem(itemId);
