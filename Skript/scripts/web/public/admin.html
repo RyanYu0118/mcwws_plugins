@@ -1,4 +1,4 @@
-<!-- DS-WEB-VERSION: 2.5.12 -->
+<!-- DS-WEB-VERSION: 2.5.13 -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -1503,13 +1503,15 @@
         function showAccessDeniedDialog(message) {
             if (accessDeniedActive) return;
             accessDeniedActive = true;
-            stopAdminAccessPolling();
             document.getElementById('app').style.display = 'none';
             const messageEl = document.getElementById('accessDeniedMessage');
             if (messageEl) {
                 messageEl.textContent = message || '你已不再满足进入管理系统的条件。需要 OP 或 ultimateshop.editor 权限。';
             }
             showDialog(document.getElementById('accessDeniedModal'));
+            if (!adminAccessTimer) {
+                startAdminAccessPolling();
+            }
         }
 
         async function checkAdminAccess({ forceDialog = false } = {}) {
@@ -1528,6 +1530,15 @@
                     }
                     return false;
                 }
+                const gate = document.getElementById('authGate');
+                const gateVisible = gate && gate.style.display !== 'none';
+                if (accessDeniedActive || gateVisible) {
+                    accessDeniedActive = false;
+                    hideDialog(document.getElementById('accessDeniedModal'));
+                    if (gate) gate.style.display = 'none';
+                    toast('管理权限已恢复。', 'success');
+                    showApp();
+                }
                 return true;
             } catch (error) {
                 if (forceDialog) {
@@ -1545,7 +1556,11 @@
         }
 
         function showAuthGate(message, accessDenied = false) {
-            stopAdminAccessPolling();
+            if (accessDenied && authToken && currentUser) {
+                startAdminAccessPolling();
+            } else {
+                stopAdminAccessPolling();
+            }
             document.getElementById('app').style.display = 'none';
             document.getElementById('authGate').style.display = 'flex';
             const titleEl = document.getElementById('authGateTitle');
