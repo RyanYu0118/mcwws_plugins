@@ -213,7 +213,8 @@ window.isMcLeatherArmorItemId = function(id) {
     return n === 'leather_helmet'
         || n === 'leather_chestplate'
         || n === 'leather_leggings'
-        || n === 'leather_boots';
+        || n === 'leather_boots'
+        || n === 'leather_horse_armor';
 };
 
 window.mcLeatherArmorTextureUrlsForItem = function(itemId) {
