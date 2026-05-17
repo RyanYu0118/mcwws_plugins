@@ -103,6 +103,8 @@ const ITEM_MODEL_2D_TEXTURES = {
     peony: 'block/peony_top',
     brewing_stand: 'item/brewing_stand',
     resin_clump: 'item/resin_clump',
+    item_frame: 'item/item_frame',
+    glow_item_frame: 'item/glow_item_frame',
     iron_chain: 'item/iron_chain',
     copper_chain: 'item/copper_chain',
     exposed_copper_chain: 'item/exposed_copper_chain',

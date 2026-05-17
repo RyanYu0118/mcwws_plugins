@@ -154,6 +154,7 @@
     const TORCH_2D_ITEM_IDS = new Set(['torch', 'soul_torch', 'redstone_torch', 'copper_torch']);
     const ITEM_MODEL_2D_IDS = new Set([
         'lever', 'ladder', 'lily_pad', 'soul_campfire', 'hopper', 'brewing_stand', 'resin_clump',
+        'item_frame', 'glow_item_frame',
         'iron_chain', 'copper_chain', 'exposed_copper_chain', 'weathered_copper_chain', 'oxidized_copper_chain',
         'waxed_copper_chain', 'waxed_exposed_copper_chain', 'waxed_weathered_copper_chain', 'waxed_oxidized_copper_chain'
     ]);
@@ -288,6 +289,7 @@
             `block/${asset}`,
             `item/${id}`
         ];
+        if (id === 'snow') list.unshift('block/snow_height2');
         if (id.startsWith('enchanted_book')) list.unshift('item/enchanted_book');
         if (/^(potion|splash_potion|lingering_potion)/.test(id)) list.unshift('item/potion');
         if (id.startsWith('arrow_of_')) list.unshift('item/tipped_arrow');
