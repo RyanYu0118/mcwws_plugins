@@ -36,7 +36,7 @@ depositories:
       amount: 494
   hunter:
     ROTTEN_FLESH:
-      amount: 1868
+      amount: 1869
     EGG:
       amount: 19
     MAGMA_CREAM:
@@ -66,7 +66,7 @@ depositories:
     RABBIT:
       amount: 8
     BONE:
-      amount: 731
+      amount: 732
     BEEF:
       amount: 19
     MUTTON:

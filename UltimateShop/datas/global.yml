@@ -17,12 +17,12 @@ useTimes:
       lastBuyTime: '2026-05-18 00:53:27'
   blocks:
     A:
-      buyUseTimes: 1
-      totalBuyUseTimes: 1
-      sellUseTimes: 1
-      totalSellUseTimes: 1
-      lastBuyTime: '2026-05-15 01:36:05'
-      lastSellTime: '2026-05-15 23:02:06'
+      buyUseTimes: 2
+      totalBuyUseTimes: 2
+      sellUseTimes: 2
+      totalSellUseTimes: 2
+      lastBuyTime: '2026-05-18 02:24:12'
+      lastSellTime: '2026-05-18 02:24:14'
     B:
       sellUseTimes: 4401
       totalSellUseTimes: 4401
