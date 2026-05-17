@@ -886,7 +886,7 @@ async function loadUserProfile() {
 
 function initScrollingText(root) {
     const host = root || document;
-    const OVERFLOW_SAFETY_RATIO = 1.2;
+    const OVERFLOW_SAFETY_RATIO = 1;
     const EDGE_PAUSE_MS = 1000;
     host.querySelectorAll('.scrolling-text, .scrolling-id').forEach(container => {
         const text = container.querySelector('.scrolling-text-inner, .scrolling-id-text');
@@ -900,7 +900,7 @@ function initScrollingText(root) {
         const safeScrollWidth = text.scrollWidth * OVERFLOW_SAFETY_RATIO;
         if (safeScrollWidth > container.clientWidth) {
             const distance = Math.max(1, safeScrollWidth - container.clientWidth);
-            const forwardMs = Math.max(5000, (distance / 30) * 1000);
+            const forwardMs = Math.max(2500, (distance / 60) * 1000);
             const returnMs = forwardMs / 5;
             const totalMs = EDGE_PAUSE_MS + forwardMs + EDGE_PAUSE_MS + returnMs;
             const leftPauseEnd = EDGE_PAUSE_MS / totalMs;
