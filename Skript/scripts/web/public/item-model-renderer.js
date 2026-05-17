@@ -148,7 +148,7 @@
         'firefly_bush'
     ]);
 
-    const BUSH_BLOCK_IDS = new Set(['sweet_berry_bush']);
+    const BUSH_BLOCK_IDS = new Set(['bush', 'sweet_berry_bush']);
 
     function isMcDoorBlockId(id) {
         return !!(id && id.endsWith('_door') && !id.endsWith('_trapdoor'));
