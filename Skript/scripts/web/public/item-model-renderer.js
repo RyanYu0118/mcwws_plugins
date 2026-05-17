@@ -184,6 +184,7 @@
         if (global.isMcBedItemId && global.isMcBedItemId(nid)) return true;
         if (global.isMcBannerItemId && global.isMcBannerItemId(nid)) return true;
         if (global.isMcCopperGolemStatueItemId && global.isMcCopperGolemStatueItemId(nid)) return true;
+        if (global.isMcDecoratedPotItemId && global.isMcDecoratedPotItemId(nid)) return true;
         if (global.isMcShulkerBoxItemId && global.isMcShulkerBoxItemId(nid)) return true;
         if (global.isMcChestBlockItemId && global.isMcChestBlockItemId(nid)) return true;
         if (global.isMcConduitItemId && global.isMcConduitItemId(nid)) return true;
@@ -217,6 +218,7 @@
         const itemPath = `item/${id}`;
         // 玻璃板只用 item/generated（layer0=block/glass），勿并入 block/glass 立方体模型
         if (isMcGlassPaneItemId(id)) return [itemPath];
+        if (global.isMcDecoratedPotItemId && global.isMcDecoratedPotItemId(id)) return [itemPath];
         if (global.isMcCakeItemId && global.isMcCakeItemId(id)) return [itemPath];
         if (global.isMcCandleItemId && global.isMcCandleItemId(id)) return [itemPath];
         if (global.isMcTripwireHookItemId && global.isMcTripwireHookItemId(id)) return [itemPath];

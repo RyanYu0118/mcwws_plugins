@@ -213,6 +213,9 @@ window.flatTextureUrlsForItem = function(itemId) {
     if (window.isMcCopperGolemStatueItemId && window.isMcCopperGolemStatueItemId(itemId)) {
         return window.copperGolemStatueInviconUrlsForItem(itemId);
     }
+    if (window.isMcDecoratedPotItemId && window.isMcDecoratedPotItemId(itemId)) {
+        return window.decoratedPotWikiImageUrlsForItem(itemId);
+    }
     if (window.isMcShulkerBoxItemId && window.isMcShulkerBoxItemId(itemId)) {
         return window.shulkerBoxWikiImageUrlsForItem(itemId);
     }
@@ -315,6 +318,24 @@ window.shieldInviconUrlsForItem = function(itemId) {
     return [
         window.shieldInviconUrlForItem(itemId, 'zh.minecraft.wiki'),
         window.shieldInviconUrlForItem(itemId, 'minecraft.wiki'),
+        `${TextureConfig.getBasePath()}/item/barrier.png`
+    ];
+};
+
+window.isMcDecoratedPotItemId = function(id) {
+    const n = String(id || '').toLowerCase().replace(/-/g, '_');
+    return n === 'decorated_pot';
+};
+
+window.decoratedPotWikiImageUrlForItem = function(itemId, wikiHost) {
+    const host = wikiHost || 'zh.minecraft.wiki';
+    return `https://${host}/images/Decorated_Pot_JE2_BE2.png`;
+};
+
+window.decoratedPotWikiImageUrlsForItem = function(itemId) {
+    return [
+        window.decoratedPotWikiImageUrlForItem(itemId, 'zh.minecraft.wiki'),
+        window.decoratedPotWikiImageUrlForItem(itemId, 'minecraft.wiki'),
         `${TextureConfig.getBasePath()}/item/barrier.png`
     ];
 };
@@ -1053,6 +1074,17 @@ window.getTextureHtml = function(itemId, itemName) {
         <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
             style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
             <img class="item-mc-wiki-invicon item-copper-golem-statue-wiki" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
+                style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
+                title="${safeName}" referrerpolicy="no-referrer" />
+            ${glintHtml}
+        </span>
+    `;
+    }
+    if (window.isMcDecoratedPotItemId && window.isMcDecoratedPotItemId(itemId)) {
+        return `
+        <span class="item-icon-mount" data-item-id="${safeId}" data-item-name="${safeName}"
+            style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; margin-right:${cfg.ICON_GAP_RIGHT}px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.03); border-radius:4px; flex-shrink: 0; position:relative;">
+            <img class="item-mc-wiki-invicon" data-tex-urls="${texUrls}" data-item-id="${safeId}" alt=""
                 style="width:${cfg.ICON_PX}px; height:${cfg.ICON_PX}px; image-rendering:pixelated; object-fit:contain; opacity: ${initialOpacity}; transition: ${transitionStyle}; display:block;"
                 title="${safeName}" referrerpolicy="no-referrer" />
             ${glintHtml}
