@@ -1339,11 +1339,11 @@ npc:
       gravity: {
         }
       location:
-        bodyYaw: 0.02267456
-        x: -411.3881
-        y: 95.9216
-        z: -496.4471
-        yaw: -74.9773
+        bodyYaw: 89.97099
+        x: -421.3019
+        y: 95.0
+        z: -496.5006
+        yaw: 89.9721
         pitch: 18.2811
         worldid: 407ccbed-2f74-4524-be27-8b4371eedfa8
       sheeptrait: {
