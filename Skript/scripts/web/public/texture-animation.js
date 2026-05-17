@@ -10,8 +10,8 @@
 
     const ASSET_VER = global.McTexturePackVersion || '26.1.2';
 
-    const grassColormapResolved = new Map();
-    const grassColormapLoading = new Map();
+    const colormapResolved = new Map();
+    const colormapLoading = new Map();
 
     function normalizeTintId(id) {
         return String(id || '').toLowerCase().replace(/-/g, '_');
@@ -24,7 +24,10 @@
         'small_dripleaf', 'big_dripleaf', 'seagrass', 'tall_seagrass'
     ]);
 
+    const FOLIAGE_TINT_2D_IDS = new Set(['leaf_litter']);
+
     const GRASS_2D_DEFAULT_BIOME = [0.8, 0.4];
+    const FOLIAGE_2D_DEFAULT_BIOME = [0.48, 0.62];
 
     function iconCfg() {
         return global.McIconConfig || { FLAT_PAD_RATIO: 0.1 };
@@ -38,19 +41,21 @@
         return (host && host.dataset && host.dataset.itemId) || '';
     }
 
-    function needsGrassTint2d(itemIdRaw) {
+    function colormapKindFor2d(itemIdRaw) {
         const id = normalizeTintId(itemIdRaw);
-        if (!id) return false;
-        if (GRASS_TINT_2D_IDS.has(id)) return true;
+        if (!id) return null;
+        if (GRASS_TINT_2D_IDS.has(id)) return 'grass';
+        if (FOLIAGE_TINT_2D_IDS.has(id)) return 'foliage';
         if (global.getSmartId) {
             const sid = normalizeTintId(global.getSmartId(id));
-            if (GRASS_TINT_2D_IDS.has(sid)) return true;
+            if (GRASS_TINT_2D_IDS.has(sid)) return 'grass';
+            if (FOLIAGE_TINT_2D_IDS.has(sid)) return 'foliage';
         }
-        return false;
+        return null;
     }
 
-    function grassBiomeParamsFor2d() {
-        return GRASS_2D_DEFAULT_BIOME;
+    function biomeParamsFor2d(kind) {
+        return kind === 'grass' ? GRASS_2D_DEFAULT_BIOME : FOLIAGE_2D_DEFAULT_BIOME;
     }
 
     function sampleColormapBuf(buf, temperature, downfall) {
@@ -65,10 +70,11 @@
         return [d[0], d[1], d[2]];
     }
 
-    async function loadColormapGrassBuffer() {
-        if (grassColormapResolved.has('buf')) return grassColormapResolved.get('buf');
-        if (grassColormapLoading.has('p')) return grassColormapLoading.get('p');
-        const url = `/${ASSET_VER}/assets/minecraft/textures/colormap/grass.png`;
+    async function loadColormapBuffer(kind) {
+        if (colormapResolved.has(kind)) return colormapResolved.get(kind);
+        if (colormapLoading.has(kind)) return colormapLoading.get(kind);
+        const file = kind === 'grass' ? 'grass.png' : 'foliage.png';
+        const url = `/${ASSET_VER}/assets/minecraft/textures/colormap/${file}`;
         const p = new Promise((resolve) => {
             const img = new Image();
             img.crossOrigin = 'anonymous';
@@ -78,18 +84,18 @@
                 c.height = img.naturalHeight || img.height;
                 c.getContext('2d').drawImage(img, 0, 0);
                 const buf = { canvas: c, w: c.width, h: c.height };
-                grassColormapResolved.set('buf', buf);
+                colormapResolved.set(kind, buf);
                 resolve(buf);
             };
             img.onerror = () => {
-                grassColormapResolved.set('buf', null);
+                colormapResolved.set(kind, null);
                 resolve(null);
             };
             img.src = url;
         });
-        grassColormapLoading.set('p', p);
+        colormapLoading.set(kind, p);
         const out = await p;
-        grassColormapLoading.delete('p');
+        colormapLoading.delete(kind);
         return out;
     }
 
@@ -107,8 +113,8 @@
         return cw * flatPadRatioForCanvas(canvas);
     }
 
-    /** 仅对非透明像素做 grass 乘法着色，避免污染透明背景 */
-    function multiplyGrassTintPixels(ctx, x, y, w, h, rgb) {
+    /** 仅对非透明像素做色谱乘法着色，避免污染透明背景 */
+    function multiplyColormapTintPixels(ctx, x, y, w, h, rgb) {
         if (!ctx || w < 1 || h < 1 || !rgb) return;
         const tr = rgb[0] / 255;
         const tg = rgb[1] / 255;
@@ -130,20 +136,21 @@
         ctx.putImageData(imgData, x, y);
     }
 
-    async function applyGrassTint2dIfNeeded(canvas) {
+    async function applyColormapTint2dIfNeeded(canvas) {
         if (!canvas || !canvas.getContext) return;
         const rawId = itemIdForCanvas(canvas);
-        if (!needsGrassTint2d(rawId)) return;
-        const buf = await loadColormapGrassBuffer();
+        const kind = colormapKindFor2d(rawId);
+        if (!kind) return;
+        const buf = await loadColormapBuffer(kind);
         if (!buf) return;
-        const [t, hum] = grassBiomeParamsFor2d(rawId);
+        const [t, hum] = biomeParamsFor2d(kind);
         const rgb = sampleColormapBuf(buf, t, hum);
         if (!rgb) return;
         const ctx = canvas.getContext('2d');
         const inset = padInsetForCanvas(canvas);
         const rw = canvas.width - inset * 2;
         const rh = canvas.height - inset * 2;
-        multiplyGrassTintPixels(ctx, inset, inset, rw, rh, rgb);
+        multiplyColormapTintPixels(ctx, inset, inset, rw, rh, rgb);
     }
 
     function drawImageWithFlatPadding(ctx, img, sx, sy, sw, sh) {
@@ -389,11 +396,11 @@
                     e.meta.interpolate,
                     drawImageWithFlatPadding
                 );
-                if (e.grassTintRgb) {
+                if (e.colormapTintRgb) {
                     const inset = padInsetForCanvas(e.canvas);
                     const rw = e.canvas.width - inset * 2;
                     const rh = e.canvas.height - inset * 2;
-                    multiplyGrassTintPixels(ctx, inset, inset, rw, rh, e.grassTintRgb);
+                    multiplyColormapTintPixels(ctx, inset, inset, rw, rh, e.colormapTintRgb);
                 }
             });
             if (typeof global.McItemIcon !== 'undefined' && global.McItemIcon.renderAnimatedSlots) {
@@ -477,13 +484,13 @@
 
         const frameW = img.width;
         const frameH = img.width;
-        let grassTintRgb = null;
-        if (needsGrassTint2d(itemIdForCanvas(canvas))) {
-            const buf = await loadColormapGrassBuffer();
+        let colormapTintRgb = null;
+        const colormapKind = colormapKindFor2d(itemIdForCanvas(canvas));
+        if (colormapKind) {
+            const buf = await loadColormapBuffer(colormapKind);
             if (buf) {
-                const id = itemIdForCanvas(canvas);
-                const [t, hum] = grassBiomeParamsFor2d(id);
-                grassTintRgb = sampleColormapBuf(buf, t, hum);
+                const [t, hum] = biomeParamsFor2d(colormapKind);
+                colormapTintRgb = sampleColormapBuf(buf, t, hum);
             }
         }
         domEntries.add({
@@ -494,7 +501,7 @@
             frameW,
             frameH,
             startMs: performance.now(),
-            grassTintRgb
+            colormapTintRgb
         });
         ensureLoop();
         return true;
@@ -513,7 +520,7 @@
                 } else {
                     drawImageWithFlatPadding(ctx, img, 0, 0, img.width, img.height);
                 }
-                await applyGrassTint2dIfNeeded(canvas);
+                await applyColormapTint2dIfNeeded(canvas);
                 return true;
             } catch {
                 continue;
