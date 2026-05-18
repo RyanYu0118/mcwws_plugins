@@ -331,6 +331,56 @@ function listShopMapMarkers() {
         .filter(Boolean);
 }
 
+function escapeMarkerHtml(value) {
+    return String(value == null ? '' : value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+function syncBlueMapShopMarkers() {
+    const markers = listShopMapMarkers();
+    const grouped = {};
+    markers.forEach((marker) => {
+        if (!grouped[marker.map]) grouped[marker.map] = {};
+        grouped[marker.map][`mcwws-shop-${marker.id}`] = {
+            type: 'poi',
+            position: marker.position,
+            label: marker.label,
+            icon: 'assets/poi.svg',
+            anchor: { x: 25, y: 45 },
+            detail: `<b>${escapeMarkerHtml(marker.label)}</b><br>${escapeMarkerHtml(marker.description || marker.shopId)}<br>${escapeMarkerHtml(marker.viewUrl)}`,
+            sorting: 0,
+            listed: true,
+            'min-distance': 0,
+            'max-distance': 10000000
+        };
+    });
+
+    if (!fs.existsSync(BLUEMAP_WEB_MAPS_DIR)) {
+        return;
+    }
+    fs.readdirSync(BLUEMAP_WEB_MAPS_DIR, { withFileTypes: true })
+        .filter((entry) => entry.isDirectory())
+        .forEach((entry) => {
+            const markersFile = path.join(BLUEMAP_WEB_MAPS_DIR, entry.name, 'live', 'markers.json');
+            const doc = loadJsonFile(markersFile, {});
+            delete doc['mcwws-shops'];
+            if (grouped[entry.name] && Object.keys(grouped[entry.name]).length) {
+                doc['mcwws-shops'] = {
+                    label: '商店位置',
+                    toggleable: true,
+                    'default-hidden': false,
+                    sorting: 0,
+                    markers: grouped[entry.name]
+                };
+            }
+            fs.mkdirSync(path.dirname(markersFile), { recursive: true });
+            fs.writeFileSync(markersFile, JSON.stringify(doc), 'utf8');
+        });
+}
+
 function firstEconomyPriceAmount(priceSection) {
     if (!priceSection || typeof priceSection !== 'object') {
         return null;
@@ -640,6 +690,7 @@ app.get('/api/admin/shops', (req, res) => {
 
 app.get('/api/shop-map-markers', (req, res) => {
     try {
+        syncBlueMapShopMarkers();
         res.json({
             updatedAt: new Date().toISOString(),
             markers: listShopMapMarkers()
@@ -666,6 +717,7 @@ app.post('/api/admin/shop-locations/:shopId', (req, res) => {
         const location = normalizeShopLocation(req.body || {});
         locations[shopId] = location;
         saveYamlFile(SHOP_LOCATIONS_PATH, locations);
+        syncBlueMapShopMarkers();
         res.json({ status: 'ok', shopId, location });
     } catch (error) {
         console.error('保存商店位置失败:', error);
@@ -841,6 +893,7 @@ function localIpv4Addresses() {
 
 function logServerStart(protocol) {
     analytics.reload();
+    syncBlueMapShopMarkers();
     console.log(`✅ 高级版 UI 服务已启动！访问: ${protocol}://${HOST}:${PORT}`);
     localIpv4Addresses().forEach((ip) => {
         console.log(`📱 局域网访问: ${protocol}://${ip}:${PORT}`);
