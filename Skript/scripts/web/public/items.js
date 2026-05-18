@@ -213,20 +213,12 @@ function formatUltimateShopPrice(val) {
 function isValidShopLocation(location) {
     return !!(location
         && location.enabled !== false
-        && location.map
-        && location.x !== undefined
-        && location.y !== undefined
-        && location.z !== undefined);
+        && location.viewUrl);
 }
 
 function blueMapUrlForLocation(location) {
     if (!isValidShopLocation(location)) return null;
-    const map = encodeURIComponent(String(location.map || 'world'));
-    const x = Number(location.x);
-    const y = Number(location.y);
-    const z = Number(location.z);
-    if (![x, y, z].every(Number.isFinite)) return null;
-    return `http://${window.location.hostname}:8100/#${map}:${x.toFixed(2)}:${y.toFixed(2)}:${z.toFixed(2)}:180:0.4:0.25:0:0:perspective`;
+    return String(location.viewUrl);
 }
 
 function escapeHtml(str) {
@@ -480,7 +472,7 @@ function openTradeModal(item) {
             ? `<a class="trade-map-link" href="${escapeHtml(mapUrl)}" target="_blank" rel="noopener">在地图上查看</a>`
             : '<span class="trade-map-missing">未配置地图位置</span>';
         const locationText = isValidShopLocation(o.location)
-            ? `${o.location.world || 'world'} / ${o.location.x}, ${o.location.y}, ${o.location.z}${o.location.description ? ` · ${o.location.description}` : ''}`
+            ? `${o.location.description ? `${o.location.description} · ` : ''}${o.location.viewUrl}`
             : '—';
         return `
             <div class="trade-offer-card">

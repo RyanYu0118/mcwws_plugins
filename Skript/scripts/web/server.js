@@ -228,6 +228,13 @@ function normalizeShopLocation(raw = {}) {
             if (Number.isFinite(num)) out[key] = num;
         }
     });
+    ['yaw', 'pitch', 'zoom'].forEach((key) => {
+        if (raw[key] !== '' && raw[key] != null) {
+            const num = Number(raw[key]);
+            if (Number.isFinite(num)) out[key] = num;
+        }
+    });
+    if (raw.viewUrl != null) out.viewUrl = String(raw.viewUrl).trim();
     if (raw.description != null) out.description = String(raw.description).trim();
     if (raw.enabled != null) out.enabled = raw.enabled === true || raw.enabled === 'true';
     return out;

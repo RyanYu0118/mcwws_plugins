@@ -1,8 +1,4 @@
 blocks:
-  world: world
-  map: world
-  x: -410
-  'y': 67
-  z: 24
+  viewUrl: http://127.0.0.1:8100/#world:-406:66:23:5:-2.26:1.57:0:0:perspective
   description: test
   enabled: true
