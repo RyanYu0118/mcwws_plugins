@@ -7,6 +7,7 @@ let allItems = [];
 let filteredItems = [];
 let currentSort = 'name';
 let searchQuery = '';
+let letterFilter = ''; // A–Z 首字母筛选，空表示不限
 let sortReverse = false; // 逆序状态，默认关闭
 let hideUntradable = false; // 隐藏无 UltimateShop 上架（不可交易）的物品
 let currentUser = null;
@@ -50,6 +51,11 @@ function hydrateItemsStateFromUrl() {
         updateSearchClearButton();
     }
 
+    const letterParam = (params.get('letter') || '').trim().toUpperCase();
+    if (letterParam && /^[A-Z]$/.test(letterParam)) {
+        letterFilter = letterParam;
+    }
+
     const sortVal = params.get('sort');
     if (sortVal && SORT_VALUES.has(sortVal)) {
         currentSort = sortVal;
@@ -83,6 +89,9 @@ function syncItemsStateToUrl() {
     const raw = inp ? inp.value.trim() : '';
     if (raw) params.set('q', raw);
     else params.delete('q');
+
+    if (letterFilter) params.set('letter', letterFilter);
+    else params.delete('letter');
 
     if (currentSort && currentSort !== 'name') params.set('sort', currentSort);
     else params.delete('sort');
@@ -152,6 +161,7 @@ async function loadItems() {
         const rawData = await response.json();
 
         // 核心转换逻辑
+        LETTER_SORT_CACHE.clear();
         allItems = Object.keys(rawData).map(key => ({
             id: key,
             name: rawData[key].displayName
@@ -175,6 +185,8 @@ async function loadItems() {
         }));
 
         hydrateItemsStateFromUrl();
+        initLetterIndexBar();
+        updateLetterIndexButtons();
         filterAndRenderItems();
         tryOpenTradeFromUrl();
 
@@ -508,6 +520,104 @@ function pinyinPrefixComboMatch(syllables, query) {
     return false;
 }
 
+const LETTER_SORT_CACHE = new Map();
+
+function getItemSortLetter(item) {
+    if (!item || !item.id) return '';
+    if (LETTER_SORT_CACHE.has(item.id)) {
+        return LETTER_SORT_CACHE.get(item.id);
+    }
+
+    let letter = '';
+    const name = String(item.name || '').trim();
+    const firstChar = name.charAt(0);
+    if (/[a-zA-Z]/.test(firstChar)) {
+        letter = firstChar.toUpperCase();
+    } else if (typeof pinyinPro !== 'undefined' && name) {
+        try {
+            const initial = pinyinPro.pinyin(name, {
+                pattern: 'first',
+                toneType: 'none',
+                type: 'array'
+            });
+            const ch = Array.isArray(initial) && initial[0]
+                ? String(initial[0]).charAt(0).toUpperCase()
+                : '';
+            if (/[A-Z]/.test(ch)) {
+                letter = ch;
+            } else {
+                const initials = pinyinPro.pinyin(name, {
+                    pattern: 'initial',
+                    toneType: 'none',
+                    type: 'string'
+                }).replace(/\s+/g, '');
+                const fromInitial = initials.charAt(0).toUpperCase();
+                if (/[A-Z]/.test(fromInitial)) {
+                    letter = fromInitial;
+                }
+            }
+        } catch (e) {
+            // ignore
+        }
+    }
+
+    if (!letter) {
+        const idFirst = String(item.id).replace(/^minecraft:/i, '').charAt(0).toUpperCase();
+        if (/[A-Z]/.test(idFirst)) {
+            letter = idFirst;
+        }
+    }
+
+    LETTER_SORT_CACHE.set(item.id, letter);
+    return letter;
+}
+
+function itemMatchesLetterFilter(item) {
+    if (!letterFilter) return true;
+    return getItemSortLetter(item) === letterFilter;
+}
+
+function updateLetterIndexButtons() {
+    document.querySelectorAll('.letter-index-bar .letter-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.letter === letterFilter);
+    });
+}
+
+function setLetterFilter(letter) {
+    const next = letter && /^[A-Z]$/.test(letter) ? letter : '';
+    if (letterFilter === next) {
+        if (next) {
+            letterFilter = '';
+        } else {
+            return;
+        }
+    } else {
+        letterFilter = next;
+    }
+    updateLetterIndexButtons();
+    currentPage = 1;
+    filterAndRenderItems();
+}
+
+function initLetterIndexBar() {
+    const bar = document.getElementById('letterIndexBar');
+    if (!bar || bar.dataset.ready === '1') return;
+
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    bar.innerHTML = letters.map((ch) => (
+        `<button type="button" class="letter-btn" data-letter="${ch}" aria-label="首字母 ${ch}">${ch}</button>`
+    )).join('');
+
+    bar.addEventListener('click', (e) => {
+        const btn = e.target.closest('.letter-btn');
+        if (!btn) return;
+        setLetterFilter(btn.dataset.letter || '');
+    });
+
+    bar.dataset.ready = '1';
+    updateLetterIndexButtons();
+}
+
 function splitSearchWords(value) {
     return String(value || '')
         .toLowerCase()
@@ -549,6 +659,10 @@ function prefixComboMatch(parts, query) {
 
 function filterAndRenderItems() {
     filteredItems = allItems.filter(item => {
+        if (!itemMatchesLetterFilter(item)) {
+            return false;
+        }
+
         const query = searchQuery.toLowerCase();
         if (!query) return true;
         
@@ -657,6 +771,8 @@ function clearSearchInput() {
 }
 
 function setupEventListeners() {
+    initLetterIndexBar();
+
     // 监听搜索框输入
     const searchInput = document.getElementById('searchInput');
     const searchClearBtn = document.getElementById('searchClearBtn');

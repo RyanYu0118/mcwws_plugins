@@ -1409,7 +1409,62 @@ body {
 
 /* ═══ ITEMS HERO ═══ */
 .items-hero {
-    padding-bottom: 2rem;
+    padding-bottom: 1.25rem;
+}
+
+/* ═══ 首字母索引 A–Z ═══ */
+.letter-index-section {
+    margin: 0 0 1.25rem;
+    padding: 0;
+}
+
+.letter-index-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.2rem;
+    padding: 0.55rem 0.65rem;
+    border-radius: var(--radius-lg);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+.letter-index-bar::-webkit-scrollbar {
+    height: 4px;
+}
+
+.letter-btn {
+    flex: 1 1 0;
+    min-width: 1.85rem;
+    max-width: 2.5rem;
+    height: 2.15rem;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: inherit;
+    line-height: 1;
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform 0.12s ease;
+}
+
+.letter-btn:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+.letter-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.35);
 }
 
 .search-container {
@@ -2116,6 +2171,23 @@ body {
 
     .items-hero {
         padding-bottom: 1.25rem;
+    }
+
+    .letter-index-section {
+        margin-bottom: 0.85rem;
+    }
+
+    .letter-index-bar {
+        justify-content: flex-start;
+        gap: 0.15rem;
+        padding: 0.45rem 0.5rem;
+    }
+
+    .letter-btn {
+        flex: 0 0 auto;
+        min-width: 1.65rem;
+        height: 2rem;
+        font-size: 0.75rem;
     }
 
     .hero-title {
