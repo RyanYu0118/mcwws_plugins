@@ -74,6 +74,42 @@ function hydrateDashboardItemIcons(root) {
     }
 }
 
+function initDashboardHeroClock() {
+    const mount = document.getElementById('heroClockIconMount');
+    if (!mount || mount.dataset.heroClockReady === '1') return;
+
+    if (typeof getTextureHtml === 'function') {
+        mount.innerHTML = getTextureHtml('clock', '时钟');
+    } else if (window.getTextureHtml) {
+        mount.innerHTML = window.getTextureHtml('clock', '时钟');
+    }
+
+    const canvas = mount.querySelector('canvas[data-item-id="clock"]');
+    if (canvas) {
+        const urls = window.mcClockTextureUrlsForItem
+            ? window.mcClockTextureUrlsForItem()
+            : (canvas.dataset.texUrls || '').split('|').filter(Boolean);
+        if (urls.length && window.McTextureAnim) {
+            if (!canvas.dataset.texUrls) {
+                canvas.dataset.texUrls = urls.join('|');
+            }
+            window.McTextureAnim.initCanvasFromUrls(canvas, urls).then((ok) => {
+                if (ok) {
+                    canvas.style.opacity = '1';
+                    canvas.dataset.texReady = '1';
+                }
+            });
+        }
+    }
+
+    if (window.McClockUi) {
+        window.McClockUi.updateTimeElements(document.getElementById('heroClockWidget'));
+        window.McClockUi.ensureTimeTicker();
+    }
+
+    mount.dataset.heroClockReady = '1';
+}
+
 function showDialog(modal) {
     if (!modal) return;
     modal.classList.remove('closing');
@@ -94,6 +130,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (window.mcLangReady) {
         await window.mcLangReady;
     }
+    initDashboardHeroClock();
     loadAllData();
     setupEventListeners();
     setInterval(loadAllData, 30000); // Auto-refresh every 30 seconds

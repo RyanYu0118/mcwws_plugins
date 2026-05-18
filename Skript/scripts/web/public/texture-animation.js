@@ -988,11 +988,44 @@
         });
     }
 
+    function formatClockSystemTime(date) {
+        const d = date || new Date();
+        const hh = String(d.getHours()).padStart(2, '0');
+        const mm = String(d.getMinutes()).padStart(2, '0');
+        const ss = String(d.getSeconds()).padStart(2, '0');
+        return `${hh}:${mm}:${ss}`;
+    }
+
+    function updateClockTimeElements(root) {
+        const host = root || document;
+        const text = formatClockSystemTime();
+        host.querySelectorAll('[data-clock-time-desc]').forEach((el) => {
+            el.textContent = text;
+            const container = el.closest('[data-clock-time-title]') || el.closest('.scrolling-text');
+            if (container) container.title = text;
+        });
+    }
+
+    let clockTimeTicker = null;
+
+    function ensureClockTimeTicker() {
+        if (clockTimeTicker !== null) return;
+        updateClockTimeElements(document);
+        clockTimeTicker = setInterval(() => updateClockTimeElements(document), 1000);
+    }
+
+    global.McClockUi = {
+        formatSystemTime: formatClockSystemTime,
+        updateTimeElements: updateClockTimeElements,
+        ensureTimeTicker: ensureClockTimeTicker
+    };
+
     global.McTextureAnim = {
         fetchAnimationMeta,
         setupThreeTexture,
         attachDomCanvas,
         initCanvasFromUrls,
+        initClockCanvas,
         initInContainer,
         async isAnimatedPngUrl(url) {
             const meta = await fetchAnimationMeta(url);

@@ -249,6 +249,7 @@ function updateCategoryScopeButtons() {
 }
 
 function formatClockSystemTime(date) {
+    if (window.McClockUi) return window.McClockUi.formatSystemTime(date);
     const d = date || new Date();
     const hh = String(d.getHours()).padStart(2, '0');
     const mm = String(d.getMinutes()).padStart(2, '0');
@@ -257,6 +258,10 @@ function formatClockSystemTime(date) {
 }
 
 function updateClockTimeDescriptions(root) {
+    if (window.McClockUi) {
+        window.McClockUi.updateTimeElements(root);
+        return;
+    }
     const host = root || document;
     const text = formatClockSystemTime();
     host.querySelectorAll('[data-clock-time-desc]').forEach((el) => {
@@ -267,6 +272,10 @@ function updateClockTimeDescriptions(root) {
 }
 
 function ensureClockTimeTicker() {
+    if (window.McClockUi) {
+        window.McClockUi.ensureTimeTicker();
+        return;
+    }
     if (clockTimeTimer !== null) return;
     clockTimeTimer = setInterval(() => updateClockTimeDescriptions(document), 1000);
 }
