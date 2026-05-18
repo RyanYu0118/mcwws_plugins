@@ -359,6 +359,14 @@ body {
 }
 
 /* 仪表板英雄区：左侧标题 + 右侧 Minecraft 时钟 */
+@font-face {
+    font-family: 'MinecraftAE';
+    src: url('5_Minecraft AE.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    unicode-range: U+0000-00D6, U+00D8-10FFFF;
+}
+
 .dashboard-hero {
     text-align: left;
 }
@@ -422,28 +430,26 @@ body {
     align-items: flex-start;
     gap: 0.2rem;
     min-width: 9.5rem;
+    font-family: 'MinecraftAE', 'Segoe UI', sans-serif;
+    font-weight: normal;
 }
 
 .hero-clock-label {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
     color: var(--primary-light);
 }
 
 .hero-clock-time {
-    font-family: 'Consolas', 'SF Mono', 'Monaco', ui-monospace, monospace;
+    font-family: inherit;
     font-size: 1.85rem;
-    font-weight: 700;
     line-height: 1.15;
     color: var(--text-primary);
-    font-variant-numeric: tabular-nums;
     text-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
 }
 
 .hero-clock-hint {
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     color: var(--text-muted);
     line-height: 1.35;
 }
