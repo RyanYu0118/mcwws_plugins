@@ -101,6 +101,7 @@ const ITEM_MODEL_2D_TEXTURES = {
     soul_campfire: 'item/soul_campfire',
     hopper: 'item/hopper',
     sunflower: 'block/sunflower_front',
+    lilac: 'block/lilac_top',
     rose_bush: 'block/rose_bush_top',
     peony: 'block/peony_top',
     pointed_dripstone: 'item/pointed_dripstone',

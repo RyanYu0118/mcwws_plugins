@@ -144,7 +144,7 @@
         'cornflower', 'lily_of_the_valley', 'torchflower', 'wither_rose', 'spore_blossom',
         'open_eyeblossom', 'closed_eyeblossom', 'sunflower', 'lilac', 'rose_bush', 'peony',
         'pitcher_plant', 'pitcher_pod', 'pink_petals', 'wildflowers',
-        'azalea', 'flowering_azalea', 'mangrove_propagule', 'cactus_flower',
+        'mangrove_propagule', 'cactus_flower',
         'firefly_bush'
     ]);
 
