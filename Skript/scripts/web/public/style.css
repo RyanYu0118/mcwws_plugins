@@ -2222,6 +2222,29 @@ body {
     word-break: break-all;
 }
 
+.trade-map-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.85rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #2563eb, #06b6d4);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: var(--transition-normal);
+}
+
+.trade-map-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.trade-map-missing {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
 /* 手机浏览器专项适配：桌面端保持原布局 */
 @media (max-width: 640px) {
     body {

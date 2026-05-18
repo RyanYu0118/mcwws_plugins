@@ -210,6 +210,25 @@ function formatUltimateShopPrice(val) {
     return String(val);
 }
 
+function isValidShopLocation(location) {
+    return !!(location
+        && location.enabled !== false
+        && location.map
+        && location.x !== undefined
+        && location.y !== undefined
+        && location.z !== undefined);
+}
+
+function blueMapUrlForLocation(location) {
+    if (!isValidShopLocation(location)) return null;
+    const map = encodeURIComponent(String(location.map || 'world'));
+    const x = Number(location.x);
+    const y = Number(location.y);
+    const z = Number(location.z);
+    if (![x, y, z].every(Number.isFinite)) return null;
+    return `http://${window.location.hostname}:8100/#${map}:${x.toFixed(2)}:${y.toFixed(2)}:${z.toFixed(2)}:180:0.4:0.25:0:0:perspective`;
+}
+
 function escapeHtml(str) {
     return String(str)
         .replace(/&/g, '&amp;')
@@ -456,6 +475,13 @@ function openTradeModal(item) {
             : escapeHtml(o.shopId);
         const buyDisplay = o.buyAmountResolved != null ? o.buyAmountResolved : o.buyAmount;
         const sellDisplay = o.sellAmountResolved != null ? o.sellAmountResolved : o.sellAmount;
+        const mapUrl = blueMapUrlForLocation(o.location);
+        const mapButton = mapUrl
+            ? `<a class="trade-map-link" href="${escapeHtml(mapUrl)}" target="_blank" rel="noopener">在地图上查看</a>`
+            : '<span class="trade-map-missing">未配置地图位置</span>';
+        const locationText = isValidShopLocation(o.location)
+            ? `${o.location.world || 'world'} / ${o.location.x}, ${o.location.y}, ${o.location.z}${o.location.description ? ` · ${o.location.description}` : ''}`
+            : '—';
         return `
             <div class="trade-offer-card">
                 <h4>上架位置 ${idx + 1}</h4>
@@ -470,7 +496,10 @@ function openTradeModal(item) {
                     <dd>${escapeHtml(formatUltimateShopPrice(buyDisplay))}</dd>
                     <dt>卖出价</dt>
                     <dd>${escapeHtml(formatUltimateShopPrice(sellDisplay))}</dd>
+                    <dt>地图位置</dt>
+                    <dd>${escapeHtml(locationText)}</dd>
                 </dl>
+                <div style="margin-top:12px; display:flex; justify-content:flex-end;">${mapButton}</div>
             </div>
         `;
     }).join('');

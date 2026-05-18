@@ -363,6 +363,7 @@ function buildUltimateShopCatalogByMaterial(priceData = {}) {
     }
 
     const langMap = loadUltimateShopLangMap();
+    const shopLocations = loadShopLocations();
     const files = fs.readdirSync(ULTIMATE_SHOP_SHOPS_DIR).filter((f) => f.endsWith('.yml'));
     files.forEach((file) => {
         const shopId = path.basename(file, '.yml');
@@ -392,7 +393,8 @@ function buildUltimateShopCatalogByMaterial(priceData = {}) {
                 buyAmount,
                 sellAmount,
                 buyAmountResolved: resolveMcwwsPricePlaceholder(buyAmount, priceData),
-                sellAmountResolved: resolveMcwwsPricePlaceholder(sellAmount, priceData)
+                sellAmountResolved: resolveMcwwsPricePlaceholder(sellAmount, priceData),
+                location: normalizeShopLocation(shopLocations[shopId] || {})
             };
             materials.forEach((mat) => {
                 if (!catalog[mat]) {
