@@ -41,6 +41,7 @@ const LEGACY_TRANSACTIONS_CSV = path.join(__dirname, '..', '..', '..', 'DynamicS
 const ITEMS_DB_PATH = path.join(__dirname, '..', 'mcwws', 'economy', 'database', 'items.yml');
 const OPS_PATH = path.join(__dirname, '..', '..', '..', '..', 'ops.json');
 const ADMIN_ACCESS_PATH = path.join(DB_DIR, 'admin_access.yml');
+const SHOP_LOCATIONS_PATH = path.join(__dirname, 'mcwws', 'shop_locations.yml');
 const HTTPS_KEY_PATH = path.join(__dirname, 'certs', 'server.key');
 const HTTPS_CERT_PATH = path.join(__dirname, 'certs', 'server.crt');
 const HTTPS_ENABLED = process.env.HTTPS === '1';
@@ -94,6 +95,11 @@ function loadYamlFile(filePath) {
         console.error(`读取 YAML 文件失败: ${filePath}`, error);
         return {};
     }
+}
+
+function saveYamlFile(filePath, data) {
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    fs.writeFileSync(filePath, yaml.dump(data || {}, { lineWidth: 120, noRefs: true }), 'utf8');
 }
 
 function loadPriceTables() {
@@ -192,6 +198,72 @@ function getAdminAccess(user) {
         isOp,
         hasEditorPermission
     };
+}
+
+function requireAdmin(req, res) {
+    const user = authenticate(req);
+    if (!user) {
+        res.status(401).json({ error: '需要登录。' });
+        return null;
+    }
+    const access = getAdminAccess(user);
+    if (!access.allowed) {
+        res.status(403).json({
+            ...access,
+            error: '你没有进入管理系统的权限。需要 OP 或 ultimateshop.editor 权限。'
+        });
+        return null;
+    }
+    return { user, access };
+}
+
+function normalizeShopLocation(raw = {}) {
+    const out = {};
+    if (raw.displayName != null) out.displayName = String(raw.displayName).trim();
+    if (raw.world != null) out.world = String(raw.world).trim();
+    if (raw.map != null) out.map = String(raw.map).trim();
+    ['x', 'y', 'z'].forEach((key) => {
+        if (raw[key] !== '' && raw[key] != null) {
+            const num = Number(raw[key]);
+            if (Number.isFinite(num)) out[key] = num;
+        }
+    });
+    if (raw.description != null) out.description = String(raw.description).trim();
+    if (raw.enabled != null) out.enabled = raw.enabled === true || raw.enabled === 'true';
+    return out;
+}
+
+function loadShopLocations() {
+    const data = loadYamlFile(SHOP_LOCATIONS_PATH);
+    return data && typeof data === 'object' ? data : {};
+}
+
+function listUltimateShopShops() {
+    if (!fs.existsSync(ULTIMATE_SHOP_SHOPS_DIR)) {
+        return [];
+    }
+    const langMap = loadUltimateShopLangMap();
+    const locations = loadShopLocations();
+    return fs.readdirSync(ULTIMATE_SHOP_SHOPS_DIR)
+        .filter((file) => file.endsWith('.yml'))
+        .sort((a, b) => a.localeCompare(b))
+        .map((file) => {
+            const shopId = path.basename(file, '.yml');
+            const doc = loadYamlFile(path.join(ULTIMATE_SHOP_SHOPS_DIR, file));
+            const settings = doc.settings && typeof doc.settings === 'object' ? doc.settings : {};
+            const items = doc.items && typeof doc.items === 'object' ? doc.items : {};
+            const rawTitle = settings['shop-name'] != null ? settings['shop-name'] : shopId;
+            const location = normalizeShopLocation(locations[shopId] || {});
+            return {
+                id: shopId,
+                file,
+                title: rawTitle,
+                titleResolved: resolveUltimateShopLangText(rawTitle, langMap) || shopId,
+                menu: settings.menu || null,
+                itemCount: Object.keys(items).length,
+                location
+            };
+        });
 }
 
 function firstEconomyPriceAmount(priceSection) {
@@ -486,6 +558,39 @@ app.get('/api/admin/access', (req, res) => {
     } catch (error) {
         console.error('检查管理权限失败:', error);
         res.status(500).json({ error: '检查管理权限失败。' });
+    }
+});
+
+app.get('/api/admin/shops', (req, res) => {
+    try {
+        if (!requireAdmin(req, res)) return;
+        res.json(listUltimateShopShops());
+    } catch (error) {
+        console.error('读取商店列表失败:', error);
+        res.status(500).json({ error: '读取商店列表失败。' });
+    }
+});
+
+app.post('/api/admin/shop-locations/:shopId', (req, res) => {
+    try {
+        if (!requireAdmin(req, res)) return;
+        const shopId = String(req.params.shopId || '').trim();
+        if (!/^[A-Za-z0-9_.-]+$/.test(shopId)) {
+            return res.status(400).json({ error: '商店 ID 无效。' });
+        }
+        const shopFile = path.join(ULTIMATE_SHOP_SHOPS_DIR, `${shopId}.yml`);
+        if (!fs.existsSync(shopFile)) {
+            return res.status(404).json({ error: '未找到该 UltimateShop 商店。' });
+        }
+
+        const locations = loadShopLocations();
+        const location = normalizeShopLocation(req.body || {});
+        locations[shopId] = location;
+        saveYamlFile(SHOP_LOCATIONS_PATH, locations);
+        res.json({ status: 'ok', shopId, location });
+    } catch (error) {
+        console.error('保存商店位置失败:', error);
+        res.status(500).json({ error: '保存商店位置失败。' });
     }
 });
 

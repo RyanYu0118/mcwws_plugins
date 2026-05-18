@@ -1,0 +1,8 @@
+blocks:
+  world: world
+  map: world
+  x: -410
+  'y': 67
+  z: 24
+  description: test
+  enabled: true
