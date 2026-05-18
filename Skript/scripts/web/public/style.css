@@ -1409,62 +1409,59 @@ body {
 
 /* ═══ ITEMS HERO ═══ */
 .items-hero {
-    padding-bottom: 1.25rem;
+    padding-bottom: 2rem;
 }
 
-/* ═══ 首字母索引 A–Z ═══ */
-.letter-index-section {
-    margin: 0 0 1.25rem;
-    padding: 0;
-}
-
+/* ═══ 首字母索引 A–Z（分页下方） ═══ */
 .letter-index-bar {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: space-between;
-    gap: 0.2rem;
-    padding: 0.55rem 0.65rem;
-    border-radius: var(--radius-lg);
+    justify-content: center;
+    gap: 0.15rem 0.35rem;
+    width: 100%;
+    flex: 1 1 100%;
+    margin: 0.35rem 0 0;
+    padding: 0.15rem 0 0.25rem;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
+    background: none;
+    border: none;
 }
 
 .letter-index-bar::-webkit-scrollbar {
-    height: 4px;
+    height: 3px;
 }
 
 .letter-btn {
-    flex: 1 1 0;
-    min-width: 1.85rem;
-    max-width: 2.5rem;
-    height: 2.15rem;
-    padding: 0;
-    border: 1px solid transparent;
-    border-radius: var(--radius-sm);
-    background: var(--bg-tertiary);
-    color: var(--text-secondary);
-    font-size: 0.82rem;
-    font-weight: 600;
+    flex: 0 0 auto;
+    min-width: auto;
+    height: auto;
+    padding: 0.15rem 0.4rem;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-weight: 500;
     font-family: inherit;
-    line-height: 1;
+    line-height: 1.2;
     cursor: pointer;
-    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform 0.12s ease;
+    transition: color var(--transition-fast);
 }
 
 .letter-btn:hover {
-    background: var(--bg-secondary);
     color: var(--text-primary);
-    border-color: var(--border);
+    background: transparent;
 }
 
 .letter-btn.active {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: #fff;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.35);
+    color: var(--primary);
+    font-weight: 700;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
 }
 
 .search-container {
@@ -2173,21 +2170,15 @@ body {
         padding-bottom: 1.25rem;
     }
 
-    .letter-index-section {
-        margin-bottom: 0.85rem;
-    }
-
     .letter-index-bar {
         justify-content: flex-start;
-        gap: 0.15rem;
-        padding: 0.45rem 0.5rem;
+        gap: 0.1rem 0.28rem;
+        margin-top: 0.3rem;
     }
 
     .letter-btn {
-        flex: 0 0 auto;
-        min-width: 1.65rem;
-        height: 2rem;
-        font-size: 0.75rem;
+        padding: 0.12rem 0.32rem;
+        font-size: 0.8rem;
     }
 
     .hero-title {

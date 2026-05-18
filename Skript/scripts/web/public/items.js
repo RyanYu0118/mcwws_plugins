@@ -45,7 +45,7 @@ function hydrateItemsStateFromUrl() {
 
     if (params.has('q')) {
         const trimmed = (params.get('q') || '').trim();
-        searchQuery = trimmed.toLowerCase();
+        searchQuery = normalizeSearchText(trimmed);
         const inp = document.getElementById('searchInput');
         if (inp) inp.value = trimmed;
         updateSearchClearButton();
@@ -477,9 +477,15 @@ function showToast(message, success = true) {
 }
 
 // 搜索过滤与排序逻辑（新增逆序处理和拼音搜索支持）
-function normalizePinyinNasal(value) {
+/** 忽略拼音输入法误触的单引号分隔（如 指南针 → z'n'z、co'm） */
+function normalizeSearchText(value) {
     return String(value || '')
         .toLowerCase()
+        .replace(/[''`´′＇]/g, '');
+}
+
+function normalizePinyinNasal(value) {
+    return normalizeSearchText(value)
         .replace(/\s+/g, '')
         .replace(/zh/g, 'z')
         .replace(/ch/g, 'c')
@@ -491,7 +497,7 @@ function normalizePinyinNasal(value) {
 
 function pinyinPrefixComboMatch(syllables, query) {
     const parts = syllables.map((part) => String(part || '').toLowerCase()).filter(Boolean);
-    const q = String(query || '').toLowerCase().replace(/\s+/g, '');
+    const q = normalizeSearchText(query).replace(/\s+/g, '');
     if (!parts.length || !q) return false;
 
     const canMatchFrom = (start) => {
@@ -619,16 +625,15 @@ function initLetterIndexBar() {
 }
 
 function splitSearchWords(value) {
-    return String(value || '')
-        .toLowerCase()
-        .split(/[\s_-]+/)
+    return normalizeSearchText(value)
+        .split(/[\s_'`´′＇_-]+/)
         .map((part) => part.trim())
         .filter(Boolean);
 }
 
 function prefixComboMatch(parts, query) {
     const words = parts.map((part) => String(part || '').toLowerCase()).filter(Boolean);
-    const q = String(query || '').toLowerCase().replace(/[\s_-]+/g, '');
+    const q = normalizeSearchText(query).replace(/[\s_'`´′＇_-]+/g, '');
     if (!words.length || !q) return false;
 
     const canMatchFrom = (start) => {
@@ -663,18 +668,18 @@ function filterAndRenderItems() {
             return false;
         }
 
-        const query = searchQuery.toLowerCase();
+        const query = normalizeSearchText(searchQuery);
         if (!query) return true;
         
         // 原始匹配
-        const compactQuery = query.replace(/[\s_-]+/g, '');
+        const compactQuery = query.replace(/[\s_'`´′＇_-]+/g, '');
         const itemNameLower = item.name.toLowerCase();
         const itemIdLower = item.id.toLowerCase();
         const nameMatch = itemNameLower.includes(query)
-            || itemNameLower.replace(/[\s_-]+/g, '').includes(compactQuery)
+            || itemNameLower.replace(/[\s_'`´′＇_-]+/g, '').includes(compactQuery)
             || prefixComboMatch(splitSearchWords(itemNameLower), query);
         const idMatch = itemIdLower.includes(query)
-            || itemIdLower.replace(/[\s_-]+/g, '').includes(compactQuery)
+            || itemIdLower.replace(/[\s_'`´′＇_-]+/g, '').includes(compactQuery)
             || prefixComboMatch(splitSearchWords(itemIdLower), query);
         
         // 拼音匹配
@@ -780,7 +785,7 @@ function setupEventListeners() {
         updateSearchClearButton();
         searchInput.addEventListener('input', (e) => {
             const previousQuery = searchQuery;
-            const nextQuery = e.target.value.toLowerCase();
+            const nextQuery = normalizeSearchText(e.target.value);
             if (!previousQuery && nextQuery && pageBeforeSearch === null) {
                 pageBeforeSearch = currentPage;
             }
