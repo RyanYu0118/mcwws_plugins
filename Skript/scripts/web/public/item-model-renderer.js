@@ -105,6 +105,7 @@
     }
 
     const modelJsonCache = new Map();
+    const itemDefinitionCache = new Map();
     const iconCache = new Map();
     const use3dCache = new Map();
     const textureCache = new Map();
@@ -179,8 +180,11 @@
         return /^(dead_)?(tube|brain|bubble|fire|horn)_coral(_fan)?$/.test(n);
     }
 
+    /** 镂空/薄板方块：物品栏需绘制全部几何面（含底面与双面） */
+    const RENDER_ALL_FACES_ITEM_IDS = new Set(['composter', 'scaffolding']);
+
     function iconRenderAllFacesItemId(id) {
-        return normalizeId(id) === 'composter';
+        return RENDER_ALL_FACES_ITEM_IDS.has(normalizeId(id));
     }
 
     function iconForce2dFlatIcon(id) {
@@ -310,6 +314,43 @@
         }
     }
 
+    /** 1.21+ 物品定义（items/*.json），内含实际模型路径 */
+    async function fetchItemDefinition(itemId) {
+        const id = normalizeId(itemId);
+        if (itemDefinitionCache.has(id)) return itemDefinitionCache.get(id);
+        try {
+            const res = await fetch(`${ASSET_BASE}/items/${id}.json`);
+            const data = res.ok ? await res.json() : null;
+            itemDefinitionCache.set(id, data);
+            return data;
+        } catch {
+            itemDefinitionCache.set(id, null);
+            return null;
+        }
+    }
+
+    function modelPathFromItemDefinition(def) {
+        if (!def || !def.model) return null;
+        const root = def.model;
+        if (root.type === 'minecraft:model' && root.model) {
+            return parentToPath(root.model);
+        }
+        return null;
+    }
+
+    async function modelPathsForItem(itemId) {
+        const id = normalizeId(itemId);
+        const base = iconForce2dFlatIcon(id) ? modelCandidatesFlatFirst(itemId) : modelCandidates(itemId);
+        const defPath = modelPathFromItemDefinition(await fetchItemDefinition(itemId));
+        if (defPath) {
+            return [...new Set([defPath, ...base])];
+        }
+        if (id === 'scaffolding') {
+            return [...new Set(['block/scaffolding_stable', ...base])];
+        }
+        return base;
+    }
+
     async function mergeModel(path, visited) {
         if (!path || visited.has(path)) return null;
         visited.add(path);
@@ -351,7 +392,7 @@
 
     async function resolveModel(itemId) {
         const id = normalizeId(itemId);
-        const paths = iconForce2dFlatIcon(id) ? modelCandidatesFlatFirst(itemId) : modelCandidates(itemId);
+        const paths = await modelPathsForItem(itemId);
         let flatModel = null;
         for (const path of paths) {
             const m = await mergeModel(path, new Set());
@@ -536,9 +577,10 @@
         ];
     }
 
-    function pushFace(group, from, to, faceName, face, resolveTex, model) {
-        // GUI 斜视机位下底面不可见，不生成 mesh（减绘制、透明块少一层）
-        const renderAllFaces = iconRenderAllFacesItemId(group.userData.mcItemId || '');
+    function pushFace(group, from, to, faceName, face, resolveTex, model, itemId) {
+        const nid = normalizeId(itemId || group.userData.mcItemId || '');
+        const renderAllFaces = iconRenderAllFacesItemId(nid);
+        // GUI 斜视机位下底面通常不可见；脚手架等镂空结构需保留底面
         if (faceName === 'down' && !renderAllFaces) return;
         const url = resolveTex(face.texture);
         if (!url) return;
@@ -583,8 +625,8 @@
         const geo = new THREE.BufferGeometry();
         geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
         geo.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
-        // FrontSide：正面为 CCW。当前顶点序里仅 up 与 Three 外法向一致，其余面需反转索引以免被背面剔除误删
-        const triIdx = faceName === 'up' || faceName === 'down'
+        // 全表面模式：所有面统一外法向绕序 + 双面材质，避免镂空结构缺面
+        const triIdx = renderAllFaces || faceName === 'up' || faceName === 'down'
             ? [0, 1, 2, 0, 2, 3]
             : [0, 2, 1, 0, 3, 2];
         geo.setIndex(triIdx);
@@ -592,7 +634,14 @@
 
         const shade = computeViewShade(faceName, model);
         const tintindex = face.tintindex;
-        const meshHolder = { geo, url, shade, tintindex, doubleSide: renderAllFaces };
+        const meshHolder = {
+            geo,
+            url,
+            shade,
+            tintindex,
+            doubleSide: renderAllFaces,
+            depthWrite: renderAllFaces
+        };
         group.__meshes = group.__meshes || [];
         group.__meshes.push(meshHolder);
     }
@@ -600,6 +649,7 @@
     async function finalizeGroup(group) {
         const THREE = getThree();
         const itemId = group.userData.mcItemId || '';
+        const renderAllFaces = iconRenderAllFacesItemId(itemId);
         const holders = group.__meshes || [];
         delete group.__meshes;
 
@@ -638,7 +688,8 @@
                 color: new THREE.Color(r, g, b),
                 transparent: true,
                 // 单面绘制：背对机位的面不渲染（立方体约一半面被剔除，玻璃少画内侧面、减轻透明叠层）
-                side: h.doubleSide ? THREE.DoubleSide : THREE.FrontSide
+                side: (renderAllFaces || h.doubleSide) ? THREE.DoubleSide : THREE.FrontSide,
+                depthWrite: renderAllFaces ? true : (h.depthWrite !== false)
             });
             const mesh = new THREE.Mesh(h.geo, mat);
             group.add(mesh);
@@ -652,7 +703,7 @@
 
         model.elements.forEach((el) => {
             Object.entries(el.faces || {}).forEach(([name, face]) => {
-                pushFace(root, el.from, el.to, name, face, resolveTex, model);
+                pushFace(root, el.from, el.to, name, face, resolveTex, model, itemId);
             });
         });
 

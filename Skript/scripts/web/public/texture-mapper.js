@@ -358,6 +358,9 @@ window.flatTextureUrlsForItem = function(itemId) {
     if (window.isMcAnimatedPrismarineBlockItemId && window.isMcAnimatedPrismarineBlockItemId(itemId)) {
         return [`${base}/block/prismarine.png`, `${base}/item/barrier.png`];
     }
+    if (smartId === 'scaffolding') {
+        return [`${base}/block/scaffolding_top.png`, `${base}/item/barrier.png`];
+    }
     return [`${base}/block/${smartId}.png`, `${base}/item/${smartId}.png`];
 };
 
