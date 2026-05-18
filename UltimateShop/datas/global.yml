@@ -152,5 +152,5 @@ useTimes:
 favourites: {}
 randomPlaceholder:
   daily:
-    nowValue: B;;C;;D;;E;;G
-    refreshDoneTime: '2026-05-19 00:00:00'
+    nowValue: A;;B;;C;;E;;F
+    refreshDoneTime: '2026-05-20 00:00:00'
