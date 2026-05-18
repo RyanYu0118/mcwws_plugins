@@ -153,7 +153,7 @@
     const REDSTONE_2D_ITEM_IDS = new Set(['redstone', 'repeater', 'comparator']);
     const TORCH_2D_ITEM_IDS = new Set(['torch', 'soul_torch', 'redstone_torch', 'copper_torch']);
     const ITEM_MODEL_2D_IDS = new Set([
-        'lever', 'ladder', 'lily_pad', 'cobweb', 'amethyst_cluster', 'soul_campfire', 'hopper', 'brewing_stand', 'resin_clump',
+        'lever', 'ladder', 'lily_pad', 'cobweb', 'amethyst_cluster', 'soul_campfire', 'hopper', 'sea_pickle', 'brewing_stand', 'resin_clump',
         'item_frame', 'glow_item_frame',
         'iron_chain', 'copper_chain', 'exposed_copper_chain', 'weathered_copper_chain', 'oxidized_copper_chain',
         'waxed_copper_chain', 'waxed_exposed_copper_chain', 'waxed_weathered_copper_chain', 'waxed_oxidized_copper_chain'

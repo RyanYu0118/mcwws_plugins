@@ -103,6 +103,7 @@ const ITEM_MODEL_2D_TEXTURES = {
     sunflower: 'block/sunflower_front',
     rose_bush: 'block/rose_bush_top',
     peony: 'block/peony_top',
+    sea_pickle: 'item/sea_pickle',
     brewing_stand: 'item/brewing_stand',
     resin_clump: 'item/resin_clump',
     item_frame: 'item/item_frame',
@@ -603,7 +604,7 @@ window.applyHeadImgMirror = function(img) {
 /** 藤类、根须类植物：物品栏统一 2D，部分 ID 的贴图名与物品 ID 不一致 */
 window.isMcVineOrRootPlantItemId = function(id) {
     const n = String(id || '').toLowerCase().replace(/-/g, '_');
-    if (n === 'muddy_mangrove_roots') return false;
+    if (n === 'mangrove_roots' || n === 'muddy_mangrove_roots') return false;
     return n === 'vine'
         || n === 'glow_lichen'
         || n === 'pale_hanging_moss'
