@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="https://www.ryanstudio.work/upload/Icon.png">
     <title>物品目录 - 流浪世界服务器商店系统</title>
     <meta name="description" content="浏览所有商店物品及当前价格">
-    <link rel="stylesheet" href="style.css?v=2.5.50">
+    <link rel="stylesheet" href="style.css?v=2.5.53">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -46,14 +46,25 @@
     </nav>
 
     <!-- 英雄区 -->
-    <header class="hero items-hero">
-        <div class="hero-content">
-            <h1 class="hero-title">物品目录</h1>
-            <p class="hero-subtitle">浏览所有商店物品及当前价格</p>
-            <div class="search-container">
-                <input type="text" id="searchInput" class="hero-search" placeholder="搜索物品..." autocomplete="off">
-                <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="清除搜索" hidden>×</button>
+    <header class="hero items-hero dashboard-hero">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <h1 class="hero-title">物品目录</h1>
+                <p class="hero-subtitle">浏览所有商店物品及当前价格</p>
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="hero-search" placeholder="搜索物品..." autocomplete="off">
+                    <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="清除搜索" hidden>×</button>
+                </div>
             </div>
+            <aside class="hero-clock-widget" id="heroCompassWidget" aria-label="游戏指南针与方位">
+                <div class="hero-clock-panel glass">
+                    <div id="heroCompassIconMount" class="hero-clock-icon"></div>
+                    <div class="hero-clock-meta">
+                        <span class="hero-clock-label">指南针</span>
+                        <span class="hero-clock-time" data-pointer-bearing-desc data-pointer-bearing-title>移动鼠标查看方位</span>
+                    </div>
+                </div>
+            </aside>
         </div>
         <div class="hero-glow"></div>
     </header>
@@ -198,9 +209,9 @@
     <script src="lang.js?v=2.5.9" defer></script>
     <script src="texture-mapper.js?v=2.5.76" defer></script>
     <script src="enchant-glint.js?v=2.5.28" defer></script>
-    <script src="texture-animation.js?v=2.5.64" defer></script>
+    <script src="texture-animation.js?v=2.5.65" defer></script>
     <script src="item-model-renderer.js?v=2.5.72" defer></script>
-    <script src="items.js?v=2.5.58" defer></script>
+    <script src="items.js?v=2.5.59" defer></script>
 </body>
 
 </html>

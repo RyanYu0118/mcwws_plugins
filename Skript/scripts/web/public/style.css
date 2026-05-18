@@ -1530,6 +1530,23 @@ body {
     padding-bottom: 2rem;
 }
 
+.items-hero.dashboard-hero .hero-content {
+    text-align: left;
+}
+
+.items-hero .search-container {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 32rem;
+}
+
+@media (max-width: 768px) {
+    .items-hero.dashboard-hero .search-container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 /* ═══ 首字母索引 A–Z（分页下方） ═══ */
 .letter-index-bar {
     display: flex;

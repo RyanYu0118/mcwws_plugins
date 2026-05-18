@@ -142,6 +142,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else if (!window.THREE) {
         console.warn('[物品图标] Three.js 未加载（检查 vendor/three.module.min.js），仍使用 PNG');
     }
+    initItemsHeroCompass();
     loadItems();
     setupEventListeners();
     loadUserProfile();
@@ -299,8 +300,10 @@ function formatCompassBearingForElement(el) {
         return '等待系统指南针数据';
     }
     if (!el || pointerBearingX == null || pointerBearingY == null) return '移动鼠标查看方位';
+    const heroWidget = el.closest('#heroCompassWidget');
     const card = el.closest('.glass');
-    const icon = card && card.querySelector('[data-item-id="compass"], [data-item-id="recovery_compass"]');
+    const icon = (heroWidget && heroWidget.querySelector('[data-item-id="compass"], [data-item-id="recovery_compass"]'))
+        || (card && card.querySelector('[data-item-id="compass"], [data-item-id="recovery_compass"]'));
     if (!icon || !icon.getBoundingClientRect) return '移动鼠标查看方位';
 
     const rect = icon.getBoundingClientRect();
@@ -350,9 +353,47 @@ function updatePointerBearingDescriptions(root) {
     host.querySelectorAll('[data-pointer-bearing-desc]').forEach((el) => {
         const text = formatCompassBearingForElement(el);
         el.textContent = text;
-        const container = el.closest('.scrolling-text');
-        if (container) container.title = text;
+        if (el.hasAttribute('data-pointer-bearing-title')) {
+            el.title = text;
+        } else {
+            const container = el.closest('.scrolling-text');
+            if (container) container.title = text;
+        }
     });
+}
+
+function initItemsHeroCompass() {
+    const mount = document.getElementById('heroCompassIconMount');
+    if (!mount || mount.dataset.heroCompassReady === '1') return;
+
+    if (typeof getTextureHtml === 'function') {
+        mount.innerHTML = getTextureHtml('compass', '指南针');
+    } else if (window.getTextureHtml) {
+        mount.innerHTML = window.getTextureHtml('compass', '指南针');
+    }
+
+    const canvas = mount.querySelector('canvas[data-item-id="compass"]');
+    if (canvas && window.McTextureAnim) {
+        const urls = window.mcMouseCompassTextureUrlsForItem
+            ? window.mcMouseCompassTextureUrlsForItem('compass')
+            : (canvas.dataset.texUrls || '').split('|').filter(Boolean);
+        if (urls.length) {
+            if (!canvas.dataset.texUrls) {
+                canvas.dataset.texUrls = urls.join('|');
+            }
+            window.McTextureAnim.initCanvasFromUrls(canvas, urls).then((ok) => {
+                if (ok) {
+                    canvas.style.opacity = '1';
+                    canvas.dataset.texReady = '1';
+                }
+            });
+        }
+    }
+
+    const widget = document.getElementById('heroCompassWidget');
+    updatePointerBearingDescriptions(widget);
+    ensurePointerBearingTicker();
+    mount.dataset.heroCompassReady = '1';
 }
 
 function ensurePointerBearingTicker() {
