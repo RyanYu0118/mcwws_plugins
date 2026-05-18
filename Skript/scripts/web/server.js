@@ -240,6 +240,31 @@ function normalizeShopLocation(raw = {}) {
     return out;
 }
 
+function parseBlueMapViewUrl(viewUrl) {
+    const raw = String(viewUrl || '').trim();
+    const hash = raw.includes('#') ? raw.slice(raw.indexOf('#') + 1) : raw;
+    const parts = hash.split(':');
+    if (parts.length < 4) {
+        return null;
+    }
+    const x = Number(parts[1]);
+    const y = Number(parts[2]);
+    const z = Number(parts[3]);
+    if (![x, y, z].every(Number.isFinite)) {
+        return null;
+    }
+    return {
+        map: parts[0],
+        x,
+        y,
+        z,
+        yaw: parts[4] != null ? Number(parts[4]) : null,
+        pitch: parts[5] != null ? Number(parts[5]) : null,
+        zoom: parts[6] != null ? Number(parts[6]) : null,
+        mode: parts[9] || null
+    };
+}
+
 function loadShopLocations() {
     const data = loadYamlFile(SHOP_LOCATIONS_PATH);
     return data && typeof data === 'object' ? data : {};
@@ -271,6 +296,38 @@ function listUltimateShopShops() {
                 location
             };
         });
+}
+
+function listShopMapMarkers() {
+    return listUltimateShopShops()
+        .map((shop) => {
+            const location = shop.location || {};
+            const parsed = parseBlueMapViewUrl(location.viewUrl);
+            if (!location.viewUrl || !parsed || location.enabled === false) {
+                return null;
+            }
+            return {
+                id: shop.id,
+                label: shop.titleResolved || shop.id,
+                shopId: shop.id,
+                itemCount: shop.itemCount,
+                description: location.description || '',
+                viewUrl: location.viewUrl,
+                map: parsed.map,
+                position: {
+                    x: parsed.x,
+                    y: parsed.y,
+                    z: parsed.z
+                },
+                view: {
+                    yaw: parsed.yaw,
+                    pitch: parsed.pitch,
+                    zoom: parsed.zoom,
+                    mode: parsed.mode
+                }
+            };
+        })
+        .filter(Boolean);
 }
 
 function firstEconomyPriceAmount(priceSection) {
@@ -577,6 +634,18 @@ app.get('/api/admin/shops', (req, res) => {
     } catch (error) {
         console.error('读取商店列表失败:', error);
         res.status(500).json({ error: '读取商店列表失败。' });
+    }
+});
+
+app.get('/api/shop-map-markers', (req, res) => {
+    try {
+        res.json({
+            updatedAt: new Date().toISOString(),
+            markers: listShopMapMarkers()
+        });
+    } catch (error) {
+        console.error('读取商店地图标记失败:', error);
+        res.status(500).json({ error: '读取商店地图标记失败。' });
     }
 });
 
