@@ -42,6 +42,7 @@ const ITEMS_DB_PATH = path.join(__dirname, '..', 'mcwws', 'economy', 'database',
 const OPS_PATH = path.join(__dirname, '..', '..', '..', '..', 'ops.json');
 const ADMIN_ACCESS_PATH = path.join(DB_DIR, 'admin_access.yml');
 const SHOP_LOCATIONS_PATH = path.join(__dirname, 'mcwws', 'shop_locations.yml');
+const BLUEMAP_WEB_MAPS_DIR = path.join(__dirname, '..', '..', '..', '..', 'bluemap', 'web', 'maps');
 const HTTPS_KEY_PATH = path.join(__dirname, 'certs', 'server.key');
 const HTTPS_CERT_PATH = path.join(__dirname, 'certs', 'server.crt');
 const HTTPS_ENABLED = process.env.HTTPS === '1';
