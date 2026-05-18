@@ -103,6 +103,7 @@ const ITEM_MODEL_2D_TEXTURES = {
     sunflower: 'block/sunflower_front',
     rose_bush: 'block/rose_bush_top',
     peony: 'block/peony_top',
+    pointed_dripstone: 'item/pointed_dripstone',
     sea_pickle: 'item/sea_pickle',
     brewing_stand: 'item/brewing_stand',
     resin_clump: 'item/resin_clump',
