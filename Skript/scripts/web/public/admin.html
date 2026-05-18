@@ -58,7 +58,7 @@
         h5,
         h6,
         p,
-        span,
+        span:not(.icon-lightning),
         div,
         input,
         button,
@@ -102,8 +102,64 @@
             gap: 12px;
         }
 
-        .brand-icon {
-            font-size: 22px;
+        .icon-lightning {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            line-height: 0;
+            vertical-align: middle;
+        }
+
+        .icon-lightning svg {
+            width: 1.15em;
+            height: 1.15em;
+            fill: #facc15;
+            filter: drop-shadow(0 0 4px rgba(250, 204, 21, 0.45));
+        }
+
+        .brand-icon.icon-lightning svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .nav-icon.icon-lightning svg {
+            width: 1.1em;
+            height: 1.1em;
+        }
+
+        h2 .icon-lightning {
+            margin-right: 0.35em;
+        }
+
+        h2 .icon-lightning svg {
+            width: 1.05em;
+            height: 1.05em;
+        }
+
+        .nav-icon {
+            font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif !important;
+            font-size: 1em;
+            -webkit-text-fill-color: initial;
+            background: none;
+        }
+
+        .brand-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-left: 4px;
+            white-space: nowrap;
+        }
+
+        .brand-status .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--success);
+            animation: pulse 2s infinite;
         }
 
         .brand-text {
@@ -167,46 +223,6 @@
             background: rgba(99, 102, 241, 0.18);
         }
 
-        /* 头部 */
-        .header {
-            background: linear-gradient(135deg, #1a1040 0%, #0f172a 50%, #0a2540 100%);
-            border-bottom: 1px solid var(--border);
-            padding: 16px 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header h1 {
-            font-size: 22px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #818cf8, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .header .status {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        .header .dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--success);
-            animation: pulse 2s infinite;
-        }
-
         @keyframes pulse {
 
             0%,
@@ -217,22 +233,6 @@
             50% {
                 opacity: 0.4;
             }
-        }
-
-        .header .btn-logout {
-            padding: 6px 14px;
-            font-size: 12px;
-            background: transparent;
-            color: var(--text-muted);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        .header .btn-logout:hover {
-            color: var(--danger);
-            border-color: var(--danger);
         }
 
         /* 导航标签页 */
@@ -1017,6 +1017,10 @@
                 display: none;
             }
 
+            .brand-status {
+                margin-left: 0;
+            }
+
             .nav-links {
                 order: 3;
                 width: 100%;
@@ -1044,8 +1048,11 @@
 
     <nav class="navbar">
         <div class="nav-brand">
-            <span class="brand-icon">⚡</span>
+            <span class="brand-icon icon-lightning" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
             <span class="brand-text">流浪世界服务器商店系统</span>
+            <div class="brand-status">
+                <div class="dot"></div><span>已连接</span>
+            </div>
         </div>
         <div class="nav-links">
             <a href="index.html" class="nav-link">
@@ -1055,7 +1062,7 @@
                 <span class="nav-icon">🛒</span> 物品目录
             </a>
             <a href="admin.html" class="nav-link active">
-                <span class="nav-icon">⚡</span> 管理
+                <span class="nav-icon icon-lightning" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span> 管理面板
             </a>
         </div>
         <div class="nav-actions">
@@ -1118,15 +1125,6 @@
 
     <!-- ═══════ 主应用 ═══════ -->
     <div id="app" style="display:none;">
-        <div class="header">
-            <h1>⚡ 流浪世界服务器商店系统 管理</h1>
-            <div class="header-right">
-                <div class="status">
-                    <div class="dot"></div><span>已连接</span>
-                </div>
-            </div>
-        </div>
-
         <div class="nav-tabs">
             <div class="nav-tab active" data-tab="shop">📦 商店</div>
             <div class="nav-tab" data-tab="config">⚙️ 配置</div>
@@ -1197,7 +1195,7 @@
             <!-- ═══ 配置选项卡 ═══ -->
             <div class="tab-content" id="tab-config">
                 <div class="card">
-                    <h2>⚡ 动态定价</h2>
+                    <h2><span class="icon-lightning" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span> 动态定价</h2>
                     <div id="configToggles"></div>
                     <div class="config-grid" id="configNumbers" style="margin-top:16px;"></div>
                 </div>
